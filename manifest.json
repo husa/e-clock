@@ -1,0 +1,11 @@
+{
+    "manifest_version" : 2,
+    "name" : "e-clock",
+    "version" : "0.0.1",
+
+    "description" : "Replace \"New Tab\" with digital clock",
+
+    "chrome_url_overrides" : {
+        "newtab" : "index.html"
+    }
+}

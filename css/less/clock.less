@@ -1,0 +1,49 @@
+.container {
+    width: 100%;
+    height: 100%;
+    color: #111;
+    font-size: 12em;
+    font-family: 'Raleway Thin';
+    pointer-events: none;
+
+    .clock {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-70%);
+        transform: translateY(-70%);
+
+        text-align: center;
+
+        .hours {
+
+        }
+
+        .minutes {
+
+        }
+
+        .delimeter {
+            animation-duration: 2s;
+            -webkit-animation-duration: 2s;
+            animation-name: delimeter-blink;
+            -webkit-animation-name: delimeter-blink;
+            animation-iteration-count: infinite;
+            -webkit-animation-iteration-count: infinite;
+        }
+
+        .ampm {
+
+        }
+    }
+}
+
+@-webkit-keyframes delimeter-blink {
+    0%, 100% { opacity: .2; }
+    50% { opacity: .8; }
+}
+@keyframes delimeter-blink {
+    0%, 100% { opacity: .2; }
+    50% { opacity: .8; }
+}
+
+
