@@ -5,7 +5,14 @@
 
     "description" : "Replace \"New Tab\" with digital clock",
 
+    "default_locale": "en",
+
     "chrome_url_overrides" : {
-        "newtab" : "index.html"
+        "newtab" : "html/override/override.html"
+    },
+
+    "icons" : {
+        "128": "img/icons/icon128.png",
+        "48": "img/icons/icon48.png"
     }
 }
