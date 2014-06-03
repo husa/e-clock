@@ -55,7 +55,7 @@
 
         clock.updateTime();
 
-        var interval = setInterval(function() {
+        var interval = window.setInterval(function() {
             clock.updateTime();
         }, 1000);
     }
