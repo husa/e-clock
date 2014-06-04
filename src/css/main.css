@@ -1,7 +1,6 @@
 .container {
   width: 100%;
   height: 100%;
-  pointer-events: none;
 }
 .container .clock {
   position: relative;
@@ -18,6 +17,13 @@
   -webkit-animation-name: delimeter-blink;
   animation-iteration-count: infinite;
   -webkit-animation-iteration-count: infinite;
+}
+.container .overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 @-webkit-keyframes delimeter-blink {
   0%,
@@ -49,7 +55,8 @@
 .footer ul li {
   float: right;
   margin: 0 10px;
-  stroke: #363636;
+  fill: #363636;
+  stroke: none;
   cursor: pointer;
 }
 .footer ul li svg {
@@ -89,7 +96,7 @@ body {
 *[data-alt]:after {
   content: ' ';
   top: -6px;
-  right: 6px;
+  right: 8px;
   border: solid 6px transparent;
   border-top-color: rgba(0, 0, 0, 0.7);
 }
@@ -101,7 +108,7 @@ body {
   white-space: nowrap;
   border-radius: 2px;
   top: -28px;
-  right: 2px;
+  right: 4px;
 }
 *[data-alt]:hover:after,
 *[data-alt]:hover:before {
