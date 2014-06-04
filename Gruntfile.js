@@ -38,7 +38,9 @@ module.exports = function(grunt) {
                 undef: true,
                 globals: {
                     document: false,
-                    window: false
+                    window: false,
+                    console: false,
+                    chrome: false
                 }
             },
             src: ['src/js/**/*.js']

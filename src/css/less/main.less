@@ -1,4 +1,7 @@
+@import url('mixins.less');
+@import url('vars.less');
 @import url('clock.less');
+@import url('footer.less');
 
 @font-face {
     font-family: 'ralewaythin';
@@ -21,4 +24,9 @@ body, html {
 
 body {
     background: #fefefe;
+}
+
+
+*[data-alt] {
+    .fancy-alt();
 }

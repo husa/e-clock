@@ -58,5 +58,28 @@
         var interval = window.setInterval(function() {
             clock.updateTime();
         }, 1000);
+
+
+        document.querySelector('.chrome-newtab').addEventListener('click', function() {
+            var myId = chrome.app.getDetails().id;
+            chrome.management.setEnabled(myId, false);
+            chrome.management.onDisabled(function() {
+                // chrome.management.setEnabled(myId, true);
+                console.log('onDisabled');
+            });
+            chrome.management.onEnabled(function() {
+                console.log('ok');
+            });
+            chrome.tabs.update({
+                url : 'chrome://newtab'
+            });
+
+        });
+
+        document.querySelector('.chrome-apps').addEventListener('click', function() {
+            chrome.tabs.update({
+                url : 'chrome://apps'
+            });
+        });
     }
 })();

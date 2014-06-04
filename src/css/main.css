@@ -37,6 +37,24 @@
     opacity: .8;
   }
 }
+.footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+.footer ul li {
+  float: right;
+  margin: 0 10px;
+  stroke: #363636;
+  cursor: pointer;
+}
+.footer ul li svg {
+  pointer-events: none;
+}
 @font-face {
   font-family: 'ralewaythin';
   src: url('fonts/raleway-thin-webfont.eot');
@@ -54,4 +72,39 @@ html {
 }
 body {
   background: #fefefe;
+}
+*[data-alt] {
+  position: relative;
+}
+*[data-alt]:after,
+*[data-alt]:before {
+  visibility: hidden;
+  position: absolute;
+  opacity: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 18px;
+  transition: 500ms;
+}
+*[data-alt]:after {
+  content: ' ';
+  top: -6px;
+  right: 6px;
+  border: solid 6px transparent;
+  border-top-color: rgba(0, 0, 0, 0.7);
+}
+*[data-alt]:before {
+  content: attr(data-alt);
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 2px 4px;
+  white-space: nowrap;
+  border-radius: 2px;
+  top: -28px;
+  right: 2px;
+}
+*[data-alt]:hover:after,
+*[data-alt]:hover:before {
+  visibility: visible;
+  opacity: 1;
 }
