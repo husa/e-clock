@@ -24,6 +24,8 @@
   height: 100%;
   top: 0;
   left: 0;
+  -webkit-user-select: none;
+  user-select: none;
 }
 @-webkit-keyframes delimeter-blink {
   0%,
@@ -91,7 +93,7 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 18px;
-  transition: 500ms;
+  transition: 300ms;
 }
 *[data-alt]:after {
   content: ' ';
