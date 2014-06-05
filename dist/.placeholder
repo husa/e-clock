@@ -1,0 +1,3 @@
+to populate this folder run "grunt build" in project's root dir,
+which will also generate "dist.zip" - ready to upload package
+NOTE: grunt-cli should be installed globally (with "-g" flag)
