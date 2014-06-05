@@ -73,6 +73,16 @@ module.exports = function(grunt) {
                 ],
                 dest : 'dist/'
             }
+        },
+
+        compress : {
+            build : {
+                options : {
+                    archive : 'dist.zip',
+                    mode : 'zip'
+                },
+                src : ['dist/**']
+            }
         }
     });
 
@@ -82,9 +92,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-compress');
 
     // Default task(s).
     grunt.registerTask('default', ['less:dev', 'watch']);
-    grunt.registerTask('build', ['less:build', 'uglify:build', 'copy:build']);
+    grunt.registerTask('build', ['less:build', 'uglify:build', 'copy:build', 'compress:build']);
 
 };
