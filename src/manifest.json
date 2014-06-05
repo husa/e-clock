@@ -1,9 +1,9 @@
 {
     "manifest_version" : 2,
     "name" : "e-clock",
-    "version" : "0.0.1",
+    "version" : "0.0.2",
 
-    "description" : "Replace \"New Tab\" with digital clock",
+    "description" : "Replace your regular new tab with this digital clock. More features coming soon...",
 
     "default_locale": "en",
 
@@ -16,7 +16,5 @@
         "48": "img/icons/icon48.png"
     },
 
-    "permissions" : [
-        "management"
-    ]
+    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
 }
