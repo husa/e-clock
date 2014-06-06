@@ -39,8 +39,8 @@
     };
 
     Clock.prototype.timeHasChanged = function() {
-        return +date.getMinutes() !== this.prev.minutes ||
-                +date.getHours() !== this.prev.hours;
+        return +date.getMinutes() !== +this.prev.minutes ||
+                +date.getHours() !== +this.prev.hours;
     };
 
     Clock.prototype.updateChangedTime = function() {
