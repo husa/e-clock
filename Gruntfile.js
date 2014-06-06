@@ -36,11 +36,13 @@ module.exports = function(grunt) {
             options: {
                 curly: true,
                 undef: true,
+                unused : true,
                 globals: {
                     document: false,
                     window: false,
                     console: false,
-                    chrome: false
+                    chrome: false,
+                    localStorage : false
                 }
             },
             src: ['src/js/**/*.js']

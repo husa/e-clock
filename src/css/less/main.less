@@ -1,8 +1,3 @@
-@import url('mixins.less');
-@import url('vars.less');
-@import url('clock.less');
-@import url('footer.less');
-
 @font-face {
     font-family: 'ralewaythin';
     src: url('fonts/raleway-thin-webfont.eot');
@@ -14,6 +9,13 @@
     font-style: normal;
 }
 
+@import url('mixins.less');
+@import url('vars.less');
+@import url('clock.less');
+@import url('footer.less');
+@import url('settings.less');
+
+
 body, html {
     width: 100%;
     height: 100%;
@@ -24,6 +26,8 @@ body, html {
 
 body {
     background: #fefefe;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 

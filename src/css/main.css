@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'ralewaythin';
+  src: url('fonts/raleway-thin-webfont.eot');
+  src: url('fonts/raleway-thin-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/raleway-thin-webfont.woff') format('woff'), url('fonts/raleway-thin-webfont.ttf') format('truetype'), url('fonts/raleway-thin-webfont.svg#ralewaythin') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 .container {
   width: 100%;
   height: 100%;
@@ -24,8 +31,6 @@
   height: 100%;
   top: 0;
   left: 0;
-  -webkit-user-select: none;
-  user-select: none;
 }
 @-webkit-keyframes delimeter-blink {
   0%,
@@ -64,12 +69,85 @@
 .footer ul li svg {
   pointer-events: none;
 }
-@font-face {
-  font-family: 'ralewaythin';
-  src: url('fonts/raleway-thin-webfont.eot');
-  src: url('fonts/raleway-thin-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/raleway-thin-webfont.woff') format('woff'), url('fonts/raleway-thin-webfont.ttf') format('truetype'), url('fonts/raleway-thin-webfont.svg#ralewaythin') format('svg');
-  font-weight: normal;
-  font-style: normal;
+.footer ul li.hidden {
+  display: none;
+}
+.settings {
+  position: absolute;
+  width: 400px;
+  height: 500px;
+  max-height: 90%;
+  overflow: auto;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  padding: 25px 10px 10px;
+  box-sizing: border-box;
+  background: #fff;
+  border: solid 1px #eaeaea;
+  box-shadow: 0 0 20px #222;
+  border-radius: 5px;
+  color: #363636;
+  fill: #363636;
+  stroke: none;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+}
+.settings.hidden {
+  display: none;
+}
+.settings .dock-icon-settings {
+  padding: 8px 0;
+}
+.settings .dock-icon-settings > * {
+  vertical-align: middle;
+}
+.settings .dock-icon-settings > svg {
+  margin: 0 4px;
+}
+.settings .dock-icon-settings > input {
+  vertical-align: top;
+  visibility: hidden;
+  position: relative;
+  margin: 0 30px 0 0;
+  cursor: pointer;
+}
+.settings .dock-icon-settings > input:before,
+.settings .dock-icon-settings > input:after {
+  content: ' ';
+  position: absolute;
+  visibility: visible;
+  background-color: #ECF0F1;
+  border: solid 1px #BDC3C7;
+  cursor: pointer;
+}
+.settings .dock-icon-settings > input:before {
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 3px #ddd inset;
+}
+.settings .dock-icon-settings > input:after {
+  top: 0px;
+  left: 0px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  transition: all 200ms;
+  box-shadow: 0 0 2px #BDC3C7;
+}
+.settings .dock-icon-settings > input:checked:before {
+  background: #2ECC71;
+}
+.settings .dock-icon-settings > input:checked:after {
+  left: 15px;
+}
+.settings .settings-close-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
 }
 body,
 html {
@@ -81,6 +159,8 @@ html {
 }
 body {
   background: #fefefe;
+  -webkit-user-select: none;
+  user-select: none;
 }
 *[data-alt] {
   position: relative;
