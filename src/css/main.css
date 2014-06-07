@@ -139,6 +139,8 @@
 }
 .settings .dock-icon-settings > input:checked:before {
   background: #2ECC71;
+  border-color: #27AE60;
+  box-shadow: 0 0 3px #2ECC71 inset;
 }
 .settings .dock-icon-settings > input:checked:after {
   left: 15px;
