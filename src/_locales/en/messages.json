@@ -2,5 +2,41 @@
     "i18nNewTabTitle": {
         "message": "New Tab",
         "description": "title to show on new tab"
+    },
+    "i18nSettings" : {
+        "message" : "Settings",
+        "description" : "Settings dock icon title"
+    },
+    "i18nFlags" : {
+        "message" : "Flags",
+        "description" : "Flags dock icon title"
+    },
+    "i18nInspect" : {
+        "message" : "Inspect",
+        "description" : "Inspect dock icon title"
+    },
+    "i18nHistory" : {
+        "message" : "History",
+        "description" : "History dock icon title"
+    },
+    "i18nBookmarks" : {
+        "message" : "Bookmarks",
+        "description" : "Bookmarks dock icon title"
+    },
+    "i18nDownloads" : {
+        "message" : "Downloads",
+        "description" : "Downloads dock icon title"
+    },
+    "i18nExtensions" : {
+        "message" : "Extensions",
+        "description" : "Extensions dock icon title"
+    },
+    "i18nApplications" : {
+        "message" : "Applications",
+        "description" : "Applications dock icon title"
+    },
+    "i18nChromeWebStore" : {
+        "message" : "Chrome Web Store",
+        "description" : "Chrome Web Store dock icon title"
     }
 }

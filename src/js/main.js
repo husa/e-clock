@@ -255,9 +255,20 @@ var app = {};
             });
     };
 
+    var I18n = function() {
+        app.dock.iconViews.forEach(function(dockIconView) {
+            var i18nStringKey = dockIconView.$el.dataset.i18n;
+
+            var i18nString = chrome.i18n.getMessage(i18nStringKey);
+            console.log(i18nString);
+            dockIconView.$el.dataset.alt = i18nString;
+        });
+    };
+
     function main() {
         app.clock    = new Clock();
         app.dock     = new Dock();
+        app.i18n     = new I18n();
         app.settings = new Settings();
     }
 })();
