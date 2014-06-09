@@ -193,17 +193,21 @@ var app = {};
 
 
     var Settings = function () {
+        var root = this;
+
         this.$el = document.querySelector('.settings');
         this.key = 'settings_data';
 
-        this.fetch();
+        this.fetch(function() {
+            app.dock.update(root.data);
 
-        app.dock.update(this.data);
+            root.$dockSettings = root.$el.querySelector('.dock-settings');
+            root.$dockSettings.appendChild(app.dock.getSettings());
 
-        this.$dockSettings = this.$el.querySelector('.dock-settings');
-        this.$dockSettings.appendChild(app.dock.getSettings());
+            root.handleClose();
+        });
 
-        this.handleClose();
+
     };
 
     Settings.prototype.open = function() {
@@ -219,25 +223,40 @@ var app = {};
     };
 
     Settings.prototype.sync = function() {
-        localStorage.setItem(this.key, JSON.stringify(this.data));
+        var key = this.key,
+            data = JSON.stringify(this.data);
+
+        chrome.storage.sync.remove(key, function() {
+            chrome.storage.sync.set({
+                key : data
+            }, function() {
+                console.log('data saved');
+            });
+        });
     };
 
-    Settings.prototype.fetch = function() {
-        var data = localStorage.getItem(this.key);
+    Settings.prototype.fetch = function(callback) {
+        var root = this;
 
-        if (!data) {
-            data = {};
-            app.dock.iconViews.forEach(function(dockIconView) {
-                data[dockIconView.url] = {
-                    visible : true,
-                    order : null
-                };
-            });
-        } else {
-            data = JSON.parse(data);
-        }
+        chrome.storage.sync.get(this.key, function(data) {
+            if (!data || isEmpty(data)) {
+                data = {};
+                app.dock.iconViews.forEach(function(dockIconView) {
+                    data[dockIconView.url] = {
+                        visible : true,
+                        order : null
+                    };
+                });
+            } else {
+                data = JSON.parse(data);
+            }
 
-        this.data = data;
+            root.data = data;
+
+            callback();
+        });
+
+
     };
 
     Settings.prototype.update = function(key, value) {
@@ -260,7 +279,7 @@ var app = {};
             var i18nStringKey = dockIconView.$el.dataset.i18n;
 
             var i18nString = chrome.i18n.getMessage(i18nStringKey);
-            console.log(i18nString);
+
             dockIconView.$el.dataset.alt = i18nString;
         });
     };
@@ -270,6 +289,16 @@ var app = {};
         app.dock     = new Dock();
         app.i18n     = new I18n();
         app.settings = new Settings();
+    }
+
+
+    function isEmpty(obj) {
+        var key;
+
+        for (key in obj) {
+            return false;
+        }
+        return true;
     }
 })();
 

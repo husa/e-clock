@@ -16,5 +16,8 @@
         "48": "img/icons/icon48.png"
     },
 
+    "permissions" : [
+        "storage"
+    ],
     "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
 }
