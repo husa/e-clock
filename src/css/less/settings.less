@@ -1,4 +1,4 @@
-.settings {
+.settings-popup {
     position: absolute;
 
     width: 400px;
@@ -27,7 +27,35 @@
         display: none;
     }
 
-    .dock-icon-settings {
+
+    .settings-tabs {
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border-bottom: solid 1px #aaa;
+        }
+
+        li {
+            padding: 5px 15px;
+            margin: 0 5px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        li.active {
+            border-bottom: solid 3px #aaa;
+        }
+    }
+
+    .settings-content {
+        padding: 15px 0;
+        .hidden {
+            display: none;
+        }
+    }
+
+    .settings-dock-icon {
         padding: 8px 0;
 
         > * {
@@ -37,50 +65,9 @@
         > svg {
             margin: 0 4px;
         }
+
         > input {
-            vertical-align: top;
-            visibility: hidden;
-            position: relative;
-            margin: 0 30px 0 0;
-            cursor: pointer;
-
-            &:before, &:after {
-                content: ' ';
-                position: absolute;
-                visibility: visible;
-                background-color: #ECF0F1;
-                border: solid 1px #BDC3C7;
-                cursor: pointer;
-            }
-
-            &:before {
-                top: 0;
-                left: 0;
-                width: 34px;
-                height: 20px;
-                border-radius: 10px;
-                box-shadow: 0 0 3px #ddd inset;
-            }
-
-            &:after {
-                top: 0px;
-                left: 0px;
-                width: 20px;
-                height: 20px;
-                border-radius: 10px;
-                transition: all 200ms;
-                box-shadow: 0 0 2px #BDC3C7;
-            }
-        }
-        > input:checked {
-            &:before {
-                background: #2ECC71;
-                border-color: #27AE60;
-                box-shadow: 0 0 3px #2ECC71 inset;
-            }
-            &:after {
-                left: 15px;
-            }
+            .fancy-checkbox();
         }
     }
 

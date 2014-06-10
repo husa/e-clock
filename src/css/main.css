@@ -72,7 +72,7 @@
 .footer ul li.hidden {
   display: none;
 }
-.settings {
+.settings-popup {
   position: absolute;
   width: 400px;
   height: 500px;
@@ -92,27 +92,48 @@
   stroke: none;
   font-family: 'Helvetica', 'Arial', sans-serif;
 }
-.settings.hidden {
+.settings-popup.hidden {
   display: none;
 }
-.settings .dock-icon-settings {
+.settings-popup .settings-tabs ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-bottom: solid 1px #aaa;
+}
+.settings-popup .settings-tabs li {
+  padding: 5px 15px;
+  margin: 0 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+.settings-popup .settings-tabs li.active {
+  border-bottom: solid 3px #aaa;
+}
+.settings-popup .settings-content {
+  padding: 15px 0;
+}
+.settings-popup .settings-content .hidden {
+  display: none;
+}
+.settings-popup .settings-dock-icon {
   padding: 8px 0;
 }
-.settings .dock-icon-settings > * {
+.settings-popup .settings-dock-icon > * {
   vertical-align: middle;
 }
-.settings .dock-icon-settings > svg {
+.settings-popup .settings-dock-icon > svg {
   margin: 0 4px;
 }
-.settings .dock-icon-settings > input {
+.settings-popup .settings-dock-icon > input {
   vertical-align: top;
   visibility: hidden;
   position: relative;
   margin: 0 30px 0 0;
   cursor: pointer;
 }
-.settings .dock-icon-settings > input:before,
-.settings .dock-icon-settings > input:after {
+.settings-popup .settings-dock-icon > input:before,
+.settings-popup .settings-dock-icon > input:after {
   content: ' ';
   position: absolute;
   visibility: visible;
@@ -120,7 +141,7 @@
   border: solid 1px #BDC3C7;
   cursor: pointer;
 }
-.settings .dock-icon-settings > input:before {
+.settings-popup .settings-dock-icon > input:before {
   top: 0;
   left: 0;
   width: 34px;
@@ -128,7 +149,7 @@
   border-radius: 10px;
   box-shadow: 0 0 3px #ddd inset;
 }
-.settings .dock-icon-settings > input:after {
+.settings-popup .settings-dock-icon > input:after {
   top: 0px;
   left: 0px;
   width: 20px;
@@ -137,15 +158,15 @@
   transition: all 200ms;
   box-shadow: 0 0 2px #BDC3C7;
 }
-.settings .dock-icon-settings > input:checked:before {
+.settings-popup .settings-dock-icon > input:checked:before {
   background: #2ECC71;
   border-color: #27AE60;
   box-shadow: 0 0 3px #2ECC71 inset;
 }
-.settings .dock-icon-settings > input:checked:after {
+.settings-popup .settings-dock-icon > input:checked:after {
   left: 15px;
 }
-.settings .settings-close-icon {
+.settings-popup .settings-close-icon {
   position: absolute;
   top: 5px;
   right: 5px;

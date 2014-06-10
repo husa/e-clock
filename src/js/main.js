@@ -91,7 +91,7 @@ var app = {};
 
         if (this.$settingIcon === void 0) {
             this.$settingIcon = document.createElement('div');
-            this.$settingIcon.classList.add('dock-icon-settings');
+            this.$settingIcon.classList.add('settings-dock-icon');
 
             var checked = this.$el.classList.contains('hidden') ? '' : 'checked';
 
@@ -195,32 +195,23 @@ var app = {};
     var Settings = function () {
         var root = this;
 
-        this.$el = document.querySelector('.settings');
-        this.key = 'settings_data';
+        this.$el                 = document.querySelector('.settings-popup');
+        this.$dockSettings       = root.$el.querySelector('.settings-dock');
+        this.$appearanceSettings = root.$el.querySelector('.settings-appearance');
+        this.$tabs               = this.$el.querySelector('.settings-tabs');
+        this.key                 = 'settings_data';
+
+        this.handleTabs();
 
         this.fetch(function() {
             app.dock.update(root.data);
 
-            root.$dockSettings = root.$el.querySelector('.dock-settings');
             root.$dockSettings.appendChild(app.dock.getSettings());
 
             root.handleClose();
         });
-
-
     };
 
-    Settings.prototype.open = function() {
-        this.$el.classList.remove('hidden');
-    };
-
-    Settings.prototype.close = function() {
-        this.$el.classList.add('hidden');
-    };
-
-    Settings.prototype.toggle = function() {
-        this.$el.classList.toggle('hidden');
-    };
 
     // TODO: figure out how to securely store data
     // more rarely to prevent exceeding quota
@@ -229,9 +220,7 @@ var app = {};
 
         storeData[this.key] = this.data;
 
-        chrome.storage.sync.set(storeData, function() {
-            console.log('data saved');
-        });
+        chrome.storage.sync.set(storeData);
     };
 
     Settings.prototype.fetch = function(callback) {
@@ -262,6 +251,35 @@ var app = {};
         this.sync();
     };
 
+    Settings.prototype.open = function() {
+        this.$el.classList.remove('hidden');
+    };
+
+    Settings.prototype.close = function() {
+        this.$el.classList.add('hidden');
+    };
+
+    Settings.prototype.toggle = function() {
+        this.$el.classList.toggle('hidden');
+    };
+
+    Settings.prototype.handleTabs = function() {
+        var root      = this,
+            $tabItems = this.$el.querySelectorAll('.settings-tab');
+
+        forEach($tabItems, function($tabItem) {
+            $tabItem.addEventListener('click', function() {
+                var selector = this.dataset.target;
+
+                root.$dockSettings.classList.add('hidden');
+                root.$appearanceSettings.classList.add('hidden');
+                root.$el.querySelector(selector).classList.remove('hidden');
+                root.$el.querySelector('.active').classList.remove('active');
+                this.classList.add('active');
+            });
+        });
+    };
+
     Settings.prototype.handleClose = function() {
         var root = this;
 
@@ -288,6 +306,10 @@ var app = {};
         app.settings = new Settings();
     }
 
+
+    function forEach(array, iter, context) {
+        Array.prototype.forEach.call(array, iter, context || null);
+    }
 
     function isEmpty(obj) {
         var key;

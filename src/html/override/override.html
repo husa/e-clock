@@ -105,7 +105,7 @@
 
   <div class="footer">
     <ul class="dock">
-      <li class="dockicon settings-icon"
+      <li class="dockicon settings"
         data-i18n="i18nSettings"
         data-url="settings">
         <svg viewBox="0 0 32 32" width="24" height="24">
@@ -171,8 +171,16 @@
     </ul>
   </div>
 
-  <div class="settings hidden">
-    <div class="dock-settings">
+  <div class="settings-popup hidden">
+    <div class="settings-tabs">
+      <ul>
+        <li data-target=".settings-appearance" class="settings-tab">Appearance</li>
+        <li data-target=".settings-dock" class="settings-tab  active">Dock</li>
+      </ul>
+    </div>
+    <div class="settings-content">
+      <div class="settings-dock"></div>
+      <div class="settings-appearance hidden">coming soon...</div>
     </div>
 
     <div class="settings-close-icon">
