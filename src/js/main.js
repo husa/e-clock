@@ -222,16 +222,15 @@ var app = {};
         this.$el.classList.toggle('hidden');
     };
 
+    // TODO: figure out how to securely store data
+    // more rarely to prevent exceeding quota
     Settings.prototype.sync = function() {
-        var key = this.key,
-            data = JSON.stringify(this.data);
+        var storeData = {};
 
-        chrome.storage.sync.remove(key, function() {
-            chrome.storage.sync.set({
-                key : data
-            }, function() {
-                console.log('data saved');
-            });
+        storeData[this.key] = this.data;
+
+        chrome.storage.sync.set(storeData, function() {
+            console.log('data saved');
         });
     };
 
@@ -239,7 +238,7 @@ var app = {};
         var root = this;
 
         chrome.storage.sync.get(this.key, function(data) {
-            if (!data || isEmpty(data)) {
+            if (!data || isEmpty(data) || !data[root.key]) {
                 data = {};
                 app.dock.iconViews.forEach(function(dockIconView) {
                     data[dockIconView.url] = {
@@ -248,15 +247,13 @@ var app = {};
                     };
                 });
             } else {
-                data = JSON.parse(data);
+                data = data[root.key];
             }
 
             root.data = data;
 
             callback();
         });
-
-
     };
 
     Settings.prototype.update = function(key, value) {
