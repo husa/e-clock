@@ -290,12 +290,15 @@ var app = {};
     };
 
     var I18n = function() {
-        app.dock.iconViews.forEach(function(dockIconView) {
-            var i18nStringKey = dockIconView.$el.dataset.i18n;
+        forEach(document.querySelectorAll('[data-i18n]'), function(elem) {
+            var i18nStringKey = elem.dataset.i18n,
+                i18nString = chrome.i18n.getMessage(i18nStringKey);
 
-            var i18nString = chrome.i18n.getMessage(i18nStringKey);
-
-            dockIconView.$el.dataset.alt = i18nString;
+            if (elem.classList.contains('dockicon')) {
+                elem.dataset.alt = i18nString;
+            } else {
+                elem.innerText = i18nString;
+            }
         });
     };
 

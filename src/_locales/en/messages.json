@@ -38,5 +38,13 @@
     "i18nChromeWebStore" : {
         "message" : "Chrome Web Store",
         "description" : "Chrome Web Store dock icon title"
+    },
+    "i18nAppearance" : {
+        "message" : "Appearance",
+        "description" : "Settings tab label for Appearance"
+    },
+    "i18nDock" : {
+        "message" : "Dock",
+        "description" : "Settings tab label for Dock"
     }
 }
