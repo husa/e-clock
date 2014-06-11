@@ -1,0 +1,50 @@
+{
+    "i18nNewTabTitle": {
+        "message": "Нова вкладка",
+        "description": "title to show on new tab"
+    },
+    "i18nSettings" : {
+        "message" : "Налаштування",
+        "description" : "Settings dock icon title"
+    },
+    "i18nFlags" : {
+        "message" : "Експерименти",
+        "description" : "Flags dock icon title"
+    },
+    "i18nInspect" : {
+        "message" : "Нагляд",
+        "description" : "Inspect dock icon title"
+    },
+    "i18nHistory" : {
+        "message" : "Історія",
+        "description" : "History dock icon title"
+    },
+    "i18nBookmarks" : {
+        "message" : "Закладки",
+        "description" : "Bookmarks dock icon title"
+    },
+    "i18nDownloads" : {
+        "message" : "Завантаження",
+        "description" : "Downloads dock icon title"
+    },
+    "i18nExtensions" : {
+        "message" : "Розширення",
+        "description" : "Extensions dock icon title"
+    },
+    "i18nApplications" : {
+        "message" : "Додатки",
+        "description" : "Applications dock icon title"
+    },
+    "i18nChromeWebStore" : {
+        "message" : "Веб Магазин Chrome",
+        "description" : "Chrome Web Store dock icon title"
+    },
+    "i18nAppearance" : {
+        "message" : "Вигляд",
+        "description" : "Settings tab label for Appearance"
+    },
+    "i18nDock" : {
+        "message" : "Панель",
+        "description" : "Settings tab label for Dock"
+    }
+}
