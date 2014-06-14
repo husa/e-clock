@@ -12,8 +12,15 @@ var app = {};
         getDate : function() {
             return new Date();
         },
-        getHours : function() {
-            return this.getDate().getHours();
+        getHours : function(use24) {
+            var hours = this.getDate().getHours();
+
+            if (use24) {
+                return hours;
+            } else {
+                return (hours / 13)|0 ? hours - 12 : hours;
+            }
+
         },
         getMinutes : function() {
             var minutes = this.getDate().getMinutes();
@@ -26,6 +33,9 @@ var app = {};
         updateChangedTime : function() {
             this.prev.minutes = date.getMinutes();
             this.prev.hours   = date.getHours();
+        },
+        getAmPm : function() {
+            return this.getHours(true) < 12 ? 'am' : 'pm';
         }
     };
 
@@ -36,18 +46,26 @@ var app = {};
         this.$minutes   = this.$clock.querySelector('.minutes');
         this.$delimeter = this.$clock.querySelector('.delimeter');
         this.$ampm      = this.$clock.querySelector('.ampm');
+        this.use24      = true;
 
         this.updateTime();
 
         this.interval = window.setInterval(this.updateTime.bind(this), 1000);
     };
 
-    Clock.prototype.updateTime = function() {
-        if (date.timeHasChanged()) {
-            this.$hours.innerHTML   = date.getHours();
+    Clock.prototype.updateTime = function(force) {
+        if (date.timeHasChanged() || force) {
+            this.$hours.innerHTML   = date.getHours(this.use24);
             this.$minutes.innerHTML = date.getMinutes();
+            this.$ampm.innerHTML    = !this.use24 ? date.getAmPm() : '';
             date.updateChangedTime();
         }
+    };
+
+    Clock.prototype.updateFormat = function(use24) {
+        this.use24 = use24;
+
+        this.updateTime(true);
     };
 
 
@@ -199,6 +217,7 @@ var app = {};
         this.$dockSettings       = root.$el.querySelector('.settings-dock');
         this.$appearanceSettings = root.$el.querySelector('.settings-appearance');
         this.$tabs               = this.$el.querySelector('.settings-tabs');
+        this.$timeFormat         = this.$el.querySelector('.settings-time-format');
         this.key                 = 'settings_data';
 
         this.handleTabs();
@@ -208,7 +227,10 @@ var app = {};
 
             root.$dockSettings.appendChild(app.dock.getSettings());
 
+            root.updateTimeFormat();
+
             root.handleClose();
+            root.handleTimeFormat();
         });
     };
 
@@ -289,6 +311,34 @@ var app = {};
             });
     };
 
+    Settings.prototype.updateTimeFormat = function() {
+        var use24format;
+
+        if (this.data.use24format !== undefined) {
+            use24format = this.data.use24format;
+        } else {
+            use24format = true;
+        }
+
+        this.$timeFormat.querySelector('input').checked = use24format;
+
+        app.clock.updateFormat(use24format);
+    };
+
+    Settings.prototype.handleTimeFormat = function() {
+        var root = this;
+
+        this.$timeFormat.querySelector('input').
+            addEventListener('click', function() {
+                if (this.checked) {
+                    app.clock.updateFormat(true);
+                } else {
+                    app.clock.updateFormat(false);
+                }
+                root.update('use24format', this.checked);
+            });
+    };
+
     var I18n = function() {
         forEach(document.querySelectorAll('[data-i18n]'), function(elem) {
             var i18nStringKey = elem.dataset.i18n,
@@ -307,6 +357,8 @@ var app = {};
         app.dock     = new Dock();
         app.i18n     = new I18n();
         app.settings = new Settings();
+
+        // app.settings.open();
     }
 
 

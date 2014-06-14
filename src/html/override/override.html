@@ -175,20 +175,24 @@
     <div class="settings-tabs">
       <ul>
         <li
-          class="settings-tab"
+          class="settings-tab active"
           data-i18n="i18nAppearance"
           data-target=".settings-appearance" >
         </li>
         <li
-          class="settings-tab  active"
+          class="settings-tab "
           data-i18n="i18nDock"
           data-target=".settings-dock">
         </li>
       </ul>
     </div>
     <div class="settings-content">
-      <div class="settings-dock"></div>
-      <div class="settings-appearance hidden">coming soon...</div>
+      <div class="settings-dock hidden"></div>
+      <div class="settings-appearance">
+        <div class="settings-time-format">
+          <input type="checkbox" checked><span data-i18n="i18n24Format">use 24 hour format</span></input>
+        </div>
+      </div>
     </div>
 
     <div class="settings-close-icon">

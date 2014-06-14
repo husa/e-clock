@@ -46,5 +46,9 @@
     "i18nDock" : {
         "message" : "Dock",
         "description" : "Settings tab label for Dock"
+    },
+    "i18n24Format" : {
+        "message" : "Use 24 hour format",
+        "description" : "Use 24 hour format settings label"
     }
 }

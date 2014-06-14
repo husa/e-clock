@@ -1,7 +1,7 @@
 {
     "manifest_version" : 2,
     "name" : "e-clock",
-    "version" : "0.0.2",
+    "version" : "0.0.3",
 
     "description" : "Replace your regular new tab with this digital clock. More features coming soon...",
 
