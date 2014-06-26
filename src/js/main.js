@@ -68,6 +68,14 @@ var app = {};
         this.updateTime(true);
     };
 
+    Clock.prototype.updateDelimeter = function(enabled) {
+        if (enabled) {
+            this.$delimeter.classList.add('blinking');
+        } else {
+            this.$delimeter.classList.remove('blinking');
+        }
+    };
+
 
     var DockIcon = function($el, parent) {
         if (!$el) {
@@ -218,6 +226,7 @@ var app = {};
         this.$appearanceSettings = root.$el.querySelector('.settings-appearance');
         this.$tabs               = this.$el.querySelector('.settings-tabs');
         this.$timeFormat         = this.$el.querySelector('.settings-time-format');
+        this.$delimeterBlinking  = this.$el.querySelector('.settings-delimeter-blinking');
         this.key                 = 'settings_data';
 
         this.handleTabs();
@@ -228,9 +237,11 @@ var app = {};
             root.$dockSettings.appendChild(app.dock.getSettings());
 
             root.updateTimeFormat();
+            root.updateDelimeterBlinking();
 
             root.handleClose();
             root.handleTimeFormat();
+            root.handleDelimeterBlinking();
         });
     };
 
@@ -325,6 +336,20 @@ var app = {};
         app.clock.updateFormat(use24format);
     };
 
+    Settings.prototype.updateDelimeterBlinking = function() {
+        var enable;
+
+        if (this.data.delimeterBlinking !== undefined) {
+            enable = this.data.delimeterBlinking;
+        } else {
+            enable = true;
+        }
+
+        this.$delimeterBlinking.querySelector('input').checked = enable;
+
+        app.clock.updateDelimeter(enable);
+    };
+
     Settings.prototype.handleTimeFormat = function() {
         var root = this;
 
@@ -336,6 +361,20 @@ var app = {};
                     app.clock.updateFormat(false);
                 }
                 root.update('use24format', this.checked);
+            });
+    };
+
+    Settings.prototype.handleDelimeterBlinking = function() {
+        var root = this;
+
+        this.$delimeterBlinking.querySelector('input').
+            addEventListener('click', function() {
+                if (this.checked) {
+                    app.clock.updateDelimeter(true);
+                } else {
+                    app.clock.updateDelimeter(false);
+                }
+                root.update('delimeterBlinking', this.checked);
             });
     };
 

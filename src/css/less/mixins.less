@@ -38,44 +38,44 @@
     vertical-align: top;
     visibility: hidden;
     position: relative;
-    margin: 0 30px 0 0;
+    width: 40px;
+    height: 20px;
     cursor: pointer;
 
     &:before, &:after {
         content: ' ';
         position: absolute;
         visibility: visible;
-        background-color: #ECF0F1;
-        border: solid 1px #BDC3C7;
         cursor: pointer;
+        transition: all 200ms;
     }
 
     &:before {
-        top: 0;
+        top: 10px;
         left: 0;
-        width: 34px;
-        height: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 3px #ddd inset;
+        width: 30px;
+        height: 2px;
+        background-color: #eee;
     }
 
     &:after {
-        top: 0px;
+        top: 2px;
         left: 0px;
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
         border-radius: 10px;
-        transition: all 200ms;
-        // box-shadow: 0 0 2px #BDC3C7;
+        border: solid 1px #B0AFB0;
+        background: #fff;
     }
 
     &:checked {
         &:before {
             background: #2ECC71;
             border-color: #27AE60;
-            box-shadow: 0 0 3px #2ECC71 inset;
         }
         &:after {
+            background: #27AE60;
+            border-color: #27AE60;
             left: 15px;
         }
     }

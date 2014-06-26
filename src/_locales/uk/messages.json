@@ -50,5 +50,9 @@
     "i18n24Format" : {
         "message" : "Використовувати 24 годинний формат дати",
         "description" : "Use 24 hour format settings label"
+    },
+    "i18nDelimeterBlinking" : {
+        "message" : "Увімкнути мигання розділювача часу",
+        "description" : "Enable delimeter blinking settings label"
     }
 }

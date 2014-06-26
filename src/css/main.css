@@ -14,10 +14,10 @@
   top: 35%;
   font-family: 'ralewaythin';
   font-size: 12em;
-  color: #363636;
+  color: rgba(0, 0, 0, 0.7);
   text-align: center;
 }
-.container .clock .delimeter {
+.container .clock .blinking {
   animation-duration: 2s;
   -webkit-animation-duration: 2s;
   animation-name: delimeter-blink;
@@ -65,7 +65,7 @@
 .footer ul li {
   float: right;
   margin: 0 10px;
-  fill: #363636;
+  fill: rgba(0, 0, 0, 0.7);
   stroke: none;
   cursor: pointer;
 }
@@ -84,37 +84,43 @@
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-  padding: 25px 10px 10px;
   box-sizing: border-box;
   background: #fff;
-  border: solid 1px #eaeaea;
-  box-shadow: 0 0 20px #222;
-  border-radius: 5px;
-  color: #363636;
-  fill: #363636;
+  box-shadow: 0 0 20px #9a9a9a;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.7);
+  fill: rgba(0, 0, 0, 0.7);
   stroke: none;
   font-family: 'Helvetica', 'Arial', sans-serif;
 }
 .settings-popup.hidden {
   display: none;
 }
+.settings-popup .settings-tabs {
+  width: 100%;
+  background: #fafafa;
+  padding-top: 20px;
+  border-bottom: solid 1px #e6e6e6;
+}
 .settings-popup .settings-tabs ul {
   padding: 0;
   margin: 0;
   list-style: none;
-  border-bottom: solid 1px #aaa;
 }
 .settings-popup .settings-tabs li {
   padding: 5px 15px;
   margin: 0 5px;
   display: inline-block;
   cursor: pointer;
+  transition: 400ms;
+  border-bottom: solid 2px;
+  border-color: transparent;
 }
 .settings-popup .settings-tabs li.active {
-  border-bottom: solid 3px #aaa;
+  border-color: #b5b5b5;
 }
 .settings-popup .settings-content {
-  padding: 15px 0;
+  padding: 15px;
 }
 .settings-popup .settings-content .hidden {
   display: none;
@@ -132,7 +138,8 @@
   vertical-align: top;
   visibility: hidden;
   position: relative;
-  margin: 0 30px 0 0;
+  width: 40px;
+  height: 20px;
   cursor: pointer;
 }
 .settings-popup .settings-dock-icon > input:before,
@@ -140,39 +147,40 @@
   content: ' ';
   position: absolute;
   visibility: visible;
-  background-color: #ECF0F1;
-  border: solid 1px #BDC3C7;
   cursor: pointer;
+  transition: all 200ms;
 }
 .settings-popup .settings-dock-icon > input:before {
-  top: 0;
+  top: 10px;
   left: 0;
-  width: 34px;
-  height: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 3px #ddd inset;
+  width: 30px;
+  height: 2px;
+  background-color: #eee;
 }
 .settings-popup .settings-dock-icon > input:after {
-  top: 0px;
+  top: 2px;
   left: 0px;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border-radius: 10px;
-  transition: all 200ms;
+  border: solid 1px #B0AFB0;
+  background: #fff;
 }
 .settings-popup .settings-dock-icon > input:checked:before {
   background: #2ECC71;
   border-color: #27AE60;
-  box-shadow: 0 0 3px #2ECC71 inset;
 }
 .settings-popup .settings-dock-icon > input:checked:after {
+  background: #27AE60;
+  border-color: #27AE60;
   left: 15px;
 }
 .settings-popup .settings-appearance input[type=checkbox] {
   vertical-align: top;
   visibility: hidden;
   position: relative;
-  margin: 0 30px 0 0;
+  width: 40px;
+  height: 20px;
   cursor: pointer;
 }
 .settings-popup .settings-appearance input[type=checkbox]:before,
@@ -180,39 +188,48 @@
   content: ' ';
   position: absolute;
   visibility: visible;
-  background-color: #ECF0F1;
-  border: solid 1px #BDC3C7;
   cursor: pointer;
+  transition: all 200ms;
 }
 .settings-popup .settings-appearance input[type=checkbox]:before {
-  top: 0;
+  top: 10px;
   left: 0;
-  width: 34px;
-  height: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 3px #ddd inset;
+  width: 30px;
+  height: 2px;
+  background-color: #eee;
 }
 .settings-popup .settings-appearance input[type=checkbox]:after {
-  top: 0px;
+  top: 2px;
   left: 0px;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border-radius: 10px;
-  transition: all 200ms;
+  border: solid 1px #B0AFB0;
+  background: #fff;
 }
 .settings-popup .settings-appearance input[type=checkbox]:checked:before {
   background: #2ECC71;
   border-color: #27AE60;
-  box-shadow: 0 0 3px #2ECC71 inset;
 }
 .settings-popup .settings-appearance input[type=checkbox]:checked:after {
+  background: #27AE60;
+  border-color: #27AE60;
   left: 15px;
 }
 .settings-popup .settings-close-icon {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 2em;
   cursor: pointer;
+  text-align: center;
+  color: rgba(128, 128, 128, 0.7);
+}
+.settings-popup .settings-close-icon:hover {
+  transition: 300ms;
+  color: rgba(51, 51, 51, 0.7);
 }
 body,
 html {

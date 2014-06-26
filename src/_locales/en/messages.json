@@ -50,5 +50,9 @@
     "i18n24Format" : {
         "message" : "Use 24 hour format",
         "description" : "Use 24 hour format settings label"
+    },
+    "i18nDelimeterBlinking" : {
+        "message" : "Enable clock delimeter blinking",
+        "description" : "Enable delimeter blinking settings label"
     }
 }
