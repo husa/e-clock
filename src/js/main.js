@@ -217,6 +217,14 @@ var app = {};
         });
     };
 
+    Dock.prototype.toggleAutoHide = function(turnOn) {
+        if (turnOn) {
+            this.$dock.classList.add('auto-hide');
+        } else {
+            this.$dock.classList.remove('auto-hide');
+        }
+    };
+
 
     var Settings = function () {
         var root = this;
@@ -227,6 +235,7 @@ var app = {};
         this.$tabs               = this.$el.querySelector('.settings-tabs');
         this.$timeFormat         = this.$el.querySelector('.settings-time-format');
         this.$delimeterBlinking  = this.$el.querySelector('.settings-delimeter-blinking');
+        this.$autoHideDock       = this.$el.querySelector('.settings-autohide-dock');
         this.key                 = 'settings_data';
 
         this.handleTabs();
@@ -238,10 +247,12 @@ var app = {};
 
             root.updateTimeFormat();
             root.updateDelimeterBlinking();
+            root.updateAutoHideDock();
 
             root.handleClose();
             root.handleTimeFormat();
             root.handleDelimeterBlinking();
+            root.handleAutoHideDock();
         });
     };
 
@@ -350,6 +361,20 @@ var app = {};
         app.clock.updateDelimeter(enable);
     };
 
+    Settings.prototype.updateAutoHideDock = function() {
+        var enable;
+
+        if (this.data.autoHideDock !== undefined) {
+            enable = this.data.autoHideDock;
+        } else {
+            enable = true;
+        }
+
+        this.$autoHideDock.querySelector('input').checked = enable;
+
+        app.dock.toggleAutoHide(true);
+    };
+
     Settings.prototype.handleTimeFormat = function() {
         var root = this;
 
@@ -375,6 +400,20 @@ var app = {};
                     app.clock.updateDelimeter(false);
                 }
                 root.update('delimeterBlinking', this.checked);
+            });
+    };
+
+    Settings.prototype.handleAutoHideDock = function() {
+        var root = this;
+
+        this.$autoHideDock.querySelector('input').
+            addEventListener('click', function() {
+                if (this.checked) {
+                    app.dock.toggleAutoHide(true);
+                } else {
+                    app.dock.toggleAutoHide(false);
+                }
+                root.update('autoHideDock', this.checked);
             });
     };
 

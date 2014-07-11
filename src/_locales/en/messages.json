@@ -54,5 +54,9 @@
     "i18nDelimeterBlinking" : {
         "message" : "Enable clock delimeter blinking",
         "description" : "Enable delimeter blinking settings label"
+    },
+    "i18nAutoHideDock" : {
+        "message" : "Auto Hide Dock",
+        "description" : "Auto Hide Dock settings label"
     }
 }

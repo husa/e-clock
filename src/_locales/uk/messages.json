@@ -54,5 +54,9 @@
     "i18nDelimeterBlinking" : {
         "message" : "Увімкнути мигання розділювача часу",
         "description" : "Enable delimeter blinking settings label"
+    },
+    "i18nAutoHideDock" : {
+        "message" : "Автоматично ховати панель",
+        "description" : "Auto Hide Dock settings label"
     }
 }

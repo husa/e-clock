@@ -1,9 +1,9 @@
 {
     "manifest_version" : 2,
     "name" : "e-clock",
-    "version" : "0.0.3",
+    "version" : "0.0.4",
 
-    "description" : "Replace your regular new tab with this digital clock. More features coming soon...",
+    "description" : "Replace your regular \"new tab\" with this minimalistic digital clock",
 
     "default_locale": "en",
 

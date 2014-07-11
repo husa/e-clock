@@ -68,12 +68,22 @@
   fill: rgba(0, 0, 0, 0.7);
   stroke: none;
   cursor: pointer;
+  transition: all 200ms;
+  transition-delay: 0ms;
 }
 .footer ul li svg {
   pointer-events: none;
 }
 .footer ul li.hidden {
   display: none;
+}
+.footer ul.auto-hide li {
+  margin-bottom: -50px;
+  transition-delay: 800ms;
+}
+.footer:hover ul.auto-hide li {
+  margin-bottom: 0;
+  transition-delay: 0s;
 }
 .settings-popup {
   position: absolute;
