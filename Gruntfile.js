@@ -42,7 +42,8 @@ module.exports = function(grunt) {
                     window: false,
                     console: false,
                     chrome: false,
-                    localStorage : false
+                    localStorage : false,
+                    Promise : false
                 }
             },
             src: ['src/js/**/*.js']

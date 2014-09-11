@@ -2,8 +2,6 @@ var app = {};
 (function() {
     'use strict';
 
-    document.addEventListener('DOMContentLoaded', main);
-
     var date = {
         prev : {
             hours : -1,
@@ -101,7 +99,7 @@ var app = {};
 
             if (url) {
                 if (root.isSettingsIcon) {
-                    app.settings.toggle();
+                    app.settingsView.toggle();
                 } else {
                     chrome.tabs.update({
                         url : url
@@ -156,6 +154,7 @@ var app = {};
     DockIcon.prototype.update = function(data) {
         if (!data.visible) {
             this.hide();
+            this.$settingIcon.querySelector('input').checked = false;
         }
     };
 
@@ -187,7 +186,7 @@ var app = {};
     Dock.prototype.turnOn = function(dockIconView) {
         this.getDockView(dockIconView).show();
 
-        app.settings.update(dockIconView.url, {
+        app.settingsStorage.update(dockIconView.url, {
             visible : true,
             order : null
         });
@@ -196,7 +195,7 @@ var app = {};
     Dock.prototype.turnOff = function(dockIconView) {
         this.getDockView(dockIconView).hide();
 
-        app.settings.update(dockIconView.url, {
+        app.settingsStorage.update(dockIconView.url, {
             visible : false,
             order : null
         });
@@ -226,7 +225,7 @@ var app = {};
     };
 
 
-    var Settings = function () {
+    var SettingsView = function () {
         var root = this;
 
         this.$el                 = document.querySelector('.settings-popup');
@@ -238,76 +237,89 @@ var app = {};
         this.$autoHideDock       = this.$el.querySelector('.settings-autohide-dock');
         this.key                 = 'settings_data';
 
-        this.handleTabs();
+        this.
+            handleTabs().
+            handleClose().
+            handleTimeFormat().
+            handleDelimeterBlinking().
+            handleAutoHideDock();
 
-        this.fetch(function() {
-            app.dock.update(root.data);
+        this.$dockSettings.appendChild(app.dock.getSettings());
 
-            root.$dockSettings.appendChild(app.dock.getSettings());
+        // this.fetch(function() {
+        //     app.dock.update(root.data);
 
-            root.updateTimeFormat();
-            root.updateDelimeterBlinking();
-            root.updateAutoHideDock();
+        //     root.$dockSettings.appendChild(app.dock.getSettings());
 
-            root.handleClose();
-            root.handleTimeFormat();
-            root.handleDelimeterBlinking();
-            root.handleAutoHideDock();
-        });
+        //     root.updateTimeFormat();
+        //     root.updateDelimeterBlinking();
+        //     root.updateAutoHideDock();
+
+        //     root.handleClose();
+        //     root.handleTimeFormat();
+        //     root.handleDelimeterBlinking();
+        //     root.handleAutoHideDock();
+        // });
     };
 
+    // // TODO: figure out how to securely store data
+    // // more rarely to prevent exceeding quota
+    // SettingsView.prototype.sync = function() {
+    //     var storeData = {};
 
-    // TODO: figure out how to securely store data
-    // more rarely to prevent exceeding quota
-    Settings.prototype.sync = function() {
-        var storeData = {};
+    //     storeData[this.key] = this.data;
 
-        storeData[this.key] = this.data;
+    //     chrome.storage.sync.set(storeData);
+    // };
 
-        chrome.storage.sync.set(storeData);
+    // SettingsView.prototype.fetch = function(callback) {
+    //     var root = this;
+
+    //     chrome.storage.sync.get(this.key, function(data) {
+    //         if (!data || isEmpty(data) || !data[root.key]) {
+    //             data = {};
+    //             app.dock.iconViews.forEach(function(dockIconView) {
+    //                 data[dockIconView.url] = {
+    //                     visible : true,
+    //                     order : null
+    //                 };
+    //             });
+    //         } else {
+    //             data = data[root.key];
+    //         }
+
+    //         root.data = data;
+
+    //         callback();
+    //     });
+    // };
+
+    // SettingsView.prototype.update = function(key, value) {
+    //     this.data[key] = value;
+
+    //     this.sync();
+    // };
+
+    SettingsView.prototype.update = function(data) {
+        this.
+            updateTimeFormat(data.use24format).
+            updateDelimeterBlinking(data.delimeterBlinking).
+            updateAutoHideDock(data.autoHideDock);
     };
 
-    Settings.prototype.fetch = function(callback) {
-        var root = this;
-
-        chrome.storage.sync.get(this.key, function(data) {
-            if (!data || isEmpty(data) || !data[root.key]) {
-                data = {};
-                app.dock.iconViews.forEach(function(dockIconView) {
-                    data[dockIconView.url] = {
-                        visible : true,
-                        order : null
-                    };
-                });
-            } else {
-                data = data[root.key];
-            }
-
-            root.data = data;
-
-            callback();
-        });
-    };
-
-    Settings.prototype.update = function(key, value) {
-        this.data[key] = value;
-
-        this.sync();
-    };
-
-    Settings.prototype.open = function() {
+    SettingsView.prototype.open = function() {
         this.$el.classList.remove('hidden');
     };
 
-    Settings.prototype.close = function() {
+    SettingsView.prototype.close = function() {
         this.$el.classList.add('hidden');
     };
 
-    Settings.prototype.toggle = function() {
+    SettingsView.prototype.toggle = function() {
         this.$el.classList.toggle('hidden');
     };
 
-    Settings.prototype.handleTabs = function() {
+    SettingsView.prototype.handleTabs = function() {
         var root      = this,
             $tabItems = this.$el.querySelectorAll('.settings-tab');
 
@@ -322,99 +334,113 @@ var app = {};
                 this.classList.add('active');
             });
         });
+
+        return this;
     };
 
-    Settings.prototype.handleClose = function() {
+    SettingsView.prototype.handleClose = function() {
         var root = this;
 
         this.$el.querySelector('.settings-close-icon').
             addEventListener('click', function() {
                 root.close();
             });
+
+        return this;
     };
 
-    Settings.prototype.updateTimeFormat = function() {
-        var use24format;
+    SettingsView.prototype.updateTimeFormat = function(use24format) {
 
-        if (this.data.use24format !== undefined) {
-            use24format = this.data.use24format;
-        } else {
-            use24format = true;
-        }
-
+        use24format = typeof use24format !== 'undefined' ? use24format : true;
         this.$timeFormat.querySelector('input').checked = use24format;
-
-        app.clock.updateFormat(use24format);
+        return this;
     };
 
-    Settings.prototype.updateDelimeterBlinking = function() {
-        var enable;
-
-        if (this.data.delimeterBlinking !== undefined) {
-            enable = this.data.delimeterBlinking;
-        } else {
-            enable = true;
-        }
-
-        this.$delimeterBlinking.querySelector('input').checked = enable;
-
-        app.clock.updateDelimeter(enable);
+    SettingsView.prototype.updateDelimeterBlinking = function(delimeterBlinking) {
+        delimeterBlinking = typeof delimeterBlinking !== 'undefined' ? delimeterBlinking : true;
+        this.$delimeterBlinking.querySelector('input').checked = delimeterBlinking;
+        return this;
     };
 
-    Settings.prototype.updateAutoHideDock = function() {
-        var enable;
-
-        if (this.data.autoHideDock !== undefined) {
-            enable = this.data.autoHideDock;
-        } else {
-            enable = true;
-        }
-
-        this.$autoHideDock.querySelector('input').checked = enable;
-
-        app.dock.toggleAutoHide(true);
+    SettingsView.prototype.updateAutoHideDock = function(autoHideDock) {
+        autoHideDock = typeof autoHideDock !== 'undefined' ? autoHideDock : true;
+        this.$autoHideDock.querySelector('input').checked = autoHideDock;
+        app.dock.toggleAutoHide(autoHideDock);
+        return this;
     };
 
-    Settings.prototype.handleTimeFormat = function() {
+    SettingsView.prototype.handleTimeFormat = function() {
         var root = this;
 
         this.$timeFormat.querySelector('input').
             addEventListener('click', function() {
-                if (this.checked) {
-                    app.clock.updateFormat(true);
-                } else {
-                    app.clock.updateFormat(false);
-                }
-                root.update('use24format', this.checked);
+                app.settingsStorage.update('use24format', this.checked);
             });
+        return this;
     };
 
-    Settings.prototype.handleDelimeterBlinking = function() {
+    SettingsView.prototype.handleDelimeterBlinking = function() {
         var root = this;
 
         this.$delimeterBlinking.querySelector('input').
             addEventListener('click', function() {
-                if (this.checked) {
-                    app.clock.updateDelimeter(true);
-                } else {
-                    app.clock.updateDelimeter(false);
-                }
-                root.update('delimeterBlinking', this.checked);
+                app.settingsStorage.update('delimeterBlinking', this.checked);
             });
+        return this;
     };
 
-    Settings.prototype.handleAutoHideDock = function() {
+    SettingsView.prototype.handleAutoHideDock = function() {
         var root = this;
 
         this.$autoHideDock.querySelector('input').
             addEventListener('click', function() {
-                if (this.checked) {
-                    app.dock.toggleAutoHide(true);
-                } else {
-                    app.dock.toggleAutoHide(false);
-                }
-                root.update('autoHideDock', this.checked);
+                app.settingsStorage.update('autoHideDock', this.checked);
             });
+        return this;
+    };
+
+    var SettingsStorage = function() {
+        var root = this;
+
+        this.key = 'settings_data';
+        this.data = {};
+
+        this.loaded = new Promise(function (resolve, reject) {
+            chrome.storage.sync.get(root.key, function(data) {
+                if (!data || isEmpty(data) || !data[root.key]) {
+                    reject();
+                    // data = {};
+                    // app.dock.iconViews.forEach(function(dockIconView) {
+                    //     data[dockIconView.url] = {
+                    //         visible : true,
+                    //         order : null
+                    //     };
+                    // });
+                } else {
+                    data = data[root.key];
+                }
+
+                root.data = data;
+
+                resolve();
+            });
+        });
+    };
+
+    SettingsStorage.prototype.sync = function() {
+        var storeData = {};
+
+        storeData[this.key] = this.data;
+
+        chrome.storage.sync.set(storeData);
+    };
+
+    SettingsStorage.prototype.update = function(key, value) {
+        this.data[key] = value;
+
+        this.sync();
+
+        app.updateViews();
     };
 
     var I18n = function() {
@@ -430,15 +456,57 @@ var app = {};
         });
     };
 
-    function main() {
-        app.clock    = new Clock();
-        app.dock     = new Dock();
-        app.i18n     = new I18n();
-        app.settings = new Settings();
+    var App = function() {
+        this.main();
+    };
 
-        // app.settings.open();
-    }
+    App.prototype.main = function() {
+        this.settingsStorage = new SettingsStorage();
 
+        document.addEventListener('DOMContentLoaded', this.ready.bind(this));
+    };
+
+
+    App.prototype.ready = function() {
+        this.settingsStorage.loaded.then(function() {
+            app.init();
+
+            app.updateViews();
+        }, function() {
+            // no setting were loaded
+            // do intro here
+            app.generateDefaultSettings();
+
+            app.updateViews();
+            console.log(arguments);
+        });
+    };
+
+    App.prototype.generateDefaultSettings = function() {
+
+    };
+
+    App.prototype.init = function() {
+        this.i18n         = new I18n();
+        this.clock        = new Clock();
+        this.dock         = new Dock();
+        this.settingsView = new SettingsView();
+    };
+
+    App.prototype.updateViews = function() {
+        var data = this.settingsStorage.data;
+
+        this.clock.updateFormat(data.use24format);
+        this.clock.updateDelimeter(data.delimeterBlinking);
+
+        this.dock.update(data);
+
+        this.settingsView.update(data);
+        console.log(data);
+        return this;
+    };
+
+    app = new App();
 
     function forEach(array, iter, context) {
         Array.prototype.forEach.call(array, iter, context || null);
