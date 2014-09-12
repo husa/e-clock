@@ -51,6 +51,10 @@ var app = {};
         this.interval = window.setInterval(this.updateTime.bind(this), 1000);
     };
 
+    Clock.prototype.show = function() {
+        this.$clock.classList.remove('initiallyHidden');
+    };
+
     Clock.prototype.updateTime = function(force) {
         if (date.timeHasChanged() || force) {
             this.$hours.innerHTML   = date.getHours(this.use24);
@@ -61,12 +65,13 @@ var app = {};
     };
 
     Clock.prototype.updateFormat = function(use24) {
-        this.use24 = use24;
+        this.use24 = typeof use24 !== 'undefined' ? use24 : true;
 
         this.updateTime(true);
     };
 
     Clock.prototype.updateDelimeter = function(enabled) {
+        enabled = typeof enabled !== 'undefined' ? enabled : true;
         if (enabled) {
             this.$delimeter.classList.add('blinking');
         } else {
@@ -120,6 +125,7 @@ var app = {};
             var checked = this.$el.classList.contains('hidden') ? '' : 'checked';
 
             this.$settingIcon.innerHTML = '<input type="checkbox" ' + checked + '/>' + svgIcon + '<span>' + title + '</span>';
+            this.$settingIcon.classList.add(checked ? 'enabled' : 'disabled');
 
             this.handleSettings();
         }
@@ -134,8 +140,10 @@ var app = {};
             throw Error('setting weren\'t generated yet');
         }
 
-        this.$settingIcon.querySelector('input').addEventListener('click', function() {
-            if (this.checked) {
+        this.$settingIcon.addEventListener('click', function() {
+            var checked = !root.$settingIcon.querySelector('input').checked;
+
+            if (checked) {
                 root.parent.turnOn(root);
             } else {
                 root.parent.turnOff(root);
@@ -145,16 +153,27 @@ var app = {};
 
     DockIcon.prototype.hide = function() {
         this.$el.classList.add('hidden');
+        if (this.$settingIcon) {
+            this.$settingIcon.classList.remove('enabled');
+            this.$settingIcon.classList.add('disabled');
+            this.$settingIcon.querySelector('input').checked = false;
+        }
     };
 
     DockIcon.prototype.show = function() {
         this.$el.classList.remove('hidden');
+        if (this.$settingIcon) {
+            this.$settingIcon.classList.remove('disabled');
+            this.$settingIcon.classList.add('enabled');
+            this.$settingIcon.querySelector('input').checked = true;
+        }
     };
 
     DockIcon.prototype.update = function(data) {
-        if (!data.visible) {
+        if (data && !data.visible) {
             this.hide();
-            this.$settingIcon.querySelector('input').checked = false;
+        } else {
+            this.show();
         }
     };
 
@@ -175,7 +194,7 @@ var app = {};
 
             this.iconViews.filter(function(dockIconView) {
                 return !dockIconView.isSettingsIcon;
-            }).forEach(function(dockIconView) {
+            }).reverse().forEach(function(dockIconView) {
                 this.$settingsContainer.appendChild(dockIconView.generateSetting());
             }, this);
         }
@@ -224,6 +243,10 @@ var app = {};
         }
     };
 
+    Dock.prototype.show = function() {
+        this.$dock.classList.remove('initiallyHidden');
+    };
+
 
     var SettingsView = function () {
         var root = this;
@@ -245,60 +268,7 @@ var app = {};
             handleAutoHideDock();
 
         this.$dockSettings.appendChild(app.dock.getSettings());
-
-        // this.fetch(function() {
-        //     app.dock.update(root.data);
-
-        //     root.$dockSettings.appendChild(app.dock.getSettings());
-
-        //     root.updateTimeFormat();
-        //     root.updateDelimeterBlinking();
-        //     root.updateAutoHideDock();
-
-        //     root.handleClose();
-        //     root.handleTimeFormat();
-        //     root.handleDelimeterBlinking();
-        //     root.handleAutoHideDock();
-        // });
     };
-
-    // // TODO: figure out how to securely store data
-    // // more rarely to prevent exceeding quota
-    // SettingsView.prototype.sync = function() {
-    //     var storeData = {};
-
-    //     storeData[this.key] = this.data;
-
-    //     chrome.storage.sync.set(storeData);
-    // };
-
-    // SettingsView.prototype.fetch = function(callback) {
-    //     var root = this;
-
-    //     chrome.storage.sync.get(this.key, function(data) {
-    //         if (!data || isEmpty(data) || !data[root.key]) {
-    //             data = {};
-    //             app.dock.iconViews.forEach(function(dockIconView) {
-    //                 data[dockIconView.url] = {
-    //                     visible : true,
-    //                     order : null
-    //                 };
-    //             });
-    //         } else {
-    //             data = data[root.key];
-    //         }
-
-    //         root.data = data;
-
-    //         callback();
-    //     });
-    // };
-
-    // SettingsView.prototype.update = function(key, value) {
-    //     this.data[key] = value;
-
-    //     this.sync();
-    // };
 
     SettingsView.prototype.update = function(data) {
         this.
@@ -350,20 +320,28 @@ var app = {};
     };
 
     SettingsView.prototype.updateTimeFormat = function(use24format) {
-
         use24format = typeof use24format !== 'undefined' ? use24format : true;
+        this.$timeFormat.classList.remove('enabled');
+        this.$timeFormat.classList.remove('disabled');
+        this.$timeFormat.classList.add(use24format ? 'enabled' : 'disabled');
         this.$timeFormat.querySelector('input').checked = use24format;
         return this;
     };
 
     SettingsView.prototype.updateDelimeterBlinking = function(delimeterBlinking) {
         delimeterBlinking = typeof delimeterBlinking !== 'undefined' ? delimeterBlinking : true;
+        this.$delimeterBlinking.classList.remove('enabled');
+        this.$delimeterBlinking.classList.remove('disabled');
+        this.$delimeterBlinking.classList.add(delimeterBlinking ? 'enabled' : 'disabled');
         this.$delimeterBlinking.querySelector('input').checked = delimeterBlinking;
         return this;
     };
 
     SettingsView.prototype.updateAutoHideDock = function(autoHideDock) {
-        autoHideDock = typeof autoHideDock !== 'undefined' ? autoHideDock : true;
+        autoHideDock = typeof autoHideDock !== 'undefined' ? autoHideDock : false;
+        this.$autoHideDock.classList.remove('enabled');
+        this.$autoHideDock.classList.remove('disabled');
+        this.$autoHideDock.classList.add(autoHideDock ? 'enabled' : 'disabled');
         this.$autoHideDock.querySelector('input').checked = autoHideDock;
         app.dock.toggleAutoHide(autoHideDock);
         return this;
@@ -371,31 +349,28 @@ var app = {};
 
     SettingsView.prototype.handleTimeFormat = function() {
         var root = this;
-
-        this.$timeFormat.querySelector('input').
-            addEventListener('click', function() {
-                app.settingsStorage.update('use24format', this.checked);
-            });
+        this.$timeFormat.addEventListener('click', function() {
+            var checked = !root.$timeFormat.querySelector('input').checked;
+            app.settingsStorage.update('use24format', checked);
+        });
         return this;
     };
 
     SettingsView.prototype.handleDelimeterBlinking = function() {
         var root = this;
-
-        this.$delimeterBlinking.querySelector('input').
-            addEventListener('click', function() {
-                app.settingsStorage.update('delimeterBlinking', this.checked);
-            });
+        this.$delimeterBlinking.addEventListener('click', function() {
+            var checked = !root.$delimeterBlinking.querySelector('input').checked;
+            app.settingsStorage.update('delimeterBlinking', checked);
+        });
         return this;
     };
 
     SettingsView.prototype.handleAutoHideDock = function() {
         var root = this;
-
-        this.$autoHideDock.querySelector('input').
-            addEventListener('click', function() {
-                app.settingsStorage.update('autoHideDock', this.checked);
-            });
+        this.$autoHideDock.addEventListener('click', function() {
+            var checked = !root.$autoHideDock.querySelector('input').checked;
+            app.settingsStorage.update('autoHideDock', checked);
+        });
         return this;
     };
 
@@ -409,13 +384,6 @@ var app = {};
             chrome.storage.sync.get(root.key, function(data) {
                 if (!data || isEmpty(data) || !data[root.key]) {
                     reject();
-                    // data = {};
-                    // app.dock.iconViews.forEach(function(dockIconView) {
-                    //     data[dockIconView.url] = {
-                    //         visible : true,
-                    //         order : null
-                    //     };
-                    // });
                 } else {
                     data = data[root.key];
                 }
@@ -470,15 +438,11 @@ var app = {};
     App.prototype.ready = function() {
         this.settingsStorage.loaded.then(function() {
             app.init();
-
-            app.updateViews();
         }, function() {
             // no setting were loaded
             // do intro here
+            app.init();
             app.generateDefaultSettings();
-
-            app.updateViews();
-            console.log(arguments);
         });
     };
 
@@ -491,6 +455,9 @@ var app = {};
         this.clock        = new Clock();
         this.dock         = new Dock();
         this.settingsView = new SettingsView();
+
+        this.updateViews();
+        this.showViews();
     };
 
     App.prototype.updateViews = function() {
@@ -504,6 +471,11 @@ var app = {};
         this.settingsView.update(data);
         console.log(data);
         return this;
+    };
+
+    App.prototype.showViews = function() {
+        this.clock.show();
+        this.dock.show();
     };
 
     app = new App();
@@ -522,16 +494,16 @@ var app = {};
     }
 })();
 
-// google analytics
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-51673902-1']);
-_gaq.push(['_trackPageview']);
+// // google analytics
+// var _gaq = _gaq || [];
+// _gaq.push(['_setAccount', 'UA-51673902-1']);
+// _gaq.push(['_trackPageview']);
 
-(function() {
-    var ga = document.createElement('script');
-    ga.type = 'text/javascript';
-    ga.async = true;
-    ga.src = 'https://ssl.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(ga, s);
-})();
+// (function() {
+//     var ga = document.createElement('script');
+//     ga.type = 'text/javascript';
+//     ga.async = true;
+//     ga.src = 'https://ssl.google-analytics.com/ga.js';
+//     var s = document.getElementsByTagName('script')[0];
+//     s.parentNode.insertBefore(ga, s);
+// })();

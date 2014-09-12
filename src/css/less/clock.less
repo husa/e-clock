@@ -5,11 +5,12 @@
     .clock {
         position: relative;
         top: 35%;
-        font-family: 'ralewaythin';
+        font-family: 'Raleway Thin', sans-serif;
         font-size: 12em;
         color: @font-color;
-
         text-align: center;
+        opacity: 1;
+        transition: opacity 300ms;
 
         .hours {
 
@@ -34,6 +35,10 @@
 
         .ampm {
             font-size: 60%;
+        }
+
+        &.initiallyHidden {
+            opacity: 0;
         }
     }
 

@@ -19,8 +19,6 @@
     fill: @font-color;
     stroke: none;
 
-    font-family : 'Helvetica', 'Arial', sans-serif;
-
     &.hidden {
         display: none;
     }
@@ -79,9 +77,10 @@
 
 
     .settings-dock-icon {
-        padding: 8px 0;
+        margin: 16px 0;
+        cursor: pointer;
 
-        > * {
+        & > * {
             vertical-align: middle;
         }
 
@@ -92,11 +91,33 @@
         > input {
             .fancy-checkbox();
         }
+
+        &.enabled {
+
+        }
+
+        &.disabled {
+            opacity: .6;
+        }
     }
 
     .settings-appearance {
         input[type=checkbox] {
             .fancy-checkbox();
+        }
+
+        & > *{
+            margin: 16px 0;
+            opacity: 1;
+            cursor: pointer;
+
+            &.enabled {
+
+            }
+
+            &.disabled {
+                opacity: .6;
+            }
         }
     }
 

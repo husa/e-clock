@@ -1,7 +1,7 @@
 {
     "manifest_version" : 2,
     "name" : "e-clock",
-    "version" : "0.0.5",
+    "version" : "0.1.0",
 
     "description" : "Replace your regular \"new tab\" with this minimalistic digital clock",
 
@@ -19,5 +19,6 @@
     "permissions" : [
         "storage"
     ],
+    "offline_enabled" : true,
     "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
 }

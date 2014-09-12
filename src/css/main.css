@@ -1,7 +1,18 @@
 @font-face {
-  font-family: 'ralewaythin';
-  src: url('fonts/raleway-thin-webfont.eot');
-  src: url('fonts/raleway-thin-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/raleway-thin-webfont.woff') format('woff'), url('fonts/raleway-thin-webfont.ttf') format('truetype'), url('fonts/raleway-thin-webfont.svg#ralewaythin') format('svg');
+  font-family: 'Raleway Thin';
+  src: url('fonts/raleway-thin-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto Thin';
+  src: url('fonts/Roboto-Thin-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto Regular';
+  src: url('fonts/Roboto-Regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -12,10 +23,12 @@
 .container .clock {
   position: relative;
   top: 35%;
-  font-family: 'ralewaythin';
+  font-family: 'Raleway Thin', sans-serif;
   font-size: 12em;
   color: rgba(0, 0, 0, 0.7);
   text-align: center;
+  opacity: 1;
+  transition: opacity 300ms;
 }
 .container .clock .blinking {
   animation-duration: 2s;
@@ -27,6 +40,9 @@
 }
 .container .clock .ampm {
   font-size: 60%;
+}
+.container .clock.initiallyHidden {
+  opacity: 0;
 }
 .container .overlay {
   position: fixed;
@@ -61,6 +77,10 @@
 .footer ul {
   list-style: none;
   padding: 0;
+  margin-bottom: 0;
+}
+.footer ul.initiallyHidden li {
+  margin-bottom: -50px;
 }
 .footer ul li {
   float: right;
@@ -101,7 +121,6 @@
   color: rgba(0, 0, 0, 0.7);
   fill: rgba(0, 0, 0, 0.7);
   stroke: none;
-  font-family: 'Helvetica', 'Arial', sans-serif;
 }
 .settings-popup.hidden {
   display: none;
@@ -150,7 +169,8 @@
   display: none;
 }
 .settings-popup .settings-dock-icon {
-  padding: 8px 0;
+  margin: 16px 0;
+  cursor: pointer;
 }
 .settings-popup .settings-dock-icon > * {
   vertical-align: middle;
@@ -165,6 +185,7 @@
   width: 40px;
   height: 20px;
   cursor: pointer;
+  pointer-events: none;
 }
 .settings-popup .settings-dock-icon > input:before,
 .settings-popup .settings-dock-icon > input:after {
@@ -199,6 +220,9 @@
   border-color: #27AE60;
   left: 15px;
 }
+.settings-popup .settings-dock-icon.disabled {
+  opacity: .6;
+}
 .settings-popup .settings-appearance input[type=checkbox] {
   vertical-align: top;
   visibility: hidden;
@@ -206,6 +230,7 @@
   width: 40px;
   height: 20px;
   cursor: pointer;
+  pointer-events: none;
 }
 .settings-popup .settings-appearance input[type=checkbox]:before,
 .settings-popup .settings-appearance input[type=checkbox]:after {
@@ -240,6 +265,14 @@
   border-color: #27AE60;
   left: 15px;
 }
+.settings-popup .settings-appearance > * {
+  margin: 16px 0;
+  opacity: 1;
+  cursor: pointer;
+}
+.settings-popup .settings-appearance > *.disabled {
+  opacity: .6;
+}
 .settings-popup .settings-close-icon {
   position: absolute;
   top: 10px;
@@ -267,6 +300,7 @@ body {
   background: #fefefe;
   -webkit-user-select: none;
   user-select: none;
+  font-family: 'Roboto Regular', sans-serif;
 }
 *[data-alt] {
   position: relative;
@@ -276,7 +310,6 @@ body {
   visibility: hidden;
   position: absolute;
   opacity: 0;
-  font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 18px;
   transition: 300ms;
