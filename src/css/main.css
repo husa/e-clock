@@ -114,22 +114,29 @@
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-  box-sizing: border-box;
   background: #fff;
   box-shadow: 0 0 20px #9a9a9a;
   border-radius: 4px;
-  color: rgba(0, 0, 0, 0.7);
-  fill: rgba(0, 0, 0, 0.7);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #555555;
+  fill: #555555;
   stroke: none;
 }
 .settings-popup.hidden {
   display: none;
 }
+.settings-popup * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .settings-popup .settings-tabs {
   width: 100%;
   background: #fafafa;
-  padding-top: 20px;
   border-bottom: solid 1px #e6e6e6;
+  height: 50px;
 }
 .settings-popup .settings-tabs ul {
   padding: 0;
@@ -137,15 +144,17 @@
   list-style: none;
 }
 .settings-popup .settings-tabs li {
-  padding: 5px 15px;
+  padding: 0 15px;
   position: relative;
   margin: 0 5px;
   display: inline-block;
   cursor: pointer;
   transition: 400ms;
-  color: rgba(77, 77, 77, 0.7);
+  color: #a2a2a2;
+  vertical-align: bottom;
+  line-height: 50px;
 }
-.settings-popup .settings-tabs li:after {
+.settings-popup .settings-tabs li:before {
   content: ' ';
   position: absolute;
   width: 100%;
@@ -156,29 +165,32 @@
   transition: height 200ms;
 }
 .settings-popup .settings-tabs li.active {
-  color: rgba(0, 0, 0, 0.7);
+  color: #555555;
 }
-.settings-popup .settings-tabs li.active:after {
-  height: 3px;
-  background: #b5b5b5;
+.settings-popup .settings-tabs li.active:before {
+  height: 5px;
+  background: #27ae60;
 }
 .settings-popup .settings-content {
   padding: 15px;
+  height: 440px;
+  overflow: auto;
 }
 .settings-popup .settings-content .hidden {
   display: none;
 }
-.settings-popup .settings-dock-icon {
+.settings-popup .settings-item {
   margin: 16px 0;
   cursor: pointer;
 }
-.settings-popup .settings-dock-icon > * {
+.settings-popup .settings-item > * {
+  display: inline-block;
   vertical-align: middle;
 }
-.settings-popup .settings-dock-icon > svg {
+.settings-popup .settings-item > svg {
   margin: 0 4px;
 }
-.settings-popup .settings-dock-icon > input {
+.settings-popup .settings-item > input {
   vertical-align: top;
   visibility: hidden;
   position: relative;
@@ -187,22 +199,22 @@
   cursor: pointer;
   pointer-events: none;
 }
-.settings-popup .settings-dock-icon > input:before,
-.settings-popup .settings-dock-icon > input:after {
+.settings-popup .settings-item > input:before,
+.settings-popup .settings-item > input:after {
   content: ' ';
   position: absolute;
   visibility: visible;
   cursor: pointer;
   transition: all 200ms;
 }
-.settings-popup .settings-dock-icon > input:before {
+.settings-popup .settings-item > input:before {
   top: 10px;
   left: 0;
   width: 30px;
   height: 2px;
   background-color: #eee;
 }
-.settings-popup .settings-dock-icon > input:after {
+.settings-popup .settings-item > input:after {
   top: 2px;
   left: 0px;
   width: 16px;
@@ -211,82 +223,63 @@
   border: solid 1px #B0AFB0;
   background: #fff;
 }
-.settings-popup .settings-dock-icon > input:checked:before {
+.settings-popup .settings-item > input:checked:before {
   background: #2ECC71;
   border-color: #27AE60;
 }
-.settings-popup .settings-dock-icon > input:checked:after {
+.settings-popup .settings-item > input:checked:after {
   background: #27AE60;
   border-color: #27AE60;
   left: 15px;
 }
-.settings-popup .settings-dock-icon.disabled {
+.settings-popup .settings-item.disabled {
   opacity: .6;
 }
-.settings-popup .settings-appearance input[type=checkbox] {
-  vertical-align: top;
-  visibility: hidden;
+.settings-popup .settings-color-item,
+.settings-popup .settings-background-color-item,
+.settings-popup .settings-background-gradient-item {
   position: relative;
-  width: 40px;
-  height: 20px;
-  cursor: pointer;
-  pointer-events: none;
-}
-.settings-popup .settings-appearance input[type=checkbox]:before,
-.settings-popup .settings-appearance input[type=checkbox]:after {
-  content: ' ';
-  position: absolute;
-  visibility: visible;
-  cursor: pointer;
-  transition: all 200ms;
-}
-.settings-popup .settings-appearance input[type=checkbox]:before {
-  top: 10px;
-  left: 0;
   width: 30px;
-  height: 2px;
-  background-color: #eee;
-}
-.settings-popup .settings-appearance input[type=checkbox]:after {
-  top: 2px;
-  left: 0px;
-  width: 16px;
-  height: 16px;
-  border-radius: 10px;
-  border: solid 1px #B0AFB0;
-  background: #fff;
-}
-.settings-popup .settings-appearance input[type=checkbox]:checked:before {
-  background: #2ECC71;
-  border-color: #27AE60;
-}
-.settings-popup .settings-appearance input[type=checkbox]:checked:after {
-  background: #27AE60;
-  border-color: #27AE60;
-  left: 15px;
-}
-.settings-popup .settings-appearance > * {
-  margin: 16px 0;
-  opacity: 1;
+  height: 30px;
+  margin: 2px 0;
+  padding: 0;
+  border: none;
   cursor: pointer;
+  box-shadow: 0 0 3px #aaa;
 }
-.settings-popup .settings-appearance > *.disabled {
-  opacity: .6;
+.settings-popup .settings-color-item.active:after,
+.settings-popup .settings-background-color-item.active:after,
+.settings-popup .settings-background-gradient-item.active:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.settings-popup .settings-background-gradient-angle-item {
+  fill: #aaa;
+}
+.settings-popup .settings-background-gradient-angle-item.active {
+  fill: #444;
 }
 .settings-popup .settings-close-icon {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 3px;
+  right: 3px;
   width: 40px;
   height: 40px;
   font-size: 2em;
   cursor: pointer;
   text-align: center;
-  color: rgba(128, 128, 128, 0.7);
+  color: #d4d4d4;
 }
 .settings-popup .settings-close-icon:hover {
   transition: 300ms;
-  color: rgba(51, 51, 51, 0.7);
+  color: #888888;
 }
 body,
 html {
@@ -301,8 +294,8 @@ body {
   user-select: none;
   font-family: 'Roboto Regular', sans-serif;
   background: #fefefe;
-  color: rgba(0, 0, 0, 0.7);
-  fill: rgba(0, 0, 0, 0.7);
+  color: #555555;
+  fill: #555555;
 }
 *[data-alt] {
   position: relative;
@@ -337,4 +330,13 @@ body {
 *[data-alt]:hover:before {
   visibility: visible;
   opacity: 1;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  cursor: pointer;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
 }

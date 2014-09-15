@@ -120,7 +120,7 @@ var app = {};
 
         if (this.$settingIcon === void 0) {
             this.$settingIcon = document.createElement('div');
-            this.$settingIcon.classList.add('settings-dock-icon');
+            this.$settingIcon.classList.add('settings-dock-icon', 'settings-item');
 
             var checked = this.$el.classList.contains('hidden') ? '' : 'checked';
 
@@ -215,13 +215,64 @@ var app = {};
     };
 
 
+    var AppearanceView = function () {
+        this.$body      = document.body;
+        this.color      = '';
+        this.bgColor    = '';
+        this.bgGradient = '';
+    };
+
+    AppearanceView.prototype.update = function(data) {
+        this.
+            updateColor(data.color).
+            updateBackgroundColor(data.backgroundColor, data.backgroundPriority).
+            updateBackgroundGradient(data.backgroundGradient, data.backgroundGradientAngle, data.backgroundPriority);
+    };
+
+    AppearanceView.prototype.updateColor = function(color) {
+        if (!color || color === this.color) {
+            return this;
+        }
+        this.color = color;
+        this.$body.style.color = color;
+        this.$body.style.fill = color;
+        return this;
+    };
+
+    AppearanceView.prototype.updateBackgroundColor = function(color, priority) {
+        if (!color || priority !== 'color') {
+            return this;
+        }
+        this.bgColor = color;
+        this.$body.style.background = color;
+        return this;
+    };
+
+    AppearanceView.prototype.updateBackgroundGradient = function(colors, angle, priority) {
+        if (!colors || priority !== 'gradient') {
+            return this;
+        }
+        if (!angle) {
+            angle = '90deg';
+        }
+        this.bgGradient = colors;
+        colors = colors.split(',');
+        this.$body.style.background = 'linear-gradient(' + angle + ', ' + colors[0] + ' 10%, ' + colors[1] + ' 90%)';
+
+        return this;
+    };
+
     var SettingsView = function () {
-        var root = this;
+        // var root = this;
 
         this.$el                 = document.querySelector('.settings-popup');
-        this.$dockSettings       = root.$el.querySelector('.settings-dock');
-        this.$appearanceSettings = root.$el.querySelector('.settings-appearance');
         this.$tabs               = this.$el.querySelector('.settings-tabs');
+        this.$tabsContents       = this.$el.querySelectorAll('.settings-tab-content');
+        this.$dockSettings       = this.$el.querySelector('.settings-dock');
+        this.$colors             = this.$el.querySelectorAll('.settings-color-item');
+        this.$bgColors           = this.$el.querySelectorAll('.settings-background-color-item');
+        this.$bgGradients        = this.$el.querySelectorAll('.settings-background-gradient-item');
+        this.$bgGradientAngles   = this.$el.querySelectorAll('.settings-background-gradient-angle-item');
         this.$timeFormat         = this.$el.querySelector('.settings-time-format');
         this.$delimeterBlinking  = this.$el.querySelector('.settings-delimeter-blinking');
         this.$autoHideDock       = this.$el.querySelector('.settings-autohide-dock');
@@ -232,7 +283,11 @@ var app = {};
             handleClose().
             handleTimeFormat().
             handleDelimeterBlinking().
-            handleAutoHideDock();
+            handleAutoHideDock().
+            handleColor().
+            handleBackgroundColor().
+            handleBackgroundGradient().
+            handleBackgroundGradientAngle();
 
         this.$dockSettings.appendChild(app.dock.getSettings());
     };
@@ -241,7 +296,11 @@ var app = {};
         this.
             updateTimeFormat(data.use24format).
             updateDelimeterBlinking(data.delimeterBlinking).
-            updateAutoHideDock(data.autoHideDock);
+            updateAutoHideDock(data.autoHideDock).
+            updateColor(data.color).
+            updateBackgroundColor(data.backgroundColor).
+            updateBackgroundGradient(data.backgroundGradient).
+            updateBackgroundGradientAngle(data.backgroundGradientAngle);
     };
 
     SettingsView.prototype.open = function() {
@@ -263,9 +322,10 @@ var app = {};
         forEach($tabItems, function($tabItem) {
             $tabItem.addEventListener('click', function() {
                 var selector = this.dataset.target;
-
-                root.$dockSettings.classList.add('hidden');
-                root.$appearanceSettings.classList.add('hidden');
+                forEach(root.$tabsContents, function(el) {
+                    el.classList.add('hidden');
+                    el.classList.remove('active');
+                });
                 root.$el.querySelector(selector).classList.remove('hidden');
                 root.$el.querySelector('.active').classList.remove('active');
                 this.classList.add('active');
@@ -314,6 +374,49 @@ var app = {};
         return this;
     };
 
+    SettingsView.prototype.updateColor = function(color) {
+        this.updateAppearanceColor(this.$colors, color, '#555555');
+        return this;
+    };
+
+    SettingsView.prototype.updateBackgroundColor = function(color) {
+        this.updateAppearanceColor(this.$bgColors, color, '#fefefe');
+        return this;
+    };
+
+    SettingsView.prototype.updateAppearanceColor = function(nodes, color, defaultColor) {
+        if (!color) {
+            color = defaultColor;
+        }
+        [].slice.call(nodes, 0).forEach(function(el) {
+            el.classList.remove('active');
+            if (el.dataset.color === color) {
+                el.classList.add('active');
+            }
+        });
+        return this;
+    };
+
+    SettingsView.prototype.updateBackgroundGradient = function(gradient) {
+        [].slice.call(this.$bgGradients, 0).forEach(function(el) {
+            el.classList.remove('active');
+            if (el.dataset.gradient === gradient) {
+                el.classList.add('active');
+            }
+        });
+        return this;
+    };
+
+    SettingsView.prototype.updateBackgroundGradientAngle = function(angle) {
+        [].slice.call(this.$bgGradientAngles, 0).forEach(function(el) {
+            el.classList.remove('active');
+            if (el.dataset.angle === angle) {
+                el.classList.add('active');
+            }
+        });
+        return this;
+    };
+
     SettingsView.prototype.handleTimeFormat = function() {
         var root = this;
         this.$timeFormat.addEventListener('click', function() {
@@ -337,6 +440,48 @@ var app = {};
         this.$autoHideDock.addEventListener('click', function() {
             var checked = !root.$autoHideDock.querySelector('input').checked;
             app.settingsStorage.update('autoHideDock', checked);
+        });
+        return this;
+    };
+
+    SettingsView.prototype.handleColor = function() {
+        forEach(this.$colors, function(el) {
+            el.addEventListener('click', function() {
+                var color = this.dataset.color;
+                app.settingsStorage.update('color', color);
+            });
+        });
+        return this;
+    };
+
+    SettingsView.prototype.handleBackgroundColor = function() {
+        forEach(this.$bgColors, function(el) {
+            el.addEventListener('click', function() {
+                var color = this.dataset.color;
+                app.settingsStorage.update('backgroundPriority', 'color', true);
+                app.settingsStorage.update('backgroundColor', color);
+            });
+        });
+        return this;
+    };
+
+    SettingsView.prototype.handleBackgroundGradient = function() {
+        forEach(this.$bgGradients, function(el) {
+            el.addEventListener('click', function() {
+                var gradient = this.dataset.gradient;
+                app.settingsStorage.update('backgroundPriority', 'gradient', true);
+                app.settingsStorage.update('backgroundGradient', gradient);
+            });
+        });
+        return this;
+    };
+
+    SettingsView.prototype.handleBackgroundGradientAngle = function() {
+        forEach(this.$bgGradientAngles, function(el) {
+            el.addEventListener('click', function() {
+                var angle = this.dataset.angle;
+                app.settingsStorage.update('backgroundGradientAngle', angle);
+            });
         });
         return this;
     };
@@ -370,12 +515,14 @@ var app = {};
         chrome.storage.sync.set(storeData);
     };
 
-    SettingsStorage.prototype.update = function(key, value) {
+    SettingsStorage.prototype.update = function(key, value, silent) {
         this.data[key] = value;
 
         this.sync();
 
-        app.updateViews();
+        if (!silent) {
+            app.updateViews();
+        }
     };
 
     var I18n = function() {
@@ -386,7 +533,7 @@ var app = {};
             if (elem.classList.contains('dockicon')) {
                 elem.dataset.alt = i18nString;
             } else {
-                elem.innerText = i18nString;
+                elem.innerText = i18nString || i18nStringKey;
             }
         });
     };
@@ -418,10 +565,11 @@ var app = {};
     };
 
     App.prototype.init = function() {
-        this.i18n         = new I18n();
-        this.clock        = new Clock();
-        this.dock         = new Dock();
-        this.settingsView = new SettingsView();
+        this.i18n           = new I18n();
+        this.clock          = new Clock();
+        this.dock           = new Dock();
+        this.settingsView   = new SettingsView();
+        this.appearanceView = new AppearanceView();
 
         this.updateViews();
         this.showViews();
@@ -433,6 +581,7 @@ var app = {};
         this.clock.updateFormat(data.use24format);
         this.clock.updateDelimeter(data.delimeterBlinking);
         this.dock.update(data);
+        this.appearanceView.update(data);
         this.settingsView.update(data);
 
         return this;

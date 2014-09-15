@@ -14,6 +14,9 @@
     background: #fff;
     box-shadow: 0 0 20px #9a9a9a;
     border-radius: 4px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 
     color: @default-font-color;
     fill: @default-font-color;
@@ -23,12 +26,18 @@
         display: none;
     }
 
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
     .settings-tabs {
         width: 100%;
         background: #fafafa;
-        padding-top: 20px;
+        // padding-top: 20px;
         border-bottom: solid 1px #e6e6e6;
+        height: 50px;
 
         ul {
             padding: 0;
@@ -38,15 +47,17 @@
         }
 
         li {
-            padding: 5px 15px;
+            padding: 0 15px;
             position: relative;
             margin: 0 5px;
             display: inline-block;
             cursor: pointer;
             transition: 400ms;
             color: lighten(@default-font-color, 30%);
+            vertical-align: bottom;
+            line-height: 50px;
 
-            &:after {
+            &:before {
                 content: ' ';
                 position: absolute;
                 width: 100%;
@@ -61,26 +72,29 @@
         li.active {
             color: @default-font-color;
 
-            &:after {
-                height: 3px;
-                background: #b5b5b5;
+            &:before {
+                height: 5px;
+                background: #27ae60;
             }
         }
     }
 
     .settings-content {
         padding: 15px;
+        height: 440px;
+        overflow: auto;
+
         .hidden {
             display: none;
         }
     }
 
-
-    .settings-dock-icon {
+    .settings-item {
         margin: 16px 0;
         cursor: pointer;
 
         & > * {
+            display: inline-block;
             vertical-align: middle;
         }
 
@@ -101,30 +115,50 @@
         }
     }
 
+    .settings-dock-icon {
+    }
+
     .settings-appearance {
-        input[type=checkbox] {
-            .fancy-checkbox();
+    }
+
+    .settings-color {
+    }
+
+    .settings-color-item, .settings-background-color-item, .settings-background-gradient-item {
+        position: relative;
+        width : 30px;
+        height: 30px;
+        margin: 2px 0;
+        padding: 0;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 0 3px #aaa;
+
+        &.active:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background: rgba(0,0,0,.3);
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
         }
+    }
 
-        & > *{
-            margin: 16px 0;
-            opacity: 1;
-            cursor: pointer;
+    .settings-background-gradient-angle-item {
+        fill: #aaa;
 
-            &.enabled {
-
-            }
-
-            &.disabled {
-                opacity: .6;
-            }
+        &.active {
+            fill: #444;
         }
     }
 
     .settings-close-icon {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 3px;
+        right: 3px;
         width: 40px;
         height: 40px;
         font-size: 2em;

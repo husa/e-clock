@@ -43,6 +43,10 @@
         "message" : "Appearance",
         "description" : "Settings tab label for Appearance"
     },
+    "i18nAbout" : {
+        "message" : "About",
+        "description" : "Settings tab label for About"
+    },
     "i18nDock" : {
         "message" : "Dock",
         "description" : "Settings tab label for Dock"
@@ -52,11 +56,27 @@
         "description" : "Use 24 hour format settings label"
     },
     "i18nDelimeterBlinking" : {
-        "message" : "Enable clock delimeter blinking",
+        "message" : "Clock delimeter blinking",
         "description" : "Enable delimeter blinking settings label"
     },
     "i18nAutoHideDock" : {
         "message" : "Auto Hide Dock",
         "description" : "Auto Hide Dock settings label"
+    },
+    "i18nTextColor" : {
+        "message" : "Text Color",
+        "description" : "Text Color settings label"
+    },
+    "i18nBackgroundColor" : {
+        "message" : "Background Color",
+        "description" : "Background Color settings label"
+    },
+    "i18nBackgroundGradient" : {
+        "message" : "Background Gradient",
+        "description" : "Background Gradient settings label"
+    },
+    "i18nBackgroundGradientDirection" : {
+        "message" : "Gradient Direction",
+        "description" : "Background Gradient Direction settings label"
     }
 }
