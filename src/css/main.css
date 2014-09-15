@@ -25,7 +25,7 @@
   top: 35%;
   font-family: 'Raleway Thin', sans-serif;
   font-size: 12em;
-  color: rgba(0, 0, 0, 0.7);
+  color: inherit;
   text-align: center;
   opacity: 1;
   transition: opacity 300ms;
@@ -85,7 +85,7 @@
 .footer ul li {
   float: right;
   margin: 0 10px;
-  fill: rgba(0, 0, 0, 0.7);
+  fill: inherit;
   stroke: none;
   cursor: pointer;
   transition: all 200ms;
@@ -297,10 +297,12 @@ html {
   padding: 0;
 }
 body {
-  background: #fefefe;
   -webkit-user-select: none;
   user-select: none;
   font-family: 'Roboto Regular', sans-serif;
+  background: #fefefe;
+  color: rgba(0, 0, 0, 0.7);
+  fill: rgba(0, 0, 0, 0.7);
 }
 *[data-alt] {
   position: relative;

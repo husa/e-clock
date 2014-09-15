@@ -143,11 +143,10 @@ var app = {};
         this.$settingIcon.addEventListener('click', function() {
             var checked = !root.$settingIcon.querySelector('input').checked;
 
-            if (checked) {
-                root.parent.turnOn(root);
-            } else {
-                root.parent.turnOff(root);
-            }
+            app.settingsStorage.update(root.url, {
+                visible : checked,
+                order : null
+            });
         });
     };
 
@@ -182,13 +181,12 @@ var app = {};
         this.$icons = this.$dock.querySelectorAll('.dockicon');
         this.iconViews = [];
 
-        Array.prototype.forEach.call(this.$icons, function($icon) {
+        forEach(this.$icons, function($icon) {
             this.iconViews.push(new DockIcon($icon, this));
         }, this);
     };
 
     Dock.prototype.getSettings = function() {
-
         if (this.$settingsContainer === undefined) {
             this.$settingsContainer = document.createElement('div');
 
@@ -202,45 +200,14 @@ var app = {};
         return this.$settingsContainer;
     };
 
-    Dock.prototype.turnOn = function(dockIconView) {
-        this.getDockView(dockIconView).show();
-
-        app.settingsStorage.update(dockIconView.url, {
-            visible : true,
-            order : null
-        });
-    };
-
-    Dock.prototype.turnOff = function(dockIconView) {
-        this.getDockView(dockIconView).hide();
-
-        app.settingsStorage.update(dockIconView.url, {
-            visible : false,
-            order : null
-        });
-    };
-
-    Dock.prototype.getDockView = function(dockIconView) {
-        var filtered = this.iconViews.filter(function(icon) {
-            return icon === dockIconView;
-        });
-        return (filtered && filtered[0]) ? filtered[0] : null;
-    };
-
     Dock.prototype.update = function(data) {
         this.iconViews.forEach(function(dockIconView) {
-            var settings = data[dockIconView.url];
-
-            dockIconView.update(settings);
+            dockIconView.update(data[dockIconView.url]);
         });
     };
 
     Dock.prototype.toggleAutoHide = function(turnOn) {
-        if (turnOn) {
-            this.$dock.classList.add('auto-hide');
-        } else {
-            this.$dock.classList.remove('auto-hide');
-        }
+        this.$dock.classList.toggle('auto-hide', turnOn);
     };
 
     Dock.prototype.show = function() {
@@ -465,11 +432,9 @@ var app = {};
 
         this.clock.updateFormat(data.use24format);
         this.clock.updateDelimeter(data.delimeterBlinking);
-
         this.dock.update(data);
-
         this.settingsView.update(data);
-        console.log(data);
+
         return this;
     };
 

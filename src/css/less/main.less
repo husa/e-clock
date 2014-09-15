@@ -33,12 +33,14 @@ body, html {
 }
 
 body {
-    background: #fefefe;
     -webkit-user-select: none;
     user-select: none;
     font-family: 'Roboto Regular', sans-serif;
-}
 
+    background: @default-background;
+    color: @default-font-color;
+    fill: @default-font-color;
+}
 
 *[data-alt] {
     .fancy-alt(0, 2);

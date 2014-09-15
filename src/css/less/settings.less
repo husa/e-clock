@@ -15,8 +15,8 @@
     box-shadow: 0 0 20px #9a9a9a;
     border-radius: 4px;
 
-    color: @font-color;
-    fill: @font-color;
+    color: @default-font-color;
+    fill: @default-font-color;
     stroke: none;
 
     &.hidden {
@@ -44,7 +44,7 @@
             display: inline-block;
             cursor: pointer;
             transition: 400ms;
-            color: lighten(@font-color, 30%);
+            color: lighten(@default-font-color, 30%);
 
             &:after {
                 content: ' ';
@@ -59,7 +59,7 @@
         }
 
         li.active {
-            color: @font-color;
+            color: @default-font-color;
 
             &:after {
                 height: 3px;
@@ -130,11 +130,11 @@
         font-size: 2em;
         cursor: pointer;
         text-align: center;
-        color: lighten(@font-color, 50%);
+        color: lighten(@default-font-color, 50%);
 
         &:hover {
             transition: 300ms;
-            color: lighten(@font-color, 20%);
+            color: lighten(@default-font-color, 20%);
         }
     }
 }
