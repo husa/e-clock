@@ -1,7 +1,7 @@
 {
     "manifest_version" : 2,
     "name" : "e-clock",
-    "version" : "0.1.0",
+    "version" : "1.0.0",
 
     "description" : "Replace your regular \"new tab\" with this minimalistic digital clock",
 

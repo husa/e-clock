@@ -78,5 +78,17 @@
     "i18nBackgroundGradientDirection" : {
         "message" : "Gradient Direction",
         "description" : "Background Gradient Direction settings label"
+    },
+    "i18nRate" : {
+        "message" : "Rate this extension",
+        "description" : "Rate button label"
+    },
+    "i18nCreatedBy" : {
+        "message" : "Created by Yuriy Husnay",
+        "description" : "information about the author"
+    },
+    "i18nOpenSource" : {
+        "message" : "This extension is completely open source and licensed under MIT license",
+        "description" : "information about product"
     }
 }

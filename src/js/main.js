@@ -140,7 +140,7 @@ var app = {};
             throw Error('setting weren\'t generated yet');
         }
 
-        this.$settingIcon.addEventListener('click', function() {
+        this.$settingIcon.addEventListener('mousedown', function() {
             var checked = !root.$settingIcon.querySelector('input').checked;
 
             app.settingsStorage.update(root.url, {
@@ -289,6 +289,8 @@ var app = {};
             handleBackgroundGradient().
             handleBackgroundGradientAngle();
 
+        this.initAbout();
+
         this.$dockSettings.appendChild(app.dock.getSettings());
     };
 
@@ -419,7 +421,7 @@ var app = {};
 
     SettingsView.prototype.handleTimeFormat = function() {
         var root = this;
-        this.$timeFormat.addEventListener('click', function() {
+        this.$timeFormat.addEventListener('mousedown', function() {
             var checked = !root.$timeFormat.querySelector('input').checked;
             app.settingsStorage.update('use24format', checked);
         });
@@ -428,7 +430,7 @@ var app = {};
 
     SettingsView.prototype.handleDelimeterBlinking = function() {
         var root = this;
-        this.$delimeterBlinking.addEventListener('click', function() {
+        this.$delimeterBlinking.addEventListener('mousedown', function() {
             var checked = !root.$delimeterBlinking.querySelector('input').checked;
             app.settingsStorage.update('delimeterBlinking', checked);
         });
@@ -437,7 +439,7 @@ var app = {};
 
     SettingsView.prototype.handleAutoHideDock = function() {
         var root = this;
-        this.$autoHideDock.addEventListener('click', function() {
+        this.$autoHideDock.addEventListener('mousedown', function() {
             var checked = !root.$autoHideDock.querySelector('input').checked;
             app.settingsStorage.update('autoHideDock', checked);
         });
@@ -484,6 +486,18 @@ var app = {};
             });
         });
         return this;
+    };
+
+    SettingsView.prototype.initAbout = function() {
+        var manifest = chrome.runtime.getManifest();
+
+        this.$el.querySelector('.settings-about-name').innerHTML = manifest.name;
+        this.$el.querySelector('.settings-about-version').innerHTML = 'v' + manifest.version;
+        this.$el.querySelector('.settings-about-rate').
+            querySelector('a').href = 'https://chrome.google.com/webstore/detail/' +
+            chrome.runtime.id;
+
+
     };
 
     var SettingsStorage = function() {

@@ -43,20 +43,52 @@
         "message" : "Вигляд",
         "description" : "Settings tab label for Appearance"
     },
+    "i18nAbout" : {
+        "message" : "Про",
+        "description" : "Settings tab label for About"
+    },
     "i18nDock" : {
         "message" : "Панель",
         "description" : "Settings tab label for Dock"
     },
     "i18n24Format" : {
-        "message" : "Використовувати 24 годинний формат дати",
+        "message" : "24 годинний формат дати",
         "description" : "Use 24 hour format settings label"
     },
     "i18nDelimeterBlinking" : {
-        "message" : "Увімкнути мигання розділювача часу",
+        "message" : "Мигання розділювача часу",
         "description" : "Enable delimeter blinking settings label"
     },
     "i18nAutoHideDock" : {
         "message" : "Автоматично ховати панель",
         "description" : "Auto Hide Dock settings label"
+    },
+    "i18nTextColor" : {
+        "message" : "Колір Тексту",
+        "description" : "Text Color settings label"
+    },
+    "i18nBackgroundColor" : {
+        "message" : "Колір Фону",
+        "description" : "Background Color settings label"
+    },
+    "i18nBackgroundGradient" : {
+        "message" : "Градієнт Фону",
+        "description" : "Background Gradient settings label"
+    },
+    "i18nBackgroundGradientDirection" : {
+        "message" : "Напрямок Градієнту",
+        "description" : "Background Gradient Direction settings label"
+    },
+    "i18nRate" : {
+        "message" : "Оцінити",
+        "description" : "Rate button label"
+    },
+    "i18nCreatedBy" : {
+        "message" : "Створено Yuriy Husnay",
+        "description" : "information about the author"
+    },
+    "i18nOpenSource" : {
+        "message" : "Це розширення з відкритим кодом і ліцензовано під MIT ліцензією",
+        "description" : "information about product"
     }
 }
