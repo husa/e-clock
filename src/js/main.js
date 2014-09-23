@@ -398,7 +398,7 @@ var app = {};
         if (!color) {
             color = defaultColor;
         }
-        [].slice.call(nodes, 0).forEach(function(el) {
+        forEach(nodes, function(el) {
             el.classList.remove('active');
             if (el.dataset.color === color) {
                 el.classList.add('active');
@@ -408,7 +408,7 @@ var app = {};
     };
 
     SettingsView.prototype.updateBackgroundGradient = function(gradient) {
-        [].slice.call(this.$bgGradients, 0).forEach(function(el) {
+        forEach(this.$bgGradients, function(el) {
             el.classList.remove('active');
             if (el.dataset.gradient === gradient) {
                 el.classList.add('active');
@@ -418,7 +418,8 @@ var app = {};
     };
 
     SettingsView.prototype.updateBackgroundGradientAngle = function(angle) {
-        [].slice.call(this.$bgGradientAngles, 0).forEach(function(el) {
+        angle = angle || '90deg';
+        forEach(this.$bgGradientAngles, function(el) {
             el.classList.remove('active');
             if (el.dataset.angle === angle) {
                 el.classList.add('active');
