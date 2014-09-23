@@ -283,15 +283,15 @@
   padding: 5px 15px;
   background: #eee;
   border-radius: 3px;
+  text-decoration: none;
+  color: inherit;
   cursor: pointer;
 }
 .settings-popup .settings-about .settings-about-rate * {
   display: inline-block;
   vertical-align: middle;
 }
-.settings-popup .settings-about .settings-about-rate a {
-  text-decoration: none;
-  color: inherit;
+.settings-popup .settings-about .settings-about-rate span {
   margin: 0 6px;
 }
 .settings-popup .settings-about .settings-about-author-info {
@@ -329,6 +329,7 @@ body {
   -webkit-user-select: none;
   user-select: none;
   font-family: 'Roboto Regular', sans-serif;
+  font-size: 16px;
   background: #fefefe;
   color: #555555;
   fill: #555555;

@@ -99,12 +99,20 @@ var app = {};
     DockIcon.prototype.handleClick = function() {
         var root = this;
 
-        this.$el.addEventListener('click', function() {
+        this.$el.addEventListener('click', function(e) {
             var url = this.dataset.url;
 
-            if (url) {
-                if (root.isSettingsIcon) {
-                    app.settingsView.toggle();
+            if (!url) {
+                return;
+            }
+            if (root.isSettingsIcon) {
+                app.settingsView.toggle();
+            } else {
+                if(e.metaKey || e.ctrlKey || e.button === 1) {
+                    chrome.tabs.create({
+                        url    : url,
+                        active : true
+                    });
                 } else {
                     chrome.tabs.update({
                         url : url
@@ -493,8 +501,7 @@ var app = {};
 
         this.$el.querySelector('.settings-about-name').innerHTML = manifest.name;
         this.$el.querySelector('.settings-about-version').innerHTML = 'v' + manifest.version;
-        this.$el.querySelector('.settings-about-rate').
-            querySelector('a').href = 'https://chrome.google.com/webstore/detail/' +
+        this.$el.querySelector('.settings-about-rate').href = 'https://chrome.google.com/webstore/detail/' +
             chrome.runtime.id;
 
 
