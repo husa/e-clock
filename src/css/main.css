@@ -340,36 +340,26 @@ body {
 *[data-alt] {
   position: relative;
 }
-*[data-alt]:after,
-*[data-alt]:before {
-  visibility: hidden;
-  position: absolute;
-  opacity: 0;
-  font-size: 16px;
-  line-height: 18px;
-  transition: 300ms;
-}
-*[data-alt]:after {
-  content: ' ';
-  top: -6px;
-  right: 8px;
-  border: solid 6px transparent;
-  border-top-color: rgba(0, 0, 0, 0.7);
-}
 *[data-alt]:before {
   content: attr(data-alt);
-  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -6px;
+  overflow: hidden;
+  pointer-events: none;
+  font-size: 11pt;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.8);
   color: #fff;
-  padding: 2px 4px;
   white-space: nowrap;
   border-radius: 2px;
-  top: -28px;
-  right: 4px;
+  transition: opacity 50ms, top 100ms;
 }
-*[data-alt]:hover:after,
 *[data-alt]:hover:before {
-  visibility: visible;
   opacity: 1;
+  top: -110%;
+  transition: opacity 400ms, top 100ms;
 }
 ::-webkit-scrollbar {
   width: 6px;
