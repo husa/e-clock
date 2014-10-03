@@ -1,645 +1,768 @@
-var app = {};
 (function() {
-    'use strict';
-
-    var date = {
-        prev : {
-            hours : -1,
-            minutes : -1
-        },
-        getDate : function() {
-            return new Date();
-        },
-        getHours : function(use24) {
-            var hours = this.getDate().getHours();
-
-            if (use24) {
-                return hours;
-            } else {
-                return (hours / 13)|0 ? hours - 12 : hours;
-            }
-
-        },
-        getMinutes : function() {
-            var minutes = this.getDate().getMinutes();
-            return  (minutes < 10 ? '0' : '') + minutes;
-        },
-        timeHasChanged : function() {
-            return +this.getMinutes() !== +this.prev.minutes ||
-                    +this.getHours() !== +this.prev.hours;
-        },
-        updateChangedTime : function() {
-            this.prev.minutes = date.getMinutes();
-            this.prev.hours   = date.getHours();
-        },
-        getAmPm : function() {
-            return this.getHours(true) < 12 ? 'am' : 'pm';
-        }
-    };
-
-    var Clock = function() {
-        this.$container = document.querySelector('.container');
-        this.$clock     = this.$container.querySelector('.clock');
-        this.$hours     = this.$clock.querySelector('.hours');
-        this.$minutes   = this.$clock.querySelector('.minutes');
-        this.$delimeter = this.$clock.querySelector('.delimeter');
-        this.$ampm      = this.$clock.querySelector('.ampm');
-        this.use24      = true;
-
-        this.updateTime();
-
-        this.interval = window.setInterval(this.updateTime.bind(this), 1000);
-    };
-
-    Clock.prototype.show = function() {
-        this.$clock.classList.remove('initiallyHidden');
-    };
-
-    Clock.prototype.updateTime = function(force) {
-        if (date.timeHasChanged() || force) {
-            this.$hours.innerHTML   = date.getHours(this.use24);
-            this.$minutes.innerHTML = date.getMinutes();
-            this.$ampm.innerHTML    = !this.use24 ? date.getAmPm() : '';
-            date.updateChangedTime();
-        }
-    };
-
-    Clock.prototype.updateFormat = function(use24) {
-        this.use24 = typeof use24 !== 'undefined' ? use24 : true;
-
-        this.updateTime(true);
-    };
-
-    Clock.prototype.updateDelimeter = function(enabled) {
-        enabled = typeof enabled !== 'undefined' ? enabled : true;
-        if (enabled) {
-            this.$delimeter.classList.add('blinking');
-        } else {
-            this.$delimeter.classList.remove('blinking');
-        }
-    };
-
-
-    var DockIcon = function($el, parent) {
-        if (!$el) {
-            throw Error('specify $el');
-        }
-
-        this.$el    = $el;
-        this.parent = parent;
-        this.url    = this.$el.dataset.url;
-
-        if (/^settings$/.test(this.url)) {
-            this.isSettingsIcon = true;
-        }
-
-        this.handleClick();
-    };
-
-    DockIcon.prototype.handleClick = function() {
-        var root = this;
-
-        this.$el.addEventListener('click', function(e) {
-            var url = this.dataset.url;
-
-            if (!url) {
-                return;
-            }
-            if (root.isSettingsIcon) {
-                app.settingsView.toggle();
-            } else {
-                if(e.metaKey || e.ctrlKey || e.button === 1) {
-                    chrome.tabs.create({
-                        url    : url,
-                        active : true
-                    });
-                } else {
-                    chrome.tabs.update({
-                        url : url
-                    });
-                }
-            }
-        });
-    };
-
-    DockIcon.prototype.generateSetting = function() {
-        var svgIcon = this.$el.innerHTML,
-            title   = this.$el.dataset.alt;
-
-        if (this.$settingIcon === void 0) {
-            this.$settingIcon = document.createElement('div');
-            this.$settingIcon.classList.add('settings-dock-icon', 'settings-item');
-
-            var checked = this.$el.classList.contains('hidden') ? '' : 'checked';
-
-            this.$settingIcon.innerHTML = '<input type="checkbox" ' + checked + '/>' + svgIcon + '<span>' + title + '</span>';
-            this.$settingIcon.classList.add(checked ? 'enabled' : 'disabled');
-
-            this.handleSettings();
-        }
-
-        return this.$settingIcon;
-    };
-
-    DockIcon.prototype.handleSettings = function() {
-        var root = this;
-
-        if (!this.$settingIcon) {
-            throw Error('setting weren\'t generated yet');
-        }
-
-        this.$settingIcon.addEventListener('mousedown', function() {
-            var checked = !root.$settingIcon.querySelector('input').checked;
-
-            app.settingsStorage.update(root.url, {
-                visible : checked,
-                order : null
-            });
-        });
-    };
-
-    DockIcon.prototype.hide = function() {
-        this.$el.classList.add('hidden');
-        if (this.$settingIcon) {
-            this.$settingIcon.classList.remove('enabled');
-            this.$settingIcon.classList.add('disabled');
-            this.$settingIcon.querySelector('input').checked = false;
-        }
-    };
-
-    DockIcon.prototype.show = function() {
-        this.$el.classList.remove('hidden');
-        if (this.$settingIcon) {
-            this.$settingIcon.classList.remove('disabled');
-            this.$settingIcon.classList.add('enabled');
-            this.$settingIcon.querySelector('input').checked = true;
-        }
-    };
-
-    DockIcon.prototype.update = function(data) {
-        if (data && !data.visible) {
-            this.hide();
-        } else {
-            this.show();
-        }
-    };
-
-    var Dock = function() {
-        this.$dock = document.querySelector('.dock');
-        this.$icons = this.$dock.querySelectorAll('.dockicon');
-        this.iconViews = [];
-
-        forEach(this.$icons, function($icon) {
-            this.iconViews.push(new DockIcon($icon, this));
-        }, this);
-    };
-
-    Dock.prototype.getSettings = function() {
-        if (this.$settingsContainer === undefined) {
-            this.$settingsContainer = document.createElement('div');
-
-            this.iconViews.filter(function(dockIconView) {
-                return !dockIconView.isSettingsIcon;
-            }).reverse().forEach(function(dockIconView) {
-                this.$settingsContainer.appendChild(dockIconView.generateSetting());
-            }, this);
-        }
-
-        return this.$settingsContainer;
-    };
-
-    Dock.prototype.update = function(data) {
-        this.iconViews.forEach(function(dockIconView) {
-            dockIconView.update(data[dockIconView.url]);
-        });
-    };
-
-    Dock.prototype.toggleAutoHide = function(turnOn) {
-        this.$dock.classList.toggle('auto-hide', turnOn);
-    };
-
-    Dock.prototype.show = function() {
-        this.$dock.classList.remove('initiallyHidden');
-    };
-
-
-    var AppearanceView = function () {
-        this.$body      = document.body;
-        this.color      = '';
-        this.bgColor    = '';
-        this.bgGradient = '';
-    };
-
-    AppearanceView.prototype.update = function(data) {
-        this.
-            updateColor(data.color).
-            updateBackgroundColor(data.backgroundColor, data.backgroundPriority).
-            updateBackgroundGradient(data.backgroundGradient, data.backgroundGradientAngle, data.backgroundPriority);
-    };
-
-    AppearanceView.prototype.updateColor = function(color) {
-        if (!color || color === this.color) {
-            return this;
-        }
-        this.color = color;
-        this.$body.style.color = color;
-        this.$body.style.fill = color;
-        return this;
-    };
-
-    AppearanceView.prototype.updateBackgroundColor = function(color, priority) {
-        if (!color || priority !== 'color') {
-            return this;
-        }
-        this.bgColor = color;
-        this.$body.style.background = color;
-        return this;
-    };
-
-    AppearanceView.prototype.updateBackgroundGradient = function(colors, angle, priority) {
-        if (!colors || priority !== 'gradient') {
-            return this;
-        }
-        if (!angle) {
-            angle = '90deg';
-        }
-        this.bgGradient = colors;
-        colors = colors.split(',');
-        this.$body.style.background = 'linear-gradient(' + angle + ', ' + colors[0] + ' 10%, ' + colors[1] + ' 90%)';
-
-        return this;
-    };
-
-    var SettingsView = function () {
-        // var root = this;
-
-        this.$el                 = document.querySelector('.settings-popup');
-        this.$tabs               = this.$el.querySelector('.settings-tabs');
-        this.$tabsContents       = this.$el.querySelectorAll('.settings-tab-content');
-        this.$dockSettings       = this.$el.querySelector('.settings-dock');
-        this.$colors             = this.$el.querySelectorAll('.settings-color-item');
-        this.$bgColors           = this.$el.querySelectorAll('.settings-background-color-item');
-        this.$bgGradients        = this.$el.querySelectorAll('.settings-background-gradient-item');
-        this.$bgGradientAngles   = this.$el.querySelectorAll('.settings-background-gradient-angle-item');
-        this.$timeFormat         = this.$el.querySelector('.settings-time-format');
-        this.$delimeterBlinking  = this.$el.querySelector('.settings-delimeter-blinking');
-        this.$autoHideDock       = this.$el.querySelector('.settings-autohide-dock');
-        this.key                 = 'settings_data';
-
-        this.
-            handleTabs().
-            handleClose().
-            handleTimeFormat().
-            handleDelimeterBlinking().
-            handleAutoHideDock().
-            handleColor().
-            handleBackgroundColor().
-            handleBackgroundGradient().
-            handleBackgroundGradientAngle();
-
-        this.initAbout();
-
-        this.$dockSettings.appendChild(app.dock.getSettings());
-    };
-
-    SettingsView.prototype.update = function(data) {
-        this.
-            updateTimeFormat(data.use24format).
-            updateDelimeterBlinking(data.delimeterBlinking).
-            updateAutoHideDock(data.autoHideDock).
-            updateColor(data.color).
-            updateBackgroundColor(data.backgroundColor).
-            updateBackgroundGradient(data.backgroundGradient).
-            updateBackgroundGradientAngle(data.backgroundGradientAngle);
-    };
-
-    SettingsView.prototype.open = function() {
-        this.$el.classList.remove('hidden');
-    };
-
-    SettingsView.prototype.close = function() {
-        this.$el.classList.add('hidden');
-    };
-
-    SettingsView.prototype.toggle = function() {
-        this.$el.classList.toggle('hidden');
-    };
-
-    SettingsView.prototype.handleTabs = function() {
-        var root      = this,
-            $tabItems = this.$el.querySelectorAll('.settings-tab');
-
-        forEach($tabItems, function($tabItem) {
-            $tabItem.addEventListener('click', function() {
-                var selector = this.dataset.target;
-                forEach(root.$tabsContents, function(el) {
-                    el.classList.add('hidden');
-                    el.classList.remove('active');
-                });
-                root.$el.querySelector(selector).classList.remove('hidden');
-                root.$el.querySelector('.active').classList.remove('active');
-                this.classList.add('active');
-            });
-        });
-
-        return this;
-    };
-
-    SettingsView.prototype.handleClose = function() {
-        var root = this;
-
-        this.$el.querySelector('.settings-close-icon').
-            addEventListener('click', function() {
-                root.close();
-            });
-
-        return this;
-    };
-
-    SettingsView.prototype.updateTimeFormat = function(use24format) {
-        use24format = typeof use24format !== 'undefined' ? use24format : true;
-        this.$timeFormat.classList.remove('enabled');
-        this.$timeFormat.classList.remove('disabled');
-        this.$timeFormat.classList.add(use24format ? 'enabled' : 'disabled');
-        this.$timeFormat.querySelector('input').checked = use24format;
-        return this;
-    };
-
-    SettingsView.prototype.updateDelimeterBlinking = function(delimeterBlinking) {
-        delimeterBlinking = typeof delimeterBlinking !== 'undefined' ? delimeterBlinking : true;
-        this.$delimeterBlinking.classList.remove('enabled');
-        this.$delimeterBlinking.classList.remove('disabled');
-        this.$delimeterBlinking.classList.add(delimeterBlinking ? 'enabled' : 'disabled');
-        this.$delimeterBlinking.querySelector('input').checked = delimeterBlinking;
-        return this;
-    };
-
-    SettingsView.prototype.updateAutoHideDock = function(autoHideDock) {
-        autoHideDock = typeof autoHideDock !== 'undefined' ? autoHideDock : false;
-        this.$autoHideDock.classList.remove('enabled');
-        this.$autoHideDock.classList.remove('disabled');
-        this.$autoHideDock.classList.add(autoHideDock ? 'enabled' : 'disabled');
-        this.$autoHideDock.querySelector('input').checked = autoHideDock;
-        app.dock.toggleAutoHide(autoHideDock);
-        return this;
-    };
-
-    SettingsView.prototype.updateColor = function(color) {
-        this.updateAppearanceColor(this.$colors, color, '#555555');
-        return this;
-    };
-
-    SettingsView.prototype.updateBackgroundColor = function(color) {
-        this.updateAppearanceColor(this.$bgColors, color, '#fefefe');
-        return this;
-    };
-
-    SettingsView.prototype.updateAppearanceColor = function(nodes, color, defaultColor) {
-        if (!color) {
-            color = defaultColor;
-        }
-        forEach(nodes, function(el) {
-            el.classList.remove('active');
-            if (el.dataset.color === color) {
-                el.classList.add('active');
-            }
-        });
-        return this;
-    };
-
-    SettingsView.prototype.updateBackgroundGradient = function(gradient) {
-        forEach(this.$bgGradients, function(el) {
-            el.classList.remove('active');
-            if (el.dataset.gradient === gradient) {
-                el.classList.add('active');
-            }
-        });
-        return this;
-    };
-
-    SettingsView.prototype.updateBackgroundGradientAngle = function(angle) {
-        angle = angle || '90deg';
-        forEach(this.$bgGradientAngles, function(el) {
-            el.classList.remove('active');
-            if (el.dataset.angle === angle) {
-                el.classList.add('active');
-            }
-        });
-        return this;
-    };
-
-    SettingsView.prototype.handleTimeFormat = function() {
-        var root = this;
-        this.$timeFormat.addEventListener('mousedown', function() {
-            var checked = !root.$timeFormat.querySelector('input').checked;
-            app.settingsStorage.update('use24format', checked);
-        });
-        return this;
-    };
-
-    SettingsView.prototype.handleDelimeterBlinking = function() {
-        var root = this;
-        this.$delimeterBlinking.addEventListener('mousedown', function() {
-            var checked = !root.$delimeterBlinking.querySelector('input').checked;
-            app.settingsStorage.update('delimeterBlinking', checked);
-        });
-        return this;
-    };
-
-    SettingsView.prototype.handleAutoHideDock = function() {
-        var root = this;
-        this.$autoHideDock.addEventListener('mousedown', function() {
-            var checked = !root.$autoHideDock.querySelector('input').checked;
-            app.settingsStorage.update('autoHideDock', checked);
-        });
-        return this;
-    };
-
-    SettingsView.prototype.handleColor = function() {
-        forEach(this.$colors, function(el) {
-            el.addEventListener('click', function() {
-                var color = this.dataset.color;
-                app.settingsStorage.update('color', color);
-            });
-        });
-        return this;
-    };
-
-    SettingsView.prototype.handleBackgroundColor = function() {
-        forEach(this.$bgColors, function(el) {
-            el.addEventListener('click', function() {
-                var color = this.dataset.color;
-                app.settingsStorage.update('backgroundPriority', 'color', true);
-                app.settingsStorage.update('backgroundColor', color);
-            });
-        });
-        return this;
-    };
-
-    SettingsView.prototype.handleBackgroundGradient = function() {
-        forEach(this.$bgGradients, function(el) {
-            el.addEventListener('click', function() {
-                var gradient = this.dataset.gradient;
-                app.settingsStorage.update('backgroundPriority', 'gradient', true);
-                app.settingsStorage.update('backgroundGradient', gradient);
-            });
-        });
-        return this;
-    };
-
-    SettingsView.prototype.handleBackgroundGradientAngle = function() {
-        forEach(this.$bgGradientAngles, function(el) {
-            el.addEventListener('click', function() {
-                var angle = this.dataset.angle;
-                app.settingsStorage.update('backgroundGradientAngle', angle);
-            });
-        });
-        return this;
-    };
-
-    SettingsView.prototype.initAbout = function() {
-        var manifest = chrome.runtime.getManifest();
-
-        this.$el.querySelector('.settings-about-name').innerHTML = manifest.name;
-        this.$el.querySelector('.settings-about-version').innerHTML = 'v' + manifest.version;
-        this.$el.querySelector('.settings-about-rate').href = 'https://chrome.google.com/webstore/detail/' +
-            chrome.runtime.id;
-
-
-    };
-
-    var SettingsStorage = function() {
-        var root = this;
-
-        this.key = 'settings_data';
-        this.data = {};
-
-        this.loaded = new Promise(function (resolve, reject) {
-            chrome.storage.sync.get(root.key, function(data) {
-                if (!data || isEmpty(data) || !data[root.key]) {
-                    reject();
-                } else {
-                    data = data[root.key];
-                }
-
-                root.data = data;
-
-                resolve();
-            });
-        });
-    };
-
-    SettingsStorage.prototype.sync = function() {
-        var storeData = {};
-
-        storeData[this.key] = this.data;
-
-        chrome.storage.sync.set(storeData);
-    };
-
-    SettingsStorage.prototype.update = function(key, value, silent) {
-        this.data[key] = value;
-
-        this.sync();
-
-        if (!silent) {
-            app.updateViews();
-        }
-    };
-
-    var I18n = function() {
-        forEach(document.querySelectorAll('[data-i18n]'), function(elem) {
-            var i18nStringKey = elem.dataset.i18n,
-                i18nString = chrome.i18n.getMessage(i18nStringKey);
-
-            if (elem.classList.contains('dockicon')) {
-                elem.dataset.alt = i18nString;
-            } else {
-                elem.innerText = i18nString || i18nStringKey;
-            }
-        });
-    };
-
-    var App = function() {
-        this.main();
-    };
+  var $, App, AppearanceView, Clock, Dock, DockIcon, I18n, SettingsStorage, SettingsView, app, date, isEmpty,
+    __slice = [].slice;
+
+  App = (function() {
+    function App() {
+      this.main();
+    }
 
     App.prototype.main = function() {
-        this.settingsStorage = new SettingsStorage();
-
-        document.addEventListener('DOMContentLoaded', this.ready.bind(this));
+      this.settingsStorage = new SettingsStorage();
+      return document.addEventListener('DOMContentLoaded', this.ready.bind(this));
     };
-
 
     App.prototype.ready = function() {
-        this.settingsStorage.loaded.then(function() {
-            app.init();
-        }, function() {
-            // no setting were loaded
-            // do intro here
-            app.init();
-            app.generateDefaultSettings();
-        });
+      return this.settingsStorage.loaded.then(function() {
+        return app.init();
+      }, function() {
+        app.init();
+        return app.generateDefaultSettings();
+      });
     };
 
-    App.prototype.generateDefaultSettings = function() {
-
-    };
+    App.prototype.generateDefaultSettings = function() {};
 
     App.prototype.init = function() {
-        this.i18n           = new I18n();
-        this.clock          = new Clock();
-        this.dock           = new Dock();
-        this.settingsView   = new SettingsView();
-        this.appearanceView = new AppearanceView();
-
-        this.updateViews();
-        this.showViews();
+      this.i18n = new I18n();
+      this.clock = new Clock();
+      this.dock = new Dock();
+      this.settingsView = new SettingsView();
+      this.appearanceView = new AppearanceView();
+      this.updateViews();
+      return this.showViews();
     };
 
     App.prototype.updateViews = function() {
-        var data = this.settingsStorage.data;
-
-        this.clock.updateFormat(data.use24format);
-        this.clock.updateDelimeter(data.delimeterBlinking);
-        this.dock.update(data);
-        this.appearanceView.update(data);
-        this.settingsView.update(data);
-
-        return this;
+      var data;
+      data = this.settingsStorage.data;
+      this.clock.updateFormat(data.use24format);
+      this.clock.updateDelimeter(data.delimeterBlinking);
+      this.dock.update(data);
+      this.appearanceView.update(data);
+      return this.settingsView.update(data);
     };
 
     App.prototype.showViews = function() {
-        this.clock.show();
-        this.dock.show();
+      this.clock.show();
+      return this.dock.show();
     };
 
-    app = new App();
+    return App;
 
-    function forEach(array, iter, context) {
-        Array.prototype.forEach.call(array, iter, context || null);
+  })();
+
+  AppearanceView = (function() {
+    function AppearanceView() {
+      this.$body = document.body;
+      this.color = '';
+      this.bgColor = '';
+      this.bgGradient = '';
     }
 
-    function isEmpty(obj) {
-        var key;
+    AppearanceView.prototype.update = function(data) {
+      this.updateColor(data.color);
+      this.updateBackgroundColor(data.backgroundColor, data.backgroundPriority);
+      return this.updateBackgroundGradient(data.backgroundGradient, data.backgroundGradientAngle, data.backgroundPriority);
+    };
 
-        for (key in obj) {
-            return false;
+    AppearanceView.prototype.updateColor = function(color) {
+      if (!color || color === this.color) {
+        return;
+      }
+      return this.color = this.$body.style.color = this.$body.style.fill = color;
+    };
+
+    AppearanceView.prototype.updateBackgroundColor = function(color, priority) {
+      if (!color || priority !== 'color') {
+        return;
+      }
+      return this.bgColor = this.$body.style.background = color;
+    };
+
+    AppearanceView.prototype.updateBackgroundGradient = function(colors, angle, priority) {
+      if (angle == null) {
+        angle = '90deg';
+      }
+      if (!colors || priority !== 'gradient') {
+        return;
+      }
+      this.bgGradient = colors;
+      colors = colors.split(',');
+      return this.$body.style.background = "linear-gradient(" + angle + ", " + colors[0] + " 10%, " + colors[1] + " 90%)";
+    };
+
+    return AppearanceView;
+
+  })();
+
+  Clock = (function() {
+    function Clock() {
+      this.$container = $('.container');
+      this.$clock = this.$container.find('.clock');
+      this.$hours = this.$clock.find('.hours');
+      this.$minutes = this.$clock.find('.minutes');
+      this.$delimeter = this.$clock.find('.delimeter');
+      this.$ampm = this.$clock.find('.ampm');
+      this.use24 = true;
+      this.updateTime();
+      this.interval = window.setInterval(this.updateTime.bind(this), 1000);
+    }
+
+    Clock.prototype.show = function() {
+      return this.$clock.removeClass('initiallyHidden');
+    };
+
+    Clock.prototype.updateTime = function(force) {
+      if (!(date.timeHasChanged() || force)) {
+        return;
+      }
+      this.$hours.html(date.getHours(this.use24));
+      this.$minutes.html(date.getMinutes());
+      this.$ampm.html(!this.use24 ? date.getAmPm() : '');
+      return date.updateChangedTime();
+    };
+
+    Clock.prototype.updateFormat = function(use24) {
+      if (use24 == null) {
+        use24 = true;
+      }
+      this.use24 = use24;
+      return this.updateTime(true);
+    };
+
+    Clock.prototype.updateDelimeter = function(enabled) {
+      if (enabled == null) {
+        enabled = true;
+      }
+      return this.$delimeter.toggleClass('blinking', enabled);
+    };
+
+    return Clock;
+
+  })();
+
+  Dock = (function() {
+    function Dock() {
+      var $icon;
+      this.$dock = $('.dock');
+      this.$icons = this.$dock.find('.dockicon');
+      this.iconViews = (function() {
+        var _i, _len, _ref, _results;
+        _ref = this.$icons.get();
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          $icon = _ref[_i];
+          _results.push(new DockIcon($icon, this));
         }
-        return true;
+        return _results;
+      }).call(this);
     }
-})();
 
-// google analytics
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-51673902-1']);
-_gaq.push(['_trackPageview']);
+    Dock.prototype.getSettings = function() {
+      var iconView, _i, _len, _ref;
+      if (!this.$settingsContainer) {
+        this.$settingsContainer = $(document.createElement('div'));
+        _ref = this.iconViews.reverse();
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          iconView = _ref[_i];
+          if (!iconView.isSettingsIcon) {
+            this.$settingsContainer.append(iconView.generateSetting());
+          }
+        }
+      }
+      return this.$settingsContainer;
+    };
 
-(function() {
-    var ga = document.createElement('script');
-    ga.type = 'text/javascript';
-    ga.async = true;
-    ga.src = 'https://ssl.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(ga, s);
-})();
+    Dock.prototype.update = function(data) {
+      var iconView, _i, _len, _ref, _results;
+      _ref = this.iconViews;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        iconView = _ref[_i];
+        _results.push(iconView.update(data[iconView.url]));
+      }
+      return _results;
+    };
+
+    Dock.prototype.toggleAutoHide = function(turnOn) {
+      return this.$dock.toggleClass("auto-hide", turnOn);
+    };
+
+    Dock.prototype.show = function() {
+      return this.$dock.removeClass('initiallyHidden');
+    };
+
+    return Dock;
+
+  })();
+
+  DockIcon = (function() {
+    function DockIcon($el, parent) {
+      if (!$el) {
+        throw Error('specify $el');
+      }
+      this.$el = $($el);
+      this.parent = parent;
+      this.url = this.$el.data('url');
+      this.isSettingsIcon = /^settings$/.test(this.url);
+      this.handleClick();
+    }
+
+    DockIcon.prototype.handleClick = function() {
+      var self;
+      self = this;
+      return this.$el.on('click', function(e) {
+        var url;
+        url = this.dataset.url;
+        if (!url) {
+          return;
+        }
+        if (self.isSettingsIcon) {
+          return app.settingsView.toggle();
+        } else {
+          if (e.metaKey || e.ctrlKey || e.button === 1) {
+            return chrome.tabs.create({
+              url: url,
+              active: true
+            });
+          } else {
+            return chrome.tabs.update({
+              url: url
+            });
+          }
+        }
+      });
+    };
+
+    DockIcon.prototype.generateSetting = function() {
+      var checked, svgIcon, title;
+      svgIcon = this.$el.html();
+      title = this.$el.data('alt');
+      if (!this.$settingIcon) {
+        this.$settingIcon = $(document.createElement('div'));
+        this.$settingIcon.addClass('settings-dock-icon', 'settings-item');
+        checked = this.$el.hasClass('hidden') ? '' : 'checked';
+        this.$settingIcon.html("<input type=\"checkbox\" " + checked + "/>" + svgIcon + "<span>" + title + "</span>");
+        this.$settingIcon.addClass(checked ? 'enabled' : 'disabled');
+        this.handleSettings();
+      }
+      return this.$settingIcon;
+    };
+
+    DockIcon.prototype.handleSettings = function() {
+      if (!this.$settingIcon) {
+        throw Error('setting weren\'t generated yet');
+      }
+      return this.$settingIcon.on('mousedown', (function(_this) {
+        return function() {
+          var checked;
+          checked = !_this.$settingIcon.find('input').get(0).checked;
+          return app.settingsStorage.update(_this.url, {
+            visible: checked,
+            order: null
+          });
+        };
+      })(this));
+    };
+
+    DockIcon.prototype.show = function() {
+      this.$el.removeClass('hidden');
+      if (this.$settingIcon) {
+        return this.$settingIcon.removeClass('disabled').addClass('enabled').find('input').get(0).checked = true;
+      }
+    };
+
+    DockIcon.prototype.hide = function() {
+      this.$el.addClass('hidden');
+      if (this.$settingIcon) {
+        return this.$settingIcon.removeClass('enabled').addClass('disabled').find('input').get(0).checked = false;
+      }
+    };
+
+    DockIcon.prototype.update = function(data) {
+      if (data && !data.visible) {
+        return this.hide();
+      } else {
+        return this.show();
+      }
+    };
+
+    return DockIcon;
+
+  })();
+
+  I18n = (function() {
+    function I18n() {
+      var el, i18nString, i18nStringKey, _i, _len, _ref;
+      _ref = document.querySelectorAll('[data-i18n]');
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        i18nStringKey = el.dataset.i18n;
+        i18nString = chrome.i18n.getMessage(i18nStringKey);
+        if (el.classList.contains('dockicon')) {
+          el.dataset.alt = i18nString;
+        } else {
+          el.innerText = i18nString || i18nStringKey;
+        }
+      }
+    }
+
+    return I18n;
+
+  })();
+
+  SettingsStorage = (function() {
+    function SettingsStorage() {
+      var self;
+      self = this;
+      this.key = "settings_data";
+      this.data = {};
+      this.loaded = new Promise(function(resolve, reject) {
+        return chrome.storage.sync.get(self.key, function(data) {
+          if (!data || isEmpty(data) || !data[self.key]) {
+            return reject();
+          } else {
+            self.data = data[self.key];
+            return resolve();
+          }
+        });
+      });
+    }
+
+    SettingsStorage.prototype.sync = function() {
+      var storeData;
+      storeData = {};
+      storeData[this.key] = this.data;
+      return chrome.storage.sync.set(storeData);
+    };
+
+    SettingsStorage.prototype.update = function(key, value, silent) {
+      this.data[key] = value;
+      this.sync();
+      if (!silent) {
+        return app.updateViews();
+      }
+    };
+
+    return SettingsStorage;
+
+  })();
+
+  SettingsView = (function() {
+    function SettingsView() {
+      this.$el = $('.settings-popup');
+      this.$tabs = this.$el.find('.settings-tabs');
+      this.$tabLinks = this.$tabs.find('.settings-tab');
+      this.$tabsContents = this.$el.find('.settings-tab-content');
+      this.$dockSettings = this.$el.find('.settings-dock');
+      this.$colors = this.$el.find('.settings-color-item');
+      this.$bgColors = this.$el.find('.settings-background-color-item');
+      this.$bgGradients = this.$el.find('.settings-background-gradient-item');
+      this.$bgGradientAngles = this.$el.find('.settings-background-gradient-angle-item');
+      this.$timeFormat = this.$el.find('.settings-time-format');
+      this.$delimeterBlinking = this.$el.find('.settings-delimeter-blinking');
+      this.$autoHideDock = this.$el.find('.settings-autohide-dock');
+      this.key = 'settings_data';
+      this.handle();
+      this.initAbout();
+      this.$dockSettings.append(app.dock.getSettings());
+    }
+
+    SettingsView.prototype.handle = function() {
+      this.handleTabs();
+      this.handleClose();
+      this.handleTimeFormat();
+      this.handleDelimeterBlinking();
+      this.handleAutoHideDock();
+      this.handleColor();
+      this.handleBackgroundColor();
+      this.handleBackgroundGradient();
+      return this.handleBackgroundGradientAngle();
+    };
+
+    SettingsView.prototype.update = function(data) {
+      this.updateTimeFormat(data.use24format);
+      this.updateDelimeterBlinking(data.delimeterBlinking);
+      this.updateAutoHideDock(data.autoHideDock);
+      this.updateColor(data.color);
+      this.updateBackgroundColor(data.backgroundColor);
+      this.updateBackgroundGradient(data.backgroundGradient);
+      return this.updateBackgroundGradientAngle(data.backgroundGradientAngle);
+    };
+
+    SettingsView.prototype.open = function() {
+      return this.$el.removeClass('hidden');
+    };
+
+    SettingsView.prototype.close = function() {
+      return this.$el.addClass('hidden');
+    };
+
+    SettingsView.prototype.toggle = function() {
+      return this.$el.toggleClass('hidden');
+    };
+
+    SettingsView.prototype.handleTabs = function() {
+      return this.$tabLinks.on('click', (function(_this) {
+        return function(e) {
+          var selector, target;
+          target = $(e.target);
+          selector = target.data('target');
+          _this.$tabsContents.addClass('hidden').removeClass('active');
+          _this.$el.find(selector).removeClass('hidden');
+          _this.$tabLinks.removeClass('active');
+          return target.addClass('active');
+        };
+      })(this));
+    };
+
+    SettingsView.prototype.handleClose = function() {
+      return this.$el.find('.settings-close-icon').on('click', (function(_this) {
+        return function() {
+          return _this.close();
+        };
+      })(this));
+    };
+
+    SettingsView.prototype.updateTimeFormat = function(use24format) {
+      if (use24format == null) {
+        use24format = true;
+      }
+      return this.$timeFormat.removeClass('enabled', 'disabled').addClass(use24format ? 'enabled' : 'disabled').find('input').get(0).checked = use24format;
+    };
+
+    SettingsView.prototype.updateDelimeterBlinking = function(delimeterBlinking) {
+      if (delimeterBlinking == null) {
+        delimeterBlinking = true;
+      }
+      return this.$delimeterBlinking.removeClass('enabled', 'disabled').addClass(delimeterBlinking ? 'enabled' : 'disabled').find('input').get(0).checked = delimeterBlinking;
+    };
+
+    SettingsView.prototype.updateAutoHideDock = function(autoHideDock) {
+      if (autoHideDock == null) {
+        autoHideDock = false;
+      }
+      this.$autoHideDock.removeClass('enabled', 'disabled').addClass(autoHideDock ? 'enabled' : 'disabled').find('input').get(0).checked = autoHideDock;
+      return app.dock.toggleAutoHide(autoHideDock);
+    };
+
+    SettingsView.prototype.updateColor = function(color) {
+      return this.updateAppearanceColor(this.$colors, color, '#555555');
+    };
+
+    SettingsView.prototype.updateBackgroundColor = function(color) {
+      return this.updateAppearanceColor(this.$bgColors, color, '#fefefe');
+    };
+
+    SettingsView.prototype.updateAppearanceColor = function(nodes, color, defaultColor) {
+      var el, _i, _len, _ref;
+      if (color == null) {
+        color = defaultColor;
+      }
+      _ref = nodes.get();
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        el.classList.remove('active');
+        if (el.dataset.color === color) {
+          el.classList.add('active');
+        }
+      }
+      return this;
+    };
+
+    SettingsView.prototype.updateBackgroundGradient = function(gradient) {
+      var el, _i, _len, _ref;
+      _ref = this.$bgGradients.get();
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        el.classList.remove('active');
+        if (el.dataset.gradient === gradient) {
+          el.classList.add('active');
+        }
+      }
+      return this;
+    };
+
+    SettingsView.prototype.updateBackgroundGradientAngle = function(angle) {
+      var el, _i, _len, _ref;
+      if (angle == null) {
+        angle = '90deg';
+      }
+      _ref = this.$bgGradientAngles.get();
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        el.classList.remove('active');
+        if (el.dataset.angle === angle) {
+          el.classList.add('active');
+        }
+      }
+      return this;
+    };
+
+    SettingsView.prototype.handleTimeFormat = function() {
+      return this.$timeFormat.on('mousedown', (function(_this) {
+        return function() {
+          var checked;
+          checked = !_this.$timeFormat.find('input').get(0).checked;
+          return app.settingsStorage.update('use24format', checked);
+        };
+      })(this));
+    };
+
+    SettingsView.prototype.handleDelimeterBlinking = function() {
+      return this.$delimeterBlinking.on('mousedown', (function(_this) {
+        return function() {
+          var checked;
+          checked = !_this.$delimeterBlinking.find('input').get(0).checked;
+          return app.settingsStorage.update('delimeterBlinking', checked);
+        };
+      })(this));
+    };
+
+    SettingsView.prototype.handleAutoHideDock = function() {
+      return this.$autoHideDock.on('mousedown', (function(_this) {
+        return function() {
+          var checked;
+          checked = !_this.$autoHideDock.find('input').get(0).checked;
+          return app.settingsStorage.update('autoHideDock', checked);
+        };
+      })(this));
+    };
+
+    SettingsView.prototype.handleColor = function() {
+      return this.$colors.on('click', function() {
+        var color;
+        color = this.dataset.color;
+        return app.settingsStorage.update('color', color);
+      });
+    };
+
+    SettingsView.prototype.handleBackgroundColor = function() {
+      return this.$bgColors.on('click', function() {
+        var color;
+        color = this.dataset.color;
+        app.settingsStorage.update('backgroundPriority', 'color', true);
+        return app.settingsStorage.update('backgroundColor', color);
+      });
+    };
+
+    SettingsView.prototype.handleBackgroundGradient = function() {
+      return this.$bgGradients.on('click', function() {
+        var gradient;
+        gradient = this.dataset.gradient;
+        app.settingsStorage.update('backgroundPriority', 'gradient', true);
+        return app.settingsStorage.update('backgroundGradient', gradient);
+      });
+    };
+
+    SettingsView.prototype.handleBackgroundGradientAngle = function() {
+      return this.$bgGradientAngles.on('click', function() {
+        var angle;
+        angle = this.dataset.angle;
+        return app.settingsStorage.update('backgroundGradientAngle', angle);
+      });
+    };
+
+    SettingsView.prototype.initAbout = function() {
+      var manifest;
+      manifest = chrome.runtime.getManifest();
+      this.$el.find('.settings-about-name').html(manifest.name);
+      this.$el.find('.settings-about-version').html("v" + manifest.version);
+      return this.$el.find('.settings-about-rate').get(0).href = "https://chrome.google.com/webstore/detail/" + chrome.runtime.id;
+    };
+
+    return SettingsView;
+
+  })();
+
+  date = {
+    prev: {
+      hours: -1,
+      minutes: -1
+    },
+    getDate: function() {
+      return new Date();
+    },
+    getHours: function(use24) {
+      var hours;
+      hours = this.getDate().getHours();
+      if (use24 || !(Math.floor(hours / 13))) {
+        return hours;
+      } else {
+        return hours - 12;
+      }
+    },
+    getMinutes: function() {
+      var minutes;
+      minutes = this.getDate().getMinutes();
+      return "" + (minutes < 10 ? 0 : '') + minutes;
+    },
+    timeHasChanged: function() {
+      return +this.getMinutes() !== +this.prev.minutes || +this.getHours() !== +this.prev.hours;
+    },
+    updateChangedTime: function() {
+      this.prev.minutes = this.getMinutes();
+      return this.prev.hours = this.getHours();
+    },
+    getAmPm: function() {
+      if (this.getHours(true) < 12) {
+        return 'am';
+      } else {
+        return 'pm';
+      }
+    }
+  };
+
+  $ = (function() {
+    function $(selector) {
+      var els;
+      if (!(this instanceof $)) {
+        return new $(selector);
+      }
+      if (selector instanceof $) {
+        return selector;
+      }
+      if (typeof selector === 'string') {
+        els = document.querySelectorAll(selector);
+        this.els = Array.prototype.slice.call(els);
+      }
+      if (selector instanceof HTMLElement) {
+        this.els = [selector];
+      }
+      if (selector instanceof Array) {
+        this.els = selector;
+      }
+      return this;
+    }
+
+    $.prototype.get = function(index) {
+      if (index == null) {
+        return this.els;
+      }
+      return this.els[index];
+    };
+
+    $.prototype.addClass = function() {
+      var classNames, el, _i, _len, _ref;
+      classNames = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      _ref = this.els;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        el.classList.add.apply(el.classList, classNames);
+      }
+      return this;
+    };
+
+    $.prototype.removeClass = function() {
+      var classNames, el, _i, _len, _ref;
+      classNames = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      _ref = this.els;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        el.classList.remove.apply(el.classList, classNames);
+      }
+      return this;
+    };
+
+    $.prototype.toggleClass = function(className, priority) {
+      var el, _i, _len, _ref, _results;
+      _ref = this.els;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        _results.push(el.classList.toggle(className, priority));
+      }
+      return _results;
+    };
+
+    $.prototype.hasClass = function(className) {
+      return this.els.every(function(el) {
+        return el.classList.contains(className);
+      });
+    };
+
+    $.prototype.on = function(event, callback, phase) {
+      var el, _i, _len, _ref;
+      if (phase == null) {
+        phase = false;
+      }
+      _ref = this.els;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        el.addEventListener(event, callback, phase);
+      }
+      return this;
+    };
+
+    $.prototype.off = function(event, callback, phase) {
+      var el, _i, _len, _ref;
+      if (phase == null) {
+        phase = false;
+      }
+      _ref = this.els;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        el.addEventListener(event, callback, phase);
+      }
+      return this;
+    };
+
+    $.prototype.find = function(selector) {
+      var el, found, _i, _len, _ref;
+      found = [];
+      _ref = this.els;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        found.push.apply(found, el.querySelectorAll(selector));
+      }
+      return $(found);
+    };
+
+    $.prototype.html = function(str) {
+      var el, _i, _len, _ref;
+      if (str == null) {
+        return this.els[0].innerHTML;
+      }
+      _ref = this.els;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        el.innerHTML = str;
+      }
+      return this;
+    };
+
+    $.prototype.data = function(key) {
+      if (key == null) {
+        return this.els[0].dataset;
+      }
+      return this.els[0].dataset[key];
+    };
+
+    $.prototype.append = function(elem) {
+      var el, _i, _len, _ref, _results;
+      if (elem instanceof $) {
+        elem = elem.get(0);
+      }
+      _ref = this.els;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        _results.push(el.appendChild(elem));
+      }
+      return _results;
+    };
+
+    return $;
+
+  })();
+
+  app = new App();
+
+  isEmpty = function(o) {
+    return !Object.keys(o).length;
+  };
+
+}).call(this);
+
+//# sourceMappingURL=main.js.map
