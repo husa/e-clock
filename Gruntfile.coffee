@@ -99,7 +99,6 @@ module.exports = ->
   @loadNpmTasks 'grunt-contrib-jasmine'
 
   @registerTask 'build', [
-    'test:dev'
     'less:build'
     'uglify:build'
     'copy:build'
