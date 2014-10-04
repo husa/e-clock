@@ -1,94 +1,76 @@
 {
     "i18nNewTabTitle": {
-        "message": "Нова вкладка",
-        "description": "title to show on new tab"
+        "message": "Нова вкладка"
     },
     "i18nSettings" : {
-        "message" : "Налаштування",
-        "description" : "Settings dock icon title"
+        "message" : "Налаштування"
     },
     "i18nFlags" : {
-        "message" : "Експерименти",
-        "description" : "Flags dock icon title"
+        "message" : "Експерименти"
     },
     "i18nInspect" : {
-        "message" : "Нагляд",
-        "description" : "Inspect dock icon title"
+        "message" : "Нагляд"
     },
     "i18nHistory" : {
-        "message" : "Історія",
-        "description" : "History dock icon title"
+        "message" : "Історія"
     },
     "i18nBookmarks" : {
-        "message" : "Закладки",
-        "description" : "Bookmarks dock icon title"
+        "message" : "Закладки"
     },
     "i18nDownloads" : {
-        "message" : "Завантаження",
-        "description" : "Downloads dock icon title"
+        "message" : "Завантаження"
     },
     "i18nExtensions" : {
-        "message" : "Розширення",
-        "description" : "Extensions dock icon title"
+        "message" : "Розширення"
     },
     "i18nApplications" : {
-        "message" : "Додатки",
-        "description" : "Applications dock icon title"
+        "message" : "Додатки"
     },
     "i18nChromeWebStore" : {
-        "message" : "Веб Магазин Chrome",
-        "description" : "Chrome Web Store dock icon title"
+        "message" : "Веб Магазин Chrome"
     },
     "i18nAppearance" : {
-        "message" : "Вигляд",
-        "description" : "Settings tab label for Appearance"
+        "message" : "Вигляд"
     },
     "i18nAbout" : {
-        "message" : "Про",
-        "description" : "Settings tab label for About"
+        "message" : "Про"
     },
     "i18nDock" : {
-        "message" : "Панель",
-        "description" : "Settings tab label for Dock"
+        "message" : "Панель"
     },
     "i18n24Format" : {
-        "message" : "24 годинний формат дати",
-        "description" : "Use 24 hour format settings label"
+        "message" : "24 годинний формат дати"
     },
     "i18nDelimeterBlinking" : {
-        "message" : "Мигання розділювача часу",
-        "description" : "Enable delimeter blinking settings label"
+        "message" : "Мигання розділювача часу"
     },
     "i18nAutoHideDock" : {
-        "message" : "Автоматично ховати панель",
-        "description" : "Auto Hide Dock settings label"
+        "message" : "Автоматично ховати панель"
     },
     "i18nTextColor" : {
-        "message" : "Колір Тексту",
-        "description" : "Text Color settings label"
+        "message" : "Колір Тексту"
     },
     "i18nBackgroundColor" : {
-        "message" : "Колір Фону",
-        "description" : "Background Color settings label"
+        "message" : "Колір Фону"
     },
     "i18nBackgroundGradient" : {
-        "message" : "Градієнт Фону",
-        "description" : "Background Gradient settings label"
+        "message" : "Градієнт Фону"
     },
     "i18nBackgroundGradientDirection" : {
-        "message" : "Напрямок Градієнту",
-        "description" : "Background Gradient Direction settings label"
+        "message" : "Напрямок Градієнту"
     },
     "i18nRate" : {
-        "message" : "Оцінити",
-        "description" : "Rate button label"
+        "message" : "Оцінити"
     },
     "i18nCreatedBy" : {
-        "message" : "Створено Yuriy Husnay",
-        "description" : "information about the author"
+        "message" : "Створено Yuriy Husnay"
     },
     "i18nOpenSource" : {
-        "message" : "Це розширення з відкритим кодом і ліцензовано під MIT ліцензією",
-        "description" : "information about product"
+        "message" : "Це розширення з відкритим кодом і ліцензовано під $license_link$ ліцензією",
+        "placeholders" : {
+            "license_link" : {
+                "content" : "<a href=\"https://raw.githubusercontent.com/husa/e-clock/master/LICENSE\" target=\"_blank\" title=\"MIT\">MIT</a>"
+            }
+        }
     }
 }

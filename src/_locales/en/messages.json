@@ -84,11 +84,22 @@
         "description" : "Rate button label"
     },
     "i18nCreatedBy" : {
-        "message" : "Created by Yuriy Husnay",
-        "description" : "information about the author"
+        "message" : "Created by $author$",
+        "description" : "information about the author",
+        "placeholders" : {
+            "author" : {
+                "content" : "Yuriy Husnay"
+            }
+        }
+
     },
     "i18nOpenSource" : {
-        "message" : "This extension is completely open source and licensed under MIT license",
-        "description" : "information about product"
+        "message" : "This extension is completely open source and licensed under $license_link$ license",
+        "description" : "information about product",
+        "placeholders" : {
+            "license_link" : {
+                "content" : "<a href=\"https://raw.githubusercontent.com/husa/e-clock/master/LICENSE\" target=\"_blank\" title=\"MIT\">MIT</a>"
+            }
+        }
     }
 }

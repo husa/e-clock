@@ -7,4 +7,4 @@ class I18n
       if el.classList.contains('dockicon')
           el.dataset.alt = i18nString
       else
-          el.innerText = i18nString || i18nStringKey
+          el.innerHTML = i18nString || i18nStringKey
