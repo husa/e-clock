@@ -13,6 +13,11 @@ class Clock
 
   show: -> @$clock.removeClass 'initiallyHidden'
 
+  update: (data) ->
+    @updateFormat(data.use24format)
+    @updateDelimeter(data.delimeterBlinking)
+    @updateFontFamily(data.fontFamily)
+
   updateTime: (force) ->
     return unless date.timeHasChanged() or force
     @$hours.html date.getHours(@use24)
@@ -26,3 +31,8 @@ class Clock
 
   updateDelimeter: (enabled = true) ->
     @$delimeter.toggleClass('blinking', enabled)
+
+  updateFontFamily: (font) ->
+    console.log font
+
+

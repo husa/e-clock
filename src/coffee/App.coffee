@@ -30,8 +30,7 @@ class App
   updateViews: ->
     data = this.settingsStorage.data;
 
-    @clock.updateFormat(data.use24format)
-    @clock.updateDelimeter(data.delimeterBlinking)
+    @clock.update(data);
     @dock.update(data)
     @appearanceView.update(data)
     @settingsView.update(data)
