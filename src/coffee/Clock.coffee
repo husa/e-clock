@@ -33,6 +33,6 @@ class Clock
     @$delimeter.toggleClass('blinking', enabled)
 
   updateFontFamily: (font) ->
-    console.log font
+
 
 

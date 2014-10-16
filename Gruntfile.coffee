@@ -30,6 +30,7 @@ module.exports = ->
       dev:
         options:
           sourceMap: true
+          join: true
         files:
           'src/js/main.js': 'src/coffee/*.coffee'
       test:
@@ -38,6 +39,7 @@ module.exports = ->
       build:
         options:
           sourceMap: false
+          join: true
         files:
           'src/js/main.js': 'src/coffee/*.coffee'
 
@@ -100,6 +102,7 @@ module.exports = ->
 
   @registerTask 'build', [
     'less:build'
+    'coffee:build'
     'uglify:build'
     'copy:build'
     'compress:build'
