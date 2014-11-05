@@ -32,7 +32,8 @@ class Clock
   updateDelimeter: (enabled = true) ->
     @$delimeter.toggleClass('blinking', enabled)
 
-  updateFontFamily: (font) ->
+  updateFontFamily: (font = 'Raleway') ->
+    @$clock.get(0).style.fontFamily = font
 
 
 

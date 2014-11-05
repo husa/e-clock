@@ -12,6 +12,7 @@ class SettingsView
     @$timeFormat = @$el.find '.settings-time-format'
     @$delimeterBlinking = @$el.find '.settings-delimeter-blinking'
     @$autoHideDock = @$el.find '.settings-autohide-dock'
+    @$fonts = @$el.find '.settings-font-family-item'
     @key = 'settings_data';
 
     @handle()
@@ -28,6 +29,7 @@ class SettingsView
     @handleBackgroundColor()
     @handleBackgroundGradient()
     @handleBackgroundGradientAngle()
+    @handleFontFamily()
 
   update: (data) ->
     @updateTimeFormat(data.use24format)
@@ -37,6 +39,7 @@ class SettingsView
     @updateBackgroundColor(data.backgroundColor)
     @updateBackgroundGradient(data.backgroundGradient)
     @updateBackgroundGradientAngle(data.backgroundGradientAngle)
+    @updateFontFamily(data.fontFamily)
 
   open: -> @$el.removeClass 'hidden'
 
@@ -99,6 +102,11 @@ class SettingsView
       el.classList.add 'active' if el.dataset.angle is angle
     return this
 
+  updateFontFamily: (font = 'Raleway')->
+
+    @$fonts.removeClass('active')
+    @$fonts.parent().find("[data-font=\"#{font}\"]").addClass('active')
+
   handleTimeFormat: ->
     @$timeFormat.on 'mousedown', =>
       checked = !@$timeFormat.find('input').get(0).checked
@@ -135,6 +143,11 @@ class SettingsView
     @$bgGradientAngles.on 'click', ->
       angle = this.dataset.angle
       app.settingsStorage.update('backgroundGradientAngle', angle)
+
+  handleFontFamily: ->
+    @$fonts.on 'click', ->
+      font = this.dataset.font
+      app.settingsStorage.update('fontFamily', font)
 
   initAbout: ->
     manifest = chrome.runtime.getManifest();

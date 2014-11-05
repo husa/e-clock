@@ -152,9 +152,29 @@
 
     .settings-background-gradient-angle-item {
         fill: #aaa;
+        transition: fill 200ms;
 
         &.active {
             fill: #444;
+        }
+    }
+
+    .settings-font-family {
+        .settings-font-family-item {
+            width: 30px;
+            height: 30px;
+            background: #eee;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 2px;
+            margin: 0 3px;
+            box-shadow: 0 0 1px #aaa;
+            transition: all 200ms;
+
+            &.active {
+                box-shadow: 0 0 6px #999;
+                background: #fafafa;
+            }
         }
     }
 

@@ -101,5 +101,9 @@
                 "content" : "<a href=\"https://raw.githubusercontent.com/husa/e-clock/master/LICENSE\" target=\"_blank\" title=\"MIT\">MIT</a>"
             }
         }
+    },
+    "i18nFontFamily" : {
+        "message" : "Font"
     }
+
 }
