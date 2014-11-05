@@ -13,6 +13,7 @@ class SettingsView
     @$delimeterBlinking = @$el.find '.settings-delimeter-blinking'
     @$autoHideDock = @$el.find '.settings-autohide-dock'
     @$fonts = @$el.find '.settings-font-family-item'
+    @$fontSize = @$el.find '.settings-font-size-item'
     @key = 'settings_data';
 
     @handle()
@@ -30,6 +31,7 @@ class SettingsView
     @handleBackgroundGradient()
     @handleBackgroundGradientAngle()
     @handleFontFamily()
+    @handleFontSize()
 
   update: (data) ->
     @updateTimeFormat(data.use24format)
@@ -40,6 +42,7 @@ class SettingsView
     @updateBackgroundGradient(data.backgroundGradient)
     @updateBackgroundGradientAngle(data.backgroundGradientAngle)
     @updateFontFamily(data.fontFamily)
+    @updateFontSize(data.fontSize)
 
   open: -> @$el.removeClass 'hidden'
 
@@ -103,9 +106,12 @@ class SettingsView
     return this
 
   updateFontFamily: (font = 'Raleway')->
-
     @$fonts.removeClass('active')
     @$fonts.parent().find("[data-font=\"#{font}\"]").addClass('active')
+
+  updateFontSize: (fontSize = 12) ->
+    @$fontSize.get(0).value = fontSize
+
 
   handleTimeFormat: ->
     @$timeFormat.on 'mousedown', =>
@@ -129,14 +135,14 @@ class SettingsView
 
   handleBackgroundColor: ->
     @$bgColors.on 'click', ->
-      color = this.dataset.color;
-      app.settingsStorage.update('backgroundPriority', 'color', true);
-      app.settingsStorage.update('backgroundColor', color);
+      color = this.dataset.color
+      app.settingsStorage.update('backgroundPriority', 'color', {silent : true})
+      app.settingsStorage.update('backgroundColor', color)
 
   handleBackgroundGradient: ->
     @$bgGradients.on 'click', ->
-      gradient = this.dataset.gradient;
-      app.settingsStorage.update('backgroundPriority', 'gradient', true)
+      gradient = this.dataset.gradient
+      app.settingsStorage.update('backgroundPriority', 'gradient', {silent : true})
       app.settingsStorage.update('backgroundGradient', gradient)
 
   handleBackgroundGradientAngle: ->
@@ -148,6 +154,12 @@ class SettingsView
     @$fonts.on 'click', ->
       font = this.dataset.font
       app.settingsStorage.update('fontFamily', font)
+
+  handleFontSize: ->
+    @$fontSize.on 'input', debounce ->
+      app.settingsStorage.update('fontSize', this.value, {dontSync: true})
+    @$fontSize.on 'change', ->
+      app.settingsStorage.update('fontSize', this.value)
 
   initAbout: ->
     manifest = chrome.runtime.getManifest();

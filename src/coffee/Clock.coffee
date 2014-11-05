@@ -17,6 +17,7 @@ class Clock
     @updateFormat(data.use24format)
     @updateDelimeter(data.delimeterBlinking)
     @updateFontFamily(data.fontFamily)
+    @updateFontSize(data.fontSize)
 
   updateTime: (force) ->
     return unless date.timeHasChanged() or force
@@ -35,5 +36,5 @@ class Clock
   updateFontFamily: (font = 'Raleway') ->
     @$clock.get(0).style.fontFamily = font
 
-
-
+  updateFontSize: (fontSize = 12) ->
+    @$clock.get(0).style.fontSize = "#{fontSize}em";

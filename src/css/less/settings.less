@@ -102,7 +102,7 @@
             margin: 0 4px;
         }
 
-        > input {
+        > input[type=checkbox] {
             .fancy-checkbox();
         }
 
@@ -174,6 +174,46 @@
             &.active {
                 box-shadow: 0 0 6px #999;
                 background: #fafafa;
+            }
+        }
+    }
+
+    .settings-font-size {
+
+        input[type=range] {
+            -webkit-appearance: none;
+            display: block;
+            margin: 0 auto;
+            width: 80%;
+            height: 20px;
+            cursor: pointer;
+
+            &::-webkit-slider-runnable-track {
+                height: 2px;
+                background: #eee;
+                border: none;
+            }
+
+            &::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                border: none;
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                background: #27AE60;
+                margin-top: -9px;
+
+                &:active {
+                    background: #2ECC71;
+                }
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+            &:focus::-webkit-slider-runnable-track {
+                background: #ccc;
             }
         }
     }

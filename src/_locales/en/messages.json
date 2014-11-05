@@ -104,6 +104,8 @@
     },
     "i18nFontFamily" : {
         "message" : "Font"
+    },
+    "i18nFontSize" : {
+        "message" : "Font Size"
     }
-
 }

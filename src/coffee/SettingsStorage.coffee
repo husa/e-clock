@@ -17,7 +17,7 @@ class SettingsStorage
     storeData[@key] = @data
     chrome.storage.sync.set storeData
 
-  update: (key, value, silent) ->
+  update: (key, value, options) ->
     @data[key] = value
-    @sync()
-    app.updateViews() unless silent
+    @sync() unless options?.dontSync
+    app.updateViews() unless options?.silent
