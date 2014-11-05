@@ -10,6 +10,7 @@ class SettingsView
     @$bgGradients = @$el.find '.settings-background-gradient-item'
     @$bgGradientAngles = @$el.find '.settings-background-gradient-angle-item'
     @$timeFormat = @$el.find '.settings-time-format'
+    @$dateDisplay = @$el.find '.settings-display-date'
     @$delimeterBlinking = @$el.find '.settings-delimeter-blinking'
     @$autoHideDock = @$el.find '.settings-autohide-dock'
     @$fonts = @$el.find '.settings-font-family-item'
@@ -24,6 +25,7 @@ class SettingsView
     @handleTabs()
     @handleClose()
     @handleTimeFormat()
+    @handleDateDisplay()
     @handleDelimeterBlinking()
     @handleAutoHideDock()
     @handleColor()
@@ -35,6 +37,7 @@ class SettingsView
 
   update: (data) ->
     @updateTimeFormat(data.use24format)
+    @updateDateDisplay(data.displayDate)
     @updateDelimeterBlinking(data.delimeterBlinking)
     @updateAutoHideDock(data.autoHideDock)
     @updateColor(data.color)
@@ -68,6 +71,11 @@ class SettingsView
     @$timeFormat.removeClass('enabled', 'disabled').
       addClass(if use24format then 'enabled' else 'disabled').
       find('input').get(0).checked = use24format
+
+  updateDateDisplay: (displayDate = true) ->
+    @$dateDisplay.removeClass('enabled', 'disabled').
+      addClass(if displayDate then 'enabled' else 'disabled').
+      find('input').get(0).checked = displayDate
 
   updateDelimeterBlinking: (delimeterBlinking = true) ->
     @$delimeterBlinking.removeClass('enabled', 'disabled').
@@ -117,6 +125,11 @@ class SettingsView
     @$timeFormat.on 'mousedown', =>
       checked = !@$timeFormat.find('input').get(0).checked
       app.settingsStorage.update('use24format', checked)
+
+  handleDateDisplay: ->
+    @$dateDisplay.on 'mousedown', =>
+      checked = !@$dateDisplay.find('input').get(0).checked
+      app.settingsStorage.update('displayDate', checked)
 
   handleDelimeterBlinking: ->
     @$delimeterBlinking.on 'mousedown', =>

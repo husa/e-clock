@@ -22,7 +22,7 @@ class $
     return this
 
   toggleClass: (className, priority) ->
-    el.classList.toggle(className, priority) for el in @els
+    el.classList.toggle.apply(el.classList, arguments) for el in @els
 
   hasClass: (className) ->
     @els.every (el) -> el.classList.contains(className)

@@ -22,3 +22,9 @@ date =
 
   getAmPm: ->
     if @getHours(true) < 12 then 'am' else 'pm'
+
+  getFullDate: ->
+    current = @getDate()
+    day = chrome.i18n.getMessage("i18nDay#{current.getDay()}")
+    month = chrome.i18n.getMessage("i18nMonth#{current.getMonth()}").slice(0, 3)
+    "#{day}, #{month} #{current.getDate()} "

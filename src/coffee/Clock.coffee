@@ -6,7 +6,9 @@ class Clock
     @$minutes = @$clock.find '.minutes'
     @$delimeter = @$clock.find '.delimeter'
     @$ampm = @$clock.find '.ampm'
+    @$date = @$clock.find '.date'
     @use24 = true;
+    @displayDate = true;
 
     @updateTime();
     @interval = window.setInterval @updateTime.bind(this), 1000
@@ -15,6 +17,7 @@ class Clock
 
   update: (data) ->
     @updateFormat(data.use24format)
+    @updateDateDisplay(data.displayDate)
     @updateDelimeter(data.delimeterBlinking)
     @updateFontFamily(data.fontFamily)
     @updateFontSize(data.fontSize)
@@ -24,7 +27,12 @@ class Clock
     @$hours.html date.getHours(@use24)
     @$minutes.html date.getMinutes()
     @$ampm.html if !@use24 then date.getAmPm() else ''
+    @$date.html if @displayDate then date.getFullDate() else ''
     date.updateChangedTime()
+
+  updateDateDisplay: (displayDate = true) ->
+    @displayDate = displayDate
+    @updateTime(true)
 
   updateFormat: (use24 = true) ->
     @use24 = use24

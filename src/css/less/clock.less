@@ -12,7 +12,7 @@
     color: inherit;
     text-align: center;
     opacity: 1;
-    transition: opacity 300ms;
+    transition: opacity 300ms, font 200ms;
 
     .hours {
 
@@ -37,6 +37,14 @@
 
     .ampm {
       font-size: 60%;
+    }
+
+    .date {
+        font-size: 30%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+        white-space: nowrap;
     }
 
     &.initiallyHidden {

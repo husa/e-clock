@@ -107,5 +107,65 @@
     },
     "i18nFontSize" : {
         "message" : "Font Size"
+    },
+    "i18nShowDate" : {
+        "message" : "Show Date"
+    },
+    "i18nDay1" : {
+        "message" : "Monday"
+    },
+    "i18nDay2" : {
+        "message" : "Tuesday"
+    },
+    "i18nDay3" : {
+        "message" : "Wednesday"
+    },
+    "i18nDay4" : {
+        "message" : "Thursday"
+    },
+    "i18nDay5" : {
+        "message" : "Friday"
+    },
+    "i18nDay6" : {
+        "message" : "Saturday"
+    },
+    "i18nDay7" : {
+        "message" : "Sunday"
+    },
+    "i18nMonth1" : {
+        "message" : "January"
+    },
+    "i18nMonth2" : {
+        "message" : "February"
+    },
+    "i18nMonth3" : {
+        "message" : "March"
+    },
+    "i18nMonth4" : {
+        "message" : "April"
+    },
+    "i18nMonth5" : {
+        "message" : "May"
+    },
+    "i18nMonth6" : {
+        "message" : "June"
+    },
+    "i18nMonth7" : {
+        "message" : "July"
+    },
+    "i18nMonth8" : {
+        "message" : "August"
+    },
+    "i18nMonth9" : {
+        "message" : "September"
+    },
+    "i18nMonth10" : {
+        "message" : "October"
+    },
+    "i18nMonth11" : {
+        "message" : "November"
+    },
+    "i18nMonth12" : {
+        "message" : "December"
     }
 }
