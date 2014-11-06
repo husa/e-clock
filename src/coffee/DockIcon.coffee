@@ -9,7 +9,7 @@ class DockIcon
 
   handleClick: ->
     self = this;
-    @$el.on 'click', (e) ->
+    @$el.on 'mousedown', (e) ->
       url = @dataset.url
       return if not url
       if self.isSettingsIcon
