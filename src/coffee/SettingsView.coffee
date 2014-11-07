@@ -118,8 +118,9 @@ class SettingsView
     @$fonts.parent().find("[data-font=\"#{font}\"]").addClass('active')
 
   updateFontSize: (fontSize = 12) ->
-    @$fontSize.get(0).value = fontSize
-
+    value = @$fontSize.get(0).value
+    if Math.round(value) isnt fontSize
+      @$fontSize.get(0).value = fontSize
 
   handleTimeFormat: ->
     @$timeFormat.on 'mousedown', =>
@@ -169,10 +170,17 @@ class SettingsView
       app.settingsStorage.update('fontFamily', font)
 
   handleFontSize: ->
-    @$fontSize.on 'input', debounce ->
-      app.settingsStorage.update('fontSize', this.value, {dontSync: true})
+    prevValue = 0
+    @$fontSize.on 'input', ->
+      value = Math.round this.value
+      if value isnt prevValue
+        prevValue = value
+        app.settingsStorage.update('fontSize', value, {dontSync: true})
     @$fontSize.on 'change', ->
-      app.settingsStorage.update('fontSize', this.value)
+      value = Math.round this.value
+      if value isnt prevValue
+        prevValue = value
+        app.settingsStorage.update('fontSize', value)
 
   initAbout: ->
     manifest = chrome.runtime.getManifest();
