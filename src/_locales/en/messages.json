@@ -111,6 +111,9 @@
     "i18nShowDate" : {
         "message" : "Show Date"
     },
+    "i18nDay0" : {
+        "message" : "Sunday"
+    },
     "i18nDay1" : {
         "message" : "Monday"
     },
@@ -128,9 +131,6 @@
     },
     "i18nDay6" : {
         "message" : "Saturday"
-    },
-    "i18nDay7" : {
-        "message" : "Sunday"
     },
     "i18nMonth1" : {
         "message" : "January"
