@@ -12,3 +12,6 @@ debounce = (func, threshold, execAsap) ->
     else if (execAsap)
       func.apply(obj, args)
     timeout = setTimeout delayed, threshold || 100
+ripple = (target) ->
+  target.addClass 'ripple'
+  setTimeout ( -> target.removeClass 'ripple'), 200

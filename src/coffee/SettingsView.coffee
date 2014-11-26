@@ -63,6 +63,7 @@ class SettingsView
       @$el.find(selector).removeClass 'hidden'
       @$tabLinks.removeClass 'active'
       target.addClass 'active'
+      ripple(target)
 
   handleClose: ->
     @$el.find('.settings-close-icon').on 'click', => @close()
@@ -178,9 +179,8 @@ class SettingsView
         app.settingsStorage.update('fontSize', value, {dontSync: true})
     @$fontSize.on 'change', ->
       value = Math.round this.value
-      if value isnt prevValue
-        prevValue = value
-        app.settingsStorage.update('fontSize', value)
+      prevValue = value
+      app.settingsStorage.update('fontSize', value)
 
   initAbout: ->
     manifest = chrome.runtime.getManifest();

@@ -1,4 +1,7 @@
 {
+    "i18nShortDescription" : {
+      "message" : "Customizable minimalistic digital clock with date for your new tab page"
+    },
     "i18nNewTabTitle": {
         "message": "New Tab",
         "description": "title to show on new tab"
