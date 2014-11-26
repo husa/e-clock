@@ -84,8 +84,7 @@
 
   .settings-item
     padding 15px
-    cursor pointer
-    ripple()
+    // cursor pointer
 
     & > *
       display inline-block
@@ -95,12 +94,20 @@
       margin 0 4px
 
     > input[type=checkbox]
-      fancy-checkbox();
+      fancy-checkbox()
 
     &.enabled {}
 
     &.disabled
       opacity .6
+
+  .settings-time-format
+  .settings-display-date
+  .settings-delimeter-blinking
+  .settings-autohide-dock
+  .settings-dock-icon
+    > *
+      cursor pointer
 
   .settings-dock-icon {}
   .settings-appearance {}
