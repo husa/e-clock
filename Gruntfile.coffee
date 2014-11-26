@@ -5,9 +5,9 @@ module.exports = ->
     pkg: @file.readJSON 'package.json'
 
     watch:
-      less:
-        files: 'src/css/**/*.less'
-        tasks: ['less:dev']
+      stylus:
+        files: 'src/stylus/**/*.styl'
+        tasks: ['stylus:dev']
       coffeeMain:
         files: 'src/coffee/**/*.coffee'
         tasks: ['coffee:dev']
@@ -15,16 +15,17 @@ module.exports = ->
         files: 'src/tests/specs/coffee/**/*.coffee'
         tasks: ['coffee:test', 'jasmine:main']
 
-    less:
+    stylus:
       dev:
+        options:
+          compress: false
         files:
-          'src/css/main.css': 'src/css/less/main.less'
+          'src/css/main.css': 'src/stylus/main.styl'
       build:
         options:
           compress: true
-          cleancss: true
         files:
-          'dist/css/main.css': 'src/css/less/main.less'
+          'dist/css/main.css': 'src/stylus/main.styl'
 
     coffee:
       dev:
@@ -93,7 +94,7 @@ module.exports = ->
 
   # Load the plugins
   @loadNpmTasks 'grunt-contrib-watch'
-  @loadNpmTasks 'grunt-contrib-less'
+  @loadNpmTasks 'grunt-contrib-stylus'
   @loadNpmTasks 'grunt-contrib-uglify'
   @loadNpmTasks 'grunt-contrib-copy'
   @loadNpmTasks 'grunt-contrib-compress'
@@ -101,7 +102,7 @@ module.exports = ->
   @loadNpmTasks 'grunt-contrib-jasmine'
 
   @registerTask 'build', [
-    'less:build'
+    'stylus:build'
     'coffee:build'
     'uglify:build'
     'copy:build'
@@ -115,7 +116,7 @@ module.exports = ->
   ]
 
   @registerTask 'default', [
-    'less:dev'
+    'stylus:dev'
     'coffee:dev'
     'watch'
   ]
