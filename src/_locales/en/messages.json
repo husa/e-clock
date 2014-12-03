@@ -135,40 +135,40 @@
     "i18nDay6" : {
         "message" : "Saturday"
     },
-    "i18nMonth1" : {
+    "i18nMonth0" : {
         "message" : "January"
     },
-    "i18nMonth2" : {
+    "i18nMonth1" : {
         "message" : "February"
     },
-    "i18nMonth3" : {
+    "i18nMonth2" : {
         "message" : "March"
     },
-    "i18nMonth4" : {
+    "i18nMonth3" : {
         "message" : "April"
     },
-    "i18nMonth5" : {
+    "i18nMonth4" : {
         "message" : "May"
     },
-    "i18nMonth6" : {
+    "i18nMonth5" : {
         "message" : "June"
     },
-    "i18nMonth7" : {
+    "i18nMonth6" : {
         "message" : "July"
     },
-    "i18nMonth8" : {
+    "i18nMonth7" : {
         "message" : "August"
     },
-    "i18nMonth9" : {
+    "i18nMonth8" : {
         "message" : "September"
     },
-    "i18nMonth10" : {
+    "i18nMonth9" : {
         "message" : "October"
     },
-    "i18nMonth11" : {
+    "i18nMonth10" : {
         "message" : "November"
     },
-    "i18nMonth12" : {
+    "i18nMonth11" : {
         "message" : "December"
     }
 }

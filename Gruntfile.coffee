@@ -63,7 +63,7 @@ module.exports = ->
         src: [
           'html/**'
           'manifest.json'
-          'css/fonts/**'
+          'fonts/**'
           'img/**'
           '_locales/**'
         ],
