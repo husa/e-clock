@@ -1,0 +1,37 @@
+.footer
+  position fixed
+  width 100%
+  bottom 0
+
+  ul
+    list-style none
+    padding 0
+    margin-bottom 0
+
+    &.initiallyHidden li
+      margin-bottom -50px
+
+    li
+      float right
+      margin 0 10px
+
+      fill inherit
+      stroke none
+      cursor pointer
+      transition all 200ms
+      transition-delay 0ms
+
+      svg
+        pointer-events none
+
+      &.hidden
+        display none
+
+  ul.auto-hide li
+    margin-bottom -50px
+    transition-delay 800ms
+
+  &:hover
+    ul.auto-hide li
+      margin-bottom 0
+      transition-delay 0s

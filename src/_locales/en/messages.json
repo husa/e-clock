@@ -1,4 +1,7 @@
 {
+    "i18nShortDescription" : {
+      "message" : "Customizable minimalistic digital clock with date for your new tab page"
+    },
     "i18nNewTabTitle": {
         "message": "New Tab",
         "description": "title to show on new tab"
@@ -84,11 +87,88 @@
         "description" : "Rate button label"
     },
     "i18nCreatedBy" : {
-        "message" : "Created by Yuriy Husnay",
-        "description" : "information about the author"
+        "message" : "Created by $author$",
+        "description" : "information about the author",
+        "placeholders" : {
+            "author" : {
+                "content" : "Yuriy Husnay"
+            }
+        }
+
     },
     "i18nOpenSource" : {
-        "message" : "This extension is completely open source and licensed under MIT license",
-        "description" : "information about product"
+        "message" : "This extension is completely open source and licensed under $license_link$ license",
+        "description" : "information about product",
+        "placeholders" : {
+            "license_link" : {
+                "content" : "<a href=\"https://raw.githubusercontent.com/husa/e-clock/master/LICENSE\" target=\"_blank\" title=\"MIT\">MIT</a>"
+            }
+        }
+    },
+    "i18nFontFamily" : {
+        "message" : "Font"
+    },
+    "i18nFontSize" : {
+        "message" : "Font Size"
+    },
+    "i18nShowDate" : {
+        "message" : "Show Date"
+    },
+    "i18nDay0" : {
+        "message" : "Sunday"
+    },
+    "i18nDay1" : {
+        "message" : "Monday"
+    },
+    "i18nDay2" : {
+        "message" : "Tuesday"
+    },
+    "i18nDay3" : {
+        "message" : "Wednesday"
+    },
+    "i18nDay4" : {
+        "message" : "Thursday"
+    },
+    "i18nDay5" : {
+        "message" : "Friday"
+    },
+    "i18nDay6" : {
+        "message" : "Saturday"
+    },
+    "i18nMonth0" : {
+        "message" : "January"
+    },
+    "i18nMonth1" : {
+        "message" : "February"
+    },
+    "i18nMonth2" : {
+        "message" : "March"
+    },
+    "i18nMonth3" : {
+        "message" : "April"
+    },
+    "i18nMonth4" : {
+        "message" : "May"
+    },
+    "i18nMonth5" : {
+        "message" : "June"
+    },
+    "i18nMonth6" : {
+        "message" : "July"
+    },
+    "i18nMonth7" : {
+        "message" : "August"
+    },
+    "i18nMonth8" : {
+        "message" : "September"
+    },
+    "i18nMonth9" : {
+        "message" : "October"
+    },
+    "i18nMonth10" : {
+        "message" : "November"
+    },
+    "i18nMonth11" : {
+        "message" : "December"
     }
 }
