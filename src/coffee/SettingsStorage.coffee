@@ -16,7 +16,7 @@ class SettingsStorage
           resolve()
       setTimeout ->
         return if fulfilled
-        self.data = JSON.parse localStorage.getItem self.key
+        self.data = (JSON.parse localStorage.getItem self.key) ? {}
         fulfilled = yes
         console.log 'data restored from localStorage'
         resolve()
