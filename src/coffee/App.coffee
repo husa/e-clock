@@ -18,22 +18,24 @@ class App
   generateDefaultSettings: -> return
 
   init: ->
-    @i18n = new I18n()
-    @clock = new Clock()
-    @dock = new Dock()
-    @settingsView = new SettingsView()
-    @appearanceView = new AppearanceView()
+    @i18n = new I18n
+    @clock = new Clock
+    @dock = new Dock
+    @settingsView = new SettingsView
+    @appearanceView = new AppearanceView
+    @weather = new Weather
 
     @updateViews()
     @showViews()
 
   updateViews: ->
-    data = this.settingsStorage.data;
+    data = this.settingsStorage.data
 
-    @clock.update(data);
-    @dock.update(data)
-    @appearanceView.update(data)
-    @settingsView.update(data)
+    @clock.update data
+    @dock.update data
+    @appearanceView.update data
+    @settingsView.update data
+    @weather.update data
 
   showViews: ->
     @clock.show()
