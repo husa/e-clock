@@ -19,10 +19,7 @@ class Weather
     if not @initialized
       @loadData()
       return
-    if data.displayWeather
-      @$el.removeClass('hidden').addClass('show')
-    else
-      @$el.removeClass('show').addClass('hidden')
+    @toggleWeather data.displayWeather
 
   loadData: () ->
     @getUrl()
@@ -88,6 +85,12 @@ class Weather
     $node.find('use').get(0).setAttributeNS 'http://www.w3.org/1999/xlink', 'href', "#weather-#{day.icon}"
     $node.find('.temperature').html "#{day.min}° #{day.max}°"
     document.importNode $node.get(0), true
+
+  toggleWeather: (displayWeather = true) ->
+    if displayWeather
+      @$el.removeClass('hidden').addClass('show')
+    else
+      @$el.removeClass('show').addClass('hidden')
 
   processData: ->
     config.units = if @data.temperatureScale is 'f' then 'imperial' else 'metric'
