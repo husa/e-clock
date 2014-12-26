@@ -11,6 +11,7 @@ class SettingsView
     @$bgGradientAngles = @$el.find '.settings-background-gradient-angle-item'
     @$timeFormat = @$el.find '.settings-time-format'
     @$dateDisplay = @$el.find '.settings-display-date'
+    @$weatherDisplay = @$el.find '.settings-display-weather'
     @$delimeterBlinking = @$el.find '.settings-delimeter-blinking'
     @$autoHideDock = @$el.find '.settings-autohide-dock'
     @$fonts = @$el.find '.settings-font-family-item'
@@ -26,6 +27,7 @@ class SettingsView
     @handleClose()
     @handleTimeFormat()
     @handleDateDisplay()
+    @handleWeatherDisplay()
     @handleDelimeterBlinking()
     @handleAutoHideDock()
     @handleColor()
@@ -38,6 +40,7 @@ class SettingsView
   update: (data) ->
     @updateTimeFormat(data.use24format)
     @updateDateDisplay(data.displayDate)
+    @updateWeatherDisplay(data.displayWeather)
     @updateDelimeterBlinking(data.delimeterBlinking)
     @updateAutoHideDock(data.autoHideDock)
     @updateColor(data.color)
@@ -77,6 +80,11 @@ class SettingsView
     @$dateDisplay.removeClass('enabled', 'disabled').
       addClass(if displayDate then 'enabled' else 'disabled').
       find('input').get(0).checked = displayDate
+
+  updateWeatherDisplay: (displayWeather = true) ->
+    @$weatherDisplay.removeClass('enabled', 'disabled').
+      addClass(if displayWeather then 'enabled' else 'disabled').
+      find('input').get(0).checked = displayWeather
 
   updateDelimeterBlinking: (delimeterBlinking = true) ->
     @$delimeterBlinking.removeClass('enabled', 'disabled').
@@ -132,6 +140,11 @@ class SettingsView
     @$dateDisplay.on 'mousedown', =>
       checked = !@$dateDisplay.find('input').get(0).checked
       app.settingsStorage.update('displayDate', checked)
+
+  handleWeatherDisplay: ->
+    @$weatherDisplay.on 'mousedown', =>
+      checked = !@$weatherDisplay.find('input').get(0).checked
+      app.settingsStorage.update('displayWeather', checked)
 
   handleDelimeterBlinking: ->
     @$delimeterBlinking.on 'mousedown', =>
