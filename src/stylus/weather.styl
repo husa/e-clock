@@ -1,0 +1,42 @@
+.weather
+  text-align: center
+  line-height: 0
+  opacity: 0
+  transition: opacity 600ms
+  white-space: nowrap
+
+  .weather-city
+    font-size: 30pt
+    padding-top: 30px
+    letter-spacing: normal
+
+  &.hidden
+    opacity: 0
+
+  &.show
+    opacity: 1
+
+  .day-weather
+    display: inline-block
+    width: 100px
+
+    > *
+      vertical-align: top
+
+    &.dummy
+      width: 0px
+      float: left
+      visibility: hidden
+
+  .day-weather:nth-of-type(5n-2)
+    transform: scale(1.5)
+
+  .weather-icon
+    padding-left: 0px
+
+  .temperature
+    font-size: 24pt
+    font-weight: bold
+    letter-spacing: -1px
+    vertical-align: top
+    padding: 0 5px

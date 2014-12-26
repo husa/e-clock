@@ -112,7 +112,10 @@
         "message" : "Font Size"
     },
     "i18nShowDate" : {
-        "message" : "Show Date"
+        "message" : "Date"
+    },
+    "i18nShowWeather" : {
+        "message" : "Weather"
     },
     "i18nDay0" : {
         "message" : "Sunday"

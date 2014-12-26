@@ -5,7 +5,7 @@ class $
     if typeof selector is 'string'
       els = document.querySelectorAll(selector)
       @els = Array::slice.call(els)
-    @els = [selector] if selector instanceof HTMLElement
+    @els = [selector] if selector instanceof HTMLElement or selector instanceof DocumentFragment
     @els = selector if selector instanceof Array
     return this
 
