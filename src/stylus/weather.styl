@@ -1,20 +1,18 @@
 .weather
   text-align: center
   line-height: 0
-  opacity: 0
-  transition: opacity 600ms
   white-space: nowrap
 
   .weather-city
     font-size: 30pt
-    padding-top: 30px
+    padding: 30px 0 10px
     letter-spacing: normal
 
   &.hidden
-    opacity: 0
+    display: none
 
   &.show
-    opacity: 1
+    display: block
 
   .day-weather
     display: inline-block
@@ -35,8 +33,7 @@
     padding-left: 0px
 
   .temperature
-    font-size: 24pt
+    font-size: 18pt
     font-weight: bold
-    letter-spacing: -1px
     vertical-align: top
     padding: 0 5px
