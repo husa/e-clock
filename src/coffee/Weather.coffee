@@ -16,7 +16,7 @@ class Weather
   update: (data) ->
     @data = data
     @processData()
-    if not @initialized and data.displayWeather is on
+    if not @initialized and data.displayWeather isnt off
       @loadData()
       return
     @toggleWeather data.displayWeather
