@@ -1,18 +1,16 @@
+@import 'settings-content'
+
 .settings-popup
   position fixed
   width 400px
-  height 500px
-  max-height 90%
+  height 100%
+  top 0
+  right: 0
   overflow auto
-  top 50%
-  left 50%
-  -webkit-transform translate(-50%, -50%) scale(1)
-  transition all 300ms, opacity 200ms
 
   box-sizing border-box
   background #fff
   box-shadow 0 0 20px #9a9a9a
-  border-radius 4px
   margin 0
   padding 0
   opacity 1
@@ -23,70 +21,30 @@
   stroke none
 
   -webkit-backface-visibility hidden
-// TO CHANGE MENU OPENING BEHAVIOR
-//   margin: 0;
-//   padding: 0;
-//   opacity: 1;
-//   box-sizing: border-box;
-//   color: #555;
-//   fill: #555;
-//   stroke: none;
-//   -webkit-backface-visibility: hidden;
+  -webkit-animation-duration: 0.3s
+  animation-duration: 0.3s
+  -webkit-animation-fill-mode: forwards
+  animation-fill-mode: forwards
+  -webkit-transform-origin: 50% 100%
+  transform-origin: 50% 100%
+  -webkit-animation-timing-function: ease-in-out
+  animation-timing-function: ease-in-out
+  -webkit-animation-name: anim-open
+  animation-name: anim-open
+  transform-origin: right 50%
 
-//     -webkit-animation-duration: 0.3s;
-//   animation-duration: 0.3s;
-//   -webkit-animation-fill-mode: forwards;
-//   animation-fill-mode: forwards;
-//   -webkit-transform-origin: 50% 100%;
-//   transform-origin: 50% 100%;
-//   -webkit-animation-timing-function: ease-in-out;
-//   animation-timing-function: ease-in-out;
-
-//   -webkit-animation-name: anim-open;
-//   animation-name: anim-open;
-//   transform-origin: right 50%;
-// }
-// .settings-popup.hidden {
-// /*   top: 100%;
-//   left: 100%; */
-// /*   right: -400px; */
-
-
-//   /* opacity: 0; */
-// /*   -webkit-transform: scale(0.1); */
-//   -webkit-animation-name: anim-close;
-//   animation-name: anim-close;
-// }
-// @-webkit-keyframes anim-open {
-//   0% { -webkit-transform: perspective(1000px) rotate3d(0,1,0,-90deg); }
-//   100% { -webkit-transform: perspective(1000px) rotate3d(0,1,0,0deg); }
-// }
-
-// /* @keyframes anim-open {
-//   0% { -webkit-transform: perspective(1000px) rotate3d(0,1,0,90deg); transform: perspective(1000px) rotate3d(1,0,0,90deg); }
-//   100% { -webkit-transform: perspective(1000px) rotate3d(0,1,0,0deg); transform: perspective(1000px) rotate3d(1,0,0,0deg); }
-// } */
-
-// @-webkit-keyframes anim-close {
-//   0% { -webkit-transform: perspective(1000px) rotate3d(0,1,0,0deg); }
-//   100% { -webkit-transform: perspective(1000px) rotate3d(0,1,0,-90deg); }
-// }
-
-// /* @keyframes anim-close {
-//   0% { -webkit-transform: perspective(1000px) rotate3d(1,0,0,0deg); transform: perspective(1000px) rotate3d(1,0,0,0deg); }
-//   100% { -webkit-transform: perspective(1000px) rotate3d(1,0,0,90deg); transform: perspective(1000px) rotate3d(1,0,0,90deg); }
-// } */
+  &.initiallyHidden
+    display: none;
 
   &.hidden
-    top 100%
-    left 100%
-    opacity 0
-    -webkit-transform scale(.1)
+    -webkit-animation-name: anim-close;
+    animation-name: anim-close;
 
-  *
+  > *
     margin 0
     padding 0
-    box-sizing border-box
+  *
+    box-sizing: border-box
 
   .settings-tabs
     width 100%
@@ -130,182 +88,26 @@
           height 5px
           background main-color
 
-  .settings-content
-    height 440px
-    overflow auto
+@-webkit-keyframes anim-open
+  0%
+    -webkit-transform: perspective(1000px) rotate3d(0,1,0,-90deg)
+  100%
+    -webkit-transform: perspective(1000px) rotate3d(0,1,0,0deg)
 
-    .hidden
-      display none
+@keyframes anim-open
+  0%
+    -webkit-transform: perspective(1000px) rotate3d(0,1,0,-90deg)
+  100%
+    -webkit-transform: perspective(1000px) rotate3d(0,1,0,0deg)
 
-  .settings-item
-    padding 15px
-    // cursor pointer
+@-webkit-keyframes anim-close
+  0%
+    -webkit-transform: perspective(1000px) rotate3d(0,1,0,0deg)
+  100%
+    -webkit-transform: perspective(1000px) rotate3d(0,1,0,-90deg)
 
-    & > *
-      display inline-block
-      vertical-align middle
-
-    > svg
-      margin 0 4px
-
-    > input[type=checkbox]
-      fancy-checkbox()
-
-    &.enabled {}
-
-    &.disabled
-      opacity .6
-
-  .settings-time-format
-  .settings-display-date
-  .settings-display-weather
-  .settings-delimeter-blinking
-  .settings-autohide-dock
-  .settings-dock-icon
-    > *
-      cursor pointer
-
-  .settings-dock-icon {}
-  .settings-appearance {}
-  .settings-color {}
-
-  .settings-color-item,
-  .settings-background-color-item,
-  .settings-background-gradient-item,
-  .settings-background-gradient-angle-item,
-  .settings-font-family-item
-    position relative
-    width  30px
-    height 30px
-    margin 2px 0
-    padding 0
-    text-align center
-    cursor pointer
-    box-shadow 0 0 3px #aaa
-    border-radius 50%
-    transition border 200ms
-
-    &.active
-      border solid 3px main-color//#27AE60
-      box-shadow none
-
-  .settings-background-gradient-angle-item
-    padding-top 2px
-    fill #aaa
-    transition fill 200ms, border 200ms
-
-    & > *
-      display inline-block
-      vertical-align middle
-
-    &.active
-      fill #444
-      padding 0
-
-  .settings-font-family
-    .settings-font-family-item
-      line-height 30px
-      &.active
-        line-height 26px
-
-  .settings-font-size
-
-    input[type=range]
-      -webkit-appearance none
-      display block
-      margin 0 auto
-      width 80%
-      height 32px
-      // cursor pointer
-
-      &::-webkit-slider-runnable-track
-        height 2px
-        background #c8c8c8
-        border none
-
-      &::-webkit-slider-thumb
-        -webkit-appearance none
-        position relative
-        border none
-        width 32px
-        height 32px
-        margin-top -14px
-        cursor pointer
-
-        &:before
-          content ' '
-          position absolute
-          width 12px
-          height 12px
-          top 10px
-          left 10px
-          background main-color//#27AE60
-          border-radius 50%
-          transition all 180ms ease
-
-      &:active::-webkit-slider-thumb:before
-        width 24px
-        height 24px
-        top 4px
-        left 1px
-
-      &:focus
-        outline none
-
-      &:focus::-webkit-slider-runnable-track
-        background #ccc
-
-  .settings-about
-    text-align center
-
-    .settings-about-name
-      font-family 'Raleway', sans-serif
-      font-size 5em
-      margin 25px 0
-
-    .settings-about-version
-      font-family monospace
-
-    .settings-about-rate
-      display inline-block
-      margin 25px auto 0
-      padding 5px 15px
-      background #eee
-      border-radius 3px
-      text-decoration none
-      color inherit
-      cursor pointer
-
-      *
-        display inline-block
-        vertical-align middle
-
-      span
-        margin 0 6px
-
-    .settings-about-author-info
-      position absolute
-      bottom 0
-      left 0
-      width 100%
-      padding 20px
-      font-size 0.9em
-
-      p
-        margin 15px 0
-
-  .settings-close-icon
-    position absolute
-    top 0px
-    right 0px
-    width 50px
-    height 50px
-    font-size 2em
-    cursor pointer
-    text-align center
-    color lighten(font-color, 50%)
-    line-height 50px
-
-    &:hover
-      transition 300ms
-      color lighten(font-color, 20%)
+@keyframes anim-close
+  0%
+    -webkit-transform: perspective(1000px) rotate3d(0,1,0,0deg)
+  100%
+    -webkit-transform: perspective(1000px) rotate3d(0,1,0,-90deg)
