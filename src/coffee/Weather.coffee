@@ -16,7 +16,7 @@ class Weather
   update: (data) ->
     @data = data
     @processData()
-    if not @initialized
+    if not @initialized and data.displayWeather is on
       @loadData()
       return
     @toggleWeather data.displayWeather
@@ -33,8 +33,8 @@ class Weather
 
   getUrl: ->
     @getLocation().then (location) =>
-      lat = location.coords.latitude.toFixed 2
-      lon = location.coords.longitude.toFixed 2
+      lat = location.coords.latitude.toFixed 5
+      lon = location.coords.longitude.toFixed 5
       "http://api.openweathermap.org/data/2.5/forecast/daily?&mode=#{config.mode}&type=#{config.type}&units=#{config.units}&cnt=#{config.cnt}&lat=#{lat}&lon=#{lon}&APPID=#{@apikey}"
 
   getLocation: ->
