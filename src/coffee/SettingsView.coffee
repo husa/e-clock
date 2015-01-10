@@ -22,6 +22,8 @@ class SettingsView
     @initAbout()
     @$dockSettings.append(app.dock.getSettings())
 
+
+
   handle: ->
     @handleTabs()
     @handleClose()
@@ -50,11 +52,19 @@ class SettingsView
     @updateFontFamily(data.fontFamily)
     @updateFontSize(data.fontSize)
 
-  open: -> @$el.removeClass 'hidden'
+  open: ->
+    @enable()
+    @$el.removeClass 'hidden'
 
-  close: -> @$el.addClass 'hidden'
+  close: ->
+    @enable()
+    @$el.addClass 'hidden'
 
-  toggle: -> @$el.toggleClass 'hidden'
+  toggle: ->
+    @enable()
+    @$el.toggleClass 'hidden'
+
+  enable: -> @$el.removeClass 'initiallyHidden'
 
   handleTabs: ->
     @$tabLinks.on 'click', (e) =>
