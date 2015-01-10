@@ -173,5 +173,32 @@
     },
     "i18nMonth11" : {
         "message" : "December"
+    },
+    "i18nWeather01" : {
+        "message" : "Sunny"
+    },
+    "i18nWeather02" : {
+        "message" : "Few Clouds"
+    },
+    "i18nWeather03" : {
+        "message" : "Scattered Clouds"
+    },
+    "i18nWeather04" : {
+        "message" : "Broken Clouds"
+    },
+    "i18nWeather09" : {
+        "message" : "Drizzle"
+    },
+    "i18nWeather10" : {
+        "message" : "Rain"
+    },
+    "i18nWeather11" : {
+        "message" : "Thunderstorm"
+    },
+    "i18nWeather13" : {
+        "message" : "Snow"
+    },
+    "i18nWeather50" : {
+        "message" : "Mist"
     }
 }
