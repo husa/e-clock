@@ -8,6 +8,8 @@ class Weather
       enableHighAccuracy: false
       timeout: 500
       maximumAge: 1000*60*60 # 1 hour
+    locationCacheAge: 30*60*1000
+    weatherCacheAge: 30*60*1000
 
   constructor: ->
     @$el = $ '.weather'
@@ -19,17 +21,19 @@ class Weather
     if not @initialized and data.displayWeather isnt off
       @loadData()
       return
+    @updateWeather()
     @toggleWeather data.displayWeather
 
   loadData: () ->
     @getUrl()
       .then @getWeather
       .then JSON.parse
+      .then @cacheWeather
       .then @displayWeather.bind this
       .then => @initialized = true
       .then => @update @data
       .catch (err) ->
-        console.log err
+        log err
 
   getUrl: ->
     @getLocation().then (location) =>
@@ -40,24 +44,37 @@ class Weather
   getLocation: ->
     new Promise (resolve, reject) ->
       cache = JSON.parse localStorage.getItem 'locationCache'
-      if cache and cache.timestamp > (+new Date - 30*60*1000)
+      if cache and cache.timestamp > (+new Date - config.locationCacheAge)
+        log "got location from cache", cache
         resolve cache
       else
         navigator.geolocation.getCurrentPosition (location) ->
-          localStorage.setItem 'locationCache', JSON.stringify(location)
+          log "got location", location
+          localStorage.setItem 'locationCache', JSON.stringify location
           resolve location
         , reject, config.location
 
   getWeather: (url) ->
     new Promise (resolve, reject) ->
-      #do cashing here
-      req = new XMLHttpRequest
-      req.open 'GET', url, true
-      req.onreadystatechange = (data) ->
-        if req.readyState is 4
-          if req.status is 200 then resolve req.responseText else reject(req)
-      req.onerror = reject
-      req.send()
+      cache = localStorage.getItem 'weatherCache'
+      parsedCache = JSON.parse cache
+      if parsedCache and parsedCache.timestamp > (+new Date - config.weatherCacheAge)
+        log "got weather from cache", cache
+        resolve cache
+      else
+        req = new XMLHttpRequest
+        req.open 'GET', url, true
+        req.onreadystatechange = (data) ->
+          if req.readyState is 4
+            log "got weather", req.responseText
+            if req.status is 200 then resolve req.responseText else reject(req)
+        req.onerror = reject
+        req.send()
+
+  cacheWeather: (data) ->
+    data.timestamp = +new Date
+    localStorage.setItem 'weatherCache', JSON.stringify data
+    data
 
   displayWeather: (data) ->
     setTimeout =>
@@ -71,20 +88,30 @@ class Weather
   renderForecast: (days) ->
     days = (@getDayData day for day in days)
     $days = (@renderDay day for day in days)
-    @$el.append day for day in $days
+    $forecast = @$el.find '.weather-forecast'
+    $forecast.append day for day in $days
 
   getDayData: (day) ->
-    min: Math.round day.temp.max
-    max: Math.round day.temp.min
+    min: Math.round day.temp.min
+    max: Math.round day.temp.max
     icon: day.weather[0].icon.match(/\d+/)[0]
     text: day.weather[0].main
     description: day.weather[0].description
 
   renderDay: (day) ->
     $node = $ @$el.find('#weather-template').get(0).content
+    $node.find('.day-weather').get(0).setAttribute 'title', chrome.i18n.getMessage "i18nWeather#{day.icon}"
     $node.find('use').get(0).setAttributeNS 'http://www.w3.org/1999/xlink', 'href', "#weather-#{day.icon}"
-    $node.find('.temperature').html "#{day.min}° #{day.max}°"
+    $node.find('.temperature-min').html "#{day.min}°"
+    $node.find('.temperature-max').html "#{day.max}°"
     document.importNode $node.get(0), true
+
+  updateWeather: ->
+    @scaleForecast()
+
+  scaleForecast: ->
+    val = @data.fontSize * 0.075 + 0.125
+    @$el.find('.weather-forecast').get(0).style.transform = "scale(#{val})"
 
   toggleWeather: (displayWeather = true) ->
     if displayWeather

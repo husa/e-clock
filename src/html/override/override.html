@@ -182,8 +182,23 @@
       <div class="date"></div>
       <div class="weather">
         <div class="weather-city"></div>
-        <template id="weather-template">
-          <div class="day-weather">
+        <div class="weather-forecast">
+          <template id="weather-template">
+            <div class="day-weather" title="">
+              <div>
+                <svg class="weather-icon" viewBox="0 0 100 100" width="100" height="100">
+                <use xlink:href=""></use>
+              </svg>
+              </div>
+              <div>
+                <span class="temperature">
+                  <span class="temperature-max"></span>
+                  <span class="temperature-min"></span>
+                </span>
+              </div>
+            </div>
+          </template>
+          <div class="day-weather dummy">
             <div>
               <svg class="weather-icon" viewBox="0 0 100 100" width="100" height="100">
               <use xlink:href=""></use>
@@ -192,16 +207,6 @@
             <div>
               <span class="temperature"></span>
             </div>
-          </div>
-        </template>
-        <div class="day-weather dummy">
-          <div>
-            <svg class="weather-icon" viewBox="0 0 100 100" width="100" height="100">
-            <use xlink:href=""></use>
-          </svg>
-          </div>
-          <div>
-            <span class="temperature"></span>
           </div>
         </div>
       </div>
