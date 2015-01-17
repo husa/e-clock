@@ -97,6 +97,16 @@ module.exports = ->
           mode: 'zip'
         src: ['dist/**']
 
+    clean:
+      build:
+        src: [
+          'dist/**'
+          'dist.zip'
+          'src/css/**'
+          'src/js/main.js'
+          'src/js/main.js.map'
+          'src/js/main.src.coffee'
+        ]
 
   # Load the plugins
   @loadNpmTasks 'grunt-contrib-watch'
@@ -106,8 +116,10 @@ module.exports = ->
   @loadNpmTasks 'grunt-contrib-compress'
   @loadNpmTasks 'grunt-contrib-coffee'
   @loadNpmTasks 'grunt-coffeelint'
+  @loadNpmTasks 'grunt-contrib-clean'
 
   @registerTask 'build', [
+    'clean'
     'stylus:build'
     'coffeelint'
     'coffee:build'
@@ -116,13 +128,8 @@ module.exports = ->
     'compress:build'
   ]
 
-  @registerTask 'test', [
-    'coffee:dev'
-    'coffee:test'
-    'jasmine:dev'
-  ]
-
   @registerTask 'default', [
+    'clean'
     'stylus:dev'
     'coffee:dev'
     'coffeelint'
