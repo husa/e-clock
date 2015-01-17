@@ -1,5 +1,5 @@
 # utility function, to find out if Object is empty
-isEmpty = (o) -> return !Object.keys(o).length
+isEmpty = (o) -> return not Object.keys(o).length
 
 debounce = (func, threshold, execAsap) ->
   timeout = null
@@ -12,7 +12,7 @@ debounce = (func, threshold, execAsap) ->
       clearTimeout(timeout)
     else if (execAsap)
       func.apply(obj, args)
-    timeout = setTimeout delayed, threshold || 100
+    timeout = setTimeout delayed, threshold or 100
 
 ripple = (target) ->
   target.addClass 'ripple'

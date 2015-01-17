@@ -5,6 +5,6 @@ class I18n
       i18nString = chrome.i18n.getMessage i18nStringKey
 
       if el.classList.contains 'dockicon'
-          el.dataset.alt = i18nString
+        el.dataset.alt = i18nString
       else
-          el.innerHTML = i18nString || i18nStringKey
+        el.innerHTML = i18nString or i18nStringKey

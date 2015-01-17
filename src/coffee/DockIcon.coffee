@@ -8,11 +8,10 @@ class DockIcon
     @handleClick()
 
   handleClick: ->
-    self = this;
-    @$el.on 'mousedown', (e) ->
+    @$el.on 'mousedown', (e) =>
       url = @dataset.url
       return if not url
-      if self.isSettingsIcon
+      if @isSettingsIcon
         app.settingsView.toggle()
       else
         if e.metaKey or e.ctrlKey or e.button is 1
@@ -28,21 +27,21 @@ class DockIcon
     title = @$el.data 'alt'
 
     if not @$settingIcon
-      @$settingIcon = $ document.createElement 'div';
+      @$settingIcon = $ document.createElement 'div'
       @$settingIcon.addClass 'settings-dock-icon', 'settings-item'
       checked = if @$el.hasClass 'hidden' then '' else 'checked'
       @$settingIcon.html "<input type=\"checkbox\" #{checked}/>#{svgIcon}<span>#{title}</span>"
       @$settingIcon.addClass if checked then 'enabled' else 'disabled'
       @handleSettings()
-    return @$settingIcon;
+    return @$settingIcon
 
   handleSettings: ->
     throw Error 'setting weren\'t generated yet' if not @$settingIcon
     @$settingIcon.on 'mousedown', =>
-        checked = !@$settingIcon.find('input').get(0).checked
-        app.settingsStorage.update @url,
-            visible : checked,
-            order : null
+      checked = not @$settingIcon.find('input').get(0).checked
+      app.settingsStorage.update @url,
+        visible : checked,
+        order : null
 
   show: ->
     @$el.removeClass 'hidden'

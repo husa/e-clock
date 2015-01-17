@@ -1,7 +1,7 @@
 class SettingsStorage
   constructor: ->
     self = this
-    @key = "settings_data"
+    @key = 'settings_data'
     @data = {}
 
     @loaded = new Promise (resolve, reject) ->

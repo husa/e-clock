@@ -6,9 +6,9 @@ class AppearanceView
     @bgGradient = ''
 
   update: (data) ->
-    @updateColor(data.color)
-    @updateBackgroundColor(data.backgroundColor, data.backgroundPriority)
-    @updateBackgroundGradient(data.backgroundGradient, data.backgroundGradientAngle, data.backgroundPriority)
+    @updateColor data.color
+    @updateBackgroundColor data.backgroundColor, data.backgroundPriority
+    @updateBackgroundGradient data.backgroundGradient, data.backgroundGradientAngle, data.backgroundPriority
 
   updateColor: (color) ->
     return if not color or color is @color

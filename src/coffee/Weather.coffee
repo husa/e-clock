@@ -7,9 +7,9 @@ class Weather
     location:
       enableHighAccuracy: false
       timeout: 500
-      maximumAge: 1000*60*60 # 1 hour
-    locationCacheAge: 30*60*1000
-    weatherCacheAge: 30*60*1000
+      maximumAge: 1000 * 60 * 60 # 1 hour
+    locationCacheAge: 30 * 60 * 1000
+    weatherCacheAge: 30 * 60 * 1000
 
   constructor: ->
     @$el = $ '.weather'
@@ -22,9 +22,8 @@ class Weather
       @loadData()
       return
     @updateWeather()
-    @toggleWeather data.displayWeather
 
-  loadData: () ->
+  loadData: ->
     @getUrl()
       .then @getWeather
       .then JSON.parse
@@ -45,11 +44,11 @@ class Weather
     new Promise (resolve, reject) ->
       cache = JSON.parse localStorage.getItem 'locationCache'
       if cache and cache.timestamp > (+new Date - config.locationCacheAge)
-        log "got location from cache", cache
+        log 'got location from cache', cache
         resolve cache
       else
         navigator.geolocation.getCurrentPosition (location) ->
-          log "got location", location
+          log 'got location', location
           localStorage.setItem 'locationCache', JSON.stringify location
           resolve location
         , reject, config.location
@@ -59,14 +58,14 @@ class Weather
       cache = localStorage.getItem 'weatherCache'
       parsedCache = JSON.parse cache
       if parsedCache and parsedCache.timestamp > (+new Date - config.weatherCacheAge)
-        log "got weather from cache", cache
+        log 'got weather from cache', cache
         resolve cache
       else
         req = new XMLHttpRequest
         req.open 'GET', url, true
         req.onreadystatechange = (data) ->
           if req.readyState is 4
-            log "got weather", req.responseText
+            log 'got weather', req.responseText
             if req.status is 200 then resolve req.responseText else reject(req)
         req.onerror = reject
         req.send()
@@ -86,9 +85,8 @@ class Weather
     @$el.find('.weather-city').html "#{city.name}, #{city.country}"
 
   renderForecast: (days) ->
-    days = (@getDayData day for day in days)
-    $days = (@renderDay day for day in days)
     $forecast = @$el.find '.weather-forecast'
+    $days = (@renderDay @getDayData day for day in days)
     $forecast.append day for day in $days
 
   getDayData: (day) ->
@@ -107,6 +105,7 @@ class Weather
     document.importNode $node.get(0), true
 
   updateWeather: ->
+    @toggleWeather data.displayWeather
     @scaleForecast()
 
   scaleForecast: ->

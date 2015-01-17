@@ -13,6 +13,6 @@ class Dock
   update: (data) ->
     iconView.update(data[iconView.url]) for iconView in @iconViews
 
-  toggleAutoHide: (turnOn) -> @$dock.toggleClass "auto-hide", turnOn
+  toggleAutoHide: (turnOn) -> @$dock.toggleClass 'auto-hide', turnOn
 
   show: -> @$dock.removeClass 'initiallyHidden'

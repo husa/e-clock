@@ -16,7 +16,7 @@ class SettingsView
     @$autoHideDock = @$el.find '.settings-autohide-dock'
     @$fonts = @$el.find '.settings-font-family-item'
     @$fontSize = @$el.find '.settings-font-size-item'
-    @key = 'settings_data';
+    @key = 'settings_data'
 
     @handle()
     @initAbout()
@@ -114,7 +114,7 @@ class SettingsView
     @updateAppearanceColor(@$bgColors, color, '#fefefe')
 
   updateAppearanceColor: (nodes, color, defaultColor) ->
-    color ?= defaultColor;
+    color ?= defaultColor
     for el in nodes.get()
       el.classList.remove 'active'
       el.classList.add 'active' if el.dataset.color is color
@@ -143,27 +143,27 @@ class SettingsView
 
   handleTimeFormat: ->
     @$timeFormat.on 'mousedown', =>
-      checked = !@$timeFormat.find('input').get(0).checked
+      checked = not @$timeFormat.find('input').get(0).checked
       app.settingsStorage.update('use24format', checked)
 
   handleDateDisplay: ->
     @$dateDisplay.on 'mousedown', =>
-      checked = !@$dateDisplay.find('input').get(0).checked
+      checked = not @$dateDisplay.find('input').get(0).checked
       app.settingsStorage.update('displayDate', checked)
 
   handleWeatherDisplay: ->
     @$weatherDisplay.on 'mousedown', =>
-      checked = !@$weatherDisplay.find('input').get(0).checked
+      checked = not @$weatherDisplay.find('input').get(0).checked
       app.settingsStorage.update('displayWeather', checked)
 
   handleDelimeterBlinking: ->
     @$delimeterBlinking.on 'mousedown', =>
-      checked = !@$delimeterBlinking.find('input').get(0).checked
+      checked = not @$delimeterBlinking.find('input').get(0).checked
       app.settingsStorage.update('delimeterBlinking', checked)
 
   handleAutoHideDock: ->
     @$autoHideDock.on 'mousedown', =>
-      checked = !@$autoHideDock.find('input').get(0).checked
+      checked = not @$autoHideDock.find('input').get(0).checked
       app.settingsStorage.update('autoHideDock', checked)
 
   handleColor: ->
@@ -206,7 +206,7 @@ class SettingsView
       app.settingsStorage.update('fontSize', value)
 
   initAbout: ->
-    manifest = chrome.runtime.getManifest();
+    manifest = chrome.runtime.getManifest()
     @$el.find('.settings-about-name').html manifest.name
     @$el.find('.settings-about-version').html "v#{manifest.version}"
     @$el.find('.settings-about-rate').get(0).href = "https://chrome.google.com/webstore/detail/#{chrome.runtime.id}"
