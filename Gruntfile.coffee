@@ -20,12 +20,9 @@ module.exports = ->
       stylus:
         files: paths.stylusall
         tasks: ['stylus:dev']
-      coffeeMain:
+      coffee:
         files: paths.coffee
         tasks: ['coffeelint', 'coffee:dev']
-      coffeeTests:
-        files: 'src/tests/specs/coffee/**/*.coffee'
-        tasks: ['coffee:test', 'jasmine:main']
 
     stylus:
       dev:
@@ -46,9 +43,6 @@ module.exports = ->
           join: true
         files:
           'src/js/main.js': paths.coffee
-      test:
-        files:
-          'src/tests/specs/mainSpec.js': 'src/tests/specs/coffee/*.coffee'
       build:
         options:
           sourceMap: false
@@ -103,21 +97,6 @@ module.exports = ->
           mode: 'zip'
         src: ['dist/**']
 
-    jasmine:
-      dev:
-        src: 'src/js/main.js'
-        options:
-          specs: 'src/tests/specs/*Spec.js'
-          helpers: 'src/tests/specs/*Helper.js'
-          # template: 'src/template.tpl'
-          keepRunner: true
-      build:
-        src: 'dist/js/main.js'
-        options:
-          specs: 'src/tests/specs/*Spec.js'
-          helpers: 'src/tests/specs/*Helper.js'
-
-
 
   # Load the plugins
   @loadNpmTasks 'grunt-contrib-watch'
@@ -126,7 +105,6 @@ module.exports = ->
   @loadNpmTasks 'grunt-contrib-copy'
   @loadNpmTasks 'grunt-contrib-compress'
   @loadNpmTasks 'grunt-contrib-coffee'
-  @loadNpmTasks 'grunt-contrib-jasmine'
   @loadNpmTasks 'grunt-coffeelint'
 
   @registerTask 'build', [
