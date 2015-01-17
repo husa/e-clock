@@ -8,10 +8,10 @@ class DockIcon
     @handleClick()
 
   handleClick: ->
-    @$el.on 'mousedown', (e) =>
-      url = @dataset.url
-      return if not url
-      if @isSettingsIcon
+    self = this
+    @$el.on 'mousedown', (e) ->
+      return if not url = @dataset.url
+      if self.isSettingsIcon
         app.settingsView.toggle()
       else
         if e.metaKey or e.ctrlKey or e.button is 1

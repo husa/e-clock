@@ -105,7 +105,7 @@ class Weather
     document.importNode $node.get(0), true
 
   updateWeather: ->
-    @toggleWeather data.displayWeather
+    @toggleWeather @data.displayWeather
     @scaleForecast()
 
   scaleForecast: ->
