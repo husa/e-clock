@@ -8,12 +8,12 @@ class App
 
   ready: ->
     @settingsStorage.loaded.then ->
-        app.init()
-      , ->
-        # no setting were loaded
-        # do intro here
-        app.init()
-        app.generateDefaultSettings()
+      app.init()
+    , ->
+      # no setting were loaded
+      # do intro here
+      app.init()
+      app.generateDefaultSettings()
 
   generateDefaultSettings: -> return
 

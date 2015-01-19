@@ -13,13 +13,15 @@
   },
   "homepage": "https://github.com/husa/e-clock",
   "devDependencies": {
+    "coffeelint": "^1.8.1",
     "grunt": "^0.4.5",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-contrib-uglify": "^0.4.1",
-    "grunt-contrib-copy": "^0.5.0",
-    "grunt-contrib-compress": "^0.9.1",
+    "grunt-coffeelint": "0.0.13",
+    "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-coffee": "^0.12.0",
-    "grunt-contrib-jasmine": "^0.8.1",
-    "grunt-contrib-stylus": "^0.20.0"
+    "grunt-contrib-compress": "^0.9.1",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-stylus": "^0.20.0",
+    "grunt-contrib-uglify": "^0.4.1",
+    "grunt-contrib-watch": "^0.6.1"
   }
 }

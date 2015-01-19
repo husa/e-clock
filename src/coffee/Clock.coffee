@@ -7,26 +7,26 @@ class Clock
     @$delimeter = @$clock.find '.delimeter'
     @$ampm = @$clock.find '.ampm'
     @$date = @$clock.find '.date'
-    @use24 = true;
-    @displayDate = true;
+    @use24 = true
+    @displayDate = true
 
-    @updateTime();
+    @updateTime()
     @interval = window.setInterval @updateTime.bind(this), 1000
 
   show: -> @$clock.removeClass 'initiallyHidden'
 
   update: (data) ->
-    @updateFormat(data.use24format)
-    @updateDateDisplay(data.displayDate)
-    @updateDelimeter(data.delimeterBlinking)
-    @updateFontFamily(data.fontFamily)
-    @updateFontSize(data.fontSize)
+    @updateFormat data.use24format
+    @updateDateDisplay data.displayDate
+    @updateDelimeter data.delimeterBlinking
+    @updateFontFamily data.fontFamily
+    @updateFontSize data.fontSize
 
   updateTime: (force) ->
     return unless date.timeHasChanged() or force
     @$hours.html date.getHours(@use24)
     @$minutes.html date.getMinutes()
-    @$ampm.html if !@use24 then date.getAmPm() else ''
+    @$ampm.html if not @use24 then date.getAmPm() else ''
     @$date.html if @displayDate then date.getFullDate() else ''
     date.updateChangedTime()
 
@@ -45,4 +45,4 @@ class Clock
     @$clock.get(0).style.fontFamily = font
 
   updateFontSize: (fontSize = 12) ->
-    @$clock.get(0).style.fontSize = "#{fontSize}em";
+    @$clock.get(0).style.fontSize = "#{fontSize}em"

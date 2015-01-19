@@ -53,5 +53,5 @@ class $
     elem = elem.get(0) if elem instanceof $
     el.appendChild(elem) for el in @els
 
-  parent: () ->
+  parent: ->
     return $(@els[0].parentNode)
