@@ -6,7 +6,7 @@ class Weather
     type: 'accurate'# like
     location:
       enableHighAccuracy: false
-      timeout: 500
+      timeout: 1000
       maximumAge: 1000 * 60 * 60 # 1 hour
     locationCacheAge: 30 * 60 * 1000
     weatherCacheAge: 30 * 60 * 1000
