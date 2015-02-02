@@ -200,5 +200,8 @@
     },
     "i18nWeather50" : {
         "message" : "Mist"
+    },
+    "i18nWeatherErrorMsg" : {
+      "message" : "There was an error loading weather forecast"
     }
 }

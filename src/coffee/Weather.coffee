@@ -31,8 +31,9 @@ class Weather
       .then @displayWeather.bind this
       .then => @initialized = true
       .then => @update @data
-      .catch (err) ->
+      .catch (err) =>
         log err
+        @showError err
 
   getUrl: ->
     @getLocation().then (location) =>
@@ -120,3 +121,6 @@ class Weather
 
   processData: ->
     config.units = if @data.temperatureScale is 'f' then 'imperial' else 'metric'
+
+  showError: (err) ->
+    @$el.find('.weather-error').removeClass('hidden').addClass('show').html chrome.i18n.getMessage 'i18nWeatherErrorMsg'
