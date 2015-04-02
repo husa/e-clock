@@ -8,6 +8,7 @@ class SettingsView
     @$dockSettings = @$el.find '.settings-dock'
     @$colors = @$el.find '.settings-color-item'
     @$bgColors = @$el.find '.settings-background-color-item'
+    @$bgPatterns = @$el.find '.settings-pattern-item'
     @$bgGradients = @$el.find '.settings-background-gradient-item'
     @$bgGradientAngles = @$el.find '.settings-background-gradient-angle-item'
     @$timeFormat = @$el.find '.settings-time-format'
@@ -33,6 +34,7 @@ class SettingsView
     @handleAutoHideDock()
     @handleColor()
     @handleBackgroundColor()
+    @handleBackgroundPattern()
     @handleBackgroundGradient()
     @handleBackgroundGradientAngle()
     @handleFontFamily()
@@ -47,6 +49,7 @@ class SettingsView
     @updateAutoHideDock(data.autoHideDock)
     @updateColor(data.color)
     @updateBackgroundColor(data.backgroundColor)
+    @updateBackgroundPattern(data.backgroundPattern)
     @updateBackgroundGradient(data.backgroundGradient)
     @updateBackgroundGradientAngle(data.backgroundGradientAngle)
     @updateFontFamily(data.fontFamily)
@@ -117,6 +120,12 @@ class SettingsView
       el.classList.add 'active' if el.dataset.color is color
     return this
 
+  updateBackgroundPattern: (id) ->
+    for el in @$bgPatterns.get()
+      el.classList.remove 'active'
+      el.classList.add 'active' if el.dataset.id is id
+    return this
+
   updateBackgroundGradient: (gradient) ->
     for el in @$bgGradients.get()
       el.classList.remove 'active'
@@ -178,6 +187,12 @@ class SettingsView
       color = this.dataset.color
       app.settingsStorage.update('backgroundPriority', 'color', {silent : true})
       app.settingsStorage.update('backgroundColor', color)
+
+  handleBackgroundPattern: ->
+    @$bgPatterns.on 'click', ->
+      id = this.dataset.id
+      app.settingsStorage.update('backgroundPriority', 'pattern', {silent : true})
+      app.settingsStorage.update('backgroundPattern', id)
 
   handleBackgroundGradient: ->
     @$bgGradients.on 'click', ->

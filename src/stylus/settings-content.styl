@@ -57,6 +57,24 @@
     border solid 3px main-color//#27AE60
     box-shadow none
 
+.settings-pattern
+  text-align: center
+
+  .settings-pattern-item
+    text-align: center
+    width: 100px
+    height: 100px
+    margin: 1px
+    cursor pointer
+    border solid 3px rgba(0,0,0,0)
+    transition border 200ms
+    background-position: center center
+    background-size: cover
+    background-repeat: no-repeat
+
+    &.active
+      border solid 3px main-color//#27AE60
+
 .settings-background-gradient-angle-item
   padding-top 2px
   fill #aaa
