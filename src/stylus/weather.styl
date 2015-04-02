@@ -21,6 +21,7 @@
   .day-weather
     display: inline-block
     width: 100px
+    transition: transform 300ms
 
     > *
       vertical-align: top
@@ -29,6 +30,9 @@
       width: 0px
       float: left
       visibility: hidden
+
+    &:hover
+      transform: scale(1.2)
 
   .day-weather:nth-of-type(2)
     transform: scale(1.5)
