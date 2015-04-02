@@ -319,6 +319,11 @@
         </li>
         <li
           class="settings-tab"
+          data-i18n="i18nWeather"
+          data-target=".settings-weather">
+        </li>
+        <li
+          class="settings-tab"
           data-i18n="i18nAbout"
           data-target=".settings-about">
         </li>
@@ -335,10 +340,6 @@
         <div class="settings-item settings-display-date">
           <input type="checkbox" />
           <span data-i18n="i18nShowDate"></span>
-        </div>
-        <div class="settings-item settings-display-weather">
-          <input type="checkbox" />
-          <span data-i18n="i18nShowWeather"></span>
         </div>
         <div class="settings-item settings-delimeter-blinking">
           <input type="checkbox" checked />
@@ -543,6 +544,24 @@
         <div class="settings-item settings-font-size">
             <span data-i18n="i18nFontSize"></span><br>
             <input class="settings-font-size-item" type="range" min="4" max="25" value="10" step=".1">
+        </div>
+      </div>
+
+      <div class="settings-tab-content settings-weather hidden">
+        <div class="settings-item settings-display-weather">
+          <input type="checkbox" />
+          <span data-i18n="i18nShowWeather"></span>
+        </div>
+        <div class="settings-item settings-weather-temperature-units">
+          <span data-i18n="i18nTemperatureUnits"></span><br>
+          <span class="settings-weather-temperature-units-celcius" >
+            <input type="radio" name="temperature-units" id="temperature-units-c" value="c"/>
+            <label for="temperature-units-c" data-i18n="i18nTemperatureCelcius"></label>
+          </span>
+          <span class="settings-weather-temperature-units-fahrenheit">
+            <input type="radio" name="temperature-units" id="temperature-units-f" value="f"/>
+            <label for="temperature-units-f" data-i18n="i18nTemperatureFahrenheit"></label>
+          </span>
         </div>
       </div>
 

@@ -114,9 +114,6 @@
     "i18nShowDate" : {
         "message" : "Date"
     },
-    "i18nShowWeather" : {
-        "message" : "Weather"
-    },
     "i18nDay0" : {
         "message" : "Sunday"
     },
@@ -173,6 +170,21 @@
     },
     "i18nMonth11" : {
         "message" : "December"
+    },
+    "i18nWeather" : {
+        "message" : "Weather"
+    },
+    "i18nShowWeather" : {
+        "message" : "Weather"
+    },
+    "i18nTemperatureUnits" : {
+        "message" : "Temperature Units"
+    },
+    "i18nTemperatureCelcius" : {
+        "message" : "C°"
+    },
+    "i18nTemperatureFahrenheit" : {
+        "message" : "F°"
     },
     "i18nWeather01" : {
         "message" : "Sunny"

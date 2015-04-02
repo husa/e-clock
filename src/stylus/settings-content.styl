@@ -123,6 +123,52 @@
     &:focus::-webkit-slider-runnable-track
       background #ccc
 
+.settings-weather
+  .settings-weather-temperature-units
+    .settings-weather-temperature-units-celcius,
+    .settings-weather-temperature-units-fahrenheit
+      margin: 0 10px
+
+      input[type=radio]
+        display: none
+
+        & + label
+          position: relative
+          padding-left: 25px
+          cursor: pointer
+
+          &:before, &:after
+            transition: all 200ms;
+
+          &:before
+            content: ' '
+            position: absolute
+            top: 0
+            left: 0
+            width: 18px
+            height: 18px
+            background: #fff
+            border: solid 1px
+            border-color: #999
+            border-radius: 3px
+
+        &:checked + label
+          &:before
+            background: #009688
+            border-color: #00877A
+          &:after
+            content: '\2713'
+            position: absolute
+            top: 0
+            left: 0
+            width: 20px
+            height: 20px
+            line-height: 20px
+            text-align: center
+            color: #FFF
+            font-size: 1.3em
+
+
 .settings-about
   text-align center
 
