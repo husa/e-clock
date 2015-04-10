@@ -74,6 +74,9 @@
         "message" : "Background Color",
         "description" : "Background Color settings label"
     },
+    "i18nBackgroundPattern": {
+      "message" : "Background Pattern"
+    },
     "i18nBackgroundGradient" : {
         "message" : "Background Gradient",
         "description" : "Background Gradient settings label"
@@ -113,9 +116,6 @@
     },
     "i18nShowDate" : {
         "message" : "Date"
-    },
-    "i18nShowWeather" : {
-        "message" : "Weather"
     },
     "i18nDay0" : {
         "message" : "Sunday"
@@ -174,6 +174,21 @@
     "i18nMonth11" : {
         "message" : "December"
     },
+    "i18nWeather" : {
+        "message" : "Weather"
+    },
+    "i18nShowWeather" : {
+        "message" : "Weather"
+    },
+    "i18nTemperatureUnits" : {
+        "message" : "Temperature Units"
+    },
+    "i18nTemperatureCelcius" : {
+        "message" : "C°"
+    },
+    "i18nTemperatureFahrenheit" : {
+        "message" : "F°"
+    },
     "i18nWeather01" : {
         "message" : "Sunny"
     },
@@ -200,5 +215,8 @@
     },
     "i18nWeather50" : {
         "message" : "Mist"
+    },
+    "i18nWeatherErrorMsg" : {
+      "message" : "There was an error loading weather forecast"
     }
 }

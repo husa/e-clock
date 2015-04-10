@@ -24,6 +24,8 @@ class App
     @settingsView = new SettingsView
     @appearanceView = new AppearanceView
     @weather = new Weather
+    # not ready yet
+    # @quotes = new Quotes
 
     @updateViews()
     @showViews()
@@ -36,6 +38,7 @@ class App
     @appearanceView.update data
     @settingsView.update data
     @weather.update data
+    # @quotes.update data
 
   showViews: ->
     @clock.show()

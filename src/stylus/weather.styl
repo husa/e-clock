@@ -21,6 +21,7 @@
   .day-weather
     display: inline-block
     width: 100px
+    transition: transform 300ms
 
     > *
       vertical-align: top
@@ -29,6 +30,12 @@
       width: 0px
       float: left
       visibility: hidden
+
+    // disable this as it's causing a lot of reflows
+    // need to rethink
+    //
+    // &:hover
+    //   transform: scale(1.2)
 
   .day-weather:nth-of-type(2)
     transform: scale(1.5)
@@ -46,3 +53,15 @@
 
   .temperature-min
     opacity: .7
+
+  .weather-error
+    line-height: initial
+    font-size: 16pt
+    font-family: 'Roboto', sans-serif
+
+    &.hidden
+      display: none
+
+    &.show
+      display: block
+

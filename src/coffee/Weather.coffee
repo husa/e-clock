@@ -1,7 +1,7 @@
 class Weather
   config =
     mode: 'json'
-    units: 'metric'# imperial
+    units: 'internal'# get temp in kelvin
     cnt: '5'
     type: 'accurate'# like
     location:
@@ -31,8 +31,9 @@ class Weather
       .then @displayWeather.bind this
       .then => @initialized = true
       .then => @update @data
-      .catch (err) ->
+      .catch (err) =>
         log err
+        @showError err
 
   getUrl: ->
     @getLocation().then (location) =>
@@ -76,10 +77,10 @@ class Weather
     data
 
   displayWeather: (data) ->
-    setTimeout =>
-      @renderCity data.city
-      @renderForecast data.list
-    , 0
+    # setTimeout =>
+    @renderCity data.city
+    @renderForecast data.list
+    # , 0
 
   renderCity: (city) ->
     @$el.find('.weather-city').html "#{city.name}, #{city.country}"
@@ -90,8 +91,8 @@ class Weather
     $forecast.append day for day in $days
 
   getDayData: (day) ->
-    min: Math.round day.temp.min
-    max: Math.round day.temp.max
+    min: @convertTemperature day.temp.min
+    max: @convertTemperature day.temp.max
     icon: day.weather[0].icon.match(/\d+/)[0]
     text: day.weather[0].main
     description: day.weather[0].description
@@ -106,6 +107,8 @@ class Weather
 
   updateWeather: ->
     @toggleWeather @data.displayWeather
+    if @data.displayWeather
+      @updateTemperatureUnits()
     @scaleForecast()
 
   scaleForecast: ->
@@ -118,5 +121,23 @@ class Weather
     else
       @$el.removeClass('show').addClass('hidden')
 
-  processData: ->
-    config.units = if @data.temperatureScale is 'f' then 'imperial' else 'metric'
+  showError: (err) ->
+    @$el.find('.weather-error').removeClass('hidden').addClass('show').html chrome.i18n.getMessage 'i18nWeatherErrorMsg'
+
+  processData: -> return
+
+  updateTemperatureUnits: ->
+    @getUrl()
+      .then @getWeather
+      .then JSON.parse
+      .then (data) =>
+        @updateDayTemp @getDayData(day), index for day, index in data.list
+
+  updateDayTemp: (day, index) ->
+    $node = $ $('.day-weather').get index + 1
+    $node.find('.temperature-min').html "#{day.min}°"
+    $node.find('.temperature-max').html "#{day.max}°"
+
+  convertTemperature: (kelvin) ->
+    deg = @data.temperatureUnits or 'c'
+    Math.round if deg is 'c' then kelvin - 273.15 else kelvin * 9 / 5 - 459.67

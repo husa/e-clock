@@ -1,5 +1,6 @@
 class SettingsView
   constructor: ->
+    @key = 'settings_data'
     @$el = $ '.settings-popup'
     @$tabs = @$el.find '.settings-tabs'
     @$tabLinks = @$tabs.find '.settings-tab'
@@ -7,21 +8,21 @@ class SettingsView
     @$dockSettings = @$el.find '.settings-dock'
     @$colors = @$el.find '.settings-color-item'
     @$bgColors = @$el.find '.settings-background-color-item'
+    @$bgPatterns = @$el.find '.settings-pattern-item'
     @$bgGradients = @$el.find '.settings-background-gradient-item'
     @$bgGradientAngles = @$el.find '.settings-background-gradient-angle-item'
     @$timeFormat = @$el.find '.settings-time-format'
     @$dateDisplay = @$el.find '.settings-display-date'
-    @$weatherDisplay = @$el.find '.settings-display-weather'
     @$delimeterBlinking = @$el.find '.settings-delimeter-blinking'
     @$autoHideDock = @$el.find '.settings-autohide-dock'
     @$fonts = @$el.find '.settings-font-family-item'
     @$fontSize = @$el.find '.settings-font-size-item'
-    @key = 'settings_data'
+    @$weatherDisplay = @$el.find '.settings-display-weather'
+    @$weatherTemperatureUnits = @$el.find '.settings-weather-temperature-units'
 
     @handle()
     @initAbout()
     @$dockSettings.append(app.dock.getSettings())
-
 
 
   handle: ->
@@ -29,28 +30,32 @@ class SettingsView
     @handleClose()
     @handleTimeFormat()
     @handleDateDisplay()
-    @handleWeatherDisplay()
     @handleDelimeterBlinking()
     @handleAutoHideDock()
     @handleColor()
     @handleBackgroundColor()
+    @handleBackgroundPattern()
     @handleBackgroundGradient()
     @handleBackgroundGradientAngle()
     @handleFontFamily()
     @handleFontSize()
+    @handleWeatherDisplay()
+    @handleWeatherTemperature()
 
   update: (data) ->
     @updateTimeFormat(data.use24format)
     @updateDateDisplay(data.displayDate)
-    @updateWeatherDisplay(data.displayWeather)
     @updateDelimeterBlinking(data.delimeterBlinking)
     @updateAutoHideDock(data.autoHideDock)
     @updateColor(data.color)
     @updateBackgroundColor(data.backgroundColor)
+    @updateBackgroundPattern(data.backgroundPattern)
     @updateBackgroundGradient(data.backgroundGradient)
     @updateBackgroundGradientAngle(data.backgroundGradientAngle)
     @updateFontFamily(data.fontFamily)
     @updateFontSize(data.fontSize)
+    @updateWeatherDisplay(data.displayWeather)
+    @updateWeatherTemperature(data.temperatureUnits)
 
   open: ->
     @enable()
@@ -91,11 +96,6 @@ class SettingsView
       addClass(if displayDate then 'enabled' else 'disabled').
       find('input').get(0).checked = displayDate
 
-  updateWeatherDisplay: (displayWeather = true) ->
-    @$weatherDisplay.removeClass('enabled', 'disabled').
-      addClass(if displayWeather then 'enabled' else 'disabled').
-      find('input').get(0).checked = displayWeather
-
   updateDelimeterBlinking: (delimeterBlinking = true) ->
     @$delimeterBlinking.removeClass('enabled', 'disabled').
       addClass(if delimeterBlinking then 'enabled' else 'disabled').
@@ -120,6 +120,12 @@ class SettingsView
       el.classList.add 'active' if el.dataset.color is color
     return this
 
+  updateBackgroundPattern: (id) ->
+    for el in @$bgPatterns.get()
+      el.classList.remove 'active'
+      el.classList.add 'active' if el.dataset.id is id
+    return this
+
   updateBackgroundGradient: (gradient) ->
     for el in @$bgGradients.get()
       el.classList.remove 'active'
@@ -141,6 +147,16 @@ class SettingsView
     if Math.round(value) isnt fontSize
       @$fontSize.get(0).value = fontSize
 
+  updateWeatherDisplay: (displayWeather = true) ->
+    @$weatherDisplay.removeClass('enabled', 'disabled').
+      addClass(if displayWeather then 'enabled' else 'disabled').
+      find('input').get(0).checked = displayWeather
+
+  updateWeatherTemperature: (temperatureUnits = 'c') ->
+    @$weatherTemperatureUnits.
+      find("#temperature-units-#{temperatureUnits}").get(0).
+      checked = true
+
   handleTimeFormat: ->
     @$timeFormat.on 'mousedown', =>
       checked = not @$timeFormat.find('input').get(0).checked
@@ -150,11 +166,6 @@ class SettingsView
     @$dateDisplay.on 'mousedown', =>
       checked = not @$dateDisplay.find('input').get(0).checked
       app.settingsStorage.update('displayDate', checked)
-
-  handleWeatherDisplay: ->
-    @$weatherDisplay.on 'mousedown', =>
-      checked = not @$weatherDisplay.find('input').get(0).checked
-      app.settingsStorage.update('displayWeather', checked)
 
   handleDelimeterBlinking: ->
     @$delimeterBlinking.on 'mousedown', =>
@@ -176,6 +187,12 @@ class SettingsView
       color = this.dataset.color
       app.settingsStorage.update('backgroundPriority', 'color', {silent : true})
       app.settingsStorage.update('backgroundColor', color)
+
+  handleBackgroundPattern: ->
+    @$bgPatterns.on 'click', ->
+      id = this.dataset.id
+      app.settingsStorage.update('backgroundPriority', 'pattern', {silent : true})
+      app.settingsStorage.update('backgroundPattern', id)
 
   handleBackgroundGradient: ->
     @$bgGradients.on 'click', ->
@@ -204,6 +221,15 @@ class SettingsView
       value = Math.round this.value
       prevValue = value
       app.settingsStorage.update('fontSize', value)
+
+  handleWeatherDisplay: ->
+    @$weatherDisplay.on 'mousedown', =>
+      checked = not @$weatherDisplay.find('input').get(0).checked
+      app.settingsStorage.update('displayWeather', checked)
+
+  handleWeatherTemperature: ->
+    @$weatherTemperatureUnits.find('input[type=radio]').on 'change', ->
+      app.settingsStorage.update 'temperatureUnits', @value
 
   initAbout: ->
     manifest = chrome.runtime.getManifest()
