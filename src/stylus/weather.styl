@@ -31,8 +31,11 @@
       float: left
       visibility: hidden
 
-    &:hover
-      transform: scale(1.2)
+    // disable this as it's causing a lot of reflows
+    // need to rethink
+    //
+    // &:hover
+    //   transform: scale(1.2)
 
   .day-weather:nth-of-type(2)
     transform: scale(1.5)
