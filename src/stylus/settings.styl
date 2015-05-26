@@ -1,4 +1,5 @@
 @import 'settings-content'
+@import 'settings-about'
 
 .settings-popup
   position fixed
@@ -87,6 +88,23 @@
         &:before
           height 5px
           background main-color
+
+.settings-close-icon
+  position absolute
+  top 0px
+  right 0px
+  width 50px
+  height 50px
+  font-size 2em
+  cursor pointer
+  text-align center
+  color lighten(font-color, 50%)
+  line-height 50px
+
+  &:hover
+    transition 300ms
+    color lighten(font-color, 20%)
+
 
 @-webkit-keyframes anim-open
   0%

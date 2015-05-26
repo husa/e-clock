@@ -5,6 +5,7 @@
 @import 'weather'
 @import 'footer'
 @import 'settings'
+@import 'accordion'
 @import 'quote'
 
 body, html
@@ -21,13 +22,23 @@ body
   font-size 16px
   overflow hidden
   background-color background-color
-  background-repeat: repeat
-  background-position: center center
+  // background-repeat: repeat
+  // background-position: center center
   color font-color
   fill font-color
 
-span
-  cursor default
+  &.pattern
+    background-repeat repeat
+    background-position center center
+
+  &.image
+    background-position center center
+    background-size cover
+
+
+
+// span
+//   cursor default
 
 *[data-alt]
   fancy-alt(0, 2)

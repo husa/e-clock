@@ -1,0 +1,28 @@
+.accordion
+  .accordion-label
+    text-align left
+    position relative
+    cursor inherit
+    *
+      cursor inherit
+
+    &:before
+      content '+'
+      float right
+      min-width 20px
+      text-align center
+      vertical-align middle
+
+  .accordion-content
+    cursor initial
+    display none
+    padding 15px 5px 0
+
+  &.open
+    .accordion-label
+      &:before
+        content '-'
+
+    .accordion-content
+      display block
+
