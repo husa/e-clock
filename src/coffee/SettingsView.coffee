@@ -1,5 +1,7 @@
 class SettingsView
   constructor: ->
+    @accordion = new SettingsAccordion
+
     @key = 'settings_data'
     @$el = $ '.settings-popup'
     @$tabs = @$el.find '.settings-tabs'
@@ -9,6 +11,7 @@ class SettingsView
     @$colors = @$el.find '.settings-color-item'
     @$bgColors = @$el.find '.settings-background-color-item'
     @$bgPatterns = @$el.find '.settings-pattern-item'
+    @$bgImages = @$el.find '.settings-background-image-item'
     @$bgGradients = @$el.find '.settings-background-gradient-item'
     @$bgGradientAngles = @$el.find '.settings-background-gradient-angle-item'
     @$timeFormat = @$el.find '.settings-time-format'
@@ -35,6 +38,7 @@ class SettingsView
     @handleColor()
     @handleBackgroundColor()
     @handleBackgroundPattern()
+    @handleBackgroundImage()
     @handleBackgroundGradient()
     @handleBackgroundGradientAngle()
     @handleFontFamily()
@@ -50,6 +54,7 @@ class SettingsView
     @updateColor(data.color)
     @updateBackgroundColor(data.backgroundColor)
     @updateBackgroundPattern(data.backgroundPattern)
+    @updateBackgroundImage(data.backgroundImage)
     @updateBackgroundGradient(data.backgroundGradient)
     @updateBackgroundGradientAngle(data.backgroundGradientAngle)
     @updateFontFamily(data.fontFamily)
@@ -126,6 +131,12 @@ class SettingsView
       el.classList.add 'active' if el.dataset.id is id
     return this
 
+  updateBackgroundImage: (id) ->
+    for el in @$bgImages.get()
+      el.classList.remove 'active'
+      el.classList.add 'active' if el.dataset.id is id
+    return this
+
   updateBackgroundGradient: (gradient) ->
     for el in @$bgGradients.get()
       el.classList.remove 'active'
@@ -193,6 +204,13 @@ class SettingsView
       id = this.dataset.id
       app.settingsStorage.update('backgroundPriority', 'pattern', {silent : true})
       app.settingsStorage.update('backgroundPattern', id)
+
+  handleBackgroundImage: ->
+    @$bgImages.on 'click', ->
+      id = this.dataset.id
+      app.settingsStorage.update('backgroundPriority', 'image', {silent : true})
+      app.settingsStorage.update('backgroundImage', id)
+
 
   handleBackgroundGradient: ->
     @$bgGradients.on 'click', ->

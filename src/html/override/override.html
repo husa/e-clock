@@ -351,143 +351,205 @@
           <span data-i18n="i18nAutoHideDock"></span>
         </div>
 
-        <div class="settings-item settings-color">
-          <span data-i18n="i18nTextColor"></span><br>
-          <!-- ["1abc9c", "2ecc71", "3498db", "9b59b6", "34495e", "16a085", "27ae60", "2980b9", "8e44ad", "2c3e50", "f1c40f", "e67e22", "e74c3c", "ecf0f1", "95a5a6", "f39c12", "d35400", "c0392b", "bdc3c7", "7f8c8d"] -->
+        <div class="settings-item settings-color accordion">
+          <div class="accordion-label">
+            <span data-i18n="i18nTextColor"></span>
+          </div>
+          <div class="accordion-content">
+            <!-- <span data-i18n="i18nTextColor"></span><br> -->
 
-          <span class="settings-color-item" data-color="#1abc9c" style="background-color:#1abc9c"></span>
-          <span class="settings-color-item" data-color="#2ecc71" style="background-color:#2ecc71"></span>
-          <span class="settings-color-item" data-color="#3498db" style="background-color:#3498db"></span>
-          <span class="settings-color-item" data-color="#9b59b6" style="background-color:#9b59b6"></span>
-          <span class="settings-color-item" data-color="#34495e" style="background-color:#34495e"></span>
-          <span class="settings-color-item" data-color="#16a085" style="background-color:#16a085"></span>
-          <span class="settings-color-item" data-color="#27ae60" style="background-color:#27ae60"></span>
-          <span class="settings-color-item" data-color="#2980b9" style="background-color:#2980b9"></span>
-          <span class="settings-color-item" data-color="#8e44ad" style="background-color:#8e44ad"></span>
-          <span class="settings-color-item" data-color="#2c3e50" style="background-color:#2c3e50"></span>
-          <span class="settings-color-item" data-color="#f1c40f" style="background-color:#f1c40f"></span>
-          <span class="settings-color-item" data-color="#e67e22" style="background-color:#e67e22"></span>
-          <span class="settings-color-item" data-color="#e74c3c" style="background-color:#e74c3c"></span>
-          <span class="settings-color-item" data-color="#ecf0f1" style="background-color:#ecf0f1"></span>
-          <span class="settings-color-item" data-color="#95a5a6" style="background-color:#95a5a6"></span>
-          <span class="settings-color-item" data-color="#f39c12" style="background-color:#f39c12"></span>
-          <span class="settings-color-item" data-color="#d35400" style="background-color:#d35400"></span>
-          <span class="settings-color-item" data-color="#c0392b" style="background-color:#c0392b"></span>
-          <span class="settings-color-item" data-color="#bdc3c7" style="background-color:#bdc3c7"></span>
-          <span class="settings-color-item" data-color="#7f8c8d" style="background-color:#7f8c8d"></span>
-          <span class="settings-color-item" data-color="#555555" style="background-color:#555555"></span>
-          <span class="settings-color-item" data-color="#fefefe" style="background-color:#fefefe"></span>
+            <!-- ["1abc9c", "2ecc71", "3498db", "9b59b6", "34495e", "16a085", "27ae60", "2980b9", "8e44ad", "2c3e50", "f1c40f", "e67e22", "e74c3c", "ecf0f1", "95a5a6", "f39c12", "d35400", "c0392b", "bdc3c7", "7f8c8d"] -->
+
+            <span class="settings-color-item" data-color="#1abc9c" style="background-color:#1abc9c"></span>
+            <span class="settings-color-item" data-color="#2ecc71" style="background-color:#2ecc71"></span>
+            <span class="settings-color-item" data-color="#3498db" style="background-color:#3498db"></span>
+            <span class="settings-color-item" data-color="#9b59b6" style="background-color:#9b59b6"></span>
+            <span class="settings-color-item" data-color="#34495e" style="background-color:#34495e"></span>
+            <span class="settings-color-item" data-color="#16a085" style="background-color:#16a085"></span>
+            <span class="settings-color-item" data-color="#27ae60" style="background-color:#27ae60"></span>
+            <span class="settings-color-item" data-color="#2980b9" style="background-color:#2980b9"></span>
+            <span class="settings-color-item" data-color="#8e44ad" style="background-color:#8e44ad"></span>
+            <span class="settings-color-item" data-color="#2c3e50" style="background-color:#2c3e50"></span>
+            <span class="settings-color-item" data-color="#f1c40f" style="background-color:#f1c40f"></span>
+            <span class="settings-color-item" data-color="#e67e22" style="background-color:#e67e22"></span>
+            <span class="settings-color-item" data-color="#e74c3c" style="background-color:#e74c3c"></span>
+            <span class="settings-color-item" data-color="#ecf0f1" style="background-color:#ecf0f1"></span>
+            <span class="settings-color-item" data-color="#95a5a6" style="background-color:#95a5a6"></span>
+            <span class="settings-color-item" data-color="#f39c12" style="background-color:#f39c12"></span>
+            <span class="settings-color-item" data-color="#d35400" style="background-color:#d35400"></span>
+            <span class="settings-color-item" data-color="#c0392b" style="background-color:#c0392b"></span>
+            <span class="settings-color-item" data-color="#bdc3c7" style="background-color:#bdc3c7"></span>
+            <span class="settings-color-item" data-color="#7f8c8d" style="background-color:#7f8c8d"></span>
+            <span class="settings-color-item" data-color="#555555" style="background-color:#555555"></span>
+            <span class="settings-color-item" data-color="#fefefe" style="background-color:#fefefe"></span>
+          </div>
         </div>
-        <div class="settings-item settings-background-color">
-          <span data-i18n="i18nBackgroundColor"></span><br>
-          <span class="settings-background-color-item" data-color="#1abc9c" style="background-color:#1abc9c"></span>
-          <span class="settings-background-color-item" data-color="#2ecc71" style="background-color:#2ecc71"></span>
-          <span class="settings-background-color-item" data-color="#3498db" style="background-color:#3498db"></span>
-          <span class="settings-background-color-item" data-color="#9b59b6" style="background-color:#9b59b6"></span>
-          <span class="settings-background-color-item" data-color="#34495e" style="background-color:#34495e"></span>
-          <span class="settings-background-color-item" data-color="#16a085" style="background-color:#16a085"></span>
-          <span class="settings-background-color-item" data-color="#27ae60" style="background-color:#27ae60"></span>
-          <span class="settings-background-color-item" data-color="#2980b9" style="background-color:#2980b9"></span>
-          <span class="settings-background-color-item" data-color="#8e44ad" style="background-color:#8e44ad"></span>
-          <span class="settings-background-color-item" data-color="#2c3e50" style="background-color:#2c3e50"></span>
-          <span class="settings-background-color-item" data-color="#f1c40f" style="background-color:#f1c40f"></span>
-          <span class="settings-background-color-item" data-color="#e67e22" style="background-color:#e67e22"></span>
-          <span class="settings-background-color-item" data-color="#e74c3c" style="background-color:#e74c3c"></span>
-          <span class="settings-background-color-item" data-color="#ecf0f1" style="background-color:#ecf0f1"></span>
-          <span class="settings-background-color-item" data-color="#95a5a6" style="background-color:#95a5a6"></span>
-          <span class="settings-background-color-item" data-color="#f39c12" style="background-color:#f39c12"></span>
-          <span class="settings-background-color-item" data-color="#d35400" style="background-color:#d35400"></span>
-          <span class="settings-background-color-item" data-color="#c0392b" style="background-color:#c0392b"></span>
-          <span class="settings-background-color-item" data-color="#bdc3c7" style="background-color:#bdc3c7"></span>
-          <span class="settings-background-color-item" data-color="#7f8c8d" style="background-color:#7f8c8d"></span>
-          <span class="settings-background-color-item" data-color="#555555" style="background-color:#555555"></span>
-          <span class="settings-background-color-item" data-color="#fefefe" style="background-color:#fefefe"></span>
+        <div class="settings-item settings-background-color accordion">
+          <div class="accordion-label">
+            <span data-i18n="i18nBackgroundColor"></span>
+          </div>
+          <div class="accordion-content">
+            <!-- <span data-i18n="i18nBackgroundColor"></span><br> -->
+            <span class="settings-background-color-item" data-color="#1abc9c" style="background-color:#1abc9c"></span>
+            <span class="settings-background-color-item" data-color="#2ecc71" style="background-color:#2ecc71"></span>
+            <span class="settings-background-color-item" data-color="#3498db" style="background-color:#3498db"></span>
+            <span class="settings-background-color-item" data-color="#9b59b6" style="background-color:#9b59b6"></span>
+            <span class="settings-background-color-item" data-color="#34495e" style="background-color:#34495e"></span>
+            <span class="settings-background-color-item" data-color="#16a085" style="background-color:#16a085"></span>
+            <span class="settings-background-color-item" data-color="#27ae60" style="background-color:#27ae60"></span>
+            <span class="settings-background-color-item" data-color="#2980b9" style="background-color:#2980b9"></span>
+            <span class="settings-background-color-item" data-color="#8e44ad" style="background-color:#8e44ad"></span>
+            <span class="settings-background-color-item" data-color="#2c3e50" style="background-color:#2c3e50"></span>
+            <span class="settings-background-color-item" data-color="#f1c40f" style="background-color:#f1c40f"></span>
+            <span class="settings-background-color-item" data-color="#e67e22" style="background-color:#e67e22"></span>
+            <span class="settings-background-color-item" data-color="#e74c3c" style="background-color:#e74c3c"></span>
+            <span class="settings-background-color-item" data-color="#ecf0f1" style="background-color:#ecf0f1"></span>
+            <span class="settings-background-color-item" data-color="#95a5a6" style="background-color:#95a5a6"></span>
+            <span class="settings-background-color-item" data-color="#f39c12" style="background-color:#f39c12"></span>
+            <span class="settings-background-color-item" data-color="#d35400" style="background-color:#d35400"></span>
+            <span class="settings-background-color-item" data-color="#c0392b" style="background-color:#c0392b"></span>
+            <span class="settings-background-color-item" data-color="#bdc3c7" style="background-color:#bdc3c7"></span>
+            <span class="settings-background-color-item" data-color="#7f8c8d" style="background-color:#7f8c8d"></span>
+            <span class="settings-background-color-item" data-color="#555555" style="background-color:#555555"></span>
+            <span class="settings-background-color-item" data-color="#fefefe" style="background-color:#fefefe"></span>
+          </div>
         </div>
-        <div class="settings-item settings-background-gradient">
-          <span data-i18n="i18nBackgroundGradient"></span><br>
-          <span class="settings-background-gradient-item" data-gradient="#348F50,#56B4D3" style="background:linear-gradient(90deg, #348F50 10%, #56B4D3 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#3CA55C,#B5AC49" style="background:linear-gradient(90deg, #3CA55C 10%, #B5AC49 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#003973,#E5E5BE" style="background:linear-gradient(90deg, #003973 10%, #E5E5BE 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#E55D87,#5FC3E4" style="background:linear-gradient(90deg, #E55D87 10%, #5FC3E4 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#403B4A,#E7E9BB" style="background:linear-gradient(90deg, #403B4A 10%, #E7E9BB 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#F09819,#EDDE5D" style="background:linear-gradient(90deg, #F09819 10%, #EDDE5D 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#FF512F,#DD2476" style="background:linear-gradient(90deg, #FF512F 10%, #DD2476 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#AA076B,#61045F" style="background:linear-gradient(90deg, #AA076B 10%, #61045F 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#1A2980,#26D0CE" style="background:linear-gradient(90deg, #1A2980 10%, #26D0CE 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#FF512F,#F09819" style="background:linear-gradient(90deg, #FF512F 10%, #F09819 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#1D2B64,#F8CDDA" style="background:linear-gradient(90deg, #1D2B64 10%, #F8CDDA 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#4CB8C4,#3CD3AD" style="background:linear-gradient(90deg, #4CB8C4 10%, #3CD3AD 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#DD5E89,#F7BB97" style="background:linear-gradient(90deg, #DD5E89 10%, #F7BB97 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#EB3349,#F45C43" style="background:linear-gradient(90deg, #EB3349 10%, #F45C43 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#1D976C,#93F9B9" style="background:linear-gradient(90deg, #1D976C 10%, #93F9B9 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#FF8008,#FFC837" style="background:linear-gradient(90deg, #FF8008 10%, #FFC837 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#16222A,#3A6073" style="background:linear-gradient(90deg, #16222A 10%, #3A6073 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#1F1C2C,#928DAB" style="background:linear-gradient(90deg, #1F1C2C 10%, #928DAB 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#614385,#516395" style="background:linear-gradient(90deg, #614385 10%, #516395 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#4776E6,#8E54E9" style="background:linear-gradient(90deg, #4776E6 10%, #8E54E9 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#085078,#85D8CE" style="background:linear-gradient(90deg, #085078 10%, #85D8CE 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#2BC0E4,#EAECC6" style="background:linear-gradient(90deg, #2BC0E4 10%, #EAECC6 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#134E5E,#71B280" style="background:linear-gradient(90deg, #134E5E 10%, #71B280 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#5C258D,#4389A2" style="background:linear-gradient(90deg, #5C258D 10%, #4389A2 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#757F9A,#D7DDE8" style="background:linear-gradient(90deg, #757F9A 10%, #D7DDE8 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#232526,#414345" style="background:linear-gradient(90deg, #232526 10%, #414345 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#1CD8D2,#93EDC7" style="background:linear-gradient(90deg, #1CD8D2 10%, #93EDC7 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#3D7EAA,#FFE47A" style="background:linear-gradient(90deg, #3D7EAA 10%, #FFE47A 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#283048,#859398" style="background:linear-gradient(90deg, #283048 10%, #859398 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#24C6DC,#514A9D" style="background:linear-gradient(90deg, #24C6DC 10%, #514A9D 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#DC2424,#4A569D" style="background:linear-gradient(90deg, #DC2424 10%, #4A569D 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#ED4264,#FFEDBC" style="background:linear-gradient(90deg, #ED4264 10%, #FFEDBC 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#DAE2F8,#D6A4A4" style="background:linear-gradient(90deg, #DAE2F8 10%, #D6A4A4 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#ECE9E6,#FFFFFF" style="background:linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#7474BF,#348AC7" style="background:linear-gradient(90deg, #7474BF 10%, #348AC7 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#EC6F66,#F3A183" style="background:linear-gradient(90deg, #EC6F66 10%, #F3A183 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#5f2c82,#49a09d" style="background:linear-gradient(90deg, #5f2c82 10%, #49a09d 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#C04848,#480048" style="background:linear-gradient(90deg, #C04848 10%, #480048 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#e43a15,#e65245" style="background:linear-gradient(90deg, #e43a15 10%, #e65245 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#414d0b,#727a17" style="background:linear-gradient(90deg, #414d0b 10%, #727a17 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#FC354C,#0ABFBC" style="background:linear-gradient(90deg, #FC354C 10%, #0ABFBC 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#4b6cb7,#182848" style="background:linear-gradient(90deg, #4b6cb7 10%, #182848 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#f857a6,#ff5858" style="background:linear-gradient(90deg, #f857a6 10%, #ff5858 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#a73737,#7a2828" style="background:linear-gradient(90deg, #a73737 10%, #7a2828 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#d53369,#cbad6d" style="background:linear-gradient(90deg, #d53369 10%, #cbad6d 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#e9d362,#333333" style="background:linear-gradient(90deg, #e9d362 10%, #333333 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#DE6262,#FFB88C" style="background:linear-gradient(90deg, #DE6262 10%, #FFB88C 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#666600,#999966" style="background:linear-gradient(90deg, #666600 10%, #999966 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#FFEEEE,#DDEFBB" style="background:linear-gradient(90deg, #FFEEEE 10%, #DDEFBB 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#EFEFBB,#D4D3DD" style="background:linear-gradient(90deg, #EFEFBB 10%, #D4D3DD 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#c21500,#ffc500" style="background:linear-gradient(90deg, #c21500 10%, #ffc500 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#215f00,#e4e4d9" style="background:linear-gradient(90deg, #215f00 10%, #e4e4d9 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#50C9C3,#96DEDA" style="background:linear-gradient(90deg, #50C9C3 10%, #96DEDA 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#616161,#9bc5c3" style="background:linear-gradient(90deg, #616161 10%, #9bc5c3 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#ddd6f3,#faaca8" style="background:linear-gradient(90deg, #ddd6f3 10%, #faaca8 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#5D4157,#A8CABA" style="background:linear-gradient(90deg, #5D4157 10%, #A8CABA 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#E6DADA,#274046" style="background:linear-gradient(90deg, #E6DADA 10%, #274046 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#DAD299,#B0DAB9" style="background:linear-gradient(90deg, #DAD299 10%, #B0DAB9 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#D3959B,#BFE6BA" style="background:linear-gradient(90deg, #D3959B 10%, #BFE6BA 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#00d2ff,#3a7bd5" style="background:linear-gradient(90deg, #00d2ff 10%, #3a7bd5 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#870000,#190A05" style="background:linear-gradient(90deg, #870000 10%, #190A05 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#B993D6,#8CA6DB" style="background:linear-gradient(90deg, #B993D6 10%, #8CA6DB 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#649173,#DBD5A4" style="background:linear-gradient(90deg, #649173 10%, #DBD5A4 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#C9FFBF,#FFAFBD" style="background:linear-gradient(90deg, #C9FFBF 10%, #FFAFBD 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#606c88,#3f4c6b" style="background:linear-gradient(90deg, #606c88 10%, #3f4c6b 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#000000,#53346D" style="background:linear-gradient(90deg, #000000 10%, #53346D 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#FBD3E9,#BB377D" style="background:linear-gradient(90deg, #FBD3E9 10%, #BB377D 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#ADD100,#7B920A" style="background:linear-gradient(90deg, #ADD100 10%, #7B920A 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#FF4E50,#F9D423" style="background:linear-gradient(90deg, #FF4E50 10%, #F9D423 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#F0C27B,#4B1248" style="background:linear-gradient(90deg, #F0C27B 10%, #4B1248 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#000000,#e74c3c" style="background:linear-gradient(90deg, #000000 10%, #e74c3c 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#AAFFA9,#11FFBD" style="background:linear-gradient(90deg, #AAFFA9 10%, #11FFBD 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#B3FFAB,#12FFF7" style="background:linear-gradient(90deg, #B3FFAB 10%, #12FFF7 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#780206,#061161" style="background:linear-gradient(90deg, #780206 10%, #061161 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#9D50BB,#6E48AA" style="background:linear-gradient(90deg, #9D50BB 10%, #6E48AA 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#556270,#FF6B6B" style="background:linear-gradient(90deg, #556270 10%, #FF6B6B 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#70e1f5,#ffd194" style="background:linear-gradient(90deg, #70e1f5 10%, #ffd194 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#00c6ff,#0072ff" style="background:linear-gradient(90deg, #00c6ff 10%, #0072ff 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#fe8c00,#f83600" style="background:linear-gradient(90deg, #fe8c00 10%, #f83600 90%)"></span>
-          <span class="settings-background-gradient-item" data-gradient="#52c234,#061700" style="background:linear-gradient(90deg, #52c234 10%, #061700 90%)"></span>
+        <div class="settings-item settings-background-gradient accordion">
+          <div class="accordion-label">
+            <span data-i18n="i18nBackgroundGradient"></span>
+          </div>
+          <div class="accordion-content">
+            <!-- <span data-i18n="i18nBackgroundGradient"></span><br> -->
+            <span class="settings-background-gradient-item" data-gradient="#348F50,#56B4D3" style="background:linear-gradient(90deg, #348F50 10%, #56B4D3 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#3CA55C,#B5AC49" style="background:linear-gradient(90deg, #3CA55C 10%, #B5AC49 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#003973,#E5E5BE" style="background:linear-gradient(90deg, #003973 10%, #E5E5BE 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#E55D87,#5FC3E4" style="background:linear-gradient(90deg, #E55D87 10%, #5FC3E4 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#403B4A,#E7E9BB" style="background:linear-gradient(90deg, #403B4A 10%, #E7E9BB 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#F09819,#EDDE5D" style="background:linear-gradient(90deg, #F09819 10%, #EDDE5D 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#FF512F,#DD2476" style="background:linear-gradient(90deg, #FF512F 10%, #DD2476 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#AA076B,#61045F" style="background:linear-gradient(90deg, #AA076B 10%, #61045F 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#1A2980,#26D0CE" style="background:linear-gradient(90deg, #1A2980 10%, #26D0CE 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#FF512F,#F09819" style="background:linear-gradient(90deg, #FF512F 10%, #F09819 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#1D2B64,#F8CDDA" style="background:linear-gradient(90deg, #1D2B64 10%, #F8CDDA 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#4CB8C4,#3CD3AD" style="background:linear-gradient(90deg, #4CB8C4 10%, #3CD3AD 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#DD5E89,#F7BB97" style="background:linear-gradient(90deg, #DD5E89 10%, #F7BB97 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#EB3349,#F45C43" style="background:linear-gradient(90deg, #EB3349 10%, #F45C43 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#1D976C,#93F9B9" style="background:linear-gradient(90deg, #1D976C 10%, #93F9B9 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#FF8008,#FFC837" style="background:linear-gradient(90deg, #FF8008 10%, #FFC837 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#16222A,#3A6073" style="background:linear-gradient(90deg, #16222A 10%, #3A6073 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#1F1C2C,#928DAB" style="background:linear-gradient(90deg, #1F1C2C 10%, #928DAB 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#614385,#516395" style="background:linear-gradient(90deg, #614385 10%, #516395 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#4776E6,#8E54E9" style="background:linear-gradient(90deg, #4776E6 10%, #8E54E9 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#085078,#85D8CE" style="background:linear-gradient(90deg, #085078 10%, #85D8CE 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#2BC0E4,#EAECC6" style="background:linear-gradient(90deg, #2BC0E4 10%, #EAECC6 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#134E5E,#71B280" style="background:linear-gradient(90deg, #134E5E 10%, #71B280 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#5C258D,#4389A2" style="background:linear-gradient(90deg, #5C258D 10%, #4389A2 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#757F9A,#D7DDE8" style="background:linear-gradient(90deg, #757F9A 10%, #D7DDE8 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#232526,#414345" style="background:linear-gradient(90deg, #232526 10%, #414345 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#1CD8D2,#93EDC7" style="background:linear-gradient(90deg, #1CD8D2 10%, #93EDC7 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#3D7EAA,#FFE47A" style="background:linear-gradient(90deg, #3D7EAA 10%, #FFE47A 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#283048,#859398" style="background:linear-gradient(90deg, #283048 10%, #859398 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#24C6DC,#514A9D" style="background:linear-gradient(90deg, #24C6DC 10%, #514A9D 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#DC2424,#4A569D" style="background:linear-gradient(90deg, #DC2424 10%, #4A569D 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#ED4264,#FFEDBC" style="background:linear-gradient(90deg, #ED4264 10%, #FFEDBC 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#DAE2F8,#D6A4A4" style="background:linear-gradient(90deg, #DAE2F8 10%, #D6A4A4 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#ECE9E6,#FFFFFF" style="background:linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#7474BF,#348AC7" style="background:linear-gradient(90deg, #7474BF 10%, #348AC7 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#EC6F66,#F3A183" style="background:linear-gradient(90deg, #EC6F66 10%, #F3A183 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#5f2c82,#49a09d" style="background:linear-gradient(90deg, #5f2c82 10%, #49a09d 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#C04848,#480048" style="background:linear-gradient(90deg, #C04848 10%, #480048 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#e43a15,#e65245" style="background:linear-gradient(90deg, #e43a15 10%, #e65245 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#414d0b,#727a17" style="background:linear-gradient(90deg, #414d0b 10%, #727a17 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#FC354C,#0ABFBC" style="background:linear-gradient(90deg, #FC354C 10%, #0ABFBC 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#4b6cb7,#182848" style="background:linear-gradient(90deg, #4b6cb7 10%, #182848 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#f857a6,#ff5858" style="background:linear-gradient(90deg, #f857a6 10%, #ff5858 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#a73737,#7a2828" style="background:linear-gradient(90deg, #a73737 10%, #7a2828 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#d53369,#cbad6d" style="background:linear-gradient(90deg, #d53369 10%, #cbad6d 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#e9d362,#333333" style="background:linear-gradient(90deg, #e9d362 10%, #333333 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#DE6262,#FFB88C" style="background:linear-gradient(90deg, #DE6262 10%, #FFB88C 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#666600,#999966" style="background:linear-gradient(90deg, #666600 10%, #999966 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#FFEEEE,#DDEFBB" style="background:linear-gradient(90deg, #FFEEEE 10%, #DDEFBB 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#EFEFBB,#D4D3DD" style="background:linear-gradient(90deg, #EFEFBB 10%, #D4D3DD 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#c21500,#ffc500" style="background:linear-gradient(90deg, #c21500 10%, #ffc500 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#215f00,#e4e4d9" style="background:linear-gradient(90deg, #215f00 10%, #e4e4d9 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#50C9C3,#96DEDA" style="background:linear-gradient(90deg, #50C9C3 10%, #96DEDA 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#616161,#9bc5c3" style="background:linear-gradient(90deg, #616161 10%, #9bc5c3 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#ddd6f3,#faaca8" style="background:linear-gradient(90deg, #ddd6f3 10%, #faaca8 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#5D4157,#A8CABA" style="background:linear-gradient(90deg, #5D4157 10%, #A8CABA 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#E6DADA,#274046" style="background:linear-gradient(90deg, #E6DADA 10%, #274046 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#DAD299,#B0DAB9" style="background:linear-gradient(90deg, #DAD299 10%, #B0DAB9 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#D3959B,#BFE6BA" style="background:linear-gradient(90deg, #D3959B 10%, #BFE6BA 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#00d2ff,#3a7bd5" style="background:linear-gradient(90deg, #00d2ff 10%, #3a7bd5 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#870000,#190A05" style="background:linear-gradient(90deg, #870000 10%, #190A05 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#B993D6,#8CA6DB" style="background:linear-gradient(90deg, #B993D6 10%, #8CA6DB 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#649173,#DBD5A4" style="background:linear-gradient(90deg, #649173 10%, #DBD5A4 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#C9FFBF,#FFAFBD" style="background:linear-gradient(90deg, #C9FFBF 10%, #FFAFBD 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#606c88,#3f4c6b" style="background:linear-gradient(90deg, #606c88 10%, #3f4c6b 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#000000,#53346D" style="background:linear-gradient(90deg, #000000 10%, #53346D 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#FBD3E9,#BB377D" style="background:linear-gradient(90deg, #FBD3E9 10%, #BB377D 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#ADD100,#7B920A" style="background:linear-gradient(90deg, #ADD100 10%, #7B920A 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#FF4E50,#F9D423" style="background:linear-gradient(90deg, #FF4E50 10%, #F9D423 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#F0C27B,#4B1248" style="background:linear-gradient(90deg, #F0C27B 10%, #4B1248 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#000000,#e74c3c" style="background:linear-gradient(90deg, #000000 10%, #e74c3c 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#AAFFA9,#11FFBD" style="background:linear-gradient(90deg, #AAFFA9 10%, #11FFBD 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#B3FFAB,#12FFF7" style="background:linear-gradient(90deg, #B3FFAB 10%, #12FFF7 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#780206,#061161" style="background:linear-gradient(90deg, #780206 10%, #061161 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#9D50BB,#6E48AA" style="background:linear-gradient(90deg, #9D50BB 10%, #6E48AA 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#556270,#FF6B6B" style="background:linear-gradient(90deg, #556270 10%, #FF6B6B 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#70e1f5,#ffd194" style="background:linear-gradient(90deg, #70e1f5 10%, #ffd194 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#00c6ff,#0072ff" style="background:linear-gradient(90deg, #00c6ff 10%, #0072ff 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#fe8c00,#f83600" style="background:linear-gradient(90deg, #fe8c00 10%, #f83600 90%)"></span>
+            <span class="settings-background-gradient-item" data-gradient="#52c234,#061700" style="background:linear-gradient(90deg, #52c234 10%, #061700 90%)"></span>
+
+            <br>
+            <span data-i18n="i18nBackgroundGradientDirection"></span>
+            <br>
+
+            <span class="settings-background-gradient-angle-item" data-angle="0deg">
+              <svg viewBox="0 0 24 24" width="24" height="24" style="transform: rotate(-90deg)">
+                <use xlink:href="#arrow"></use>
+              </svg>
+            </span>
+            <span class="settings-background-gradient-angle-item" data-angle="45deg">
+              <svg viewBox="0 0 24 24" width="24" height="24" style="transform: rotate(-45deg)">
+                <use xlink:href="#arrow"></use>
+              </svg>
+            </span>
+            <span class="settings-background-gradient-angle-item" data-angle="90deg">
+              <svg viewBox="0 0 24 24" width="24" height="24" style="transform: rotate(0deg)">
+                <use xlink:href="#arrow"></use>
+              </svg>
+            </span>
+            <span class="settings-background-gradient-angle-item" data-angle="135deg">
+              <svg viewBox="0 0 24 24" width="24" height="24" style="transform: rotate(45deg)">
+                <use xlink:href="#arrow"></use>
+              </svg>
+            </span>
+            <span  class="settings-background-gradient-angle-item" data-angle="180deg">
+              <svg viewBox="0 0 24 24" width="24" height="24" style="transform: rotate(90deg)">
+                <use xlink:href="#arrow"></use>
+              </svg>
+            </span>
+            <span class="settings-background-gradient-angle-item" data-angle="225deg">
+              <svg viewBox="0 0 24 24" width="24" height="24" style="transform: rotate(135deg)">
+                <use xlink:href="#arrow"></use>
+              </svg>
+            </span>
+            <span class="settings-background-gradient-angle-item" data-angle="270deg">
+              <svg viewBox="0 0 24 24" width="24" height="24" style="transform: rotate(180deg)">
+                <use xlink:href="#arrow"></use>
+              </svg>
+            </span>
+            <span class="settings-background-gradient-angle-item" data-angle="315deg">
+              <svg viewBox="0 0 24 24" width="24" height="24" style="transform: rotate(215deg)">
+                <use xlink:href="#arrow"></use>
+              </svg>
+            </span>
+
+          </div>
         </div>
 
-        <div class="settings-item settings-gradient-direction">
+        <!-- <div class="settings-item settings-gradient-direction">
           <span data-i18n="i18nBackgroundGradientDirection"></span><br>
 
           <span class="settings-background-gradient-angle-item" data-angle="0deg">
@@ -530,55 +592,99 @@
               <use xlink:href="#arrow"></use>
             </svg>
           </span>
+        </div> -->
+
+        <div class="settings-item settings-pattern accordion">
+          <div class="accordion-label">
+            <span data-i18n="i18nBackgroundPattern"></span>
+          </div>
+          <div class="accordion-content">
+            <!-- <span data-i18n="i18nBackgroundPattern"></span><br> -->
+
+            <span class="settings-pattern-item" data-id="1" style="background-image:url('../../img/patterns/1.png')"></span>
+            <span class="settings-pattern-item" data-id="2" style="background-image:url('../../img/patterns/2.png')"></span>
+            <span class="settings-pattern-item" data-id="3" style="background-image:url('../../img/patterns/3.png')"></span>
+            <span class="settings-pattern-item" data-id="4" style="background-image:url('../../img/patterns/4.png')"></span>
+            <span class="settings-pattern-item" data-id="5" style="background-image:url('../../img/patterns/5.png')"></span>
+            <span class="settings-pattern-item" data-id="6" style="background-image:url('../../img/patterns/6.png')"></span>
+            <span class="settings-pattern-item" data-id="7" style="background-image:url('../../img/patterns/7.png')"></span>
+            <span class="settings-pattern-item" data-id="8" style="background-image:url('../../img/patterns/8.png')"></span>
+            <span class="settings-pattern-item" data-id="9" style="background-image:url('../../img/patterns/9.png')"></span>
+            <span class="settings-pattern-item" data-id="10" style="background-image:url('../../img/patterns/10.png')"></span>
+            <span class="settings-pattern-item" data-id="11" style="background-image:url('../../img/patterns/11.png')"></span>
+            <span class="settings-pattern-item" data-id="12" style="background-image:url('../../img/patterns/12.png')"></span>
+            <span class="settings-pattern-item" data-id="13" style="background-image:url('../../img/patterns/13.png')"></span>
+            <span class="settings-pattern-item" data-id="14" style="background-image:url('../../img/patterns/14.png')"></span>
+            <span class="settings-pattern-item" data-id="15" style="background-image:url('../../img/patterns/15.png')"></span>
+            <span class="settings-pattern-item" data-id="16" style="background-image:url('../../img/patterns/16.png')"></span>
+            <span class="settings-pattern-item" data-id="17" style="background-image:url('../../img/patterns/17.png')"></span>
+            <span class="settings-pattern-item" data-id="18" style="background-image:url('../../img/patterns/18.png')"></span>
+            <span class="settings-pattern-item" data-id="19" style="background-image:url('../../img/patterns/19.png')"></span>
+            <span class="settings-pattern-item" data-id="20" style="background-image:url('../../img/patterns/20.png')"></span>
+            <span class="settings-pattern-item" data-id="21" style="background-image:url('../../img/patterns/21.png')"></span>
+            <span class="settings-pattern-item" data-id="22" style="background-image:url('../../img/patterns/22.png')"></span>
+            <span class="settings-pattern-item" data-id="23" style="background-image:url('../../img/patterns/23.png')"></span>
+            <span class="settings-pattern-item" data-id="24" style="background-image:url('../../img/patterns/24.png')"></span>
+            <span class="settings-pattern-item" data-id="25" style="background-image:url('../../img/patterns/25.png')"></span>
+            <span class="settings-pattern-item" data-id="26" style="background-image:url('../../img/patterns/26.png')"></span>
+            <span class="settings-pattern-item" data-id="27" style="background-image:url('../../img/patterns/27.png')"></span>
+            <span class="settings-pattern-item" data-id="28" style="background-image:url('../../img/patterns/28.png')"></span>
+            <span class="settings-pattern-item" data-id="29" style="background-image:url('../../img/patterns/29.png')"></span>
+          </div>
         </div>
 
-        <div class="settings-item settings-pattern">
-          <span data-i18n="i18nBackgroundPattern"></span><br>
-
-          <span class="settings-pattern-item" data-id="1" style="background-image:url('../../img/patterns/1.png')"></span>
-          <span class="settings-pattern-item" data-id="2" style="background-image:url('../../img/patterns/2.png')"></span>
-          <span class="settings-pattern-item" data-id="3" style="background-image:url('../../img/patterns/3.png')"></span>
-          <span class="settings-pattern-item" data-id="4" style="background-image:url('../../img/patterns/4.png')"></span>
-          <span class="settings-pattern-item" data-id="5" style="background-image:url('../../img/patterns/5.png')"></span>
-          <span class="settings-pattern-item" data-id="6" style="background-image:url('../../img/patterns/6.png')"></span>
-          <span class="settings-pattern-item" data-id="7" style="background-image:url('../../img/patterns/7.png')"></span>
-          <span class="settings-pattern-item" data-id="8" style="background-image:url('../../img/patterns/8.png')"></span>
-          <span class="settings-pattern-item" data-id="9" style="background-image:url('../../img/patterns/9.png')"></span>
-          <span class="settings-pattern-item" data-id="10" style="background-image:url('../../img/patterns/10.png')"></span>
-          <span class="settings-pattern-item" data-id="11" style="background-image:url('../../img/patterns/11.png')"></span>
-          <span class="settings-pattern-item" data-id="12" style="background-image:url('../../img/patterns/12.png')"></span>
-          <span class="settings-pattern-item" data-id="13" style="background-image:url('../../img/patterns/13.png')"></span>
-          <span class="settings-pattern-item" data-id="14" style="background-image:url('../../img/patterns/14.png')"></span>
-          <span class="settings-pattern-item" data-id="15" style="background-image:url('../../img/patterns/15.png')"></span>
-          <span class="settings-pattern-item" data-id="16" style="background-image:url('../../img/patterns/16.png')"></span>
-          <span class="settings-pattern-item" data-id="17" style="background-image:url('../../img/patterns/17.png')"></span>
-          <span class="settings-pattern-item" data-id="18" style="background-image:url('../../img/patterns/18.png')"></span>
-          <span class="settings-pattern-item" data-id="19" style="background-image:url('../../img/patterns/19.png')"></span>
-          <span class="settings-pattern-item" data-id="20" style="background-image:url('../../img/patterns/20.png')"></span>
-          <span class="settings-pattern-item" data-id="21" style="background-image:url('../../img/patterns/21.png')"></span>
-          <span class="settings-pattern-item" data-id="22" style="background-image:url('../../img/patterns/22.png')"></span>
-          <span class="settings-pattern-item" data-id="23" style="background-image:url('../../img/patterns/23.png')"></span>
-          <span class="settings-pattern-item" data-id="24" style="background-image:url('../../img/patterns/24.png')"></span>
-          <span class="settings-pattern-item" data-id="25" style="background-image:url('../../img/patterns/25.png')"></span>
-          <span class="settings-pattern-item" data-id="26" style="background-image:url('../../img/patterns/26.png')"></span>
-          <span class="settings-pattern-item" data-id="27" style="background-image:url('../../img/patterns/27.png')"></span>
-          <span class="settings-pattern-item" data-id="28" style="background-image:url('../../img/patterns/28.png')"></span>
-          <span class="settings-pattern-item" data-id="29" style="background-image:url('../../img/patterns/29.png')"></span>
+        <div class="settings-item settings-background-image accordion">
+          <div class="accordion-label">
+            <span data-i18n="i18nBackgroundImage"></span>
+          </div>
+          <div class="accordion-content">
+            <span class="settings-background-image-item" data-id="1" style="background-image:url('../../img/backgrounds/1.jpg')"></span>
+            <span class="settings-background-image-item" data-id="2" style="background-image:url('../../img/backgrounds/2.jpg')"></span>
+            <span class="settings-background-image-item" data-id="3" style="background-image:url('../../img/backgrounds/3.jpg')"></span>
+            <span class="settings-background-image-item" data-id="4" style="background-image:url('../../img/backgrounds/4.jpg')"></span>
+            <span class="settings-background-image-item" data-id="5" style="background-image:url('../../img/backgrounds/5.jpg')"></span>
+            <span class="settings-background-image-item" data-id="6" style="background-image:url('../../img/backgrounds/6.jpg')"></span>
+            <span class="settings-background-image-item" data-id="7" style="background-image:url('../../img/backgrounds/7.jpg')"></span>
+            <span class="settings-background-image-item" data-id="8" style="background-image:url('../../img/backgrounds/8.jpg')"></span>
+            <span class="settings-background-image-item" data-id="9" style="background-image:url('../../img/backgrounds/9.jpg')"></span>
+            <span class="settings-background-image-item" data-id="10" style="background-image:url('../../img/backgrounds/10.jpg')"></span>
+            <span class="settings-background-image-item" data-id="11" style="background-image:url('../../img/backgrounds/11.jpg')"></span>
+            <span class="settings-background-image-item" data-id="12" style="background-image:url('../../img/backgrounds/12.jpg')"></span>
+            <span class="settings-background-image-item" data-id="13" style="background-image:url('../../img/backgrounds/13.jpg')"></span>
+            <span class="settings-background-image-item" data-id="14" style="background-image:url('../../img/backgrounds/14.jpg')"></span>
+            <span class="settings-background-image-item" data-id="15" style="background-image:url('../../img/backgrounds/15.jpg')"></span>
+            <span class="settings-background-image-item" data-id="16" style="background-image:url('../../img/backgrounds/16.jpg')"></span>
+            <span class="settings-background-image-item" data-id="17" style="background-image:url('../../img/backgrounds/17.jpg')"></span>
+            <span class="settings-background-image-item" data-id="18" style="background-image:url('../../img/backgrounds/18.jpg')"></span>
+            <span class="settings-background-image-item" data-id="19" style="background-image:url('../../img/backgrounds/19.jpg')"></span>
+          </div>
         </div>
 
-        <div class="settings-item settings-font-family">
-            <span data-i18n="i18nFontFamily"></span><br>
-            <span class="settings-font-family-item" data-font="Raleway">1</span>
-            <span class="settings-font-family-item" data-font="Roboto">2</span>
-            <span class="settings-font-family-item" data-font="Code">3</span>
-            <span class="settings-font-family-item" data-font="Exo">4</span>
-            <span class="settings-font-family-item" data-font="Josefin">5</span>
+        <div class="settings-item settings-font-family accordion">
+          <div class="accordion-label">
+            <span data-i18n="i18nFontFamily"></span>
+          </div>
+          <div class="accordion-content">
+            <!-- <span data-i18n="i18nFontFamily"></span><br> -->
+            <span class="settings-font-family-item" data-font="Raleway" style="font-family: Raleway, sans-serif">12345</span>
+            <span class="settings-font-family-item" data-font="Roboto" style="font-family: Roboto, sans-serif">12345</span>
+            <span class="settings-font-family-item" data-font="Code" style="font-family: Code, sans-serif">12345</span>
+            <span class="settings-font-family-item" data-font="Exo" style="font-family: Exo, sans-serif">12345</span>
+            <span class="settings-font-family-item" data-font="Josefin" style="font-family: Josefin, sans-serif">12345</span>
+            <span class="settings-font-family-item" data-font="Bebas" style="font-family: Bebas, sans-serif">12345</span>
+            <span class="settings-font-family-item" data-font="Geosans" style="font-family: Geosans, sans-serif">12345</span>
+
+            <br>
+            <span data-i18n="i18nFontSize"></span>
+            <br>
+            <input class="settings-font-size-item" type="range" min="4" max="25" value="10" step=".1">
+          </div>
         </div>
 
-        <div class="settings-item settings-font-size">
+        <!-- <div class="settings-item settings-font-size">
             <span data-i18n="i18nFontSize"></span><br>
             <input class="settings-font-size-item" type="range" min="4" max="25" value="10" step=".1">
-        </div>
+        </div> -->
       </div>
 
       <div class="settings-tab-content settings-weather hidden">

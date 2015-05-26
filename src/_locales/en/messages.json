@@ -77,6 +77,9 @@
     "i18nBackgroundPattern": {
       "message" : "Background Pattern"
     },
+    "i18nBackgroundImage": {
+      "message" : "Background Image"
+    },
     "i18nBackgroundGradient" : {
         "message" : "Background Gradient",
         "description" : "Background Gradient settings label"
