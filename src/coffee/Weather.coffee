@@ -15,7 +15,7 @@ class Weather
     @$el = $ '.weather'
     @apikey = 'e35c4324fb7999ba5788fbba8c901d11'
 
-  update: (data) ->
+  update: (data) =>
     @data = data
     @processData()
     if not @initialized and data.displayWeather isnt off
@@ -25,13 +25,15 @@ class Weather
 
   loadData: ->
     @getLocation()
+      .then thenable @cacheLocation
       .then @createUrlFromLocation
       .then @getWeather
       .then JSON.parse
-      .then @cacheWeather
-      .then @displayWeather.bind this
-      .then => @initialized = true
-      .then => @update @data
+      .then thenable @cacheWeather
+      .then thenable @renderCity
+      .then thenable @renderForecast
+      .then thenable => @initialized = true
+      .then @update
       .catch (err) =>
         log err
         @showError err
@@ -50,9 +52,11 @@ class Weather
       else
         navigator.geolocation.getCurrentPosition (location) ->
           log 'got location', location
-          localStorage.setItem 'locationCache', JSON.stringify location
           resolve location
         , reject, config.location
+
+  cacheLocation: (location) ->
+    localStorage.setItem 'locationCache', JSON.stringify location
 
   getWeather: (url) ->
     new Promise (resolve, reject) ->
@@ -67,27 +71,20 @@ class Weather
         req.onreadystatechange = (data) ->
           if req.readyState is 4
             log 'got weather', req.responseText
-            if req.status is 200 then resolve req.responseText else reject(req)
+            if req.status is 200 then resolve req.responseText else reject req
         req.onerror = reject
         req.send()
 
   cacheWeather: (data) ->
     data.timestamp = +new Date
     localStorage.setItem 'weatherCache', JSON.stringify data
-    data
 
-  displayWeather: (data) ->
-    # setTimeout =>
-    @renderCity data.city
-    @renderForecast data.list
-    # , 0
-
-  renderCity: (city) ->
+  renderCity: ({city}) =>
     @$el.find('.weather-city').html "#{city.name}, #{city.country}"
 
-  renderForecast: (days) ->
+  renderForecast: ({list}) =>
     $forecast = @$el.find '.weather-forecast'
-    $days = (@renderDay @getDayData day for day in days)
+    $days = (@renderDay @getDayData day for day in list)
     $forecast.append day for day in $days
 
   getDayData: (day) ->
@@ -127,7 +124,9 @@ class Weather
   processData: -> return
 
   updateTemperatureUnits: ->
-    @getUrl()
+    @getLocation()
+      .then @cacheLocation
+      .then @createUrlFromLocation
       .then @getWeather
       .then JSON.parse
       .then (data) =>
@@ -141,3 +140,9 @@ class Weather
   convertTemperature: (kelvin) ->
     deg = @data.temperatureUnits or 'c'
     Math.round if deg is 'c' then kelvin - 273.15 else kelvin * 9 / 5 - 459.67
+
+
+thenable = (func) ->
+  (param) ->
+    func param
+    param
