@@ -24,7 +24,8 @@ class Weather
     @updateWeather()
 
   loadData: ->
-    @getUrl()
+    @getLocation()
+      .then @createUrlFromLocation
       .then @getWeather
       .then JSON.parse
       .then @cacheWeather
@@ -35,11 +36,10 @@ class Weather
         log err
         @showError err
 
-  getUrl: ->
-    @getLocation().then (location) =>
-      lat = location.coords.latitude.toFixed 5
-      lon = location.coords.longitude.toFixed 5
-      "http://api.openweathermap.org/data/2.5/forecast/daily?&mode=#{config.mode}&type=#{config.type}&units=#{config.units}&cnt=#{config.cnt}&lat=#{lat}&lon=#{lon}&APPID=#{@apikey}"
+  createUrlFromLocation: (location) ->
+    lat = location.coords.latitude.toFixed 5
+    lon = location.coords.longitude.toFixed 5
+    "http://api.openweathermap.org/data/2.5/forecast/daily?&mode=#{config.mode}&type=#{config.type}&units=#{config.units}&cnt=#{config.cnt}&lat=#{lat}&lon=#{lon}&APPID=#{@apikey}"
 
   getLocation: ->
     new Promise (resolve, reject) ->
