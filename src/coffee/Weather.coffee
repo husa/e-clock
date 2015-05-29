@@ -15,8 +15,8 @@ class Weather
     @$el = $ '.weather'
     @apikey = 'e35c4324fb7999ba5788fbba8c901d11'
 
-  update: (data) =>
-    @data = data
+  update: (data) ->
+    @data = data ? @data
     @processData()
     if not @initialized and data.displayWeather isnt off
       @loadData()
@@ -33,7 +33,7 @@ class Weather
       .then thenable @renderCity
       .then thenable @renderForecast
       .then thenable => @initialized = true
-      .then @update
+      .then @update.bind(this, null)
       .catch (err) =>
         log err
         @showError err
@@ -125,7 +125,6 @@ class Weather
 
   updateTemperatureUnits: ->
     @getLocation()
-      .then @cacheLocation
       .then @createUrlFromLocation
       .then @getWeather
       .then JSON.parse
