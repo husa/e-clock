@@ -15,6 +15,9 @@ class Weather
     @$el = $ '.weather'
     @apikey = 'e35c4324fb7999ba5788fbba8c901d11'
 
+    @initialized = false
+    @weatherData = {}
+
   update: (data) ->
     @data = data ? @data
     @processData()
@@ -75,7 +78,8 @@ class Weather
         req.onerror = reject
         req.send()
 
-  cacheWeather: (data) ->
+  cacheWeather: (data) =>
+    @weatherData = data
     data.timestamp = +new Date
     localStorage.setItem 'weatherCache', JSON.stringify data
 
@@ -124,12 +128,7 @@ class Weather
   processData: -> return
 
   updateTemperatureUnits: ->
-    @getLocation()
-      .then @createUrlFromLocation
-      .then @getWeather
-      .then JSON.parse
-      .then (data) =>
-        @updateDayTemp @getDayData(day), index for day, index in data.list
+    @updateDayTemp @getDayData(day), index for day, index in @weatherData.list
 
   updateDayTemp: (day, index) ->
     $node = $ $('.day-weather').get index + 1
@@ -139,9 +138,3 @@ class Weather
   convertTemperature: (kelvin) ->
     deg = @data.temperatureUnits or 'c'
     Math.round if deg is 'c' then kelvin - 273.15 else kelvin * 9 / 5 - 459.67
-
-
-thenable = (func) ->
-  (param) ->
-    func param
-    param
