@@ -7,7 +7,7 @@ class App
     document.addEventListener 'DOMContentLoaded', @ready.bind(this)
 
   ready: ->
-    @settingsStorage.loaded.then ->
+    @settingsStorage.load().then ->
       app.init()
     , ->
       # no setting were loaded
