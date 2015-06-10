@@ -18,6 +18,11 @@ ripple = (target) ->
   target.addClass 'ripple'
   setTimeout ( -> target.removeClass 'ripple'), 200
 
+thenable = (func) ->
+  (param) ->
+    func param
+    param
+
 persistentLog = ''
 log = (args...) ->
   persistentLog += args.map(JSON.stringify).join '\n'

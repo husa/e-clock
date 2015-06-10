@@ -35,6 +35,7 @@ class AppearanceView
 
   updateBackgroundImage: (id, priority) ->
     return if not id or priority isnt 'image'
+    @$body.style.background = null
     @bgPattern = @$body.style.backgroundImage = "url('../../img/backgrounds/#{id}.jpg')"
     @updateBody 'image'
 
