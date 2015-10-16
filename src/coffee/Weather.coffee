@@ -10,10 +10,10 @@ class Weather
       maximumAge: 1000 * 60 * 60 # 1 hour
     locationCacheAge: 30 * 60 * 1000
     weatherCacheAge: 30 * 60 * 1000
+    apikey: 'e35c4324fb7999ba5788fbba8c901d11'
 
   constructor: ->
     @$el = $ '.weather'
-    @apikey = 'e35c4324fb7999ba5788fbba8c901d11'
 
     @initialized = false
     @weatherData = {}
@@ -44,7 +44,7 @@ class Weather
   createUrlFromLocation: (location) ->
     lat = location.coords.latitude.toFixed 5
     lon = location.coords.longitude.toFixed 5
-    "http://api.openweathermap.org/data/2.5/forecast/daily?&mode=#{config.mode}&type=#{config.type}&units=#{config.units}&cnt=#{config.cnt}&lat=#{lat}&lon=#{lon}&APPID=#{@apikey}"
+    "http://api.openweathermap.org/data/2.5/forecast/daily?&mode=#{config.mode}&type=#{config.type}&units=#{config.units}&cnt=#{config.cnt}&lat=#{lat}&lon=#{lon}&APPID=#{config.apikey}"
 
   getLocation: ->
     new Promise (resolve, reject) ->
