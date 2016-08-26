@@ -1,14 +1,14 @@
 {
     "manifest_version" : 2,
     "name" : "e-clock",
-    "version" : "2.5.3",
+    "version" : "3.0.0",
 
     "description" : "__MSG_i18nShortDescription__",
 
     "default_locale": "en",
 
     "chrome_url_overrides" : {
-        "newtab" : "html/override/override.html"
+        "newtab" : "index.html"
     },
 
     "icons" : {

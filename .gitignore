@@ -1,9 +1,3 @@
 node_modules
-dist.zip
-dist/*
-js/*
-!js/ga.js
-*.css
-*.js
-*.map
-*.src.coffee
+*.sublime*
+/build

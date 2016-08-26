@@ -1,0 +1,37 @@
+.clock
+  color: inherit
+  text-align: center
+
+  &__time // container for actual clock
+    //
+
+  &__hours
+    //
+
+  &__delimiter
+
+    &--blinking
+      animation-duration: 2s
+      animation-name: delimeter-blink
+      animation-iteration-count: infinite
+
+  &__minutes
+    //
+
+  &__ampm
+    font-size: 60%
+
+  &__date // container for date
+    font-size: 30%
+
+@-webkit-keyframes delimeter-blink
+  0%, 100%
+    opacity .2
+  50%
+    opacity .8
+
+@keyframes delimeter-blink
+  0%, 100%
+    opacity .2
+  50%
+    opacity .8

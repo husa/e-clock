@@ -1,0 +1,102 @@
+@import '../../common/defaults'
+
+.settings-appearance
+  max-width: 450px
+
+  &__color-option
+  &__bg-color-option
+  &__bg-gradient-option
+  &__bg-gradient-angle-option
+  &__bg-pattern-option
+  &__bg-image-option
+  &__font-option
+    position relative
+    display inline-block
+    width  30px
+    height 30px
+    margin 2px
+    padding 0
+    text-align center
+    cursor pointer
+    box-shadow 0 0 3px #aaa
+    border: none
+    border-radius: 50%
+    transition: box-shadow 200ms
+
+    &--active
+      box-shadow: 0 0 0 3px $main-color
+
+  &__bg-gradient-angle
+
+    &-label
+      padding: 20px 10px 10px
+
+  &__bg-gradient-angle-option
+
+    &-icon
+      margin: 3px
+
+  &__bg-pattern
+  &__bg-image
+    text-align: center
+
+  &__bg-pattern-option
+  &__bg-image-option
+  &__font-option
+    width: 80px
+    height: 80px
+    border-radius: 4px
+    margin: 5px
+    vertical-align: top
+
+
+  &__bg-pattern-option
+    background-position: center center
+    background-size: contain
+    background-repeat: repeat
+
+  &__bg-image-option
+    background-position: center center
+    background-size: cover
+    background-repeat: no-repeat
+
+  &__font-option
+    overflow: hidden
+    font-size: 4em
+    line-height: 80px
+
+  &__font-size
+
+    &-label
+      padding: 20px 10px 10px
+
+input[type=range]
+    -webkit-appearance none
+    display block
+    margin 0 auto
+    width 80%
+    height 32px
+    // cursor pointer
+
+    &::-webkit-slider-runnable-track
+      height 2px
+      background #c8c8c8
+      border none
+
+    &::-webkit-slider-thumb
+      -webkit-appearance: none
+      position: relative
+      border: none
+      width: 18px
+      height: 18px
+      border-radius: 50%
+      margin-top: -8px
+      cursor pointer
+      background: $main-color
+      transition: transform 180ms ease
+
+    &:active::-webkit-slider-thumb
+      transform: scale(1.5)
+
+    &:focus
+      outline: none
