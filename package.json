@@ -14,8 +14,8 @@
   "homepage": "https://github.com/husa/e-clock",
   "scripts": {
     "lint": "eslint ./src",
-    "clear": "rimraf ./build",
-    "prepare": "mkdirp build && cp -r ./src/{manifest.json,img/,_locales/} ./build/",
+    "clear": "rimraf ./build && mkdirp ./build",
+    "prepare": "cp -r ./src/img ./src/_locales ./src/manifest.json build",
     "prebuild": "npm run clear && npm run prepare",
     "build": "webpack --env dist",
     "prestart": "npm run clear && npm run prepare",
