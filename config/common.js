@@ -1,3 +1,4 @@
+var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -27,9 +28,33 @@ module.exports = {
     }
   },
   plugins: {
-    html: new HtmlWebpackPlugin({
-      template: './src/index.html'
-    }),
-    css: new ExtractTextPlugin('[name]_[hash].css')
+    html: {
+      dev: new HtmlWebpackPlugin({
+        template: './src/index.html',
+        title: 'New Tab',
+        cache: true,
+        options: {
+          ENV: 'dev'
+        }
+      }),
+      dist: new HtmlWebpackPlugin({
+        template: './src/index.html',
+        title: 'New Tab',
+        hash: true,
+        ENV: 'dist'
+      })
+    },
+    css: new ExtractTextPlugin('[name]_[hash].css'),
+    define: {
+      dev: new webpack.DefinePlugin({
+        'ENV': JSON.stringify('dev')
+      }),
+      dist: new webpack.DefinePlugin({
+        'ENV': JSON.stringify('dist'),
+        'process.env':{
+          'NODE_ENV': JSON.stringify('production')
+        }
+      })
+    }
   }
 };

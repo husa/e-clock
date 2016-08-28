@@ -14,7 +14,8 @@ module.exports = Object.assign(base, {
     ]
   },
   plugins: [
-    plugins.html
+    plugins.html.dev,
+    plugins.define.dev
   ],
   cache: true,
   debug: true,
