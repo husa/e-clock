@@ -35,10 +35,10 @@ class Weather {
           locationConfig.timeout += TIMEOUT_INCREASE;
           return this.getLocation();
         }
-        return {
+        return Promise.reject({
           message: 'Can not retrieve location',
           error: positionError
-        };
+        });
       }
     );
   }
