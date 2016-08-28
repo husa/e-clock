@@ -1,0 +1,62 @@
+@import '../../common/defaults'
+
+.settings-weather
+
+  &__units
+    margin: 20px 0
+    padding: 0 15px
+
+    &-title
+      //
+
+    &-options
+      //
+
+    &-option
+      margin: 10px 0
+      cursor: pointer
+
+      label
+        display: block
+        width: 100%
+        cursor: pointer
+
+      input[type=radio]
+        -webkit-appearance: none
+        position: relative
+        width: 16px
+        height: 16px
+
+        &:focus
+          outline: none
+
+        &:before
+        &:after
+          content: ' '
+          position: absolute
+          border-radius: 50%
+
+        &:before
+          width: 12px
+          height: 12px
+          top: 0
+          left: 0
+          border: solid 2px lighten($font-color, 50%)
+          background-color: transparent
+
+        &:after
+          width: 8px
+          height: 8px
+          top: 4px
+          left: 4px
+          transform: scale(0)
+          background-color: $main-color
+          transition: transform 200ms ease
+
+        &:checked
+
+          &:after
+            transform: scale(1)
+
+          &:before
+            border-color: $main-color

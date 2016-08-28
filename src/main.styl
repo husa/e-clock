@@ -1,0 +1,34 @@
+@import './common/fonts'
+@import './common/defaults'
+@import './common/mixins'
+
+
+body, html, #root
+  width: 100%
+  height: 100%
+  clear: both
+  margin: 0
+  padding: 0
+
+body
+  -webkit-user-select: none
+  user-select: none
+  font-family: 'Roboto Regular', sans-serif
+  font-size: 16px
+  overflow: hidden
+  background-color: $background-color
+  color: $font-color
+  fill: $font-color
+
+
+*[data-alt]
+  fancy-alt(0, 2)
+
+::-webkit-scrollbar
+  width: 6px
+  cursor: pointer
+
+::-webkit-scrollbar-thumb
+  border-radius: 6px
+  background: rgba(0,0,0,.4)
+  cursor: pointer

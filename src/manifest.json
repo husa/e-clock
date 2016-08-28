@@ -1,14 +1,14 @@
 {
     "manifest_version" : 2,
     "name" : "e-clock",
-    "version" : "2.5.3",
+    "version" : "3.0.0",
 
     "description" : "__MSG_i18nShortDescription__",
 
     "default_locale": "en",
 
     "chrome_url_overrides" : {
-        "newtab" : "html/override/override.html"
+        "newtab" : "index.html"
     },
 
     "icons" : {
@@ -21,5 +21,5 @@
         "geolocation"
     ],
     "offline_enabled" : true,
-    "content_security_policy": "script-src 'self'  https://ssl.google-analytics.com; object-src 'self'"
+    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
 }

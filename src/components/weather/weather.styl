@@ -1,0 +1,43 @@
+.weather
+  text-align: center
+
+  &__error
+    font-size: 1rem
+    font-family: 'Roboto Regular'
+    text-align: center
+    max-width: 80%
+    margin: 20px auto
+
+  &__location
+    font-size: 25%
+
+    &-city
+      &:after
+        content: ', '
+
+  &__forecast
+    font-size: initial
+    transform-origin: center top
+
+  &__day
+    display: inline-block
+    width: 100px
+
+    &:first-child
+      transform: scale(1.5)
+
+    &-icon
+      //
+
+    &-temperature
+      font-family: 'Roboto Regular', sans-serif
+      font-size: 18pt
+      vertical-align: top
+      margin-top: -15px
+
+      &--high
+      &--low
+        display: inline-block
+
+      &--low
+        opacity: .7
