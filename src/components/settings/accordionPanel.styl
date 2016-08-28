@@ -1,0 +1,33 @@
+@import '../../common/defaults'
+
+.accordion-panel
+  border-bottom: solid 1px rgba(0, 0, 0, .12)
+
+  &__header
+    padding: 20px 15px
+    cursor: pointer
+    text-align: left
+
+  &__header-icon
+  &__header-title
+    vertical-align: middle
+
+  &__header-icon
+    transform: rotate(0deg)
+    transition: transform 180ms ease
+    will-change: transform
+
+    &--open
+      transform: rotate(-90deg)
+
+  &__content
+
+    max-height: 0
+    overflow: hidden
+    transition: max-height 500ms ease
+
+    &-wrapper
+      padding: 10px
+
+    &--open
+      display: block

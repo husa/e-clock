@@ -1,0 +1,38 @@
+import {
+  WEATHER_LOAD_REQUEST,
+  WEATHER_LOAD_SUCCESS,
+  WEATHER_LOAD_FAILURE
+} from '../actions/weather';
+
+const initialState = {
+  loading: false,
+  data: null,
+  error: null
+};
+
+function weather (state = initialState, action) {
+  switch (action.type) {
+
+    case WEATHER_LOAD_REQUEST:
+      return Object.assign({}, state, {
+        loading: true
+      });
+
+    case WEATHER_LOAD_SUCCESS:
+      return Object.assign({}, state, {
+        loading: false,
+        data: action.data
+      });
+
+    case WEATHER_LOAD_FAILURE:
+      return Object.assign({}, state, {
+        loading: false,
+        error: action.err
+      });
+
+    default:
+      return Object.assign({}, state);
+  }
+}
+
+export default weather;

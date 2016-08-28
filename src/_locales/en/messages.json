@@ -221,5 +221,20 @@
     },
     "i18nWeatherErrorMsg" : {
       "message" : "There was an error loading weather forecast"
+    },
+    "i18nWeatherGeneralError": {
+      "message": "Sorry! There was an error loading weather forecast"
+    },
+    "i18nWeatherPositionErrorPermissionDenied" : {
+      "message": "Sorry! There was an error retrieving your location. Permission was denied"
+    },
+    "i18nWeatherPositionErrorPossitionUnavailable" : {
+      "message": "Sorry! There was an error retrieving your location. Position unavailable"
+    },
+    "i18nWeatherPositionErrorTimeout" : {
+      "message": "Sorry! There was an error retrieving your location. Timeout expired"
+    },
+    "i18nWeatherPositionErrorUnknownError" : {
+      "message": "Sorry! There was an error retrieving your location. Some weird unknown error"
     }
 }
