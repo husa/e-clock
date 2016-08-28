@@ -4,11 +4,11 @@ import {
   getSettings,
   getView,
   getDock
-} from '../../store/selectors';
+} from '../../selectors';
 
-import {closeSettings} from '../../store/actions/view';
-import {setOptions} from '../../store/actions/settings';
-import {setDockOptions} from '../../store/actions/dock';
+import {closeSettings} from '../../actions/view';
+import {setOptions} from '../../actions/settings';
+import {setDockOptions} from '../../actions/dock';
 
 import Settings from '../../components/settings/Settings';
 

@@ -1,4 +1,4 @@
-import {settings as defaults} from '../../config';
+import {settings as defaults} from '../config';
 import {SET_OPTIONS} from '../actions/settings';
 
 function settings (state = defaults, action) {

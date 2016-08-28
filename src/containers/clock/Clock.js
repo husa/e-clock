@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import {getSettings} from '../../store/selectors';
+import {getSettings} from '../../selectors';
 
 import Clock from '../../components/clock/Clock';
 

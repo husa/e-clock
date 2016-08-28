@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import {
   getDock,
   getSettings
-} from '../../store/selectors';
-import {toggleSettings} from '../../store/actions/view';
+} from '../../selectors';
+
+import {toggleSettings} from '../../actions/view';
 
 import Dock from '../../components/dock/Dock';
 

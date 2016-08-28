@@ -1,6 +1,6 @@
 import {debounce} from '../common/utils';
-import {SET_OPTIONS} from './actions/settings';
-import {SET_DOCK_OPTIONS} from './actions/dock';
+import {SET_OPTIONS} from '../actions/settings';
+import {SET_DOCK_OPTIONS} from '../actions/dock';
 
 import storage from '../common/storage';
 

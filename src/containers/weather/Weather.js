@@ -4,9 +4,9 @@ import {
   getForecast,
   getLocation,
   getSettings
-} from '../../store/selectors';
+} from '../../selectors';
 
-import {loadWeather} from '../../store/actions/weather';
+import {loadWeather} from '../../actions/weather';
 
 import Weather from '../../components/weather/Weather';
 
