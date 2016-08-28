@@ -36,6 +36,7 @@ class Weather {
           return this.getLocation();
         }
         return Promise.reject({
+          type: 'PositionError',
           message: 'Can not retrieve location',
           error: positionError
         });

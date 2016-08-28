@@ -2,6 +2,10 @@ import './weather.styl';
 
 import React, {Component, PropTypes} from 'react';
 
+import lang from '../../common/lang'
+
+import ErrorMessage from '../error/ErrorMessage';
+
 class Weather extends Component {
 
   componentDidMount () {
@@ -30,7 +34,13 @@ class Weather extends Component {
   getForecast () {
     const {forecast} = this.props;
     if (!forecast.length) return null;
-    return forecast.map((day, i) => (
+
+    const {fontSize} = this.props.settings;
+    const forecastStyle = {
+      transform: `scale(${fontSize * 0.075 + 0.125})`
+    };
+
+    const days = forecast.map((day, i) => (
       <div key={i} className="weather__day">
         <div className="weather__day-icon">
           <svg
@@ -50,6 +60,52 @@ class Weather extends Component {
         </div>
       </div>
     ));
+
+    return (
+      <div className="weather__forecast" style={forecastStyle}>
+        {days}
+      </div>
+    );
+  }
+
+  getError () {
+    const {error} = this.props;
+    let message = lang.t('WeatherGeneralError');
+
+    if (error.type === 'PositionError') {
+      const {code} = error.error;
+      switch (code) {
+        case 1:
+          message = lang.t('WeatherPositionErrorPermissionDenied');
+          break;
+        case 2:
+          message = lang.t('WeatherPositionErrorPossitionUnavailable');
+          break;
+        case 3:
+          message = lang.t('WeatherPositionErrorTimeout');
+          message = 'timeout';
+          break;
+        default:
+          message = lang.t('WeatherPositionErrorUnknownError');
+      }
+    }
+
+    return (
+      <ErrorMessage className="weather__error">
+        {message}
+      </ErrorMessage>
+    );
+  }
+
+  getWeather () {
+    if (this.props.error) return this.getError();
+
+    return (
+      <div>
+        {this.getLocation()}
+        {this.getForecast()}
+      </div>
+    );
   }
 
   render () {
@@ -59,16 +115,10 @@ class Weather extends Component {
       fontSize: `${fontSize}em`,
       fontFamily
     };
-    const forecastStyle = {
-      transform: `scale(${fontSize * 0.075 + 0.125})`
-    };
 
     return (
       <div className="weather" style={style}>
-        {this.getLocation()}
-        <div className="weather__forecast" style={forecastStyle}>
-          {this.getForecast()}
-        </div>
+        {this.getWeather()}
       </div>
     );
   }
@@ -78,6 +128,7 @@ Weather.propTypes = {
   forecast: PropTypes.array,
   location: PropTypes.object,
   settings: PropTypes.object,
+  error: PropTypes.any,
   loadWeather: PropTypes.func
 };
 

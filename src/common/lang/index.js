@@ -1,6 +1,6 @@
 class Lang {
   t (message) {
-    return chrome.i18n.getMessage(`i18n${message}`);
+    return chrome.i18n.getMessage(`i18n${message}`) || message;
   }
 }
 

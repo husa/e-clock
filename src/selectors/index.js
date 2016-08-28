@@ -38,3 +38,7 @@ export function getLocation (state) {
   }
   return {};
 }
+
+export function getWeatherError (state) {
+  return state.weather.error;
+}

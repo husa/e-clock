@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {
   getForecast,
   getLocation,
-  getSettings
+  getSettings,
+  getWeatherError
 } from '../../selectors';
 
 import {loadWeather} from '../../actions/weather';
@@ -13,6 +14,7 @@ import Weather from '../../components/weather/Weather';
 const mapStateToProps = state => ({
   forecast: getForecast(state),
   location: getLocation(state),
+  error: getWeatherError(state),
   settings: getSettings(state)
 });
 
