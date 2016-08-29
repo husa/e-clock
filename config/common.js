@@ -33,9 +33,7 @@ module.exports = {
         template: './src/index.html',
         title: 'New Tab',
         cache: true,
-        options: {
-          ENV: 'dev'
-        }
+        ENV: 'dev'
       }),
       dist: new HtmlWebpackPlugin({
         template: './src/index.html',

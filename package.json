@@ -15,7 +15,7 @@
   "scripts": {
     "lint": "eslint ./src",
     "clear": "rimraf ./build && mkdirp ./build",
-    "prepare": "cp -r ./src/img ./src/_locales ./src/manifest.json build",
+    "prepare": "cp -r ./src/img ./src/_locales ./src/manifest.json ./src/analytics.js build",
     "prebuild": "npm run clear && npm run prepare",
     "build": "webpack --env dist -p",
     "postbuild": "rimraf ./*.zip && cd build && zip -r ../dist.zip *",
