@@ -3,6 +3,8 @@ import './app.styl';
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 
+import FadeIn from '../../common/animations/FadeIn';
+
 import Clock from '../../containers/clock/Clock';
 import Dock from '../../containers/dock/Dock';
 import Settings from '../../containers/settings/Settings';
@@ -57,18 +59,21 @@ class App extends Component {
     );
 
     return (
-      <div id="app" style={style} className={className}>
-        <Clock />
-        <Weather />
-        <Dock />
-        <Settings />
-      </div>
+      <FadeIn>
+        <div id="app" style={style} className={className}>
+          <Clock />
+          <Weather />
+          <Dock />
+          <Settings />
+        </div>
+      </FadeIn>
     );
   }
 }
 
 App.propTypes = {
-  settings: PropTypes.object
+  settings: PropTypes.object,
+  intro: PropTypes.object
 };
 
 export default App;
