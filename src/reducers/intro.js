@@ -1,5 +1,8 @@
+import {SET_INTRO} from '../actions/intro';
+
 function intro (state = false, action) {
-  return !!state;
+  if (action.type === SET_INTRO) return !!action.value;
+  return state;
 }
 
 export default intro;

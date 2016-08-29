@@ -8,9 +8,9 @@ const Animation = ({name, timeout, children}) => (
   <ReactCSSTransitionGroup
     transitionName={name}
     transitionAppear={true}
-    transitionAppearTimeout={timeout || TRANSITION_DURATION}
-    transitionEnterTimeout={timeout || TRANSITION_DURATION}
-    transitionLeaveTimeout={timeout || TRANSITION_DURATION}>
+    transitionAppearTimeout={timeout[0] || TRANSITION_DURATION}
+    transitionEnterTimeout={timeout[1] || TRANSITION_DURATION}
+    transitionLeaveTimeout={timeout[2] || TRANSITION_DURATION}>
 
       {children}
 

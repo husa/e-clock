@@ -6,6 +6,9 @@
         "message": "New Tab",
         "description": "title to show on new tab"
     },
+    "i18nWelcome": {
+      "message": "Welcome!"
+    },
     "i18nSettings" : {
         "message" : "Settings",
         "description" : "Settings dock icon title"

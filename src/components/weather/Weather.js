@@ -2,7 +2,7 @@ import './weather.styl';
 
 import React, {Component, PropTypes} from 'react';
 
-import lang from '../../common/lang'
+import lang from '../../common/lang';
 
 import ErrorMessage from '../error/ErrorMessage';
 

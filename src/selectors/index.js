@@ -42,3 +42,7 @@ export function getLocation (state) {
 export function getWeatherError (state) {
   return state.weather.error;
 }
+
+export function getIntro (state) {
+  return state.intro;
+}

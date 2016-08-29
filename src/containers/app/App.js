@@ -1,12 +1,13 @@
 import {connect} from 'react-redux';
 
-import {getSettings} from '../../selectors';
+import {getSettings, getIntro} from '../../selectors';
 
 import App from '../../components/app/App';
 
 
 const mapStateToProps = state => ({
-  settings: getSettings(state)
+  settings: getSettings(state),
+  intro: getIntro(state)
 });
 
 const AppContainer = connect(

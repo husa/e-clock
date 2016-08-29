@@ -7,7 +7,7 @@ import Animation from './Animation';
 const FadeIn = ({children}) => (
   <Animation
     name="fadeIn"
-    timeout={500}>
+    timeout={[400, 700, 700]}>
     {children}
   </Animation>
 );

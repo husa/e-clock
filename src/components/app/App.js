@@ -5,12 +5,30 @@ import classNames from 'classnames';
 
 import FadeIn from '../../common/animations/FadeIn';
 
+import Intro from '../../containers/intro/Intro';
 import Clock from '../../containers/clock/Clock';
 import Dock from '../../containers/dock/Dock';
 import Settings from '../../containers/settings/Settings';
 import Weather from '../../containers/weather/Weather';
 
 class App extends Component {
+
+  constructor (...args) {
+    super(...args);
+    this.state = {
+      hidingIntro: false
+    };
+    this.timeout = null;
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (this.props.intro === true && nextProps.intro === false) {
+      this.setState({hidingIntro: true});
+      setTimeout(() => {
+        this.setState({hidingIntro: false});
+      }, 800);
+    }
+  }
 
   getBackground () {
     const {settings} = this.props;
@@ -51,18 +69,39 @@ class App extends Component {
     }, this.getBackground());
   }
 
+  getIntro () {
+    let component;
+    if (this.state.hidingIntro) {
+      component = null;
+    } else if (this.props.intro || this.state.hidingIntro) {
+      component = (
+        <Intro />
+      );
+    } else {
+      component = [
+        <Clock key="clock" />,
+        <Weather key="weather" />
+      ];
+    }
+
+    return (
+      <FadeIn>
+        {component}
+      </FadeIn>
+    );
+  }
+
   render () {
     const style = this.getStyle();
     const className = classNames(
       'app',
       `app--${this.props.settings.backgroundPriority}`
     );
-
     return (
       <FadeIn>
         <div id="app" style={style} className={className}>
-          <Clock />
-          <Weather />
+          {this.getIntro()}
+
           <Dock />
           <Settings />
         </div>
@@ -73,7 +112,7 @@ class App extends Component {
 
 App.propTypes = {
   settings: PropTypes.object,
-  intro: PropTypes.object
+  intro: PropTypes.bool
 };
 
 export default App;
