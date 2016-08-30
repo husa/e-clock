@@ -6,6 +6,9 @@
         "message": "New Tab",
         "description": "title to show on new tab"
     },
+    "i18nWelcome": {
+      "message": "Welcome!"
+    },
     "i18nSettings" : {
         "message" : "Settings",
         "description" : "Settings dock icon title"
@@ -236,5 +239,17 @@
     },
     "i18nWeatherPositionErrorUnknownError" : {
       "message": "Sorry! There was an error retrieving your location. Some weird unknown error"
+    },
+    "i18nLocation": {
+      "message": "Location"
+    },
+    "i18nCurrentLocation": {
+      "message": "Current location (automatic)"
+    },
+    "i18nCustomLocation": {
+      "message": "Custom location"
+    },
+    "i18nWeatherYourCity": {
+      "message": "Your city (eg. London)"
     }
 }

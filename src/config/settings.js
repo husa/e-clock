@@ -9,9 +9,11 @@ export default {
   color: '#555555',
   delimiterBlinking: true,
   displayDate: true,
-  displayWeather: true,
   fontFamily: 'Raleway',
   fontSize: '10',
   use24format: true,
-  temperatureUnits: 'c'
+  displayWeather: true,
+  temperatureUnits: 'c',
+  useLocation: 'auto', // 'auto' / 'custom'
+  customLocation: ''
 };

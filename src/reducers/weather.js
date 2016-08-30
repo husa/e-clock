@@ -4,14 +4,31 @@ import {
   WEATHER_LOAD_FAILURE
 } from '../actions/weather';
 
-const initialState = {
+const initialState = {};
+
+const initialWeatherState = {
   loading: false,
   data: null,
   error: null
 };
 
 function weather (state = initialState, action) {
-  switch (action.type) {
+  if ([
+    WEATHER_LOAD_REQUEST,
+    WEATHER_LOAD_SUCCESS,
+    WEATHER_LOAD_FAILURE
+  ].includes(action.type)) {
+    const {location} = action;
+    return Object.assign({}, state, {
+      [location]: weatherItem(state[location], action)
+    });
+  }
+
+  return Object.assign({}, state);
+}
+
+function weatherItem (state = initialState, action) {
+   switch (action.type) {
 
     case WEATHER_LOAD_REQUEST:
       return Object.assign({}, state, {

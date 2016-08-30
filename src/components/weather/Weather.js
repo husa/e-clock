@@ -2,15 +2,27 @@ import './weather.styl';
 
 import React, {Component, PropTypes} from 'react';
 
-import lang from '../../common/lang'
+import lang from '../../common/lang';
 
 import ErrorMessage from '../error/ErrorMessage';
 
 class Weather extends Component {
 
   componentDidMount () {
-    if (!Object.keys(this.props.forecast).length || !this.props.location.length) {
-      this.props.loadWeather();
+    this.loadWeather(this.props);
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.loadWeather(nextProps);
+  }
+
+  loadWeather (props) {
+    const hasForecast = !!props.forecast.length;
+    const hasLocation = !!Object.keys(props.location).length;
+    const isLoading = props.loading;
+    const errorHappened = props.error;
+    if ((!hasForecast || !hasLocation) && !isLoading && !errorHappened) {
+      this.props.loadWeather(props.locationName);
     }
   }
 
@@ -127,6 +139,7 @@ class Weather extends Component {
 Weather.propTypes = {
   forecast: PropTypes.array,
   location: PropTypes.object,
+  locationName: PropTypes.string,
   settings: PropTypes.object,
   error: PropTypes.any,
   loadWeather: PropTypes.func
