@@ -22,9 +22,7 @@ class Weather extends Component {
     const isLoading = props.loading;
     const errorHappened = props.error;
     if ((!hasForecast || !hasLocation) && !isLoading && !errorHappened) {
-      this.props.loadWeather(
-        props.settings.useLocation === 'custom' ? props.settings.customLocation : 'auto'
-      );
+      this.props.loadWeather(props.locationName);
     }
   }
 
@@ -141,6 +139,7 @@ class Weather extends Component {
 Weather.propTypes = {
   forecast: PropTypes.array,
   location: PropTypes.object,
+  locationName: PropTypes.string,
   settings: PropTypes.object,
   error: PropTypes.any,
   loadWeather: PropTypes.func
