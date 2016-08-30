@@ -75,7 +75,11 @@ class Weather {
 
   getWeather (location) {
     return this.getWeatherUrl(location)
-      .then(this.loadWeatherData);
+      .then(this.loadWeatherData)
+      .then(data => {
+        if (!data.city || !data.list) return Promise.reject(data);
+        return data;
+      });
   }
 }
 
