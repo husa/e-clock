@@ -52,7 +52,16 @@ class Weather {
     return `http://api.openweathermap.org/data/2.5/forecast/daily?&mode=${mode}&type=${type}&units=${units}&cnt=${cnt}&lat=${lat}&lon=${lon}&APPID=${apikey}`;
   }
 
-  getWeatherUrl () {
+  createUrlFromLocation (location) {
+    const {mode, type, units, cnt, apikey} = weatherConfig;
+
+    return Promise.resolve(`http://api.openweathermap.org/data/2.5/forecast/daily?&mode=${mode}&type=${type}&units=${units}&cnt=${cnt}&q=${location}&APPID=${apikey}`);
+  }
+
+  getWeatherUrl (location) {
+    if (location !== 'auto') {
+      return this.createUrlFromLocation(location);
+    }
     return this.getLocation()
       .then(this.createUrlFromPosition);
   }
@@ -64,9 +73,13 @@ class Weather {
     );
   }
 
-  getWeather () {
-    return this.getWeatherUrl()
-      .then(this.loadWeatherData);
+  getWeather (location) {
+    return this.getWeatherUrl(location)
+      .then(this.loadWeatherData)
+      .then(data => {
+        if (!data.city || !data.list) return Promise.reject(data);
+        return data;
+      });
   }
 }
 

@@ -10,10 +10,16 @@ export function getView (state) {
   return state.view;
 }
 
+function getWeatherData (state) {
+  const location = getLocationName(state);
+  return state.weather[location] || {};
+}
+
 export function getForecast (state) {
+  const weatherState = getWeatherData(state);
   let forecast = [];
-  if (!state.weather || !state.weather.data) return [];
-  forecast = state.weather.data.list || [];
+  if (!weatherState.data) return [];
+  forecast = weatherState.data.list || [];
   const units = getSettings(state).temperatureUnits;
   return forecast.map(day => Object.assign({}, {
     min: getTemperature(day.temp.min, units),
@@ -29,8 +35,9 @@ function getTemperature (kelvin, units) {
 }
 
 export function getLocation (state) {
-  if (state.weather && state.weather.data && state.weather.data.city) {
-    const {name, country} = state.weather.data.city;
+  const weatherState = getWeatherData(state);
+  if (weatherState.data && weatherState.data.city) {
+    const {name, country} = weatherState.data.city;
     return {
       city: name,
       country
@@ -40,7 +47,21 @@ export function getLocation (state) {
 }
 
 export function getWeatherError (state) {
-  return state.weather.error;
+  const weatherState = getWeatherData(state);
+  return weatherState.error;
+}
+
+export function isWeatherLoading (state) {
+  const weatherState = getWeatherData(state);
+  return weatherState.loading;
+}
+
+export function getLocationName (state) {
+  const {useLocation, customLocation} = getSettings(state);
+  if (useLocation === 'custom') {
+    return customLocation || 'auto';
+  }
+  return 'auto';
 }
 
 export function getIntro (state) {
