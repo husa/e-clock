@@ -5,25 +5,28 @@ export const WEATHER_LOAD_SUCCESS = 'WEATHER_LOAD_SUCCESS';
 export const WEATHER_LOAD_FAILURE = 'WEATHER_LOAD_FAILURE';
 
 
-export const loadWeatherRequest = () => ({
-  type: WEATHER_LOAD_REQUEST
+export const loadWeatherRequest = location => ({
+  type: WEATHER_LOAD_REQUEST,
+  location
 });
 
-export const loadWeatherSuccess = data => ({
+export const loadWeatherSuccess = (data, location) => ({
   type: WEATHER_LOAD_SUCCESS,
-  data
+  data,
+  location
 });
 
-export const loadWeatherFailure = err => ({
+export const loadWeatherFailure = (err, location) => ({
   type: WEATHER_LOAD_FAILURE,
-  err
+  err,
+  location
 });
 
-export const loadWeather = () => dispatch => {
-  dispatch(loadWeatherRequest());
+export const loadWeather = location => dispatch => {
+  dispatch(loadWeatherRequest(location));
 
-  return weather.getWeather().then(
-    data => dispatch(loadWeatherSuccess(data)),
-    err => dispatch(loadWeatherFailure(err))
+  return weather.getWeather(location).then(
+    data => dispatch(loadWeatherSuccess(data, location)),
+    err => dispatch(loadWeatherFailure(err, location))
   );
 };

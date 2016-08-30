@@ -43,6 +43,10 @@ export function getWeatherError (state) {
   return state.weather.error;
 }
 
+export function isWeatherLoading (state) {
+  return state.weather.loading;
+}
+
 export function getIntro (state) {
   return state.intro;
 }

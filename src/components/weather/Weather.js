@@ -9,8 +9,22 @@ import ErrorMessage from '../error/ErrorMessage';
 class Weather extends Component {
 
   componentDidMount () {
-    if (!Object.keys(this.props.forecast).length || !this.props.location.length) {
-      this.props.loadWeather();
+    this.loadWeather(this.props);
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.loadWeather(nextProps);
+  }
+
+  loadWeather (props) {
+    const hasForecast = !!props.forecast.length;
+    const hasLocation = !!Object.keys(props.location).length;
+    const isLoading = props.loading;
+    const errorHappened = props.error;
+    if ((!hasForecast || !hasLocation) && !isLoading && !errorHappened) {
+      this.props.loadWeather(
+        props.settings.useLocation === 'custom' ? props.settings.customLocation : 'auto'
+      );
     }
   }
 

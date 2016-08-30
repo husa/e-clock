@@ -4,7 +4,8 @@ import {
   getForecast,
   getLocation,
   getSettings,
-  getWeatherError
+  getWeatherError,
+  isWeatherLoading
 } from '../../selectors';
 
 import {loadWeather} from '../../actions/weather';
@@ -14,13 +15,14 @@ import Weather from '../../components/weather/Weather';
 const mapStateToProps = state => ({
   forecast: getForecast(state),
   location: getLocation(state),
+  loading: isWeatherLoading(state),
   error: getWeatherError(state),
   settings: getSettings(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadWeather () {
-    return dispatch(loadWeather());
+  loadWeather (location) {
+    return dispatch(loadWeather(location));
   }
 });
 
