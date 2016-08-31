@@ -5,4 +5,12 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://ssl.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-51673902-1', 'auto');
+ga('set', 'checkProtocolTask', function(){ /* nothing */ });
+var version;
+try {
+  version = chrome.runtime.getManifest().version
+} catch (e) {
+  version = 'error';
+}
+ga('set', 'appVersion', version);
 ga('send', 'pageview');
