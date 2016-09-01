@@ -55,6 +55,11 @@ class App extends Component {
         const backgroundImage = `url(img/backgrounds/${image}.jpg)`;
         return {backgroundImage};
       }
+      case 'url': {
+        const image = settings.backgroundImageUrl;
+        const backgroundImage = `url(${image})`;
+        return {backgroundImage};
+      }
       default:
         return {};
     }

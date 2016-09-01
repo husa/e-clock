@@ -251,5 +251,8 @@
     },
     "i18nWeatherYourCity": {
       "message": "Your city (eg. London)"
+    },
+    "i18nCustomImage": {
+      "message": "Custom Image"
     }
 }
