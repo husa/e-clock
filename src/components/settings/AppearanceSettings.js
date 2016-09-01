@@ -279,6 +279,12 @@ class AppearanceSettings extends Component {
           onClick={this.onSettingsItemClick.bind(this, 'use24format')} />
 
         <SettingsItem
+          className="settings-appearance__display-seconds"
+          title={lang.t('ShowSeconds')}
+          checked={this.props.settings.displaySeconds}
+          onClick={this.onSettingsItemClick.bind(this, 'displaySeconds')} />
+
+        <SettingsItem
           className="settings-appearance__display-date"
           title={lang.t('ShowDate')}
           checked={this.props.settings.displayDate}
@@ -289,6 +295,12 @@ class AppearanceSettings extends Component {
           title={lang.t('DelimeterBlinking')}
           checked={this.props.settings.delimiterBlinking}
           onClick={this.onSettingsItemClick.bind(this, 'delimiterBlinking')} />
+
+        <SettingsItem
+          className="settings-appearance__animate-seconds"
+          title={lang.t('AnimateDigits')}
+          checked={this.props.settings.animateDigits}
+          onClick={this.onSettingsItemClick.bind(this, 'animateDigits')} />
 
         <SettingsItem
           className="settings-appearance__autohide-dock"

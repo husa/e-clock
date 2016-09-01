@@ -12,7 +12,9 @@ const mapStateToProps = state => {
     fontFamily: settings.fontFamily,
     fontSize: settings.fontSize,
     showDate: settings.displayDate,
-    delimiterBlinking: settings.delimiterBlinking
+    delimiterBlinking: settings.delimiterBlinking,
+    displaySeconds: settings.displaySeconds,
+    animateDigits: settings.animateDigits
   };
 };
 

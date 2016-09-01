@@ -9,6 +9,8 @@ export default {
   backgroundImageUrl: '',
   color: '#555555',
   delimiterBlinking: true,
+  displaySeconds: true,
+  animateDigits: true,
   displayDate: true,
   fontFamily: 'Raleway',
   fontSize: '10',
