@@ -1,258 +1,289 @@
 {
-    "i18nShortDescription" : {
-      "message" : "Replace new tab page with minimalistic and customizable clock and weather with quick access to apps, bookmarks, history and more"
-    },
-    "i18nNewTabTitle": {
-        "message": "New Tab",
-        "description": "title to show on new tab"
-    },
-    "i18nWelcome": {
-      "message": "Welcome!"
-    },
-    "i18nSettings" : {
-        "message" : "Settings",
-        "description" : "Settings dock icon title"
-    },
-    "i18nFlags" : {
-        "message" : "Flags",
-        "description" : "Flags dock icon title"
-    },
-    "i18nInspect" : {
-        "message" : "Inspect",
-        "description" : "Inspect dock icon title"
-    },
-    "i18nHistory" : {
-        "message" : "History",
-        "description" : "History dock icon title"
-    },
-    "i18nBookmarks" : {
-        "message" : "Bookmarks",
-        "description" : "Bookmarks dock icon title"
-    },
-    "i18nDownloads" : {
-        "message" : "Downloads",
-        "description" : "Downloads dock icon title"
-    },
-    "i18nExtensions" : {
-        "message" : "Extensions",
-        "description" : "Extensions dock icon title"
-    },
-    "i18nApplications" : {
-        "message" : "Applications",
-        "description" : "Applications dock icon title"
-    },
-    "i18nChromeWebStore" : {
-        "message" : "Chrome Web Store",
-        "description" : "Chrome Web Store dock icon title"
-    },
-    "i18nAppearance" : {
-        "message" : "Appearance",
-        "description" : "Settings tab label for Appearance"
-    },
-    "i18nAbout" : {
-        "message" : "About",
-        "description" : "Settings tab label for About"
-    },
-    "i18nDock" : {
-        "message" : "Dock",
-        "description" : "Settings tab label for Dock"
-    },
-    "i18n24Format" : {
-        "message" : "Use 24 hour format",
-        "description" : "Use 24 hour format settings label"
-    },
-    "i18nDelimeterBlinking" : {
-        "message" : "Clock delimeter blinking",
-        "description" : "Enable delimeter blinking settings label"
-    },
-    "i18nAutoHideDock" : {
-        "message" : "Auto Hide Dock",
-        "description" : "Auto Hide Dock settings label"
-    },
-    "i18nTextColor" : {
-        "message" : "Text Color",
-        "description" : "Text Color settings label"
-    },
-    "i18nBackgroundColor" : {
-        "message" : "Background Color",
-        "description" : "Background Color settings label"
-    },
-    "i18nBackgroundPattern": {
-      "message" : "Background Pattern"
-    },
-    "i18nBackgroundImage": {
-      "message" : "Background Image"
-    },
-    "i18nBackgroundGradient" : {
-        "message" : "Background Gradient",
-        "description" : "Background Gradient settings label"
-    },
-    "i18nBackgroundGradientDirection" : {
-        "message" : "Gradient Direction",
-        "description" : "Background Gradient Direction settings label"
-    },
-    "i18nRate" : {
-        "message" : "Rate this extension",
-        "description" : "Rate button label"
-    },
-    "i18nCreatedBy" : {
-        "message" : "Created by $author$",
-        "description" : "information about the author",
-        "placeholders" : {
-            "author" : {
-                "content" : "Yuriy Husnay"
-            }
-        }
+  "i18nShortDescription" : {
+    "message" : "Replace new tab page with minimalistic and customizable clock and weather with quick access to apps, bookmarks, history and more"
+  },
+  "i18nNewTabTitle": {
+    "message": "New Tab",
+    "description": "title to show on new tab"
+  },
 
-    },
-    "i18nOpenSource" : {
-        "message" : "This extension is completely open source and licensed under $license_link$ license",
-        "description" : "information about product",
-        "placeholders" : {
-            "license_link" : {
-                "content" : "<a href=\"https://raw.githubusercontent.com/husa/e-clock/master/LICENSE\" target=\"_blank\" title=\"MIT\">MIT</a>"
-            }
-        }
-    },
-    "i18nFontFamily" : {
-        "message" : "Font"
-    },
-    "i18nFontSize" : {
-        "message" : "Font Size"
-    },
-    "i18nShowDate" : {
-        "message" : "Date"
-    },
-    "i18nDay0" : {
-        "message" : "Sunday"
-    },
-    "i18nDay1" : {
-        "message" : "Monday"
-    },
-    "i18nDay2" : {
-        "message" : "Tuesday"
-    },
-    "i18nDay3" : {
-        "message" : "Wednesday"
-    },
-    "i18nDay4" : {
-        "message" : "Thursday"
-    },
-    "i18nDay5" : {
-        "message" : "Friday"
-    },
-    "i18nDay6" : {
-        "message" : "Saturday"
-    },
-    "i18nMonth0" : {
-        "message" : "January"
-    },
-    "i18nMonth1" : {
-        "message" : "February"
-    },
-    "i18nMonth2" : {
-        "message" : "March"
-    },
-    "i18nMonth3" : {
-        "message" : "April"
-    },
-    "i18nMonth4" : {
-        "message" : "May"
-    },
-    "i18nMonth5" : {
-        "message" : "June"
-    },
-    "i18nMonth6" : {
-        "message" : "July"
-    },
-    "i18nMonth7" : {
-        "message" : "August"
-    },
-    "i18nMonth8" : {
-        "message" : "September"
-    },
-    "i18nMonth9" : {
-        "message" : "October"
-    },
-    "i18nMonth10" : {
-        "message" : "November"
-    },
-    "i18nMonth11" : {
-        "message" : "December"
-    },
-    "i18nWeather" : {
-        "message" : "Weather"
-    },
-    "i18nShowWeather" : {
-        "message" : "Weather"
-    },
-    "i18nTemperatureUnits" : {
-        "message" : "Temperature Units"
-    },
-    "i18nTemperatureCelcius" : {
-        "message" : "C°"
-    },
-    "i18nTemperatureFahrenheit" : {
-        "message" : "F°"
-    },
-    "i18nWeather01" : {
-        "message" : "Sunny"
-    },
-    "i18nWeather02" : {
-        "message" : "Few Clouds"
-    },
-    "i18nWeather03" : {
-        "message" : "Scattered Clouds"
-    },
-    "i18nWeather04" : {
-        "message" : "Broken Clouds"
-    },
-    "i18nWeather09" : {
-        "message" : "Drizzle"
-    },
-    "i18nWeather10" : {
-        "message" : "Rain"
-    },
-    "i18nWeather11" : {
-        "message" : "Thunderstorm"
-    },
-    "i18nWeather13" : {
-        "message" : "Snow"
-    },
-    "i18nWeather50" : {
-        "message" : "Mist"
-    },
-    "i18nWeatherErrorMsg" : {
-      "message" : "There was an error loading weather forecast"
-    },
-    "i18nWeatherGeneralError": {
-      "message": "Sorry! There was an error loading weather forecast"
-    },
-    "i18nWeatherPositionErrorPermissionDenied" : {
-      "message": "Sorry! There was an error retrieving your location. Permission was denied"
-    },
-    "i18nWeatherPositionErrorPossitionUnavailable" : {
-      "message": "Sorry! There was an error retrieving your location. Position unavailable"
-    },
-    "i18nWeatherPositionErrorTimeout" : {
-      "message": "Sorry! There was an error retrieving your location. Timeout expired"
-    },
-    "i18nWeatherPositionErrorUnknownError" : {
-      "message": "Sorry! There was an error retrieving your location. Some weird unknown error"
-    },
-    "i18nLocation": {
-      "message": "Location"
-    },
-    "i18nCurrentLocation": {
-      "message": "Current location (automatic)"
-    },
-    "i18nCustomLocation": {
-      "message": "Custom location"
-    },
-    "i18nWeatherYourCity": {
-      "message": "Your city (eg. London)"
-    },
-    "i18nCustomImage": {
-      "message": "Custom Image"
+  "i18nWelcome": {
+    "message": "Welcome!"
+  },
+
+
+
+  "i18nSettings" : {
+    "message" : "Settings",
+    "description" : "Settings dock icon title"
+  },
+  "i18nFlags" : {
+    "message" : "Flags",
+    "description" : "Flags dock icon title"
+  },
+  "i18nInspect" : {
+    "message" : "Inspect",
+    "description" : "Inspect dock icon title"
+  },
+  "i18nHistory" : {
+    "message" : "History",
+    "description" : "History dock icon title"
+  },
+  "i18nBookmarks" : {
+    "message" : "Bookmarks",
+    "description" : "Bookmarks dock icon title"
+  },
+  "i18nDownloads" : {
+    "message" : "Downloads",
+    "description" : "Downloads dock icon title"
+  },
+  "i18nExtensions" : {
+    "message" : "Extensions",
+    "description" : "Extensions dock icon title"
+  },
+  "i18nApplications" : {
+    "message" : "Applications",
+    "description" : "Applications dock icon title"
+  },
+  "i18nChromeWebStore" : {
+    "message" : "Chrome Web Store",
+    "description" : "Chrome Web Store dock icon title"
+  },
+
+
+
+  "i18nAppearance" : {
+    "message" : "Appearance",
+    "description" : "Settings tab label for Appearance"
+  },
+  "i18nDock" : {
+    "message" : "Dock",
+    "description" : "Settings tab label for Dock"
+  },
+  "i18nWeather" : {
+    "message" : "Weather"
+  },
+  "i18nAbout" : {
+    "message" : "About",
+    "description" : "Settings tab label for About"
+  },
+
+
+
+  "i18n24Format" : {
+    "message" : "Use 24h format",
+    "description" : "Use 24 hour format settings label"
+  },
+  "i18nShowSeconds": {
+    "message": "Show Seconds"
+  },
+  "i18nShowDate" : {
+    "message" : "Show Date"
+  },
+  "i18nDelimeterBlinking" : {
+    "message" : "Animate Delimiter Blinking",
+    "description" : "Enable delimiter blinking settings label"
+  },
+  "i18nAnimateDigits": {
+    "message": "Animate Digits"
+  },
+  "i18nAutoHideDock" : {
+    "message" : "Auto Hide Dock",
+    "description" : "Auto Hide Dock settings label"
+  },
+  "i18nTextColor" : {
+    "message" : "Text Color",
+    "description" : "Text Color settings label"
+  },
+  "i18nBackgroundColor" : {
+    "message" : "Background Color",
+    "description" : "Background Color settings label"
+  },
+  "i18nBackgroundGradient" : {
+    "message" : "Background Gradient",
+    "description" : "Background Gradient settings label"
+  },
+  "i18nBackgroundGradientDirection" : {
+    "message" : "Gradient Direction",
+    "description" : "Background Gradient Direction settings label"
+  },
+  "i18nBackgroundPattern": {
+    "message" : "Background Pattern"
+  },
+  "i18nBackgroundImage": {
+    "message" : "Background Image"
+  },
+  "i18nCustomImage": {
+    "message": "Background Custom Image"
+  },
+  "i18nFontFamily" : {
+    "message" : "Font"
+  },
+  "i18nFontSize" : {
+    "message" : "Font Size"
+  },
+
+
+
+  "i18nShowWeather" : {
+    "message" : "Show Weather"
+  },
+  "i18nTemperatureUnits" : {
+    "message" : "Temperature Units"
+  },
+  "i18nTemperatureCelcius" : {
+    "message" : "C°"
+  },
+  "i18nTemperatureFahrenheit" : {
+    "message" : "F°"
+  },
+  "i18nLocation": {
+    "message": "Location"
+  },
+  "i18nCurrentLocation": {
+    "message": "Current Location (automatic)"
+  },
+  "i18nCustomLocation": {
+    "message": "Custom Location"
+  },
+  "i18nWeatherYourCity": {
+    "message": "Your city (eg. London)"
+  },
+
+
+
+  "i18nRate" : {
+    "message" : "Rate this extension",
+    "description" : "Rate button label"
+  },
+  "i18nCreatedBy" : {
+    "message" : "Created by $author$",
+    "description" : "information about the author",
+    "placeholders" : {
+      "author" : {
+        "content" : "Yuriy Husnay"
+      }
     }
+
+  },
+  "i18nOpenSource" : {
+    "message" : "This extension is completely open source and licensed under $license_link$ license",
+    "description" : "information about product",
+    "placeholders" : {
+      "license_link" : {
+        "content" : "<a href=\"https://raw.githubusercontent.com/husa/e-clock/master/LICENSE\" target=\"_blank\" title=\"MIT\">MIT</a>"
+      }
+    }
+  },
+
+
+
+  "i18nDay0" : {
+    "message" : "Sunday"
+  },
+  "i18nDay1" : {
+    "message" : "Monday"
+  },
+  "i18nDay2" : {
+    "message" : "Tuesday"
+  },
+  "i18nDay3" : {
+    "message" : "Wednesday"
+  },
+  "i18nDay4" : {
+    "message" : "Thursday"
+  },
+  "i18nDay5" : {
+    "message" : "Friday"
+  },
+  "i18nDay6" : {
+    "message" : "Saturday"
+  },
+  "i18nMonth0" : {
+    "message" : "January"
+  },
+  "i18nMonth1" : {
+    "message" : "February"
+  },
+  "i18nMonth2" : {
+    "message" : "March"
+  },
+  "i18nMonth3" : {
+    "message" : "April"
+  },
+  "i18nMonth4" : {
+    "message" : "May"
+  },
+  "i18nMonth5" : {
+    "message" : "June"
+  },
+  "i18nMonth6" : {
+    "message" : "July"
+  },
+  "i18nMonth7" : {
+    "message" : "August"
+  },
+  "i18nMonth8" : {
+    "message" : "September"
+  },
+  "i18nMonth9" : {
+    "message" : "October"
+  },
+  "i18nMonth10" : {
+    "message" : "November"
+  },
+  "i18nMonth11" : {
+    "message" : "December"
+  },
+
+
+
+  "i18nWeather01" : {
+    "message" : "Sunny"
+  },
+  "i18nWeather02" : {
+    "message" : "Few Clouds"
+  },
+  "i18nWeather03" : {
+    "message" : "Scattered Clouds"
+  },
+  "i18nWeather04" : {
+    "message" : "Broken Clouds"
+  },
+  "i18nWeather09" : {
+    "message" : "Drizzle"
+  },
+  "i18nWeather10" : {
+    "message" : "Rain"
+  },
+  "i18nWeather11" : {
+    "message" : "Thunderstorm"
+  },
+  "i18nWeather13" : {
+    "message" : "Snow"
+  },
+  "i18nWeather50" : {
+    "message" : "Mist"
+  },
+
+
+
+  "i18nWeatherErrorMsg" : {
+    "message" : "There was an error loading weather forecast"
+  },
+  "i18nWeatherGeneralError": {
+    "message": "Sorry! There was an error loading weather forecast"
+  },
+  "i18nWeatherPositionErrorPermissionDenied" : {
+    "message": "Sorry! There was an error retrieving your location. Permission was denied"
+  },
+  "i18nWeatherPositionErrorPossitionUnavailable" : {
+    "message": "Sorry! There was an error retrieving your location. Position unavailable"
+  },
+  "i18nWeatherPositionErrorTimeout" : {
+    "message": "Sorry! There was an error retrieving your location. Timeout expired"
+  },
+  "i18nWeatherPositionErrorUnknownError" : {
+    "message": "Sorry! There was an error retrieving your location. Some weird unknown error"
+  }
 }
