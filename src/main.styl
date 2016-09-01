@@ -32,3 +32,53 @@ body
   border-radius: 6px
   background: rgba(0,0,0,.4)
   cursor: pointer
+
+.text-input
+  margin: 10px 0
+  font-size: 1em
+  display: block
+  position: relative
+  width: 240px
+  border-bottom: solid 1px lighten($font-color, 50%)
+  cursor: initial
+
+  &__input
+    display: block
+    width: 100%
+    height: 2em
+    font-size: 1em
+    line-height: 2em
+    background: none
+    border: none
+
+  &__bar
+  &__label
+    position: absolute
+    transition: all 200ms ease
+    will-change: transform
+    pointer-events: none
+
+  &__bar
+    bottom: -1px // include border
+    left: 0
+    width: 100%
+    height: 3px
+    background: $main-color
+    transform: scale(0)
+    transform-origin: center bottom
+
+  &__label
+    top: 5px
+    left: 0
+    color: lighten($font-color, 30%)
+
+  &__input:focus
+    outline: none
+
+  &__input:focus ~ .text-input__label
+  &__input:valid ~ .text-input__label
+      transform: translateY(-90%)
+      font-size: .8em
+
+  &__input:focus ~ .text-input__bar
+      transform: scale(1)
