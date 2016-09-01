@@ -20,16 +20,14 @@ class DockSettings extends Component {
   }
 
   getDockSettingsItems () {
-    return dock.slice(0).reverse().filter(i => i.url !== 'settings').map(dockItem => {
-      return (
-        <SettingsItem
-          key={dockItem.url}
-          className={`settings-dock__${dockItem.className}`}
-          title={lang.t(dockItem.text)}
-          checked={this.props.dock[dockItem.url] !== false}
-          onClick={this.onSettingsItemClick.bind(this, dockItem.url)} />
-      );
-    });
+    return dock.slice(0).reverse().filter(i => i.url !== 'settings').map(dockItem => (
+      <SettingsItem
+        key={dockItem.url}
+        className={`settings-dock__${dockItem.className}`}
+        title={lang.t(dockItem.text)}
+        checked={this.props.dock[dockItem.url] !== false}
+        onClick={this.onSettingsItemClick.bind(this, dockItem.url)} />
+    ));
   }
 
   render () {

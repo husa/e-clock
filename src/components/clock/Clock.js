@@ -5,6 +5,8 @@ import classNames from 'classnames';
 
 import lang from '../../common/lang';
 
+import Slide from '../../common/animations/Slide';
+
 class Clock extends Component {
 
   constructor (...args) {
@@ -29,6 +31,7 @@ class Clock extends Component {
     return {
       minutes: date.getMinutes(),
       hours: date.getHours(),
+      seconds: date.getSeconds(),
       day: date.getDay(),
       month: date.getMonth(),
       date: date.getDate()
@@ -36,15 +39,27 @@ class Clock extends Component {
   }
 
   getHours () {
-    let hours = this.state.hours;
-    return (
-      <span className="clock__hours">
-        {this.props.use24 || !Math.floor(hours / 13) ? hours : hours - 12}
-      </span>
-    );
+    let {hours} = this.state;
+    hours = this.props.use24 || !Math.floor(hours / 13) ? hours : hours - 12;
+    hours = `${hours < 10 ? ' ' : '' }${hours}`;
+    return this.getDigits(hours, 'clock__hour');
   }
 
-  getDelimiter () {
+  getMinutes () {
+    let {minutes} = this.state;
+    minutes = `${minutes < 10 ? 0 : '' }${minutes}`;
+    return this.getDigits(minutes, 'clock__minute');
+  }
+
+  getSeconds () {
+    if (!this.props.displaySeconds) return null;
+    let {seconds} = this.state;
+    seconds = `${seconds < 10 ? 0 : '' }${seconds}`;
+    return this.getDigits(seconds, 'clock__second');
+  }
+
+  getDelimiter (show = true) {
+    if (!show) return null;
     const {delimiterBlinking} = this.props;
     const className = classNames('clock__delimiter', {
       'clock__delimiter--blinking': delimiterBlinking
@@ -54,12 +69,22 @@ class Clock extends Component {
     );
   }
 
-  getMinutes () {
-    let minutes = this.state.minutes;
-    minutes = `${minutes < 10 ? 0 : '' }${minutes}`;
+  getDigits (digits, className) {
+    digits = digits.split('').map((digit, i) => (
+      <span className={`${className} ${className}-${i}`} key={`${i}-${digit}`}>
+        {digit}
+      </span>
+    ));
+    if (this.props.animateDigits) {
+      digits = (
+        <Slide>
+          {digits}
+        </Slide>
+      );
+    }
     return (
-      <span className="clock__minutes">
-        {minutes}
+      <span className={`${className}s`}>
+        {digits}
       </span>
     );
   }
@@ -82,6 +107,8 @@ class Clock extends Component {
         {this.getHours()}
         {this.getDelimiter()}
         {this.getMinutes()}
+        {this.getDelimiter(this.props.displaySeconds)}
+        {this.getSeconds()}
         {this.getAmPm()}
       </div>
     );

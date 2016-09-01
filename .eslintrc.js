@@ -9,7 +9,8 @@ module.exports = {
     "browser": true
   },
   "globals": {
-    "chrome": false
+    "chrome": false,
+    "ENV": false
   },
   "plugins": [
     "react"

@@ -3,7 +3,7 @@ import './errorMessage.styl';
 import React from 'react';
 import classNames from 'classnames';
 
-const ErrorMessage = ({className, children}) =>(
+const ErrorMessage = ({className, children}) => (
   <div className={classNames('error', className)}>
     <svg
       className="error__icon"

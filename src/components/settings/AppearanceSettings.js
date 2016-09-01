@@ -27,6 +27,14 @@ class AppearanceSettings extends Component {
     this.onOptionClick({[option]: !this.props.settings[option]});
   }
 
+  onBackgroundImageInputBlur (e) {
+    const value = e.target.value;
+    if (!value) return;
+    this.props.setOptions({
+      backgroundPriority: 'url',
+      backgroundImageUrl: value
+    });
+  }
 
   getTextColorOptions () {
     const active = this.props.settings.color;
@@ -193,6 +201,25 @@ class AppearanceSettings extends Component {
     });
   }
 
+  getCustomImageOptions () {
+    let url = this.props.settings.backgroundImageUrl;
+
+    return (
+      <div className="settings-appearance__bg-url">
+        <div className="text-input">
+          <input
+            className="text-input__input"
+            type="text"
+            defaultValue={url}
+            onBlur={this.onBackgroundImageInputBlur.bind(this)}
+            required />
+          <span className="text-input__bar"></span>
+          <span className="text-input__label">{lang.t('ImageUrl')}</span>
+        </div>
+      </div>
+    );
+  }
+
   getFontOptions () {
     const active = this.props.settings.fontFamily;
 
@@ -252,6 +279,12 @@ class AppearanceSettings extends Component {
           onClick={this.onSettingsItemClick.bind(this, 'use24format')} />
 
         <SettingsItem
+          className="settings-appearance__display-seconds"
+          title={lang.t('ShowSeconds')}
+          checked={this.props.settings.displaySeconds}
+          onClick={this.onSettingsItemClick.bind(this, 'displaySeconds')} />
+
+        <SettingsItem
           className="settings-appearance__display-date"
           title={lang.t('ShowDate')}
           checked={this.props.settings.displayDate}
@@ -262,6 +295,12 @@ class AppearanceSettings extends Component {
           title={lang.t('DelimeterBlinking')}
           checked={this.props.settings.delimiterBlinking}
           onClick={this.onSettingsItemClick.bind(this, 'delimiterBlinking')} />
+
+        <SettingsItem
+          className="settings-appearance__animate-seconds"
+          title={lang.t('AnimateDigits')}
+          checked={this.props.settings.animateDigits}
+          onClick={this.onSettingsItemClick.bind(this, 'animateDigits')} />
 
         <SettingsItem
           className="settings-appearance__autohide-dock"
@@ -300,6 +339,12 @@ class AppearanceSettings extends Component {
             header={lang.t('BackgroundImage')}
             className="settings-appearance__bg-image">
             {this.getImageOptions()}
+          </Panel>
+
+          <Panel
+            header={lang.t('CustomImage')}
+            className="settings-appearance__bg-custom-image">
+            {this.getCustomImageOptions()}
           </Panel>
 
           <Panel

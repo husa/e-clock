@@ -5,9 +5,12 @@ export default {
   backgroundGradientAngle: '135deg',
   backgroundImage: '',
   backgroundPattern: '',
-  backgroundPriority: 'color',
+  backgroundPriority: 'color', // [color, gradient, pattern, image, url]
+  backgroundImageUrl: '',
   color: '#555555',
   delimiterBlinking: true,
+  displaySeconds: true,
+  animateDigits: true,
   displayDate: true,
   fontFamily: 'Raleway',
   fontSize: '10',
