@@ -27,8 +27,8 @@ function weather (state = initialState, action) {
   return Object.assign({}, state);
 }
 
-function weatherItem (state = initialState, action) {
-   switch (action.type) {
+function weatherItem (state = initialWeatherState, action) {
+  switch (action.type) {
 
     case WEATHER_LOAD_REQUEST:
       return Object.assign({}, state, {

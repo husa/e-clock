@@ -95,7 +95,9 @@ class WeatherSettings extends Component {
                 {lang.t('CustomLocation')}
                 <div className="text-input">
                   <input
-                    ref={c => this.customLocation = c}
+                    ref={c => {
+                      this.customLocation = c;
+                    }}
                     className="text-input__input"
                     type="text"
                     defaultValue={customLocation}
