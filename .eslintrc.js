@@ -5,8 +5,9 @@ module.exports = {
     '@eleks/eleks',
     'plugin:react/recommended'
   ],
-  "environment": {
-    "browser": true
+  "env": {
+    "browser": true,
+    "mocha": true
   },
   "globals": {
     "chrome": false,
