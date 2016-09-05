@@ -22,7 +22,7 @@
     "prestart": "npm run clear && npm run prepare",
     "start": "webpack -w --env dev",
     "pretest": "npm run lint",
-    "test": "mocha --compilers js:babel-register --recursive ./test",
+    "test": "mocha --compilers js:babel-register --recursive --require ./test/helper.js ./test",
     "test:watch": "npm test -- --watch"
   },
   "devDependencies": {
