@@ -17,10 +17,10 @@
     "clear": "rimraf ./build && mkdirp ./build",
     "prepare": "cp -r ./src/img ./src/_locales ./src/manifest.json ./src/analytics.js build",
     "prebuild": "npm run clear && npm run prepare",
-    "build": "webpack --env dist -p",
+    "build": "webpack --env production -p",
     "postbuild": "rimraf ./*.zip && cd build && zip -r ../dist.zip *",
     "prestart": "npm run clear && npm run prepare",
-    "start": "webpack -w --env dev",
+    "start": "webpack -w --env develop",
     "pretest": "npm run lint",
     "test": "echo No Tests"
   },
