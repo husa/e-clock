@@ -69,6 +69,7 @@ class Settings extends Component {
   }
 
   getTabContent () {
+    if (!this.props.isOpen) return null;
     const tab = this.state.activeTab;
     let Content = TABS[tab];
     return (
