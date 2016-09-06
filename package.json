@@ -17,10 +17,10 @@
     "clear": "rimraf ./build && mkdirp ./build",
     "prepare": "cp -r ./src/img ./src/_locales ./src/manifest.json ./src/analytics.js build",
     "prebuild": "npm run clear && npm run prepare",
-    "build": "webpack --env dist -p",
+    "build": "webpack --env production -p",
     "postbuild": "rimraf ./*.zip && cd build && zip -r ../dist.zip *",
     "prestart": "npm run clear && npm run prepare",
-    "start": "webpack -w --env dev",
+    "start": "webpack -w --env develop",
     "pretest": "npm run lint",
     "test": "echo No Tests"
   },
@@ -35,7 +35,7 @@
     "eslint": "^3.4.0",
     "eslint-loader": "^1.5.0",
     "eslint-plugin-react": "^6.2.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
     "minimist": "^1.2.0",
@@ -45,7 +45,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.2"
+    "webpack": "^2.1.0-beta.21"
   },
   "dependencies": {
     "classnames": "^2.2.5",

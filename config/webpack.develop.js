@@ -1,7 +1,6 @@
 const base = require('./webpack.base');
 const {loaders, plugins} = require('./common');
 
-
 module.exports = Object.assign(base, {
   module: {
     preLoaders: [
@@ -10,12 +9,15 @@ module.exports = Object.assign(base, {
     loaders: [
       loaders.babel,
       loaders.fonts,
-      loaders.stylus_dist
+      loaders.stylus.develop
     ]
   },
   plugins: [
-    plugins.html.dist,
-    plugins.css,
-    plugins.define.dist
-  ]
+    plugins.html.develop,
+    plugins.define.develop
+  ],
+  cache: true,
+  debug: true,
+  devtool: 'cheap-source-map',
+  }
 });
