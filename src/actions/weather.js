@@ -16,9 +16,9 @@ export const loadWeatherSuccess = (data, location) => ({
   location
 });
 
-export const loadWeatherFailure = (err, location) => ({
+export const loadWeatherFailure = (error, location) => ({
   type: WEATHER_LOAD_FAILURE,
-  err,
+  error,
   location
 });
 
