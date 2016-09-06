@@ -14,8 +14,10 @@ module.exports = Object.assign(base, {
     ]
   },
   plugins: [
+    plugins.options,
     plugins.html.dist,
     plugins.css,
-    plugins.define.dist
+    plugins.define.dist,
+    plugins.uglify
   ]
 });

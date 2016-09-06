@@ -20,14 +20,25 @@ module.exports = {
     },
     stylus_dist: {
       test: /\.styl/,
-      loader: ExtractTextPlugin.extract('style', 'css!stylus')
+      loader: ExtractTextPlugin.extract({
+        fallbackLoader: 'style-loader',
+        loader: 'css-loader!stylus-loader'
+      })
     },
     fonts: {
       test: /\.woff/,
-      loader: 'url?limit=10000&name=[name]_[hash].[ext]'
+      loader: 'url',
+      query: {
+       limit: 10000,
+       name: '[name]_[hash].[ext]'
+      }
     }
   },
   plugins: {
+    options: new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false
+    }),
     html: {
       dev: new HtmlWebpackPlugin({
         template: './src/index.html',
@@ -53,6 +64,15 @@ module.exports = {
           'NODE_ENV': JSON.stringify('production')
         }
       })
-    }
+    },
+    uglify: new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      output: {
+        comments: false
+      },
+      sourceMap: false
+    })
   }
 };
