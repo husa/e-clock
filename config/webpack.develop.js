@@ -18,6 +18,5 @@ module.exports = Object.assign(base, {
   ],
   cache: true,
   debug: true,
-  devtool: 'cheap-source-map',
-  }
+  devtool: 'cheap-source-map'
 });

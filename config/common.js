@@ -53,13 +53,13 @@ module.exports = {
         template: './src/index.html',
         title: 'New Tab',
         cache: true,
-        ENV: 'dev'
+        ENV: 'develop'
       }),
       production: new HtmlWebpackPlugin({
         template: './src/index.html',
         title: 'New Tab',
         hash: true,
-        ENV: 'dist'
+        ENV: 'production'
       })
     },
 
