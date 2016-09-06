@@ -1,7 +1,5 @@
-const parseArgs = require('minimist');
+const env = process.env.NODE_ENV || 'develop';
 
-const args = parseArgs(process.argv.slice(2));
-
-const config = require(`./config/webpack.${args.env}.js`);
+const config = require(`./config/webpack.${env}.js`);
 
 module.exports = config;

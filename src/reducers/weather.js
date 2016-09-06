@@ -44,7 +44,7 @@ function weatherItem (state = initialWeatherState, action) {
     case WEATHER_LOAD_FAILURE:
       return Object.assign({}, state, {
         loading: false,
-        error: action.err
+        error: action.error
       });
 
     default:

@@ -1,7 +1,6 @@
 const base = require('./webpack.base');
 const {loaders, plugins} = require('./common');
 
-
 module.exports = Object.assign(base, {
   module: {
     preLoaders: [
@@ -10,12 +9,14 @@ module.exports = Object.assign(base, {
     loaders: [
       loaders.babel,
       loaders.fonts,
-      loaders.stylus_dist
+      loaders.stylus.production
     ]
   },
   plugins: [
-    plugins.html.dist,
+    plugins.options,
+    plugins.html.production,
     plugins.css,
-    plugins.define.dist
+    plugins.define.production,
+    plugins.uglify
   ]
 });

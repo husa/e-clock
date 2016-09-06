@@ -205,8 +205,8 @@
 
   <div id="root"></div>
 
-  <%if (htmlWebpackPlugin.options.ENV === 'dist') { %>
-    <script src="analytics.js"></script>
+  <%if (htmlWebpackPlugin.options.ENV === 'production') { %>
+    <script src="analytics.js" async></script>
   <% } %>
 </body>
 </html>
