@@ -24,10 +24,13 @@
 
     max-height: 0
     overflow: hidden
-    transition: max-height 500ms ease
+    opacity: 0
+    transition: max-height 500ms ease, opacity 400ms ease
+    will-change: max-height, opacity
 
     &-wrapper
       padding: 10px
 
     &--open
       display: block
+      opacity: 1
