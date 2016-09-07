@@ -3,11 +3,11 @@ export default {
   backgroundColor: '#fefefe',
   backgroundGradient: '',
   backgroundGradientAngle: '135deg',
-  backgroundImage: '',
+  backgroundImage: '22',
   backgroundPattern: '',
-  backgroundPriority: 'color', // [color, gradient, pattern, image, url]
+  backgroundPriority: 'image', // [color, gradient, pattern, image, url]
   backgroundImageUrl: '',
-  color: '#555555',
+  color: '#fefefe',
   delimiterBlinking: true,
   displaySeconds: true,
   animateDigits: true,
