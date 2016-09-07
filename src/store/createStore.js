@@ -4,10 +4,12 @@ import thunk from 'redux-thunk';
 
 import reducers from '../reducers';
 import chromeStorageMiddleware from './chromeStorageMiddleware';
+import analyticsMiddleware from './analyticsMiddleware';
 
 const middleware = [
   thunk,
-  chromeStorageMiddleware
+  chromeStorageMiddleware,
+  analyticsMiddleware
 ];
 
 const logger = createLogger({
