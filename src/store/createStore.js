@@ -17,7 +17,7 @@ const logger = createLogger({
   collapsed: true
 });
 
-if (ENV === 'dev') middleware.push(logger);
+if (ENV === 'develop') middleware.push(logger);
 
 const createStoreWithMiddleware = applyMiddleware(
   ...middleware
