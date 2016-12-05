@@ -32,9 +32,11 @@ Promise.all([
 
   const store = createStore(initialState);
 
-  setTimeout(() => {
-    analytics.saveSettings(initialState.settings);
-  }, 100);
+  // save user setting to firebase
+  //
+  // setTimeout(() => {
+  //   analytics.saveSettings(initialState.settings);
+  // }, 100);
 
   render(
     <Provider store={store}>
