@@ -103,14 +103,12 @@ class App extends Component {
       `app--${this.props.settings.backgroundPriority}`
     );
     return (
-      <FadeIn>
-        <div id="app" style={style} className={className}>
-          {this.getIntro()}
+      <div id="app" style={style} className={className}>
+        {this.getIntro()}
 
-          <Dock />
-          <Settings />
-        </div>
-      </FadeIn>
+        <Dock />
+        <Settings />
+      </div>
     );
   }
 }
