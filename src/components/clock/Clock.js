@@ -41,20 +41,20 @@ class Clock extends Component {
   getHours () {
     let {hours} = this.state;
     hours = this.props.use24 || !Math.floor(hours / 13) ? hours : hours - 12;
-    hours = `${hours < 10 ? ' ' : '' }${hours}`;
+    hours = `${hours < 10 ? ' ' : ''}${hours}`;
     return this.getDigits(hours, 'clock__hour');
   }
 
   getMinutes () {
     let {minutes} = this.state;
-    minutes = `${minutes < 10 ? 0 : '' }${minutes}`;
+    minutes = `${minutes < 10 ? 0 : ''}${minutes}`;
     return this.getDigits(minutes, 'clock__minute');
   }
 
   getSeconds () {
     if (!this.props.displaySeconds) return null;
     let {seconds} = this.state;
-    seconds = `${seconds < 10 ? 0 : '' }${seconds}`;
+    seconds = `${seconds < 10 ? 0 : ''}${seconds}`;
     return this.getDigits(seconds, 'clock__second');
   }
 
