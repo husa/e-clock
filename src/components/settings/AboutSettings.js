@@ -67,9 +67,11 @@ class AboutSettings extends Component {
               {lang.t('CreatedBy')}
             </span>
           </p>
+          {/*
           <p>
             <span dangerouslySetInnerHTML={{__html: lang.t('OpenSource')}}></span>
           </p>
+          */}
         </div>
       </div>
     );
