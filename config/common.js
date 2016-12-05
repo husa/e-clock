@@ -7,20 +7,20 @@ module.exports = {
 
     eslint: {
       test: /\.js$/,
-      loader: 'eslint',
+      loader: 'eslint-loader',
       include: './src'
     },
 
     babel: {
       test: /\.js$/,
       exclude: /node_modules/,
-      loaders: ['babel']
+      loaders: ['babel-loader']
     },
 
     stylus: {
       develop: {
         test: /\.styl/,
-        loader: 'style!css!stylus'
+        loader: 'style-loader!css-loader!stylus-loader'
       },
       production: {
         test: /\.styl/,
@@ -33,10 +33,10 @@ module.exports = {
 
     fonts: {
       test: /\.woff/,
-      loader: 'url',
+      loader: 'url-loader',
       query: {
-       limit: 10000,
-       name: '[name]_[hash].[ext]'
+        limit: 10000,
+        name: '[name]_[hash].[ext]'
       }
     }
   },
