@@ -10,6 +10,7 @@ class Panel extends Component {
     this.state = {
       isOpen: false
     };
+    this.onHeaderClick = this.onHeaderClick.bind(this);
   }
 
   onHeaderClick () {
@@ -32,9 +33,10 @@ class Panel extends Component {
     const contentStyle = {
       maxHeight: this.state.isOpen ? this.content.scrollHeight : 0
     };
+
     return (
       <div className={className}>
-        <div className="accordion-panel__header" onClick={this.onHeaderClick.bind(this)}>
+        <div className="accordion-panel__header" onClick={this.onHeaderClick}>
           <svg
             className={iconClassName}
             viewBox="0 0 24 24"

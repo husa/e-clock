@@ -12,7 +12,7 @@ const Animation = ({name, timeout, children}) => (
     transitionEnterTimeout={timeout[1] || TRANSITION_DURATION}
     transitionLeaveTimeout={timeout[2] || TRANSITION_DURATION}>
 
-      {children}
+    {children}
 
   </ReactCSSTransitionGroup>
 );

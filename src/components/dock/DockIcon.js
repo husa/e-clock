@@ -7,6 +7,11 @@ import lang from '../../common/lang';
 
 class DockIcon extends Component {
 
+  constructor (...args) {
+    super(...args);
+    this.onClick = this.onClick.bind(this);
+  }
+
   onClick (e) {
     if (this.props.isSettingsIcon) {
       this.props.toggleSettings();
@@ -31,7 +36,7 @@ class DockIcon extends Component {
       <li
         className={className}
         data-alt={lang.t(this.props.text)}
-        onClick={this.onClick.bind(this)}>
+        onClick={this.onClick}>
         <svg className="dock-icon__icon" viewBox="0 0 24 24" width="24" height="24">
           <use xlinkHref={`#${this.props.icon}`}></use>
         </svg>

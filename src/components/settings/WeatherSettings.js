@@ -7,6 +7,15 @@ import SettingsItem from './SettingsItem';
 
 class WeatherSettings extends Component {
 
+  constructor (...args) {
+    super(...args);
+    this.onDisplayWeatherClick = this.onDisplayWeatherClick.bind(this);
+    this.onUnitsChangeC = this.onUnitsChange.bind(this, 'c');
+    this.onUnitsChangeF = this.onUnitsChange.bind(this, 'f');
+    this.onLocationPreferenceChangeAuto = this.onLocationPreferenceChange.bind(this, 'auto');
+    this.onLocationPreferenceChangeCustom = this.onLocationPreferenceChange.bind(this, 'custom');
+  }
+
   onDisplayWeatherClick () {
     this.props.setOptions({
       displayWeather: !this.props.settings.displayWeather
@@ -48,7 +57,7 @@ class WeatherSettings extends Component {
                 type="radio"
                 value="c"
                 checked={temperatureUnits === 'c'}
-                onChange={this.onUnitsChange.bind(this, 'c')} />
+                onChange={this.onUnitsChangeC} />
               <span>{lang.t('TemperatureCelcius')}</span>
             </label>
           </div>
@@ -58,7 +67,7 @@ class WeatherSettings extends Component {
                 type="radio"
                 value="f"
                 checked={temperatureUnits === 'f'}
-                onChange={this.onUnitsChange.bind(this, 'f')} />
+                onChange={this.onUnitsChangeF} />
               <span>{lang.t('TemperatureFahrenheit')}</span>
             </label>
           </div>
@@ -81,7 +90,7 @@ class WeatherSettings extends Component {
               <input
                 type="radio"
                 checked={useLocation !== 'custom'}
-                onChange={this.onLocationPreferenceChange.bind(this, 'auto')} />
+                onChange={this.onLocationPreferenceChangeAuto} />
               <span>{lang.t('CurrentLocation')}</span>
             </label>
           </div>
@@ -90,7 +99,7 @@ class WeatherSettings extends Component {
               <input
                 type="radio"
                 checked={useLocation === 'custom'}
-                onChange={this.onLocationPreferenceChange.bind(this, 'custom')} />
+                onChange={this.onLocationPreferenceChangeCustom} />
               <span>
                 {lang.t('CustomLocation')}
                 <div className="text-input">

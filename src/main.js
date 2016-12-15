@@ -8,7 +8,7 @@ import {pluckSettings, pluckDock} from './common/utils';
 import storage from './common/storage';
 import {settings} from './config';
 import createStore from './store/createStore';
-import analytics from './common/analytics';
+// import analytics from './common/analytics';
 
 import App from './containers/app/App';
 
@@ -32,9 +32,11 @@ Promise.all([
 
   const store = createStore(initialState);
 
-  setTimeout(() => {
-    analytics.saveSettings(initialState.settings);
-  }, 100);
+  // save user setting to firebase
+  //
+  // setTimeout(() => {
+  //   analytics.saveSettings(initialState.settings);
+  // }, 100);
 
   render(
     <Provider store={store}>

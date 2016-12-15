@@ -24,6 +24,21 @@ class Settings extends Component {
     this.state = {
       activeTab: Object.keys(TABS)[0]
     };
+
+    this.onDocumentKeyDown = this.onDocumentKeyDown.bind(this);
+  }
+
+  componentDidMount () {
+    document.addEventListener('keydown', this.onDocumentKeyDown);
+  }
+
+  componentWillUnmout () {
+    document.removeEventListener('keydown', this.onDocumentKeyDown);
+  }
+
+  onDocumentKeyDown (e) {
+    if (e.target.nodeName.toLowerCase() === 'input') return;
+    if (e.keyCode === 27) this.onCloseClick();
   }
 
   onCloseClick () {
