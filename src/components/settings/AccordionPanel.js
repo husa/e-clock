@@ -1,6 +1,7 @@
 import './accordionPanel.styl';
 
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 class Panel extends Component {
@@ -64,7 +65,7 @@ class Panel extends Component {
 }
 
 Panel.propTypes = {
-  header: React.PropTypes.any
+  header: PropTypes.any
 };
 
 export default Panel;

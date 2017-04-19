@@ -56,6 +56,7 @@
   "dependencies": {
     "autobindr": "^1.0.2",
     "classnames": "^2.2.5",
+    "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-addons-css-transition-group": "^15.5.2",
     "react-dom": "^15.5.4",

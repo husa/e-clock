@@ -1,6 +1,7 @@
 import './clock.styl';
 
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import lang from '../../common/lang';
@@ -143,11 +144,11 @@ class Clock extends Component {
 }
 
 Clock.propTypes = {
-  use24: React.PropTypes.bool,
-  fontFamily: React.PropTypes.string,
-  fontSize: React.PropTypes.string,
-  showDate: React.PropTypes.bool,
-  delimiterBlinking: React.PropTypes.bool
+  use24: PropTypes.bool,
+  fontFamily: PropTypes.string,
+  fontSize: PropTypes.string,
+  showDate: PropTypes.bool,
+  delimiterBlinking: PropTypes.bool
 };
 
 export default Clock;

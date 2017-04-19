@@ -1,6 +1,7 @@
 import './dock.styl';
 
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {dock} from '../../config';
@@ -35,7 +36,7 @@ class Dock extends Component {
 }
 
 Dock.propTypes = {
-  toggleSettings: React.PropTypes.func
+  toggleSettings: PropTypes.func
 };
 
 export default Dock;

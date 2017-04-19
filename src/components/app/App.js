@@ -1,6 +1,7 @@
 import './app.styl';
 
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import FadeIn from '../../common/animations/FadeIn';
