@@ -1,9 +1,11 @@
+const path = require('path');
+
 module.exports = {
   entry: {
-    main: './src/main.js'
+    main: path.resolve('./src/main.js')
   },
   output: {
-    path: './build',
+    path: path.resolve('./build'),
     filename: '[name]_[hash].js'
   }
 };

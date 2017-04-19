@@ -7,8 +7,7 @@ module.exports = {
 
     eslint: {
       test: /\.js$/,
-      loader: 'eslint-loader',
-      include: './src'
+      loader: 'eslint-loader'
     },
 
     babel: {
@@ -25,8 +24,8 @@ module.exports = {
       production: {
         test: /\.styl/,
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader!stylus-loader'
+          fallback: 'style-loader',
+          use: 'css-loader!stylus-loader'
         })
       }
     },
