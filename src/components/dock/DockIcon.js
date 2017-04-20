@@ -3,6 +3,7 @@ import './dockIcon.styl';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import autobind from 'autobindr';
 
 import lang from '../../common/lang';
 
@@ -10,7 +11,7 @@ class DockIcon extends Component {
 
   constructor (...args) {
     super(...args);
-    this.onClick = this.onClick.bind(this);
+    autobind(this);
   }
 
   onClick (e) {

@@ -3,6 +3,7 @@ import './accordionPanel.styl';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import autobind from 'autobindr';
 
 class Panel extends Component {
 
@@ -11,28 +12,24 @@ class Panel extends Component {
     this.state = {
       isOpen: false
     };
-    this.onHeaderClick = this.onHeaderClick.bind(this);
+    autobind(this);
   }
 
   onHeaderClick () {
-    this.setState({isOpen: !this.state.isOpen});
+    this.setState(state => ({isOpen: !state.isOpen}));
   }
 
   render () {
-    const className = classNames(
-      'accordion-panel',
-      this.props.className
-    );
-    const contentClassName = classNames({
-      'accordion-panel__content': true,
-      'accordion-panel__content--open': this.state.isOpen
+    const {isOpen} = this.state;
+    const className = classNames('accordion-panel', this.props.className);
+    const contentClassName = classNames('accordion-panel__content', {
+      'accordion-panel__content--open': isOpen
     });
-    const iconClassName = classNames({
-      'accordion-panel__header-icon': true,
-      'accordion-panel__header-icon--open': this.state.isOpen
+    const iconClassName = classNames('accordion-panel__header-icon', {
+      'accordion-panel__header-icon--open': isOpen
     });
     const contentStyle = {
-      maxHeight: this.state.isOpen ? this.content.scrollHeight : 0
+      maxHeight: isOpen ? this.content.scrollHeight : 0
     };
 
     return (
@@ -52,8 +49,8 @@ class Panel extends Component {
         <div
           className={contentClassName}
           style={contentStyle}
-          ref={c => {
-            this.content = c;
+          ref={node => {
+            this.content = node;
           }}>
           <div className="accordion-panel__content-wrapper">
             {this.props.children}
@@ -65,7 +62,8 @@ class Panel extends Component {
 }
 
 Panel.propTypes = {
-  header: PropTypes.any
+  className: PropTypes.string,
+  header: PropTypes.string
 };
 
 export default Panel;
