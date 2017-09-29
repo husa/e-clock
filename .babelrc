@@ -1,7 +1,11 @@
 {
   presets: [
-    ['es2015', {modules: false}],
-    'es2016',
+    ['env', {
+      modules: false,
+      targets: {
+        browsers: ['last 5 Chrome versions']
+      }
+    }],
     'react'
   ],
   plugins: [
@@ -10,7 +14,7 @@
   env: {
     test: {
       presets: [
-        'es2015'
+        'env'
       ]
     }
   }
