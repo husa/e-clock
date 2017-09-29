@@ -13,6 +13,7 @@ module.exports = Object.assign(base, {
     plugins.html.production,
     plugins.css,
     plugins.define.production,
-    plugins.uglify
+    plugins.uglify,
+    plugins.concatModules
   ]
 });

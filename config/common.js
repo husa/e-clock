@@ -74,6 +74,8 @@ module.exports = {
       uglifyOptions: {
         ecma: 6
       }
-    })
+    }),
+
+    concatModules: new webpack.optimize.ModuleConcatenationPlugin()
   }
 };
