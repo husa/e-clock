@@ -1,10 +1,11 @@
-const weatherConfig = {
+const weatherDefaults = {
   mode: 'json',
   units: 'internal',
   cnt: '5',
-  type: 'accurate',
-  apikey: WEATHER_API_KEY
+  type: 'accurate'
 };
+
+const API_KEYS = WEATHER_API_KEY.split(',');
 
 const locationConfig = {
   enableHighAccuracy: true,
@@ -13,6 +14,8 @@ const locationConfig = {
 };
 
 const TIMEOUT_INCREASE = 1000;
+
+const getRandom = items => items[Math.floor(Math.random() * items.length)];
 
 class Weather {
   getCurrentPosition () {
@@ -38,16 +41,22 @@ class Weather {
     );
   }
 
+  getApiKey () {
+    return getRandom(API_KEYS);
+  }
+
   createUrlFromPosition (position) {
     const lat = position.coords.latitude.toFixed(5);
     const lon = position.coords.longitude.toFixed(5);
-    const {mode, type, units, cnt, apikey} = weatherConfig;
+    const {mode, type, units, cnt} = weatherDefaults;
+    const apikey = this.getApiKey();
 
     return `http://api.openweathermap.org/data/2.5/forecast/daily?&mode=${mode}&type=${type}&units=${units}&cnt=${cnt}&lat=${lat}&lon=${lon}&APPID=${apikey}`;
   }
 
   createUrlFromLocation (location) {
-    const {mode, type, units, cnt, apikey} = weatherConfig;
+    const {mode, type, units, cnt} = weatherDefaults;
+    const apikey = this.getApiKey();
 
     return Promise.resolve(
       `http://api.openweathermap.org/data/2.5/forecast/daily?&mode=${mode}&type=${type}&units=${units}&cnt=${cnt}&q=${location}&APPID=${apikey}`
@@ -58,7 +67,7 @@ class Weather {
     if (location !== 'auto') {
       return this.createUrlFromLocation(location);
     }
-    return this.getLocation().then(this.createUrlFromPosition);
+    return this.getLocation().then(this.createUrlFromPosition.bind(this));
   }
 
   loadWeatherData (url) {
