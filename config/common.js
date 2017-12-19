@@ -3,6 +3,10 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+require('dotenv').config();
+
+const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+
 module.exports = {
   loaders: {
 
@@ -59,6 +63,9 @@ module.exports = {
     css: new ExtractTextPlugin('[name]_[hash].css'),
 
     define: {
+      common: new webpack.DefinePlugin({
+        WEATHER_API_KEY: JSON.stringify(WEATHER_API_KEY)
+      }),
       development: new webpack.DefinePlugin({
         'ENV': JSON.stringify('development')
       }),

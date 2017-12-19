@@ -10,6 +10,7 @@ module.exports = Object.assign(base, {
   },
   plugins: [
     plugins.html.development,
+    plugins.define.common,
     plugins.define.development
   ],
   cache: true,

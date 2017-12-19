@@ -12,6 +12,7 @@ module.exports = Object.assign(base, {
     plugins.options,
     plugins.html.production,
     plugins.css,
+    plugins.define.common,
     plugins.define.production,
     plugins.uglify,
     plugins.concatModules

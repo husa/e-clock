@@ -3,7 +3,7 @@ const weatherConfig = {
   units: 'internal',
   cnt: '5',
   type: 'accurate',
-  apikey: 'e35c4324fb7999ba5788fbba8c901d11'
+  apikey: WEATHER_API_KEY
 };
 
 const locationConfig = {
@@ -14,15 +14,10 @@ const locationConfig = {
 
 const TIMEOUT_INCREASE = 1000;
 
-
 class Weather {
   getCurrentPosition () {
     return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(
-        resolve,
-        reject,
-        locationConfig
-      );
+      navigator.geolocation.getCurrentPosition(resolve, reject, locationConfig);
     });
   }
 
@@ -54,15 +49,16 @@ class Weather {
   createUrlFromLocation (location) {
     const {mode, type, units, cnt, apikey} = weatherConfig;
 
-    return Promise.resolve(`http://api.openweathermap.org/data/2.5/forecast/daily?&mode=${mode}&type=${type}&units=${units}&cnt=${cnt}&q=${location}&APPID=${apikey}`);
+    return Promise.resolve(
+      `http://api.openweathermap.org/data/2.5/forecast/daily?&mode=${mode}&type=${type}&units=${units}&cnt=${cnt}&q=${location}&APPID=${apikey}`
+    );
   }
 
   getWeatherUrl (location) {
     if (location !== 'auto') {
       return this.createUrlFromLocation(location);
     }
-    return this.getLocation()
-      .then(this.createUrlFromPosition);
+    return this.getLocation().then(this.createUrlFromPosition);
   }
 
   loadWeatherData (url) {
@@ -82,6 +78,6 @@ class Weather {
   }
 }
 
-const weather = new Weather;
+const weather = new Weather();
 
 export default weather;
