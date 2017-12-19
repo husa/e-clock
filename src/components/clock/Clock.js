@@ -9,7 +9,6 @@ import lang from '../../common/lang';
 import Slide from '../../common/animations/Slide';
 
 class Clock extends Component {
-
   constructor (...args) {
     super(...args);
     this.state = this.getNewDate();

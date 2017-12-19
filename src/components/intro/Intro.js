@@ -8,7 +8,6 @@ import lang from '../../common/lang';
 const INTRO_SHOW_TIME = 2000;
 
 class Intro extends Component {
-
   componentDidMount () {
     setTimeout(() => {
       this.props.setIntro(false);

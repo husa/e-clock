@@ -10,7 +10,6 @@ const initialState = {
 
 function view (state = initialState, action) {
   switch (action.type) {
-
     case OPEN_SETTINGS:
       return Object.assign({}, state, {
         settingsOpen: true

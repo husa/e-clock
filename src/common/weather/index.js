@@ -16,7 +16,6 @@ const TIMEOUT_INCREASE = 1000;
 
 
 class Weather {
-
   getCurrentPosition () {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(

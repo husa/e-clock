@@ -8,7 +8,6 @@ import lang from '../../common/lang';
 import SettingsItem from './SettingsItem';
 
 class WeatherSettings extends Component {
-
   constructor (...args) {
     super(...args);
     autobind(this);

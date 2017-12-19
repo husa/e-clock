@@ -8,7 +8,6 @@ import lang from '../../common/lang';
 import ErrorMessage from '../error/ErrorMessage';
 
 class Weather extends Component {
-
   componentDidMount () {
     this.loadWeather(this.props);
   }

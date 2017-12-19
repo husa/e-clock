@@ -8,7 +8,6 @@ import autobind from 'autobindr';
 import lang from '../../common/lang';
 
 class DockIcon extends Component {
-
   constructor (...args) {
     super(...args);
     autobind(this);

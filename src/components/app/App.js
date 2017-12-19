@@ -13,7 +13,6 @@ import Settings from '../../containers/settings/Settings';
 import Weather from '../../containers/weather/Weather';
 
 class App extends Component {
-
   constructor (...args) {
     super(...args);
     this.state = {

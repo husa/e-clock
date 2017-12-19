@@ -9,7 +9,6 @@ import {dock} from '../../config';
 import DockIcon from './DockIcon';
 
 class Dock extends Component {
-
   getDockItems () {
     return dock
       .filter(d => this.props.dock[d.url] !== false)

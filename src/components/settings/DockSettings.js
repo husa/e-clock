@@ -7,7 +7,6 @@ import {dock} from '../../config';
 
 
 class DockSettings extends Component {
-
   onSettingsItemClick (dockItem) {
     let val = this.props.dock[dockItem];
     if (typeof val === 'undefined') {

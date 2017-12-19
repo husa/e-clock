@@ -20,7 +20,6 @@ const TABS = {
 };
 
 class Settings extends Component {
-
   constructor (...args) {
     super(...args);
     this.state = {

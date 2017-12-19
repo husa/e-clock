@@ -19,7 +19,6 @@ import Accordion from './Accordion';
 import Panel from './AccordionPanel';
 
 class AppearanceSettings extends Component {
-
   onOptionClick (options) {
     this.props.setOptions(options);
   }

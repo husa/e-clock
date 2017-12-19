@@ -1,5 +1,4 @@
 class Analytics {
-
   getGA () {
     /* eslint no-empty-function: 0 */
     if (window.ga) return window.ga;
@@ -35,11 +34,11 @@ class Analytics {
       },
       body: settingsJSON
     })
-    .then(res => res.json())
-    .then(data => {
-      if (!data || data.error) return;
-      localStorage.setItem('settings_analytics', settingsJSON);
-    });
+      .then(res => res.json())
+      .then(data => {
+        if (!data || data.error) return;
+        localStorage.setItem('settings_analytics', settingsJSON);
+      });
   }
 }
 

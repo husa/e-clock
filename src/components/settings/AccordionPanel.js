@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import autobind from 'autobindr';
 
 class Panel extends Component {
-
   constructor (...args) {
     super(...args);
     this.state = {
