@@ -14,7 +14,6 @@
   "homepage": "https://github.com/husa/e-clock",
   "scripts": {
     "lint": "eslint ./src",
-    "pretest": "npm run lint",
     "test": "cross-env NODE_ENV=test mocha --compilers js:babel-register --recursive --require ./test/helper.js ./test",
     "test:watch": "npm test -- --watch",
     "clear": "rimraf ./build && mkdirp ./build",
@@ -23,7 +22,7 @@
     "build": "npm-run-all clear build:*",
     "build:assets": "cp -r ./src/img ./src/fonts ./src/_locales ./src/manifest.json ./src/analytics.js ./build",
     "build:code": "cross-env NODE_ENV=production webpack",
-    "build:zip": "rimraf ./*.zip && cd build && zip -r ../dist.zip *"
+    "zip": "bestzip build.zip ./build"
   },
   "devDependencies": {
     "@eleks/eslint-config-eleks": "^0.2.1",
@@ -57,6 +56,7 @@
   },
   "dependencies": {
     "autobindr": "^1.0.2",
+    "bestzip": "^1.1.4",
     "classnames": "^2.2.5",
     "react": "^16.0.0",
     "react-addons-css-transition-group": "^15.4.1",
