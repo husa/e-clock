@@ -92,7 +92,7 @@ describe('actions/weather', () => {
 
   describe('loadWeather', () => {
     const stubWeather = func => {
-      sinon.stub(weather, 'getWeather', func);
+      sinon.stub(weather, 'getWeather').callsFake(func);
     };
     const location = 'some_location';
     const data = {

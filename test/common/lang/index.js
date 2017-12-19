@@ -9,9 +9,8 @@ describe('Lang', () => {
     beforeEach(() => {
       sinon.stub(
         chrome.i18n,
-        'getMessage',
-        key => key === 'i18nTest' ? 'test-translated' : null
-      );
+        'getMessage'
+      ).callsFake(key => key === 'i18nTest' ? 'test-translated' : null);
     });
 
     afterEach(() => {
