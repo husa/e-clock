@@ -22,7 +22,9 @@
     "build": "npm-run-all clear build:*",
     "build:assets": "cp -r ./src/img ./src/fonts ./src/_locales ./src/manifest.json ./src/analytics.js ./build",
     "build:code": "cross-env NODE_ENV=production webpack",
-    "zip": "bestzip build.zip ./build"
+    "zip": "bestzip build.zip ./build",
+    "release": "node ./scripts/release.js",
+    "deploy": "node ./scripts/deploy.js"
   },
   "devDependencies": {
     "@eleks/eslint-config-eleks": "^0.2.1",
@@ -35,6 +37,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.18.0",
     "chai": "^4.1.2",
+    "chrome-webstore-upload": "^0.2.1",
     "cross-env": "^5.1.1",
     "css-loader": "^0.28.7",
     "eslint": "^4.13.1",
@@ -46,6 +49,8 @@
     "mocha": "^4.0.1",
     "npm-run-all": "^4.1.1",
     "rimraf": "^2.5.4",
+    "semver": "^5.4.1",
+    "simple-git": "^1.85.0",
     "sinon": "^4.1.3",
     "style-loader": "^0.19.1",
     "stylus": "^0.54.5",
