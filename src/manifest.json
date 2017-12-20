@@ -1,25 +1,20 @@
 {
-    "manifest_version" : 2,
-    "name" : "e-clock",
-    "version" : "3.2.4",
-
-    "description" : "__MSG_i18nShortDescription__",
-
-    "default_locale": "en",
-
-    "chrome_url_overrides" : {
-        "newtab" : "index.html"
-    },
-
-    "icons" : {
-        "128": "img/icons/icon128.png",
-        "48": "img/icons/icon48.png"
-    },
-
-    "permissions" : [
-        "storage",
-        "geolocation"
-    ],
-    "offline_enabled" : true,
-    "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'"
+  "manifest_version": 2,
+  "name": "e-clock",
+  "version": "3.3.0",
+  "description": "__MSG_i18nShortDescription__",
+  "default_locale": "en",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "icons": {
+    "48": "img/icons/icon48.png",
+    "128": "img/icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "geolocation"
+  ],
+  "offline_enabled": true,
+  "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'"
 }
