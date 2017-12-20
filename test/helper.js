@@ -1,7 +1,7 @@
 /* eslint-disable */
 require('dotenv').config();
 
-global.WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+global.WEATHER_API_KEY = 'some-api-key';
 
 global.chrome = {
   i18n: {
