@@ -11,7 +11,8 @@ module.exports = {
   },
   "globals": {
     "chrome": false,
-    "ENV": false
+    "ENV": false,
+    "WEATHER_API_KEY": false
   },
   "plugins": [
     "react"

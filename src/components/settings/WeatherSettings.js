@@ -1,15 +1,17 @@
 import './weatherSettings.styl';
 
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import autobind from 'autobindr';
 
 import lang from '../../common/lang';
 import SettingsItem from './SettingsItem';
 
 class WeatherSettings extends Component {
-
   constructor (...args) {
     super(...args);
-    this.onDisplayWeatherClick = this.onDisplayWeatherClick.bind(this);
+    autobind(this);
+
     this.onUnitsChangeC = this.onUnitsChange.bind(this, 'c');
     this.onUnitsChangeF = this.onUnitsChange.bind(this, 'f');
     this.onLocationPreferenceChangeAuto = this.onLocationPreferenceChange.bind(this, 'auto');
@@ -110,7 +112,7 @@ class WeatherSettings extends Component {
                     className="text-input__input"
                     type="text"
                     defaultValue={customLocation}
-                    onBlur={this.onCustomLocationBlur.bind(this)}
+                    onBlur={this.onCustomLocationBlur}
                     required />
                   <span className="text-input__bar"></span>
                   <span className="text-input__label">{lang.t('WeatherYourCity')}</span>
@@ -131,7 +133,7 @@ class WeatherSettings extends Component {
           className="settings-weather__time-format"
           title={lang.t('ShowWeather')}
           checked={this.props.settings.displayWeather}
-          onClick={this.onDisplayWeatherClick.bind(this)} />
+          onClick={this.onDisplayWeatherClick} />
 
         {this.getUnitsOptions()}
 

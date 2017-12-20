@@ -1,7 +1,9 @@
 import './settings.styl';
 
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import autobind from 'autobindr';
 
 import lang from '../../common/lang';
 
@@ -18,14 +20,12 @@ const TABS = {
 };
 
 class Settings extends Component {
-
   constructor (...args) {
     super(...args);
     this.state = {
       activeTab: Object.keys(TABS)[0]
     };
-
-    this.onDocumentKeyDown = this.onDocumentKeyDown.bind(this);
+    autobind(this);
   }
 
   componentDidMount () {
@@ -60,7 +60,7 @@ class Settings extends Component {
 
   getCloseIcon () {
     return (
-      <div className="settings__close-icon" onClick={this.onCloseClick.bind(this)}>
+      <div className="settings__close-icon" onClick={this.onCloseClick}>
         <svg height="24" viewBox="0 0 24 24" width="24">
           <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
           <path d="M0 0h24v24H0z" fill="none" />

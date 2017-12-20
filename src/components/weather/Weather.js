@@ -1,13 +1,13 @@
 import './weather.styl';
 
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import lang from '../../common/lang';
 
 import ErrorMessage from '../error/ErrorMessage';
 
 class Weather extends Component {
-
   componentDidMount () {
     this.loadWeather(this.props);
   }

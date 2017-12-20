@@ -30,7 +30,8 @@ class AboutSettings extends Component {
             <a
               className="settings-about__share-link settings-about__share-link--twitter"
               href="https://twitter.com/intent/tweet/?text=Checkout%20e-clock%20-%20minimalistic%20chrome%20extension&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fe-clock%2Fojhhcfhabhligodffabdhcaoicecaboo&via=YuriyHusnay&hashtags=e-clock,chrome,extension"
-              target="_blank">
+              target="_blank"
+              rel="noopener noreferrer">
               <svg width="24px" height="24px" viewBox="0 0 24 24">
                 <use xlinkHref="#social-twitter"></use>
               </svg>
@@ -38,7 +39,8 @@ class AboutSettings extends Component {
             <a
               className="settings-about__share-link settings-about__share-link--facebook"
               href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fe-clock%2Fojhhcfhabhligodffabdhcaoicecaboo"
-              target="_blank">
+              target="_blank"
+              rel="noopener noreferrer">
               <svg width="24px" height="24px" viewBox="0 0 24 24">
                 <use xlinkHref="#social-facebook"></use>
               </svg>
@@ -46,7 +48,8 @@ class AboutSettings extends Component {
             <a
               className="settings-about__share-link settings-about__share-link--google"
               href="https://plus.google.com/share?url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fe-clock%2Fojhhcfhabhligodffabdhcaoicecaboo"
-              target="_blank">
+              target="_blank"
+              rel="noopener noreferrer">
               <svg width="24px" height="24px" viewBox="0 0 24 24">
                 <use xlinkHref="#social-google"></use>
               </svg>
@@ -54,7 +57,8 @@ class AboutSettings extends Component {
             <a
               className="settings-about__share-link settings-about__share-link--reddit"
               href="http://www.reddit.com/submit/?url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fe-clock%2Fojhhcfhabhligodffabdhcaoicecaboo"
-              target="_blank">
+              target="_blank"
+              rel="noopener noreferrer">
               <svg width="24px" height="24px" viewBox="0 0 24 24">
                 <use xlinkHref="#social-reddit"></use>
               </svg>

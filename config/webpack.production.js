@@ -4,11 +4,7 @@ const {loaders, plugins} = require('./common');
 module.exports = Object.assign(base, {
   module: {
     rules: [
-      Object.assign({
-        enforce: 'pre'
-      }, loaders.eslint),
       loaders.babel,
-      loaders.fonts,
       loaders.stylus.production
     ]
   },
@@ -16,7 +12,9 @@ module.exports = Object.assign(base, {
     plugins.options,
     plugins.html.production,
     plugins.css,
+    plugins.define.common,
     plugins.define.production,
-    plugins.uglify
+    plugins.uglify,
+    plugins.concatModules
   ]
 });

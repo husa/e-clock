@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import lang from '../../common/lang';
 import SettingsItem from './SettingsItem';
@@ -6,7 +7,6 @@ import {dock} from '../../config';
 
 
 class DockSettings extends Component {
-
   onSettingsItemClick (dockItem) {
     let val = this.props.dock[dockItem];
     if (typeof val === 'undefined') {

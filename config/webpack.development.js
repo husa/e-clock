@@ -4,18 +4,15 @@ const {loaders, plugins} = require('./common');
 module.exports = Object.assign(base, {
   module: {
     rules: [
-      Object.assign({
-        enforce: 'pre'
-      }, loaders.eslint),
       loaders.babel,
-      loaders.fonts,
-      loaders.stylus.develop
+      loaders.stylus.development
     ]
   },
   plugins: [
-    plugins.html.develop,
-    plugins.define.develop
+    plugins.html.development,
+    plugins.define.common,
+    plugins.define.development
   ],
   cache: true,
-  devtool: 'cheap-source-map'
+  devtool: 'cheap-module-source-map'
 });

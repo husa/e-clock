@@ -12,7 +12,7 @@ describe('Storage', () => {
     });
 
     it('should return resolved promise with data from chrome.storage', () => {
-      sinon.stub(chrome.storage.sync, 'get', (key, callback) => {
+      sinon.stub(chrome.storage.sync, 'get').callsFake((key, callback) => {
         setTimeout(callback, 10, {[key]: {
           some: 'data'
         }});
@@ -33,7 +33,7 @@ describe('Storage', () => {
     });
 
     it('should return resolved promise with null if chrome.storage does not have data', () => {
-      sinon.stub(chrome.storage.sync, 'get', (key, callback) => {
+      sinon.stub(chrome.storage.sync, 'get').callsFake((key, callback) => {
         setTimeout(callback, 10, null);
       });
       const resolveSpy = sinon.spy();

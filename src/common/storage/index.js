@@ -1,7 +1,6 @@
 const STORAGE_KEY = 'settings_data';
 
 class Storage {
-
   constructor () {
     this.key = STORAGE_KEY;
   }
@@ -31,7 +30,6 @@ class Storage {
       [this.key]: Object.assign({}, settings, dock)
     });
   }
-
 }
 
 const storage = new Storage;

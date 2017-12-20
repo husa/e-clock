@@ -1,5 +1,5 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
-import createLogger from 'redux-logger';
+import {createLogger} from 'redux-logger';
 import thunk from 'redux-thunk';
 
 import reducers from '../reducers';
@@ -17,7 +17,7 @@ const logger = createLogger({
   collapsed: true
 });
 
-if (ENV === 'develop') middleware.push(logger);
+if (ENV === 'development') middleware.push(logger);
 
 const createStoreWithMiddleware = applyMiddleware(
   ...middleware
