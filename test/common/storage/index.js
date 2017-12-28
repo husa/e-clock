@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import sinon from 'sinon';
 
-import storage from '../../../src/common/storage';
+import storage from '../../../src/services/storage';
 
 describe('Storage', () => {
 

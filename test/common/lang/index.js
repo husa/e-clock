@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import sinon from 'sinon';
 
-import lang from '../../../src/common/lang';
+import lang from '../../../src/services/lang';
 
 describe('Lang', () => {
   describe('t', () => {

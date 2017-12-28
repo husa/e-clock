@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import sinon from 'sinon';
 
-import weather from '../../src/common/weather';
+import weather from '../../src/services/weather';
 import {
   WEATHER_LOAD_REQUEST,
   WEATHER_LOAD_SUCCESS,
