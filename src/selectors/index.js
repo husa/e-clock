@@ -10,7 +10,7 @@ export function selectView (state) {
   return state.view;
 }
 
-function selectWeatherData (state) {
+export function selectWeatherData (state) {
   const location = selectLocationName(state);
   return state.weather[location] || {};
 }
