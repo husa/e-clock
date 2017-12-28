@@ -1,12 +1,12 @@
 import {connect} from 'react-redux';
 
 import {
-  getForecast,
-  getLocation,
-  getSettings,
-  getWeatherError,
-  isWeatherLoading,
-  getLocationName
+  selectForecast,
+  selectLocation,
+  selectSettings,
+  selectWeatherError,
+  selectWeatherLoading,
+  selectLocationName
 } from '../../selectors';
 
 import {loadWeather} from '../../actions/weather';
@@ -14,12 +14,12 @@ import {loadWeather} from '../../actions/weather';
 import Weather from '../../components/weather/Weather';
 
 const mapStateToProps = state => ({
-  forecast: getForecast(state),
-  location: getLocation(state),
-  locationName: getLocationName(state),
-  loading: isWeatherLoading(state),
-  error: getWeatherError(state),
-  settings: getSettings(state)
+  forecast: selectForecast(state),
+  location: selectLocation(state),
+  locationName: selectLocationName(state),
+  loading: selectWeatherLoading(state),
+  error: selectWeatherError(state),
+  settings: selectSettings(state)
 });
 
 const mapDispatchToProps = dispatch => ({

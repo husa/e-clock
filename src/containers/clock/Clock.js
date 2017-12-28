@@ -1,11 +1,11 @@
 import {connect} from 'react-redux';
 
-import {getSettings} from '../../selectors';
+import {selectSettings} from '../../selectors';
 
 import Clock from '../../components/clock/Clock';
 
 const mapStateToProps = state => {
-  const settings = getSettings(state);
+  const settings = selectSettings(state);
 
   return {
     use24: settings.use24format,

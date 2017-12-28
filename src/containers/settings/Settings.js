@@ -1,9 +1,9 @@
 import {connect} from 'react-redux';
 
 import {
-  getSettings,
-  getView,
-  getDock
+  selectSettings,
+  selectView,
+  selectDock
 } from '../../selectors';
 
 import {closeSettings} from '../../actions/view';
@@ -13,9 +13,9 @@ import {setDockOptions} from '../../actions/dock';
 import Settings from '../../components/settings/Settings';
 
 const mapStateToProps = state => {
-  const settings = getSettings(state);
-  const dock = getDock(state);
-  const view = getView(state);
+  const settings = selectSettings(state);
+  const dock = selectDock(state);
+  const view = selectView(state);
 
   return {
     isOpen: view.settingsOpen,

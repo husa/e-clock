@@ -1,8 +1,8 @@
 import {connect} from 'react-redux';
 
 import {
-  getDock,
-  getSettings
+  selectDock,
+  selectSettings
 } from '../../selectors';
 
 import {toggleSettings} from '../../actions/view';
@@ -10,8 +10,8 @@ import {toggleSettings} from '../../actions/view';
 import Dock from '../../components/dock/Dock';
 
 const mapStateToProps = state => ({
-  dock: getDock(state),
-  autoHide: getSettings(state).autoHideDock
+  dock: selectDock(state),
+  autoHide: selectSettings(state).autoHideDock
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -26,4 +26,3 @@ const DockContainer = connect(
 )(Dock);
 
 export default DockContainer;
-

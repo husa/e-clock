@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import {getSettings} from '../../selectors';
+import {selectSettings} from '../../selectors';
 
 import {setIntro} from '../../actions/intro';
 
@@ -8,7 +8,7 @@ import Intro from '../../components/intro/Intro';
 
 
 const mapStateToProps = state => ({
-  settings: getSettings(state)
+  settings: selectSettings(state)
 });
 
 const mapDispatchToProps = dispatch => ({
