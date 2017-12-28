@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import autobind from 'autobindr';
 
-import lang from '../../common/lang';
+import lang from '../../services/lang';
 
 import Appearance from './AppearanceSettings';
 import Dock from './DockSettings';

@@ -3,7 +3,7 @@ import './intro.styl';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import lang from '../../common/lang';
+import lang from '../../services/lang';
 
 const INTRO_SHOW_TIME = 2000;
 

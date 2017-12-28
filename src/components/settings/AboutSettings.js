@@ -3,7 +3,7 @@ import './aboutSettings.styl';
 
 import React, {Component} from 'react';
 
-import lang from '../../common/lang';
+import lang from '../../services/lang';
 
 class AboutSettings extends Component {
   render () {

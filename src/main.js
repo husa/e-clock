@@ -5,7 +5,7 @@ import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 
 import {pluckSettings, pluckDock} from './common/utils';
-import storage from './common/storage';
+import storage from './services/storage';
 import {settings} from './config';
 import createStore from './store/createStore';
 // import analytics from './common/analytics';

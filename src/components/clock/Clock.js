@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import lang from '../../common/lang';
+import lang from '../../services/lang';
 
 import Slide from '../../common/animations/Slide';
 

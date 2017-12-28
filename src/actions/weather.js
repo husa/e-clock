@@ -1,4 +1,4 @@
-import weather from '../common/weather';
+import weather from '../services/weather';
 
 export const WEATHER_LOAD_REQUEST = 'WEATHER_LOAD_REQUEST';
 export const WEATHER_LOAD_SUCCESS = 'WEATHER_LOAD_SUCCESS';

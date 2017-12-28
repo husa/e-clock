@@ -4,7 +4,7 @@ import {SET_OPTIONS} from '../actions/settings';
 import {SET_DOCK_OPTIONS} from '../actions/dock';
 import {SET_INTRO} from '../actions/intro';
 
-import storage from '../common/storage';
+import storage from '../services/storage';
 
 const sync = debounce(state => storage.sync(state), 1000);
 

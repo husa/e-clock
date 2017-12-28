@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import autobind from 'autobindr';
 
-import lang from '../../common/lang';
+import lang from '../../services/lang';
 import SettingsItem from './SettingsItem';
 
 class WeatherSettings extends Component {

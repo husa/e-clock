@@ -3,8 +3,8 @@ import {
   CLOSE_SETTINGS,
   TOGGLE_SETTINGS
 } from '../actions/view';
-import {getView} from '../selectors';
-import analytics from '../common/analytics';
+import {selectView} from '../selectors';
+import analytics from '../services/analytics';
 
 const actions = [
   OPEN_SETTINGS,
@@ -16,7 +16,7 @@ const analyticsMiddleware = store => next => action => {
   const result = next(action);
   if (actions.includes(action.type)) {
     let page;
-    const {settingsOpen} = getView(store.getState());
+    const {settingsOpen} = selectView(store.getState());
     if (settingsOpen) page = 'settings';
     analytics.trackPage(page);
   }
