@@ -29,7 +29,6 @@ export const selectForecast = createSelector(
       text: day.weather[0].main,
       description: day.weather[0].description
     }));
-
   }
 );
 
