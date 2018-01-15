@@ -4,7 +4,7 @@ class Cache {
       const value = JSON.parse(localStorage.getItem(key));
       if (!value) return reject();
       const {ts, ttl} = value;
-      if (ts - Date.now() > ttl) {
+      if (Date.now() - ts > ttl) {
         this.removeItem(key);
         return reject();
       }
