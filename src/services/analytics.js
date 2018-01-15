@@ -6,6 +6,7 @@ class Analytics {
   }
 
   trackPage (page = 'index') {
+    if (ENV === 'development') return;
     const ga = this.getGA();
     ga('set', {
       page: `/${page}`,
@@ -14,13 +15,15 @@ class Analytics {
     ga('send', 'pageview');
   }
 
-  trackEvent ({category, action}) {
+  trackEvent ({category, action, label}) {
+    if (ENV === 'development') return;
     const ga = this.getGA();
-    ga('send', {
-      hitType: 'event',
+    let opts = {
       eventCategory: category,
       eventAction: action
-    });
+    };
+    if (label) opts = {...opts, eventLabel: label};
+    ga('send', 'event', opts);
   }
 
   saveSettings (settings) {
