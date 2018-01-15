@@ -94,7 +94,7 @@ class Weather {
   }
 
   getWeather (location) {
-    return cache.getItem(CACHE_ID).then(cachedWeather => {
+    return cache.getItem(`${CACHE_ID}@${location}`).then(cachedWeather => {
       if (isCacheValid(cachedWeather)) {
         analytics.trackEvent('weather', 'gotCache');
         return cachedWeather;
@@ -103,7 +103,7 @@ class Weather {
         .then(this.loadWeatherData)
         .then(data => {
           if (!data.city || !data.list) return Promise.reject(data);
-          return cache.setItem(CACHE_ID, data).then(() => {
+          return cache.setItem(`${CACHE_ID}@${location}`, data).then(() => {
             analytics.trackEvent('weather', 'setCache');
             return data;
           });
