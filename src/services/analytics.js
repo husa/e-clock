@@ -15,8 +15,11 @@ class Analytics {
     ga('send', 'pageview');
   }
 
-  trackEvent ({category, action, label}) {
-    if (ENV === 'development') return;
+  trackEvent (category, action, label) {
+    if (ENV === 'development') {
+      console.log(`[analytics] track event: ${category} ${action} ${label || ''}`);
+      return;
+    }
     const ga = this.getGA();
     let opts = {
       eventCategory: category,
