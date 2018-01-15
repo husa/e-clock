@@ -15,7 +15,10 @@ class Weather extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!this.props.settings.displayWeather && nextProps.settings.displayWeather) {
+    if (
+      (!this.props.settings.displayWeather && nextProps.settings.displayWeather)
+      || this.props.locationName !== nextProps.locationName
+    ) {
       this.loadWeather(nextProps);
     }
   }
