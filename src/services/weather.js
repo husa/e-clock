@@ -21,16 +21,7 @@ const CACHE_ID = 'weatherCache';
 const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
 const getRandom = items => items[Math.floor(Math.random() * items.length)];
-
-const isCacheValid = data => {
-  if (!data) return false;
-  const {ts} = data;
-  if (!ts) return false;
-  const cached = new Date(ts);
-  const now = new Date();
-  if (now - cached > CACHE_TTL) return false;
-  return true;
-};
+const cacheKey = location => `${CACHE_ID}@${location}`;
 
 class Weather {
   getCurrentPosition () {
@@ -86,7 +77,6 @@ class Weather {
   }
 
   loadWeatherData (url) {
-    analytics.trackEvent('weather', 'fetch');
     return fetch(url).then(
       response => response.json(),
       err => Promise.reject(err)
@@ -94,21 +84,23 @@ class Weather {
   }
 
   getWeather (location) {
-    return cache.getItem(`${CACHE_ID}@${location}`).then(cachedWeather => {
-      if (isCacheValid(cachedWeather)) {
+    return cache.getItem(cacheKey(location)).then(
+      cachedWeather => {
         analytics.trackEvent('weather', 'gotCache');
         return cachedWeather;
-      }
-      return this.getWeatherUrl(location)
-        .then(this.loadWeatherData)
-        .then(data => {
-          if (!data.city || !data.list) return Promise.reject(data);
-          return cache.setItem(`${CACHE_ID}@${location}`, data).then(() => {
-            analytics.trackEvent('weather', 'setCache');
-            return data;
+      },
+      () => {
+        analytics.trackEvent('weather', 'fetch');
+        return this.getWeatherUrl(location)
+          .then(this.loadWeatherData)
+          .then(data => {
+            if (!data.city || !data.list) return Promise.reject(data);
+            return cache.setItem(cacheKey(location), data, {ttl: CACHE_TTL}).then(() => {
+              analytics.trackEvent('weather', 'setCache');
+              return data;
+            });
           });
-        });
-    });
+      });
   }
 }
 

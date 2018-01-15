@@ -1,15 +1,29 @@
 class Cache {
   getItem (key) {
-    return new Promise(resolve => {
-      const value = localStorage.getItem(key);
-      resolve(JSON.parse(value));
+    return new Promise((resolve, reject) => {
+      const value = JSON.parse(localStorage.getItem(key));
+      if (!value) return reject();
+      const {ts, ttl} = value;
+      if (ts - Date.now() > ttl) {
+        this.removeItem(key);
+        return reject();
+      }
+      return resolve(value);
     });
   }
 
-  setItem (key, value) {
+  setItem (key, value, {ttl = 0} = {}) {
     return new Promise(resolve => {
-      value.ts = (new Date).toUTCString();
+      value.ts = Date.now();
+      value.ttl = ttl;
       localStorage.setItem(key, JSON.stringify(value));
+      resolve();
+    });
+  }
+
+  removeItem (key) {
+    return new Promise(resolve => {
+      localStorage.removeItem(key);
       resolve();
     });
   }
