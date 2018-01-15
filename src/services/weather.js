@@ -99,6 +99,9 @@ class Weather {
               analytics.trackEvent('weather', 'setCache');
               return data;
             });
+          }).catch(err => {
+            analytics.trackEvent('weather', 'error');
+            return Promise.reject(err);
           });
       });
   }
