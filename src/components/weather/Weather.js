@@ -9,11 +9,15 @@ import ErrorMessage from '../error/ErrorMessage';
 
 class Weather extends Component {
   componentDidMount () {
-    this.loadWeather(this.props);
+    if (this.props.settings.displayWeather) {
+      this.loadWeather(this.props);
+    }
   }
 
   componentWillReceiveProps (nextProps) {
-    this.loadWeather(nextProps);
+    if (!this.props.settings.displayWeather && nextProps.settings.displayWeather) {
+      this.loadWeather(nextProps);
+    }
   }
 
   loadWeather (props) {
