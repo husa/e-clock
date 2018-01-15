@@ -54,18 +54,13 @@ class Weather extends Component {
     const {forecast} = this.props;
     if (!forecast.length) return null;
 
-    const {fontSize} = this.props.settings;
-    const forecastStyle = {
-      transform: `scale(${fontSize * 0.075 + 0.125})`
-    };
-
     const days = forecast.map((day, i) => (
       <div key={i} className="weather__day">
         <div className="weather__day-icon">
           <svg
             viewBox="0 0 100 100"
-            width="100"
-            height="100">
+            width="100%"
+            height="100%">
             <use xlinkHref={`#weather-${day.icon}`}></use>
           </svg>
         </div>
@@ -81,7 +76,7 @@ class Weather extends Component {
     ));
 
     return (
-      <div className="weather__forecast" style={forecastStyle}>
+      <div className="weather__forecast">
         {days}
       </div>
     );
@@ -131,8 +126,8 @@ class Weather extends Component {
     if (!this.props.settings.displayWeather) return null;
     const {fontSize, fontFamily} = this.props.settings;
     const style = {
-      fontSize: `${fontSize}em`,
-      fontFamily
+      fontFamily,
+      fontSize: `${fontSize}rem`
     };
 
     return (

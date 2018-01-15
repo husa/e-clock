@@ -130,7 +130,7 @@ class Clock extends Component {
     const {fontFamily, fontSize} = this.props;
     const style = {
       fontFamily,
-      fontSize: `${fontSize}em`
+      fontSize: `${fontSize}rem`
     };
 
     return (
