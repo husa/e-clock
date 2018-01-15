@@ -8,6 +8,7 @@ import FadeIn from '../../common/animations/FadeIn';
 
 import Intro from '../../containers/intro/Intro';
 import Clock from '../../containers/clock/Clock';
+import Date from '../../containers/date/Date';
 import Dock from '../../containers/dock/Dock';
 import Settings from '../../containers/settings/Settings';
 import Weather from '../../containers/weather/Weather';
@@ -85,6 +86,7 @@ class App extends Component {
     } else {
       component = [
         <Clock key="clock" />,
+        <Date key="date" />,
         <Weather key="weather" />
       ];
     }

@@ -11,7 +11,6 @@ const mapStateToProps = state => {
     use24: settings.use24format,
     fontFamily: settings.fontFamily,
     fontSize: settings.fontSize,
-    showDate: settings.displayDate,
     delimiterBlinking: settings.delimiterBlinking,
     displaySeconds: settings.displaySeconds,
     animateDigits: settings.animateDigits

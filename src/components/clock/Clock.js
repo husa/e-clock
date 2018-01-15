@@ -4,8 +4,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import lang from '../../services/lang';
-
 import Slide from '../../common/animations/Slide';
 
 class Clock extends Component {
@@ -31,10 +29,7 @@ class Clock extends Component {
     return {
       minutes: date.getMinutes(),
       hours: date.getHours(),
-      seconds: date.getSeconds(),
-      day: date.getDay(),
-      month: date.getMonth(),
-      date: date.getDate()
+      seconds: date.getSeconds()
     };
   }
 
@@ -101,31 +96,6 @@ class Clock extends Component {
     );
   }
 
-  getTime () {
-    return (
-      <div className="clock__time">
-        {this.getHours()}
-        {this.getDelimiter()}
-        {this.getMinutes()}
-        {this.getDelimiter(this.props.displaySeconds)}
-        {this.getSeconds()}
-        {this.getAmPm()}
-      </div>
-    );
-  }
-
-  getDate () {
-    if (!this.props.showDate) return null;
-    let {day, month, date} = this.state;
-    return (
-      <div className="clock__date">
-        {lang.t(`Day${day}`)},&nbsp;
-        {lang.t(`Month${month}`).slice(0, 3)}&nbsp;
-        {date}
-      </div>
-    );
-  }
-
   render () {
     const {fontFamily, fontSize} = this.props;
     const style = {
@@ -135,8 +105,14 @@ class Clock extends Component {
 
     return (
       <div className="clock" style={style}>
-        {this.getTime()}
-        {this.getDate()}
+        <div className="clock__time">
+          {this.getHours()}
+          {this.getDelimiter()}
+          {this.getMinutes()}
+          {this.getDelimiter(this.props.displaySeconds)}
+          {this.getSeconds()}
+          {this.getAmPm()}
+        </div>
       </div>
     );
   }
@@ -146,7 +122,6 @@ Clock.propTypes = {
   use24: PropTypes.bool,
   fontFamily: PropTypes.string,
   fontSize: PropTypes.string,
-  showDate: PropTypes.bool,
   delimiterBlinking: PropTypes.bool
 };
 
