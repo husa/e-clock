@@ -1,3 +1,4 @@
+import location from './location';
 import cache from './cache';
 import analytics from './analytics';
 
@@ -10,13 +11,6 @@ const weatherDefaults = {
 
 const API_KEYS = WEATHER_API_KEY.split(',');
 
-const locationConfig = {
-  enableHighAccuracy: true,
-  timeout: 5000, // 5s
-  maximumAge: 1000 * 60 * 60 // 1 hour
-};
-
-const TIMEOUT_INCREASE = 1000;
 const CACHE_ID = 'weatherCache';
 const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
@@ -24,29 +18,6 @@ const getRandom = items => items[Math.floor(Math.random() * items.length)];
 const cacheKey = location => `${CACHE_ID}@${location}`;
 
 class Weather {
-  getCurrentPosition () {
-    return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject, locationConfig);
-    });
-  }
-
-  getLocation () {
-    return this.getCurrentPosition().then(
-      position => position,
-      positionError => {
-        if (positionError.code === 3) {
-          locationConfig.timeout += TIMEOUT_INCREASE;
-          return this.getLocation();
-        }
-        return Promise.reject({
-          type: 'PositionError',
-          message: 'Can not retrieve location',
-          error: positionError
-        });
-      }
-    );
-  }
-
   getApiKey () {
     return getRandom(API_KEYS);
   }
@@ -69,11 +40,11 @@ class Weather {
     );
   }
 
-  getWeatherUrl (location) {
-    if (location !== 'auto') {
-      return this.createUrlFromLocation(location);
+  getWeatherUrl (locationConfig) {
+    if (locationConfig !== 'auto') {
+      return this.createUrlFromLocation(locationConfig);
     }
-    return this.getLocation().then(this.createUrlFromPosition.bind(this));
+    return location.getPosition().then(this.createUrlFromPosition.bind(this));
   }
 
   loadWeatherData (url) {
