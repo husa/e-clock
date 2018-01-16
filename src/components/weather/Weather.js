@@ -58,10 +58,10 @@ class Weather extends Component {
       <div key={i} className="weather__day">
         <div className="weather__day-icon">
           <svg
-            viewBox="0 0 100 100"
+            viewBox="0 0 24 24"
             width="100%"
             height="100%">
-            <use xlinkHref={`#weather-${day.icon}`}></use>
+            <use xlinkHref={`#material-weather-${day.icon}`}></use>
           </svg>
         </div>
         <div className="weather__day-temperature">
