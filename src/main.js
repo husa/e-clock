@@ -32,6 +32,8 @@ Promise.all([
 
   const store = createStore(initialState);
 
+  // kick off background service
+  store.dispatch({type: 'WEATHER_BG_SERVICE_START'});
   // save user setting to firebase
   //
   // setTimeout(() => {

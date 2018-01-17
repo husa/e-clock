@@ -15,19 +15,30 @@ export const selectLocationName = createSelector(
 
 export const selectWeatherData = createSelector(
   [selectWeather, selectLocationName],
-  (weather, location) => weather[location] || {}
+  (weather, location) => weather[location] || null
 );
 
-export const selectForecast = createSelector(
+export const selectCurrentWeather = createSelector(
   [selectWeatherData, selectSettings],
   (weather, {temperatureUnits}) => {
-    if (!weather.data) return [];
-    return (weather.data.list || []).map(day => ({
-      min: convertTemperature(day.temp.min, temperatureUnits),
-      max: convertTemperature(day.temp.max, temperatureUnits),
-      icon: day.weather[0].icon.match(/\d+/)[0],
-      text: day.weather[0].main,
-      description: day.weather[0].description
+    if (!weather || !weather.data || !weather.data.current) return null;
+    const {current} = weather.data;
+    return {
+      ...current,
+      temp: convertTemperature(current.temp, temperatureUnits)
+    };
+  }
+);
+
+export const selectWeatherForecast = createSelector(
+  [selectWeatherData, selectSettings],
+  (weather, {temperatureUnits}) => {
+    if (!weather || !weather.data || !weather.data.forecast) return null;
+    const {forecast} = weather.data;
+    return forecast.slice(0, 5).map(day => ({
+      ...day,
+      min: convertTemperature(day.min, temperatureUnits),
+      max: convertTemperature(day.max, temperatureUnits)
     }));
   }
 );
@@ -35,23 +46,17 @@ export const selectForecast = createSelector(
 export const selectLocation = createSelector(
   selectWeatherData,
   weather => {
-    if (weather.data && weather.data.city) {
-      const {name, country} = weather.data.city;
-      return {
-        city: name,
-        country
-      };
-    }
-    return {};
+    if (!weather || !weather.data || !weather.data.location) return null;
+    return weather.data.location;
   }
 );
 
 export const selectWeatherLoading = createSelector(
   selectWeatherData,
-  weather => weather.loading
+  weather => weather && weather.loading
 );
 
 export const selectWeatherError = createSelector(
   selectWeatherData,
-  weather => weather.error
+  weather => weather && weather.error
 );

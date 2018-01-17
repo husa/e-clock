@@ -21,3 +21,27 @@
     background-repeat: no-repeat
     background-position: center center
     background-size: cover
+
+  &__clock
+    //
+
+  &__current
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    font-size: .25em
+    text-align: center
+
+    .separator
+      &:before
+      &:after
+        content: '\00a0'
+
+  &__weather
+    font-size: .25em
+    margin-top: 20px
+
+  &__weather-error
+    font-size: 1rem
+    text-align: center

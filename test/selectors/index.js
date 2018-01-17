@@ -10,7 +10,7 @@ import {
   selectWeatherLoading,
   selectWeatherData,
 
-  selectForecast,
+  selectWeatherForecast,
   selectLocation,
 
   selectLocationName
@@ -81,13 +81,13 @@ describe('selectors', () => {
       })).to.equal('test');
     });
 
-    it('should return empty object no data', () => {
+    it('should return null when there is no data', () => {
       expect(selectWeatherData({
         settings: {useLocation: 'auto'},
         weather: {
           auto: ''
         }
-      })).to.deep.equal({});
+      })).to.deep.equal(null);
     });
   });
 
@@ -124,81 +124,75 @@ describe('selectors', () => {
         weather: {
           auto: {
             data: {
-              city: {
-                name: 'test_name',
-                country: 'test_country'
+              location: {
+                city: 'test_name'
               }
             }
           }
         }
       })).to.deep.equal({
-        city: 'test_name',
-        country: 'test_country'
+        city: 'test_name'
       });
     });
 
-    it('should empty object if no weather data', () => {
+    it('should null if no weather data', () => {
       expect(selectLocation({
         settings: {useLocation: 'auto'},
         weather: {
-          auto: ''
+          auto: null
         }
-      })).to.deep.equal({});
+      })).to.equal(null);
     });
   });
 
-  describe('selectForecast', () => {
-    it('should return empty array if no weather data available', () => {
-      expect(selectForecast({
+  describe('selectWeatherForecast', () => {
+    it('should return null if no weather data available', () => {
+      expect(selectWeatherForecast({
         settings: {useLocation: 'auto'},
         weather: {
-          auto: ''
+          auto: null
         }
-      })).to.deep.equal([]);
+      })).to.equal(null);
     });
 
     it('should accumulate weather data for specific location', () => {
-      expect(selectForecast({
-        settings: {useLocation: 'auto'},
+      expect(selectWeatherForecast({
+        settings: {useLocation: 'auto', temperatureUnits: 'c'},
         weather: {
           auto: {
             data: {
-              list: [{
-                temp: {
-                  min: 0,
-                  max: 10
-                },
-                weather: [{
-                  icon: '123',
-                  main: 'test1',
-                  description: 'test1_description'
-                }]
+              forecast: [{
+                code: '1',
+                date: '1 Jan 2000',
+                day: 'Wed',
+                max: 1,
+                min: 10,
+                text: 'test1'
               }, {
-                temp: {
-                  min: 10,
-                  max: 20
-                },
-                weather: [{
-                  icon: '456',
-                  main: 'test2',
-                  description: 'test2_description'
-                }]
+                code: '2',
+                date: '12 Jan 2000',
+                day: 'Thu',
+                max: 2,
+                min: 20,
+                text: 'test2'
               }]
             }
           }
         }
       })).to.deep.equal([{
-        min: -460,
-        max: -442,
-        icon: '123',
-        text: 'test1',
-        description: 'test1_description'
+        code: '1',
+        date: '1 Jan 2000',
+        day: 'Wed',
+        max: 1,
+        min: 10,
+        text: 'test1'
       }, {
-        min: -442,
-        max: -424,
-        icon: '456',
-        text: 'test2',
-        description: 'test2_description'
+        code: '2',
+        date: '12 Jan 2000',
+        day: 'Thu',
+        max: 2,
+        min: 20,
+        text: 'test2'
       }]);
     });
   });

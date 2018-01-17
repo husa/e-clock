@@ -92,7 +92,7 @@ describe('actions/weather', () => {
 
   describe('loadWeather', () => {
     const stubWeather = func => {
-      sinon.stub(weather, 'getWeather').callsFake(func);
+      sinon.stub(weather, 'fetch').callsFake(func);
     };
     const location = 'some_location';
     const data = {
@@ -106,7 +106,7 @@ describe('actions/weather', () => {
     });
 
     afterEach(() => {
-      weather.getWeather.restore();
+      weather.fetch.restore();
       dispatchSpy = null;
     });
 

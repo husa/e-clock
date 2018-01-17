@@ -1,6 +1,6 @@
 import './app.styl';
 
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -11,9 +11,11 @@ import Clock from '../../containers/clock/Clock';
 import Date from '../../containers/date/Date';
 import Dock from '../../containers/dock/Dock';
 import Settings from '../../containers/settings/Settings';
-import Weather from '../../containers/weather/Weather';
+import CurrentWeather from '../../containers/weather/Current';
+import WeatherForecast from '../../containers/weather/Forecast';
+import WeatherError from '../../components/weather/Error';
 
-class App extends Component {
+class App extends React.Component {
   constructor (...args) {
     super(...args);
     this.state = {
@@ -75,7 +77,7 @@ class App extends Component {
     }, this.getBackground());
   }
 
-  getIntro () {
+  getLayout () {
     let component;
     if (this.state.hidingIntro) {
       component = null;
@@ -84,17 +86,58 @@ class App extends Component {
         <Intro />
       );
     } else {
-      component = [
-        <Clock key="clock" />,
-        <Date key="date" />,
-        <Weather key="weather" />
-      ];
+      component = this.getComponents();
     }
 
     return (
       <FadeIn>
         {component}
       </FadeIn>
+    );
+  }
+
+  getWeather (WeatherComponent, key, prefix = null) {
+    if (!this.props.settings.displayWeather) return null;
+    if (!this.props.weather
+      || this.props.weather && this.props.weather.loading
+      || this.props.weather && this.props.weather.error) return null;
+    return [
+      prefix,
+      <WeatherComponent key={key} />
+    ];
+  }
+
+  getWeatherError () {
+    const {weather, settings} = this.props;
+    if (!settings.displayWeather) return null;
+    if (!weather || weather && !weather.error) return null;
+    return (
+      <div className="app__weather-error">
+        <WeatherError error={weather.error} />
+      </div>
+    );
+  }
+
+  getComponents () {
+    const {fontSize, fontFamily} = this.props.settings;
+    const style = {
+      fontFamily,
+      fontSize: `${fontSize}rem`
+    };
+    return (
+      <div className="app__content" style={style}>
+        <div className="app__clock">
+          <Clock />
+        </div>
+        <div className="app__current">
+          <Date />
+          {this.getWeather(CurrentWeather, 'current-weather', <span className="separator" key="separator">|</span>)}
+        </div>
+        <div className="app__weather">
+          {this.getWeatherError()}
+          {this.getWeather(WeatherForecast, 'weather-forecast')}
+        </div>
+      </div>
     );
   }
 
@@ -106,7 +149,7 @@ class App extends Component {
     );
     return (
       <div id="app" style={style} className={className}>
-        {this.getIntro()}
+        {this.getLayout()}
 
         <Dock />
         <Settings />
