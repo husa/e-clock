@@ -6,7 +6,8 @@
         browsers: ['last 5 Chrome versions']
       }
     }],
-    'react'
+    'react',
+    'flow'
   ],
   plugins: [
     'transform-object-rest-spread'

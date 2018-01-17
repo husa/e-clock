@@ -3,7 +3,8 @@ module.exports = {
   "extends": [
     'eslint:recommended',
     '@eleks/eleks',
-    'plugin:react/recommended'
+    'plugin:react/recommended',
+    'plugin:flowtype/recommended'
   ],
   "env": {
     "browser": true,
@@ -15,8 +16,10 @@ module.exports = {
     "WEATHER_API_KEY": false
   },
   "plugins": [
-    "react"
+    "react",
+    "flowtype"
   ],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
