@@ -9,8 +9,6 @@ const mapStateToProps = state => {
 
   return {
     use24: settings.use24format,
-    fontFamily: settings.fontFamily,
-    fontSize: settings.fontSize,
     delimiterBlinking: settings.delimiterBlinking,
     displaySeconds: settings.displaySeconds,
     animateDigits: settings.animateDigits

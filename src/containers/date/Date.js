@@ -8,8 +8,6 @@ const mapStateToProps = state => {
   const settings = selectSettings(state);
 
   return {
-    fontFamily: settings.fontFamily,
-    fontSize: settings.fontSize,
     showDate: settings.displayDate
   };
 };
