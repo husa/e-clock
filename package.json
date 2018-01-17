@@ -14,6 +14,7 @@
   "homepage": "https://github.com/husa/e-clock",
   "scripts": {
     "lint": "eslint ./src",
+    "flow": "flow",
     "test": "cross-env NODE_ENV=test mocha --compilers js:babel-register --recursive --require ./test/helper.js ./test",
     "test:watch": "npm test -- --watch",
     "clear": "rimraf ./build && mkdirp ./build",
