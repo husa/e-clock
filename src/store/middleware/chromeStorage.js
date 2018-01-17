@@ -1,10 +1,10 @@
-import {debounce} from '../common/utils';
+import {debounce} from '../../common/utils';
 
-import {SET_OPTIONS} from '../actions/settings';
-import {SET_DOCK_OPTIONS} from '../actions/dock';
-import {SET_INTRO} from '../actions/intro';
+import {SET_OPTIONS} from '../../actions/settings';
+import {SET_DOCK_OPTIONS} from '../../actions/dock';
+import {SET_INTRO} from '../../actions/intro';
 
-import storage from '../services/storage';
+import storage from '../../services/storage';
 
 const sync = debounce(state => storage.sync(state), 1000);
 

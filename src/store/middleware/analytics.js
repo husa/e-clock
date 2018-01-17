@@ -2,9 +2,9 @@ import {
   OPEN_SETTINGS,
   CLOSE_SETTINGS,
   TOGGLE_SETTINGS
-} from '../actions/view';
-import {selectView} from '../selectors';
-import analytics from '../services/analytics';
+} from '../../actions/view';
+import {selectView} from '../../selectors';
+import analytics from '../../services/analytics';
 
 const actions = [
   OPEN_SETTINGS,

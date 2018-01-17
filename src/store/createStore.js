@@ -3,13 +3,11 @@ import {createLogger} from 'redux-logger';
 import thunk from 'redux-thunk';
 
 import reducers from '../reducers';
-import chromeStorageMiddleware from './chromeStorageMiddleware';
-import analyticsMiddleware from './analyticsMiddleware';
+import middleware from './middleware';
 
-const middleware = [
+let middlewares = [
   thunk,
-  chromeStorageMiddleware,
-  analyticsMiddleware
+  ...middleware
 ];
 
 const logger = createLogger({
@@ -17,10 +15,10 @@ const logger = createLogger({
   collapsed: true
 });
 
-if (ENV === 'development') middleware.push(logger);
+if (ENV === 'development') middlewares.push(logger);
 
 const createStoreWithMiddleware = applyMiddleware(
-  ...middleware
+  ...middlewares
 )(createStore);
 
 const reducer = combineReducers({
