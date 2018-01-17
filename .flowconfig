@@ -7,6 +7,6 @@
 [lints]
 
 [options]
-module.name_mapper.extension='scss' -> 'identity-obj-proxy'
+module.name_mapper.extension='styl' -> 'identity-obj-proxy'
 
 [strict]
