@@ -8,12 +8,18 @@ import type {WeatherResponseForecast} from '../../types';
 import lang from '../../services/lang';
 import Icon from './Icon';
 
-const isToday = date => (new Date(date)).getDate() === (new Date).getDate();
-const isTomorrow = date => (new Date(date)).getDay() === ((new Date).getDay() + 1) % 7;
 
-const getDay = date => {
-  if (isToday(date)) return lang.t('Today');
-  if (isTomorrow(date)) return lang.t('Tomorrow');
+const ONE_DAY = 24 * 60 * 60 * 1000;
+
+export const daysBetween = (day1: string, day2: string) => {
+  const d1 = new Date(day1);
+  const d2 = new Date(day2);
+  return ((d2.getTime() - d1.getTime()) / ONE_DAY)|0;
+};
+
+export const getDay = (date: string) => {
+  if (daysBetween((new Date()).toDateString(), date) === 0) return lang.t('Today');
+  if (daysBetween((new Date()).toDateString(), date) === 1) return lang.t('Tomorrow');
   return lang.t(`Day${(new Date(date)).getDay()}`);
 };
 

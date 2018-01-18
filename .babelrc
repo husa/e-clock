@@ -15,7 +15,7 @@
   env: {
     test: {
       presets: [
-        'env'
+        'env', 'react'
       ]
     }
   }
