@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components > weather > Current should match snapshot 1`] = `
+<div
+  className="weather-current"
+>
+  <div
+    className="weather-current__city"
+  >
+    TestCity
+  </div>
+  <img
+    alt="test-text"
+    className="weather-icon weather-current__icon"
+    src="/img/weather-icons/weather_1.png"
+    title="test-text"
+  />
+  <div
+    className="weather-current__temperature"
+  >
+    -273
+  </div>
+  <div
+    className="weather-current__degrees"
+  >
+    °
+    TEST-TEMP-UNIT
+  </div>
+</div>
+`;
