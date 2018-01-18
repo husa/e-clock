@@ -9,7 +9,7 @@ import lang from '../../services/lang';
 import Icon from './Icon';
 
 const isToday = date => (new Date(date)).getDate() === (new Date).getDate();
-const isTomorrow = date => (new Date(date)).getDate() === (new Date).getDate() + 1;
+const isTomorrow = date => (new Date(date)).getDay() === ((new Date).getDay() + 1) % 7;
 
 const getDay = date => {
   if (isToday(date)) return lang.t('Today');
