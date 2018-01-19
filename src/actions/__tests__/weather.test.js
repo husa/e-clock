@@ -1,6 +1,3 @@
-import sinon from 'sinon';
-
-import weather from '../../src/services/weather';
 import {
   WEATHER_LOAD_REQUEST,
   WEATHER_LOAD_SUCCESS,
@@ -10,21 +7,22 @@ import {
   loadWeatherSuccess,
   loadWeatherFailure,
   loadWeather
-} from '../../src/actions/weather';
+} from '../weather';
+
+jest.mock('../../services/weather');
+import weather from '../../services/weather';
 
 describe('actions/weather', () => {
-
   describe('loadWeatherRequest', () => {
-
-    test(`it should return action with "${WEATHER_LOAD_REQUEST}" type`, () => {
+    it(`it should return action with "${WEATHER_LOAD_REQUEST}" type`, () => {
       expect(loadWeatherRequest()).toHaveProperty('type', WEATHER_LOAD_REQUEST);
     });
 
-    test('should return action with location specified', () => {
+    it('should return action with location specified', () => {
       expect(loadWeatherRequest('some_location')).toHaveProperty('location', 'some_location');
     });
 
-    test('should not add nothing extra', () => {
+    it('should not add nothing extra', () => {
       const expected = {
         type: WEATHER_LOAD_REQUEST,
         location: 'some_location'
@@ -34,22 +32,21 @@ describe('actions/weather', () => {
   });
 
   describe('loadWeatherSuccess', () => {
-
-    test(`it should return action with "${WEATHER_LOAD_SUCCESS}" type`, () => {
+    it(`it should return action with "${WEATHER_LOAD_SUCCESS}" type`, () => {
       expect(loadWeatherSuccess()).toHaveProperty('type', WEATHER_LOAD_SUCCESS);
     });
 
-    test('should return action with location specified', () => {
+    it('should return action with location specified', () => {
       expect(loadWeatherSuccess({}, 'some_location')).toHaveProperty('location', 'some_location');
     });
 
-    test('should return action with data specified', () => {
+    it('should return action with data specified', () => {
       const action = loadWeatherSuccess({some: 'data'});
       expect(action).toHaveProperty('data');
       expect(action.data).toEqual({some: 'data'});
     });
 
-    test('should not add nothing extra', () => {
+    it('should not add nothing extra', () => {
       const expected = {
         type: WEATHER_LOAD_SUCCESS,
         location: 'some_location',
@@ -62,23 +59,21 @@ describe('actions/weather', () => {
   });
 
   describe('loadWeatherFailure', () => {
-
-    test(`it should return action with "${WEATHER_LOAD_FAILURE}" type`, () => {
+    it(`it should return action with "${WEATHER_LOAD_FAILURE}" type`, () => {
       expect(loadWeatherFailure()).toHaveProperty('type', WEATHER_LOAD_FAILURE);
     });
 
-
-    test('should return action with location specified', () => {
+    it('should return action with location specified', () => {
       expect(loadWeatherFailure({}, 'some_location')).toHaveProperty('location', 'some_location');
     });
 
-    test('should return action with error specified', () => {
+    it('should return action with error specified', () => {
       const error = new Error('stuff');
       const action = loadWeatherFailure(error);
       expect(action).toHaveProperty('error', error);
     });
 
-    test('should not add nothing extra', () => {
+    it('should not add nothing extra', () => {
       const error = new Error('stuff');
       const expected = {
         type: WEATHER_LOAD_FAILURE,
@@ -91,7 +86,8 @@ describe('actions/weather', () => {
 
   describe('loadWeather', () => {
     const stubWeather = func => {
-      sinon.stub(weather, 'fetch').callsFake(func);
+      weather.fetch = jest.fn().mockImplementation(func);
+      // sinon.stub(weather, 'fetch').callsFake(func);
     };
     const location = 'some_location';
     const data = {
@@ -101,40 +97,33 @@ describe('actions/weather', () => {
 
     let dispatchSpy;
     beforeEach(() => {
-      dispatchSpy = sinon.spy();
+      dispatchSpy = jest.fn();
     });
 
     afterEach(() => {
-      weather.fetch.restore();
       dispatchSpy = null;
     });
 
-    test(`should dispatch "${WEATHER_LOAD_REQUEST}" action sync`, () => {
+    it(`should dispatch "${WEATHER_LOAD_REQUEST}" action sync`, () => {
       stubWeather(() => Promise.resolve());
 
       loadWeather(location)(dispatchSpy);
       // sync
-      expect(dispatchSpy.calledWith(loadWeatherRequest(location))).toBe(true);
+      expect(dispatchSpy).toHaveBeenCalledWith(loadWeatherRequest(location));
     });
 
-    test(
-      `should dispatch "${WEATHER_LOAD_SUCCESS}" action with loaded data async`,
-      () => {
-        stubWeather(() => Promise.resolve(data));
-        return loadWeather(location)(dispatchSpy).then(() => {
-          expect(dispatchSpy.calledWith(loadWeatherSuccess(data, location))).toBe(true);
-        });
-      }
-    );
+    it(`should dispatch "${WEATHER_LOAD_SUCCESS}" action with loaded data async`, () => {
+      stubWeather(() => Promise.resolve(data));
+      return loadWeather(location)(dispatchSpy).then(() => {
+        expect(dispatchSpy).toHaveBeenCalledWith(loadWeatherSuccess(data, location));
+      });
+    });
 
-    test(
-      `should dispatch "${WEATHER_LOAD_FAILURE}" action with error async`,
-      () => {
-        stubWeather(() => Promise.reject(error));
-        return loadWeather(location)(dispatchSpy).then(() => {
-          expect(dispatchSpy.calledWith(loadWeatherFailure(error, location))).toBe(true);
-        });
-      }
-    );
+    it(`should dispatch "${WEATHER_LOAD_FAILURE}" action with error async`, () => {
+      stubWeather(() => Promise.reject(error));
+      return loadWeather(location)(dispatchSpy).then(() => {
+        expect(dispatchSpy).toHaveBeenCalledWith(loadWeatherFailure(error, location));
+      });
+    });
   });
 });
