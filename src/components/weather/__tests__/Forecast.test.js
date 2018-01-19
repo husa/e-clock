@@ -6,6 +6,7 @@ import Forecast, {daysBetween, getDay} from '../Forecast';
 
 describe('Components > weather > Forecast', () => {
   const mockToday = (today, fn) => {
+    /* global global */
     const OriginalDate = Date;
     // mock Date
     global.Date = jest.fn().mockImplementation(
