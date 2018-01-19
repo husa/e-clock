@@ -1,10 +1,8 @@
-import {dock} from '../../config';
+import {settings} from '../config';
 
-const items = dock
-  .map(d => d.url)
-  .filter(d => d !== 'settings');
+const items = Object.keys(settings);
 
-export default function pluckDock (data) {
+export default function pluckSettings (data) {
   return Object.keys(data)
     .filter(k => items.indexOf(k) !== -1)
     .reduce((prev, k) => {

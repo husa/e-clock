@@ -1,4 +1,4 @@
-import {debounce} from '../../common/utils';
+import {debounce} from '../../utils';
 
 import {SET_OPTIONS} from '../../actions/settings';
 import {SET_DOCK_OPTIONS} from '../../actions/dock';

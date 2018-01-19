@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect';
-import {convertTemperature} from '../common/utils';
+import {convertTemperature} from '../utils';
 
 export const selectDock = state => state.dock;
 export const selectSettings = state => state.settings;
