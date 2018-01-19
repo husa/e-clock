@@ -17,7 +17,7 @@ describe('Components > weather > Current', () => {
       city: 'TestCity'
     };
 
-    const testTemperatureUnits = 'test-temp-unit'
+    const testTemperatureUnits = 'test-temp-unit';
 
 
     const component = renderer.create(
