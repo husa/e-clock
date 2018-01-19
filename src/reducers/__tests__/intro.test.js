@@ -8,6 +8,7 @@ describe('reducers/intro', () => {
   const initialState = false;
 
   it('should return initial state by default', () => {
+    /* eslint no-undefined: 0 */
     expect(introReducer(undefined, {})).toEqual(initialState);
   });
 

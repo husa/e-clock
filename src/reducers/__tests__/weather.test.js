@@ -42,7 +42,6 @@ describe('reducers/weather', () => {
       expect(state[location]).toHaveProperty('data');
       expect(state[location].data).toEqual({some: 'data'});
     });
-
   });
 
   describe(`${WEATHER_LOAD_FAILURE}`, () => {
