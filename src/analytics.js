@@ -9,4 +9,11 @@ ga('set', {
   page: '/index',
   checkProtocolTask: null
 });
+try {
+  var version = chrome.runtime.getManifest().version;
+  ga('set', 'dimension1', version);
+} catch (e) {
+  // failed to get version
+}
+
 ga('send', 'pageview');
