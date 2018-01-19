@@ -25,7 +25,7 @@ export const loadWeatherFailure = (error, location) => ({
 export const loadWeather = location => dispatch => {
   dispatch(loadWeatherRequest(location));
 
-  return weather.getWeather(location).then(
+  return weather.fetch(location).then(
     data => dispatch(loadWeatherSuccess(data, location)),
     err => dispatch(loadWeatherFailure(err, location))
   );

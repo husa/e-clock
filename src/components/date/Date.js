@@ -33,20 +33,13 @@ class DateView extends React.Component {
 
   render () {
     if (!this.props.showDate) return null;
-    const {fontFamily, fontSize} = this.props;
-    const style = {
-      fontFamily,
-      fontSize: `${fontSize}rem`
-    };
 
     const {day, month, date} = this.state;
     return (
-      <div className="date__container" style={style}>
-        <div className="date">
-          {lang.t(`Day${day}`)},&nbsp;
-          {lang.t(`Month${month}`).slice(0, 3)}&nbsp;
-          {date}
-        </div>
+      <div className="date">
+        {lang.t(`Day${day}`)},&nbsp;
+        {lang.t(`Month${month}`).slice(0, 3)}&nbsp;
+        {date}
       </div>
     );
   }

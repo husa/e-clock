@@ -97,14 +97,8 @@ class Clock extends Component {
   }
 
   render () {
-    const {fontFamily, fontSize} = this.props;
-    const style = {
-      fontFamily,
-      fontSize: `${fontSize}rem`
-    };
-
     return (
-      <div className="clock" style={style}>
+      <div className="clock">
         <div className="clock__time">
           {this.getHours()}
           {this.getDelimiter()}
@@ -120,8 +114,6 @@ class Clock extends Component {
 
 Clock.propTypes = {
   use24: PropTypes.bool,
-  fontFamily: PropTypes.string,
-  fontSize: PropTypes.string,
   delimiterBlinking: PropTypes.bool
 };
 

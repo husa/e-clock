@@ -1,7 +1,11 @@
+// @flow
+
 class Cache {
-  getItem (key) {
+  getItem (key: string): Promise<*> {
     return new Promise((resolve, reject) => {
-      const value = JSON.parse(localStorage.getItem(key));
+      const cached = localStorage.getItem(key);
+      if (!cached) return reject();
+      const value = JSON.parse(cached);
       if (!value) return reject();
       const {ts, ttl} = value;
       if (Date.now() - ts > ttl) {
@@ -12,16 +16,18 @@ class Cache {
     });
   }
 
-  setItem (key, value, {ttl = 0} = {}) {
+  setItem (key: string, value: {}, {ttl = 0}: {ttl: number} = {}): Promise<void> {
     return new Promise(resolve => {
-      value.ts = Date.now();
-      value.ttl = ttl;
-      localStorage.setItem(key, JSON.stringify(value));
+      localStorage.setItem(key, JSON.stringify({
+        ...value,
+        ts: Date.now(),
+        ttl
+      }));
       resolve();
     });
   }
 
-  removeItem (key) {
+  removeItem (key: string): Promise<void> {
     return new Promise(resolve => {
       localStorage.removeItem(key);
       resolve();

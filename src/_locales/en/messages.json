@@ -177,7 +177,12 @@
   },
 
 
-
+  "i18nToday": {
+    "message": "Today"
+  },
+  "i18nTomorrow": {
+    "message": "Tomorrow"
+  },
   "i18nDay0" : {
     "message" : "Sunday"
   },
