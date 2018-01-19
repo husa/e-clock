@@ -1,5 +1,3 @@
-import {expect} from 'chai';
-
 import {
   selectDock,
   selectSettings,
@@ -19,80 +17,83 @@ import {
 describe('selectors', () => {
 
   describe('selectDock', () => {
-    it('should return .dock portion of the state', () => {
-      expect(selectDock({dock: 'test'})).to.equal('test');
+    test('should return .dock portion of the state', () => {
+      expect(selectDock({dock: 'test'})).toBe('test');
     });
   });
 
   describe('selectSettings', () => {
-    it('should return .settings portion of the state', () => {
-      expect(selectSettings({settings: 'test'})).to.equal('test');
+    test('should return .settings portion of the state', () => {
+      expect(selectSettings({settings: 'test'})).toBe('test');
     });
   });
 
   describe('selectView', () => {
-    it('should return .view portion of the state', () => {
-      expect(selectView({view: 'test'})).to.equal('test');
+    test('should return .view portion of the state', () => {
+      expect(selectView({view: 'test'})).toBe('test');
     });
   });
 
   describe('selectIntro', () => {
-    it('should return .intro portion of the state', () => {
-      expect(selectIntro({intro: 'test'})).to.equal('test');
+    test('should return .intro portion of the state', () => {
+      expect(selectIntro({intro: 'test'})).toBe('test');
     });
   });
 
   describe('selectLocationName', () => {
-    it('should return customLocation is useLocation is "custom"', () => {
+    test('should return customLocation is useLocation is "custom"', () => {
       expect(selectLocationName({
         settings: {
           useLocation: 'custom',
           customLocation: 'test'
         }
-      })).to.equal('test');
+      })).toBe('test');
     });
 
-    it('should return "auto" is useLocation is "custom" but customLocation is not set', () => {
-      expect(selectLocationName({
-        settings: {
-          useLocation: 'custom',
-          customLocation: ''
-        }
-      })).to.equal('auto');
-    });
+    test(
+      'should return "auto" is useLocation is "custom" but customLocation is not set',
+      () => {
+        expect(selectLocationName({
+          settings: {
+            useLocation: 'custom',
+            customLocation: ''
+          }
+        })).toBe('auto');
+      }
+    );
 
-    it('should return "auto" is useLocation is not "custom"', () => {
+    test('should return "auto" is useLocation is not "custom"', () => {
       expect(selectLocationName({
         settings: {
           useLocation: 'test',
           customLocation: ''
         }
-      })).to.equal('auto');
+      })).toBe('auto');
     });
   });
 
   describe('selectWeatherData', () => {
-    it('should return data for specific location', () => {
+    test('should return data for specific location', () => {
       expect(selectWeatherData({
         settings: {useLocation: 'auto'},
         weather: {
           auto: 'test'
         }
-      })).to.equal('test');
+      })).toBe('test');
     });
 
-    it('should return null when there is no data', () => {
+    test('should return null when there is no data', () => {
       expect(selectWeatherData({
         settings: {useLocation: 'auto'},
         weather: {
           auto: ''
         }
-      })).to.deep.equal(null);
+      })).toEqual(null);
     });
   });
 
   describe('selectWeatherError', () => {
-    it('should return .error prop of the weather portion', () => {
+    test('should return .error prop of the weather portion', () => {
       expect(selectWeatherError({
         settings: {useLocation: 'auto'},
         weather: {
@@ -100,12 +101,12 @@ describe('selectors', () => {
             error: 'test'
           }
         }
-      })).to.equal('test');
+      })).toBe('test');
     });
   });
 
   describe('selectWeatherLoading', () => {
-    it('should return .loading prop of the weather portion', () => {
+    test('should return .loading prop of the weather portion', () => {
       expect(selectWeatherLoading({
         settings: {useLocation: 'auto'},
         weather: {
@@ -113,12 +114,12 @@ describe('selectors', () => {
             loading: 'test'
           }
         }
-      })).to.equal('test');
+      })).toBe('test');
     });
   });
 
   describe('selectLocation', () => {
-    it('should return city info from weather data for specific location', () => {
+    test('should return city info from weather data for specific location', () => {
       expect(selectLocation({
         settings: {useLocation: 'auto'},
         weather: {
@@ -130,32 +131,32 @@ describe('selectors', () => {
             }
           }
         }
-      })).to.deep.equal({
+      })).toEqual({
         city: 'test_name'
       });
     });
 
-    it('should null if no weather data', () => {
+    test('should null if no weather data', () => {
       expect(selectLocation({
         settings: {useLocation: 'auto'},
         weather: {
           auto: null
         }
-      })).to.equal(null);
+      })).toBe(null);
     });
   });
 
   describe('selectWeatherForecast', () => {
-    it('should return null if no weather data available', () => {
+    test('should return null if no weather data available', () => {
       expect(selectWeatherForecast({
         settings: {useLocation: 'auto'},
         weather: {
           auto: null
         }
-      })).to.equal(null);
+      })).toBe(null);
     });
 
-    it('should accumulate weather data for specific location', () => {
+    test('should accumulate weather data for specific location', () => {
       expect(selectWeatherForecast({
         settings: {useLocation: 'auto', temperatureUnits: 'c'},
         weather: {
@@ -179,7 +180,7 @@ describe('selectors', () => {
             }
           }
         }
-      })).to.deep.equal([{
+      })).toEqual([{
         code: '1',
         date: '1 Jan 2000',
         day: 'Wed',

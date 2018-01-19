@@ -1,5 +1,3 @@
-import {expect} from 'chai';
-
 import {settings as initialState} from '../../src/config';
 import settingsReducer from '../../src/reducers/settings';
 import {
@@ -9,26 +7,26 @@ import {
 
 describe('reducers/settings', () => {
 
-  it('should return initial state by default', () => {
-    expect(settingsReducer(undefined, {})).to.deep.equal(initialState);
+  test('should return initial state by default', () => {
+    expect(settingsReducer(undefined, {})).toEqual(initialState);
   });
 
-  it(`should handle "${SET_OPTIONS}" action type`, () => {
+  test(`should handle "${SET_OPTIONS}" action type`, () => {
     let state = {};
     const action1 = setOptions({some: 'data'});
     const action2 = setOptions({some: 'data2', another: 'data'});
     state = settingsReducer(state, action1);
-    expect(state).to.deep.equal({
+    expect(state).toEqual({
       some: 'data'
     });
     state = settingsReducer(state, action2);
-    expect(state).to.deep.equal({
+    expect(state).toEqual({
       some: 'data2',
       another: 'data'
     });
   });
 
-  it('should not handle other action types', () => {
+  test('should not handle other action types', () => {
     const state = {
       some: 'data'
     };
@@ -38,6 +36,6 @@ describe('reducers/settings', () => {
         whatever: true
       }
     });
-    expect(nextState).to.deep.equal(state);
+    expect(nextState).toEqual(state);
   });
 });

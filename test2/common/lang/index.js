@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import sinon from 'sinon';
 
 import lang from '../../../src/services/lang';
@@ -17,23 +16,23 @@ describe('Lang', () => {
       chrome.i18n.getMessage.restore();
     });
 
-    it('should call chrome.i18n.getMessage', () => {
+    test('should call chrome.i18n.getMessage', () => {
       lang.t('');
-      expect(chrome.i18n.getMessage.called).to.be.true;
+      expect(chrome.i18n.getMessage.called).toBe(true);
     });
 
-    it('should prepend "i18n" to provided key', () => {
+    test('should prepend "i18n" to provided key', () => {
       lang.t('someKey');
-      expect(chrome.i18n.getMessage.calledWith('i18nsomeKey')).to.be.true;
+      expect(chrome.i18n.getMessage.calledWith('i18nsomeKey')).toBe(true);
     });
 
-    it('should return translated key if possible', () => {
-      expect(lang.t('Test')).to.equal('test-translated');
+    test('should return translated key if possible', () => {
+      expect(lang.t('Test')).toBe('test-translated');
     });
 
-    it('should return key if translation was not found', () => {
+    test('should return key if translation was not found', () => {
       const key = 'non existent key';
-      expect(lang.t(key)).to.equal(key);
+      expect(lang.t(key)).toBe(key);
     });
   });
 });

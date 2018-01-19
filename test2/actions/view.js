@@ -1,5 +1,3 @@
-import {expect} from 'chai';
-
 import {
   OPEN_SETTINGS,
   CLOSE_SETTINGS,
@@ -14,9 +12,9 @@ describe('actions/view', () => {
 
   describe('openSettings', () => {
 
-    it(`should return action with "${OPEN_SETTINGS}" type`, () => {
-      expect(openSettings()).to.have.property('type', OPEN_SETTINGS);
-      expect(openSettings()).to.deep.equal({
+    test(`should return action with "${OPEN_SETTINGS}" type`, () => {
+      expect(openSettings()).toHaveProperty('type', OPEN_SETTINGS);
+      expect(openSettings()).toEqual({
         type: OPEN_SETTINGS
       });
     });
@@ -24,9 +22,9 @@ describe('actions/view', () => {
 
   describe('closeSettings', () => {
 
-    it(`should return action with "${CLOSE_SETTINGS}" type`, () => {
-      expect(closeSettings()).to.have.property('type', CLOSE_SETTINGS);
-      expect(closeSettings()).to.deep.equal({
+    test(`should return action with "${CLOSE_SETTINGS}" type`, () => {
+      expect(closeSettings()).toHaveProperty('type', CLOSE_SETTINGS);
+      expect(closeSettings()).toEqual({
         type: CLOSE_SETTINGS
       });
     });
@@ -34,9 +32,9 @@ describe('actions/view', () => {
 
   describe('toggleSettings', () => {
 
-    it(`should return action with "${TOGGLE_SETTINGS}" type`, () => {
-      expect(toggleSettings()).to.have.property('type', TOGGLE_SETTINGS);
-      expect(toggleSettings()).to.deep.equal({
+    test(`should return action with "${TOGGLE_SETTINGS}" type`, () => {
+      expect(toggleSettings()).toHaveProperty('type', TOGGLE_SETTINGS);
+      expect(toggleSettings()).toEqual({
         type: TOGGLE_SETTINGS
       });
     });

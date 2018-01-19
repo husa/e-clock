@@ -1,5 +1,3 @@
-import {expect} from 'chai';
-
 import {
   SET_INTRO,
   setIntro
@@ -9,21 +7,21 @@ describe('actions/intro', () => {
 
   describe('setIntro', () => {
 
-    it(`should return action with "${SET_INTRO}" type`, () => {
-      expect(setIntro()).to.have.property('type', SET_INTRO);
+    test(`should return action with "${SET_INTRO}" type`, () => {
+      expect(setIntro()).toHaveProperty('type', SET_INTRO);
     });
 
-    it('should return action with given value', () => {
-      expect(setIntro(true)).to.have.property('value', true);
-      expect(setIntro(false)).to.have.property('value', false);
+    test('should return action with given value', () => {
+      expect(setIntro(true)).toHaveProperty('value', true);
+      expect(setIntro(false)).toHaveProperty('value', false);
     });
 
-    it('should not add nothing extra', () => {
+    test('should not add nothing extra', () => {
       const expected = {
         type: SET_INTRO,
         value: true
       };
-      expect(setIntro(true)).to.deep.equal(expected);
+      expect(setIntro(true)).toEqual(expected);
     });
   });
 });
