@@ -12,36 +12,35 @@ import {
   selectLocation,
 
   selectLocationName
-} from '../../src/selectors';
+} from '../index';
 
 describe('selectors', () => {
-
   describe('selectDock', () => {
-    test('should return .dock portion of the state', () => {
+    it('should return .dock portion of the state', () => {
       expect(selectDock({dock: 'test'})).toBe('test');
     });
   });
 
   describe('selectSettings', () => {
-    test('should return .settings portion of the state', () => {
+    it('should return .settings portion of the state', () => {
       expect(selectSettings({settings: 'test'})).toBe('test');
     });
   });
 
   describe('selectView', () => {
-    test('should return .view portion of the state', () => {
+    it('should return .view portion of the state', () => {
       expect(selectView({view: 'test'})).toBe('test');
     });
   });
 
   describe('selectIntro', () => {
-    test('should return .intro portion of the state', () => {
+    it('should return .intro portion of the state', () => {
       expect(selectIntro({intro: 'test'})).toBe('test');
     });
   });
 
   describe('selectLocationName', () => {
-    test('should return customLocation is useLocation is "custom"', () => {
+    it('should return customLocation is useLocation is "custom"', () => {
       expect(selectLocationName({
         settings: {
           useLocation: 'custom',
@@ -62,7 +61,7 @@ describe('selectors', () => {
       }
     );
 
-    test('should return "auto" is useLocation is not "custom"', () => {
+    it('should return "auto" is useLocation is not "custom"', () => {
       expect(selectLocationName({
         settings: {
           useLocation: 'test',
@@ -73,7 +72,7 @@ describe('selectors', () => {
   });
 
   describe('selectWeatherData', () => {
-    test('should return data for specific location', () => {
+    it('should return data for specific location', () => {
       expect(selectWeatherData({
         settings: {useLocation: 'auto'},
         weather: {
@@ -82,7 +81,7 @@ describe('selectors', () => {
       })).toBe('test');
     });
 
-    test('should return null when there is no data', () => {
+    it('should return null when there is no data', () => {
       expect(selectWeatherData({
         settings: {useLocation: 'auto'},
         weather: {
@@ -93,7 +92,7 @@ describe('selectors', () => {
   });
 
   describe('selectWeatherError', () => {
-    test('should return .error prop of the weather portion', () => {
+    it('should return .error prop of the weather portion', () => {
       expect(selectWeatherError({
         settings: {useLocation: 'auto'},
         weather: {
@@ -106,7 +105,7 @@ describe('selectors', () => {
   });
 
   describe('selectWeatherLoading', () => {
-    test('should return .loading prop of the weather portion', () => {
+    it('should return .loading prop of the weather portion', () => {
       expect(selectWeatherLoading({
         settings: {useLocation: 'auto'},
         weather: {
@@ -119,7 +118,7 @@ describe('selectors', () => {
   });
 
   describe('selectLocation', () => {
-    test('should return city info from weather data for specific location', () => {
+    it('should return city info from weather data for specific location', () => {
       expect(selectLocation({
         settings: {useLocation: 'auto'},
         weather: {
@@ -136,7 +135,7 @@ describe('selectors', () => {
       });
     });
 
-    test('should null if no weather data', () => {
+    it('should null if no weather data', () => {
       expect(selectLocation({
         settings: {useLocation: 'auto'},
         weather: {
@@ -147,7 +146,7 @@ describe('selectors', () => {
   });
 
   describe('selectWeatherForecast', () => {
-    test('should return null if no weather data available', () => {
+    it('should return null if no weather data available', () => {
       expect(selectWeatherForecast({
         settings: {useLocation: 'auto'},
         weather: {
@@ -156,7 +155,7 @@ describe('selectors', () => {
       })).toBe(null);
     });
 
-    test('should accumulate weather data for specific location', () => {
+    it('should accumulate weather data for specific location', () => {
       expect(selectWeatherForecast({
         settings: {useLocation: 'auto', temperatureUnits: 'c'},
         weather: {
