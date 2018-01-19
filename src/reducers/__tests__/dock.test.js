@@ -1,17 +1,18 @@
-import dockReducer from '../../src/reducers/dock';
+import dockReducer from '../dock';
 import {
   SET_DOCK_OPTIONS,
   setDockOptions
-} from '../../src/actions/dock';
+} from '../../actions/dock';
 
 describe('reducers/dock', () => {
   const initialState = {};
 
-  test('should return initial state by default', () => {
+  it('should return initial state by default', () => {
+    /* eslint no-undefined: 0 */
     expect(dockReducer(undefined, {})).toEqual(initialState);
   });
 
-  test(`should handle "${SET_DOCK_OPTIONS}" action type`, () => {
+  it(`should handle "${SET_DOCK_OPTIONS}" action type`, () => {
     let state = {};
     const action1 = setDockOptions({some: 'data'});
     const action2 = setDockOptions({some: 'data2', another: 'data'});
@@ -26,7 +27,7 @@ describe('reducers/dock', () => {
     });
   });
 
-  test('should not handle other action types', () => {
+  it('should not handle other action types', () => {
     const state = {
       some: 'data'
     };

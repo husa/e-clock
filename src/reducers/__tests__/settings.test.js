@@ -1,17 +1,17 @@
-import {settings as initialState} from '../../src/config';
-import settingsReducer from '../../src/reducers/settings';
+import {settings as initialState} from '../../config';
+import settingsReducer from '../settings';
 import {
   SET_OPTIONS,
   setOptions
-} from '../../src/actions/settings';
+} from '../../actions/settings';
 
 describe('reducers/settings', () => {
-
-  test('should return initial state by default', () => {
+  it('should return initial state by default', () => {
+    /* eslint no-undefined: 0 */
     expect(settingsReducer(undefined, {})).toEqual(initialState);
   });
 
-  test(`should handle "${SET_OPTIONS}" action type`, () => {
+  it(`should handle "${SET_OPTIONS}" action type`, () => {
     let state = {};
     const action1 = setOptions({some: 'data'});
     const action2 = setOptions({some: 'data2', another: 'data'});
@@ -26,7 +26,7 @@ describe('reducers/settings', () => {
     });
   });
 
-  test('should not handle other action types', () => {
+  it('should not handle other action types', () => {
     const state = {
       some: 'data'
     };

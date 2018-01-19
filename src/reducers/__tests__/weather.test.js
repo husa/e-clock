@@ -1,4 +1,4 @@
-import weatherReducer from '../../src/reducers/weather';
+import weatherReducer from '../weather';
 import {
   WEATHER_LOAD_REQUEST,
   WEATHER_LOAD_SUCCESS,
@@ -7,18 +7,19 @@ import {
   loadWeatherRequest,
   loadWeatherSuccess,
   loadWeatherFailure
-} from '../../src/actions/weather';
+} from '../../actions/weather';
 
-describe('reducers/intro', () => {
+describe('reducers/weather', () => {
   const initialState = {};
 
   const location = 'some_location';
-  test('should return initial state by default', () => {
+  it('should return initial state by default', () => {
+    /* eslint no-undefined: 0 */
     expect(weatherReducer(undefined, {})).toEqual(initialState);
   });
 
   describe(`${WEATHER_LOAD_REQUEST}`, () => {
-    test('should set "loading: true" for given location', () => {
+    it('should set "loading: true" for given location', () => {
       let state = {};
       const action = loadWeatherRequest(location);
       state = weatherReducer(state, action);
@@ -27,14 +28,14 @@ describe('reducers/intro', () => {
   });
 
   describe(`${WEATHER_LOAD_SUCCESS}`, () => {
-    test('should set "loading: false" for given location', () => {
+    it('should set "loading: false" for given location', () => {
       let state = {};
       const action = loadWeatherSuccess({}, location);
       state = weatherReducer(state, action);
       expect(state[location]).toHaveProperty('loading', false);
     });
 
-    test('should set "data" to action.data for given location', () => {
+    it('should set "data" to action.data for given location', () => {
       let state = {};
       const action = loadWeatherSuccess({some: 'data'}, location);
       state = weatherReducer(state, action);
@@ -45,14 +46,14 @@ describe('reducers/intro', () => {
   });
 
   describe(`${WEATHER_LOAD_FAILURE}`, () => {
-    test('should set "loading: false" for given location', () => {
+    it('should set "loading: false" for given location', () => {
       let state = {};
       const action = loadWeatherFailure({}, location);
       state = weatherReducer(state, action);
       expect(state[location]).toHaveProperty('loading', false);
     });
 
-    test('should set "error" to action.error for given location', () => {
+    it('should set "error" to action.error for given location', () => {
       let state = {};
       const error = new Error('some error');
       const action = loadWeatherFailure(error, location);
@@ -61,7 +62,7 @@ describe('reducers/intro', () => {
     });
   });
 
-  test('should not handle other action types', () => {
+  it('should not handle other action types', () => {
     const state = {};
     const nextState = weatherReducer(state, {
       type: 'SOME_OTHER_ACTION_TYPE',
