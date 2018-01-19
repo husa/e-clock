@@ -15,7 +15,7 @@
   "scripts": {
     "lint": "eslint ./src",
     "flow": "flow",
-    "test": "jest",
+    "test": "jest --verbose",
     "clear": "rimraf ./build && mkdirp ./build",
     "start": "npm-run-all clear build:assets start:code",
     "start:code": "cross-env NODE_ENV=development webpack -w",
