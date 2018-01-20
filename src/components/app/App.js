@@ -119,7 +119,7 @@ class App extends React.Component {
   }
 
   getComponents () {
-    const {fontSize, fontFamily} = this.props.settings;
+    const {fontSize, fontFamily, displayDate} = this.props.settings;
     const style = {
       fontFamily,
       fontSize: `${fontSize}rem`
@@ -131,7 +131,12 @@ class App extends React.Component {
         </div>
         <div className="app__current">
           <Date />
-          {this.getWeather(CurrentWeather, 'current-weather', <span className="separator" key="separator">|</span>)}
+          {this.getWeather(
+            CurrentWeather,
+            'current-weather',
+            displayDate
+              ? <span className="separator" key="separator">|</span>
+              : null)}
         </div>
         <div className="app__weather">
           {this.getWeatherError()}
