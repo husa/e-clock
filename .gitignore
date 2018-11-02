@@ -3,6 +3,8 @@
 *.zip
 **/.DS_Store
 
+.vscode
+
 # Logs
 logs
 *.log

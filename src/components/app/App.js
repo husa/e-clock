@@ -10,6 +10,7 @@ import Intro from '../../containers/intro/Intro';
 import Clock from '../../containers/clock/Clock';
 import Date from '../../containers/date/Date';
 import Dock from '../../containers/dock/Dock';
+import DocTitleUpdater from '../../containers/docTitleUpdater/DocTitleUpdater';
 import Settings from '../../containers/settings/Settings';
 import CurrentWeather from '../../containers/weather/Current';
 import WeatherForecast from '../../containers/weather/Forecast';
@@ -155,7 +156,7 @@ class App extends React.Component {
     return (
       <div id="app" style={style} className={className}>
         {this.getLayout()}
-
+        <DocTitleUpdater />
         <Dock />
         <Settings />
       </div>
