@@ -17,6 +17,11 @@ class AboutSettings extends Component {
           </h1>
           <div className="settings-about__version">
             {manifest.version}
+            {ENV === 'development' && (
+              <span>
+                dev
+              </span>
+            )}
           </div>
           <a href={`https://chrome.google.com/webstore/detail/${chrome.runtime.id}`} className="settings-about__like">
             <svg viewBox="0 0 24 24" width="24" height="24">
