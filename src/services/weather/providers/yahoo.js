@@ -1,43 +1,113 @@
 // @flow
 
-import type {WeatherProvider} from './interface';
+import type { WeatherProvider } from './interface';
+import CryptoJS from 'crypto-js';
 
-const BASE_URL = 'https://query.yahooapis.com/v1/public/yql';
+const BASE_URL = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
+const APP_ID = '-';
+const CONSUMER_KEY = '-';
+const CONSUMER_SECRET = '-';
 
-const createUrl = woeidSelect => `${BASE_URL}?q=select units, location, item.condition, item.forecast from weather.forecast where woeid in (${woeidSelect}) and u="c"&format=json&crossProduct=optimized`;
+type WeatherQueryLocation = {|
+  location: string,
+|};
 
-const woeidSelectByLocation = (location: string) => `select woeid from geo.places(1) where text="${location}"`;
-const woeidSelectByPosition = (position: Position) => `select woeid from geo.places(1) where text="(${position.coords.latitude}, ${position.coords.longitude})"`;
+type WeatherQueryPosition = {|
+  lat: string,
+  lon: string,
+|};
 
-class Yahoo implements WeatherProvider {
-  createUrlFromLocation (location: string): string {
-    return createUrl(woeidSelectByLocation(location));
-  }
+const serializeQuery = query => new URLSearchParams(query).toString();
 
-  createUrlFromPosition (position: Position): string {
-    return createUrl(woeidSelectByPosition(position));
-  }
+const getSignedAuthHeader = query => {
+  var method = 'GET';
+  var oauth = {
+    oauth_consumer_key: CONSUMER_KEY,
+    oauth_nonce: Math.random()
+      .toString(36)
+      .substring(2),
+    oauth_signature_method: 'HMAC-SHA1',
+    oauth_timestamp: parseInt(new Date().getTime() / 1000).toString(),
+    oauth_version: '1.0',
+  };
 
-  fetch (url: string): Promise<*> {
-    return fetch(url).then(res => res.json()).then(res => {
-      try {
-        const city = res.query.results.channel.location.city;
-        const current = res.query.results.channel.item.condition;
-        current.temp = +current.temp;
-        const forecast = res.query.results.channel.item.forecast.map(({code, date, day, high, low, text}) => ({
-          code, date, day, text,
-          min: +low,
-          max: +high
-        }));
-        return {
-          location: {city},
-          current,
-          forecast
-        };
-      } catch (err) {
-        return Promise.reject('Response error');
-      }
+  var merged = { ...query, ...oauth };
+  // Note the sorting here is required
+  var merged_arr = Object.keys(merged)
+    .sort()
+    .map(function(k) {
+      return [k + '=' + encodeURIComponent(merged[k])];
     });
+  var signature_base_str =
+    method + '&' + encodeURIComponent(BASE_URL) + '&' + encodeURIComponent(merged_arr.join('&'));
+
+  var composite_key = encodeURIComponent(CONSUMER_SECRET) + '&';
+  var hash = CryptoJS.HmacSHA1(signature_base_str, composite_key);
+  var signature = hash.toString(CryptoJS.enc.Base64);
+
+  oauth['oauth_signature'] = signature;
+
+  var auth_header =
+    'OAuth ' +
+    Object.keys(oauth)
+      .map(function(k) {
+        return [k + '="' + oauth[k] + '"'];
+      })
+      .join(',');
+
+  return auth_header;
+};
+
+class Yahoo implements WeatherProvider<WeatherQueryLocation | WeatherQueryPosition> {
+  createUrlFromLocation(location: string): WeatherQueryLocation {
+    return {
+      location,
+    };
+  }
+
+  createUrlFromPosition(position: Position): WeatherQueryPosition {
+    return {
+      lat: `${position.coords.latitude}`,
+      lon: `${position.coords.longitude}`,
+    };
+  }
+
+  fetch(url: WeatherQueryLocation | WeatherQueryPosition): Promise<*> {
+    const query = {
+      ...url,
+      format: 'json',
+      u: 'c',
+    };
+
+    return fetch(`${BASE_URL}?${serializeQuery(query)}`, {
+      headers: {
+        Authorization: getSignedAuthHeader(query),
+        'X-Yahoo-App-Id': APP_ID,
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        try {
+          const city = res.location.city;
+          const current = res.current_observation.condition; // res.query.results.channel.item.condition;
+          current.temp = +current.temperature;
+          const forecast = res.forecasts.map(({ code, date, day, high, low, text }) => ({
+            code,
+            date: date * 1000,
+            day,
+            text,
+            min: +low,
+            max: +high,
+          }));
+          return {
+            location: { city },
+            current,
+            forecast,
+          };
+        } catch (err) {
+          return Promise.reject('Response error');
+        }
+      });
   }
 }
 
