@@ -1,104 +1,90 @@
 import './clock.styl';
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Slide from '../../common/animations/Slide';
-import {prependZero, format24Hours} from '../../utils/time';
+import { prependZero, format24Hours } from '../../utils/time';
 
 class Clock extends Component {
-  constructor (...args) {
+  constructor(...args) {
     super(...args);
     this.state = this.getNewDate();
   }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount() {
     this.interval = setInterval(this.updateTime.bind(this), 1000);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     clearInterval(this.interval);
   }
 
-  updateTime () {
+  updateTime() {
     this.setState(this.getNewDate());
   }
 
-  getNewDate () {
-    const date = new Date;
+  getNewDate() {
+    const date = new Date();
     return {
       minutes: date.getMinutes(),
       hours: date.getHours(),
-      seconds: date.getSeconds()
+      seconds: date.getSeconds(),
     };
   }
 
-  getHours () {
-    let {hours} = this.state;
+  getHours() {
+    let { hours } = this.state;
     hours = format24Hours(this.props.use24, hours);
     hours = prependZero(hours);
     return this.getDigits(hours, 'clock__hour');
   }
 
-  getMinutes () {
+  getMinutes() {
     const minutes = prependZero(this.state.minutes);
     return this.getDigits(minutes, 'clock__minute');
   }
 
-  getSeconds () {
+  getSeconds() {
     if (!this.props.displaySeconds) return null;
     const seconds = prependZero(this.state.seconds);
     return this.getDigits(seconds, 'clock__second');
   }
 
-  getDelimiter (show = true) {
+  getDelimiter(show = true) {
     if (!show) return null;
-    const {delimiterBlinking} = this.props;
+    const { delimiterBlinking } = this.props;
     const className = classNames('clock__delimiter', {
-      'clock__delimiter--blinking': delimiterBlinking
+      'clock__delimiter--blinking': delimiterBlinking,
     });
-    return (
-      <span className={className}>:</span>
-    );
+    return <span className={className}>:</span>;
   }
 
-  getDigits (digits, className) {
+  getDigits(digits, className) {
     digits = digits.split('').map((digit, i) => (
       <span className={`${className} ${className}-${i}`} key={`${i}-${digit}`}>
         {digit}
       </span>
     ));
     if (this.props.animateDigits) {
-      digits = (
-        <Slide>
-          {digits}
-        </Slide>
-      );
+      digits = <Slide>{digits}</Slide>;
     }
-    return (
-      <span className={`${className}s`}>
-        {digits}
-      </span>
-    );
+    return <span className={`${className}s`}>{digits}</span>;
   }
 
-  getAmPm () {
+  getAmPm() {
     let ampm = '';
     if (!this.props.use24) {
       ampm = this.state.hours < 12 ? 'am' : 'pm';
     }
-    return (
-      <span className="clock__ampm">
-        {ampm}
-      </span>
-    );
+    return <span className='clock__ampm'>{ampm}</span>;
   }
 
-  render () {
+  render() {
     return (
-      <div className="clock">
-        <div className="clock__time">
+      <div className='clock'>
+        <div className='clock__time'>
           {this.getHours()}
           {this.getDelimiter()}
           {this.getMinutes()}
@@ -113,7 +99,7 @@ class Clock extends Component {
 
 Clock.propTypes = {
   use24: PropTypes.bool,
-  delimiterBlinking: PropTypes.bool
+  delimiterBlinking: PropTypes.bool,
 };
 
 export default Clock;

@@ -25,7 +25,7 @@ class App extends React.Component {
     this.timeout = null;
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.intro === true && nextProps.intro === false) {
       this.setState({ hidingIntro: true });
       setTimeout(() => {
