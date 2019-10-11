@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 require('dotenv').config();
@@ -22,10 +22,7 @@ module.exports = {
       },
       production: {
         test: /\.styl/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'stylus-loader'],
-        }),
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader'],
       },
     },
   },
@@ -51,7 +48,9 @@ module.exports = {
       }),
     },
 
-    css: new ExtractTextPlugin('[name]_[hash].css'),
+    css: new MiniCssExtractPlugin({
+      filename: '[name]_[hash].css',
+    }),
 
     define: {
       common: new webpack.DefinePlugin({
@@ -67,13 +66,5 @@ module.exports = {
         },
       }),
     },
-
-    uglify: new UglifyJSPlugin({
-      uglifyOptions: {
-        ecma: 6,
-      },
-    }),
-
-    concatModules: new webpack.optimize.ModuleConcatenationPlugin(),
   },
 };
