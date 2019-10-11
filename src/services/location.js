@@ -3,46 +3,46 @@
 type PositionOptions = {
   enableHighAccuracy: boolean,
   timeout: number,
-  maximumAge: number
+  maximumAge: number,
 };
 
 export type PositionErrorObject = {
   type: 'PositionError',
   message: string,
-  error: PositionError
+  error: PositionError,
 };
 
 const positionOptions: PositionOptions = {
   enableHighAccuracy: true,
   timeout: 5 * 1000, // 5 seconds
-  maximumAge: 60 * 60 * 1000 // 1 hour
+  maximumAge: 60 * 60 * 1000, // 1 hour
 };
 
 const TIMEOUT_INCREASE = 1000;
 
 class Location {
-  getPosition (options?: PositionOptions = positionOptions): Promise<*> {
+  getPosition(customOptions?: PositionOptions = positionOptions): Promise<*> {
     return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject, options);
+      navigator.geolocation.getCurrentPosition(resolve, reject, { ...customOptions });
     }).then(
       position => position,
       positionError => {
         if (positionError.code === 3) {
           return this.getPosition({
-            ...options,
-            timeout: options.timeout + TIMEOUT_INCREASE
+            ...customOptions,
+            timeout: customOptions.timeout + TIMEOUT_INCREASE,
           });
         }
         return Promise.reject({
           type: 'PositionError',
           message: 'Can not retrieve location',
-          error: positionError
+          error: positionError,
         });
-      }
+      },
     );
   }
 }
 
-const location = new Location;
+const location = new Location();
 
 export default location;
