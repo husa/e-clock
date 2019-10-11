@@ -1,9 +1,9 @@
 class Lang {
-  t (message) {
+  t(message) {
     return chrome.i18n.getMessage(`i18n${message}`) || message;
   }
 }
 
-const lang = new Lang;
+const lang = new Lang();
 
 export default lang;
