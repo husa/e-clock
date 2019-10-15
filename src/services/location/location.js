@@ -43,6 +43,4 @@ class Location {
   }
 }
 
-const location = new Location();
-
-export default location;
+export default Location;
