@@ -4,9 +4,9 @@ import type { WeatherProvider } from './interface';
 import CryptoJS from 'crypto-js';
 
 const BASE_URL = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
-const APP_ID = '-';
-const CONSUMER_KEY = '-';
-const CONSUMER_SECRET = '-';
+const APP_ID = __YAHOO_APP_ID__;
+const CONSUMER_KEY = __YAHOO_CONSUMER_KEY__;
+const CONSUMER_SECRET = __YAHOO_CONSUMER_SECRET__;
 
 type WeatherQueryLocation = {|
   location: string,

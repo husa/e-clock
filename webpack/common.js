@@ -1,11 +1,12 @@
 const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 require('dotenv').config();
 
-const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+const YAHOO_APP_ID = process.env.YAHOO_APP_ID;
+const YAHOO_CONSUMER_KEY = process.env.YAHOO_CONSUMER_KEY;
+const YAHOO_CONSUMER_SECRET = process.env.YAHOO_CONSUMER_SECRET;
 
 module.exports = {
   loaders: {
@@ -54,7 +55,9 @@ module.exports = {
 
     define: {
       common: new webpack.DefinePlugin({
-        WEATHER_API_KEY: JSON.stringify(WEATHER_API_KEY),
+        __YAHOO_APP_ID__: JSON.stringify(YAHOO_APP_ID),
+        __YAHOO_CONSUMER_KEY__: JSON.stringify(YAHOO_CONSUMER_KEY),
+        __YAHOO_CONSUMER_SECRET__: JSON.stringify(YAHOO_CONSUMER_SECRET),
       }),
       development: new webpack.DefinePlugin({
         ENV: JSON.stringify('development'),
