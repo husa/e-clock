@@ -16,7 +16,9 @@ module.exports = {
   globals: {
     chrome: false,
     ENV: false,
-    WEATHER_API_KEY: false,
+    __YAHOO_APP_ID__: false,
+    __YAHOO_CONSUMER_KEY__: false,
+    __YAHOO_CONSUMER_SECRET__: false,
   },
   plugins: ['react', 'flowtype', 'jest', 'import'],
   parser: 'babel-eslint',

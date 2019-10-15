@@ -4,48 +4,38 @@ import './forecast.styl';
 
 import * as React from 'react';
 
-import type {WeatherResponseForecast} from '../../types';
+import type { WeatherResponseForecast } from '../../types';
 import lang from '../../services/lang';
 import Icon from './Icon';
-
 
 const ONE_DAY = 24 * 60 * 60 * 1000;
 
 export const daysBetween = (day1: string, day2: string) => {
   const d1 = new Date(day1);
   const d2 = new Date(day2);
-  return ((d2.getTime() - d1.getTime()) / ONE_DAY)|0;
+  return ((d2.getTime() - d1.getTime()) / ONE_DAY) | 0;
 };
 
 export const getDay = (date: string) => {
-  if (daysBetween((new Date()).toDateString(), date) === 0) return lang.t('Today');
-  if (daysBetween((new Date()).toDateString(), date) === 1) return lang.t('Tomorrow');
-  return lang.t(`Day${(new Date(date)).getDay()}`);
+  if (daysBetween(new Date().toDateString(), date) === 0) return lang.t('Today');
+  if (daysBetween(new Date().toDateString(), date) === 1) return lang.t('Tomorrow');
+  return lang.t(`Day${new Date(date).getDay()}`);
 };
 
 type Props = {
-  data: WeatherResponseForecast
+  data: WeatherResponseForecast,
 };
 
 const WeatherForecast = (props: Props) => (
-  <div className="weather-forecast">
+  <div className='weather-forecast'>
     {props.data.map(day => (
-      <div className="weather-forecast__day" key={day.date}>
-        <div className="weather-forecast__day__name">
-          {getDay(day.date)}
-        </div>
-        <Icon
-          className="weather-forecast__day__icon"
-          code={day.code}
-          title={day.text} />
-        <div className="weather-forecast__day__temperature">
-          <span className="weather-forecast__day__temperature--max">
-            {day.max}&deg;
-          </span>
-          <span className="weather-forecast__day__temperature__separator">/</span>
-          <span className="weather-forecast__day__temperature--min">
-            {day.min}&deg;
-          </span>
+      <div className='weather-forecast__day' key={day.date}>
+        <div className='weather-forecast__day__name'>{getDay(day.date)}</div>
+        <Icon className='weather-forecast__day__icon' code={day.code} title={day.text} />
+        <div className='weather-forecast__day__temperature'>
+          <span className='weather-forecast__day__temperature--max'>{day.max}&deg;</span>
+          <span className='weather-forecast__day__temperature__separator'>/</span>
+          <span className='weather-forecast__day__temperature--min'>{day.min}&deg;</span>
         </div>
       </div>
     ))}

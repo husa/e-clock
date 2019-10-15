@@ -1,14 +1,14 @@
 // @flow
 
 export type WeatherResponseLocation = {
-  city: string
+  city: string,
 };
 
 export type WeatherResponseCurrent = {
   code: string,
   date: string,
   temp: number,
-  text: string
+  text: string,
 };
 
 export type WeatherResponseForecast = Array<{
@@ -17,11 +17,11 @@ export type WeatherResponseForecast = Array<{
   day: string,
   max: number,
   min: number,
-  text: string
+  text: string,
 }>;
 
 export type WeatherResponse = {
   location: WeatherResponseLocation,
   current: WeatherResponseCurrent,
-  forecast: WeatherResponseForecast
+  forecast: WeatherResponseForecast,
 };
