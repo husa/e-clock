@@ -54,7 +54,7 @@ class Yahoo implements WeatherProvider<WeatherQueryLocation | WeatherQueryPositi
       .then(res => {
         try {
           const city = res.location.city;
-          const current = res.current_observation.condition; // res.query.results.channel.item.condition;
+          const current = res.current_observation.condition;
           current.temp = +current.temperature;
           const forecast = res.forecasts.map(({ code, date, day, high, low, text }) => ({
             code,
