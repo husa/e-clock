@@ -54,7 +54,7 @@
     "react-test-renderer": "^16.10.2",
     "rimraf": "^3.0.0",
     "semver": "^6.3.0",
-    "simple-git": "^1.126.0",
+    "simple-git": "^3.5.0",
     "style-loader": "^1.0.0",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
