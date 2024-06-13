@@ -1,17 +1,11 @@
-import './accordion.styl';
+import './accordion.scss';
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class Accordion extends Component {
-  render () {
-    return (
-      <div className="accordion">
-        {this.props.children}
-      </div>
-    );
+  render() {
+    return <div className='accordion'>{this.props.children}</div>;
   }
 }
 
 export default Accordion;
-
-

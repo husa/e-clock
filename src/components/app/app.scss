@@ -1,0 +1,53 @@
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+
+  &--color {
+  }
+  //
+
+  &--gradient {
+  }
+  //
+
+  &--pattern {
+    background-repeat: repeat;
+    background-position: center center;
+  }
+  &--image,
+  &--url {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  &__clock {
+  }
+  //
+
+  &__current {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.25em;
+    text-align: center;
+
+    .separator {
+      &:before &:after {
+        content: '\00a0';
+      }
+    }
+  }
+  &__weather {
+    font-size: 0.25em;
+    margin-top: 20px;
+  }
+  &__weather-error {
+    font-size: 1rem;
+    text-align: center;
+  }
+}

@@ -3,8 +3,6 @@ import { CSSTransitionGroup } from 'react-transition-group';
 
 const TRANSITION_DURATION = 500;
 
-console.log(CSSTransitionGroup);
-
 const Animation = ({ name, timeout, children }) => (
   <CSSTransitionGroup
     transitionName={name}

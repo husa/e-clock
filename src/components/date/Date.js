@@ -1,42 +1,42 @@
-import './date.styl';
+import './date.scss';
 
 import React from 'react';
 
 import lang from '../../services/lang';
 
 const newDate = () => {
-  const date = new Date;
+  const date = new Date();
   return {
     day: date.getDay(),
     month: date.getMonth(),
-    date: date.getDate()
+    date: date.getDate(),
   };
 };
 
 class DateView extends React.Component {
-  constructor () {
+  constructor() {
     super();
     this.state = newDate();
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.interval = setInterval(this.updateDate.bind(this), 60 * 1000);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     clearInterval(this.interval);
   }
 
-  updateDate () {
+  updateDate() {
     this.setState(newDate());
   }
 
-  render () {
+  render() {
     if (!this.props.showDate) return null;
 
-    const {day, month, date} = this.state;
+    const { day, month, date } = this.state;
     return (
-      <div className="date">
+      <div className='date'>
         {lang.t(`Day${day}`)},&nbsp;
         {lang.t(`Month${month}`).slice(0, 3)}&nbsp;
         {date}

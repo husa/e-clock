@@ -1,6 +1,6 @@
-import './weatherSettings.styl';
+import './weatherSettings.scss';
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import autobind from 'autobindr';
 
@@ -8,7 +8,7 @@ import lang from '../../services/lang';
 import SettingsItem from './SettingsItem';
 
 class WeatherSettings extends Component {
-  constructor (...args) {
+  constructor(...args) {
     super(...args);
     autobind(this);
 
@@ -18,58 +18,58 @@ class WeatherSettings extends Component {
     this.onLocationPreferenceChangeCustom = this.onLocationPreferenceChange.bind(this, 'custom');
   }
 
-  onDisplayWeatherClick () {
+  onDisplayWeatherClick() {
     this.props.setOptions({
-      displayWeather: !this.props.settings.displayWeather
+      displayWeather: !this.props.settings.displayWeather,
     });
   }
 
-  onUnitsChange (unit) {
+  onUnitsChange(unit) {
     this.props.setOptions({
-      'temperatureUnits': unit
+      temperatureUnits: unit,
     });
   }
 
-  onLocationPreferenceChange (useLocation) {
+  onLocationPreferenceChange(useLocation) {
     this.props.setOptions({
-      useLocation
+      useLocation,
     });
   }
 
-  onCustomLocationBlur () {
+  onCustomLocationBlur() {
     const value = this.customLocation.value;
 
     this.props.setOptions({
-      customLocation: value
+      customLocation: value,
     });
   }
 
-  getUnitsOptions () {
-    const {temperatureUnits} = this.props.settings;
+  getUnitsOptions() {
+    const { temperatureUnits } = this.props.settings;
 
     return (
-      <div className="settings-weather__units">
-        <span className="settings-weather__units-title">
-          {lang.t('TemperatureUnits')}
-        </span>
-        <div className="settings-weather__units-options">
-          <div className="settings-weather__units-option">
+      <div className='settings-weather__units'>
+        <span className='settings-weather__units-title'>{lang.t('TemperatureUnits')}</span>
+        <div className='settings-weather__units-options'>
+          <div className='settings-weather__units-option'>
             <label>
               <input
-                type="radio"
-                value="c"
+                type='radio'
+                value='c'
                 checked={temperatureUnits === 'c'}
-                onChange={this.onUnitsChangeC} />
+                onChange={this.onUnitsChangeC}
+              />
               <span>{lang.t('TemperatureCelcius')}</span>
             </label>
           </div>
-          <div className="settings-weather__units-option">
+          <div className='settings-weather__units-option'>
             <label>
               <input
-                type="radio"
-                value="f"
+                type='radio'
+                value='f'
                 checked={temperatureUnits === 'f'}
-                onChange={this.onUnitsChangeF} />
+                onChange={this.onUnitsChangeF}
+              />
               <span>{lang.t('TemperatureFahrenheit')}</span>
             </label>
           </div>
@@ -78,44 +78,45 @@ class WeatherSettings extends Component {
     );
   }
 
-  getLocationPreferenceOption () {
-    const {useLocation, customLocation} = this.props.settings;
+  getLocationPreferenceOption() {
+    const { useLocation, customLocation } = this.props.settings;
 
     return (
-      <div className="settings-weather__location">
-        <span className="settings-weather__location-title">
-          {lang.t('Location')}
-        </span>
-        <div className="settings-weather__location-options">
-          <div className="settings-weather__location-option">
+      <div className='settings-weather__location'>
+        <span className='settings-weather__location-title'>{lang.t('Location')}</span>
+        <div className='settings-weather__location-options'>
+          <div className='settings-weather__location-option'>
             <label>
               <input
-                type="radio"
+                type='radio'
                 checked={useLocation !== 'custom'}
-                onChange={this.onLocationPreferenceChangeAuto} />
+                onChange={this.onLocationPreferenceChangeAuto}
+              />
               <span>{lang.t('CurrentLocation')}</span>
             </label>
           </div>
-          <div className="settings-weather__location-option">
+          <div className='settings-weather__location-option'>
             <label>
               <input
-                type="radio"
+                type='radio'
                 checked={useLocation === 'custom'}
-                onChange={this.onLocationPreferenceChangeCustom} />
+                onChange={this.onLocationPreferenceChangeCustom}
+              />
               <span>
                 {lang.t('CustomLocation')}
-                <div className="text-input">
+                <div className='text-input'>
                   <input
                     ref={c => {
                       this.customLocation = c;
                     }}
-                    className="text-input__input"
-                    type="text"
+                    className='text-input__input'
+                    type='text'
                     defaultValue={customLocation}
                     onBlur={this.onCustomLocationBlur}
-                    required />
-                  <span className="text-input__bar"></span>
-                  <span className="text-input__label">{lang.t('WeatherYourCity')}</span>
+                    required
+                  />
+                  <span className='text-input__bar'></span>
+                  <span className='text-input__label'>{lang.t('WeatherYourCity')}</span>
                 </div>
               </span>
             </label>
@@ -125,15 +126,15 @@ class WeatherSettings extends Component {
     );
   }
 
-  render () {
+  render() {
     return (
-      <div className="settings-weather">
-
+      <div className='settings-weather'>
         <SettingsItem
-          className="settings-weather__time-format"
+          className='settings-weather__time-format'
           title={lang.t('ShowWeather')}
           checked={this.props.settings.displayWeather}
-          onClick={this.onDisplayWeatherClick} />
+          onClick={this.onDisplayWeatherClick}
+        />
 
         {this.getUnitsOptions()}
 
@@ -145,7 +146,7 @@ class WeatherSettings extends Component {
 
 WeatherSettings.propTypes = {
   settings: PropTypes.object,
-  setOptions: PropTypes.func
+  setOptions: PropTypes.func,
 };
 
 export default WeatherSettings;

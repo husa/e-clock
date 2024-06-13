@@ -1,4 +1,4 @@
-import './clock.styl';
+import './clock.sass';
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';

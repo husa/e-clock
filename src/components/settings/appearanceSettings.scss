@@ -1,0 +1,103 @@
+@import '../../theme/defaults';
+
+.settings-appearance {
+  max-width: 450px;
+}
+.settings-appearance__color-option,
+.settings-appearance__bg-color-option,
+.settings-appearance__bg-gradient-option,
+.settings-appearance__bg-gradient-angle-option,
+.settings-appearance__bg-pattern-option,
+.settings-appearance__bg-image-option,
+.settings-appearance__font-option {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 2px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 0 3px #aaa;
+  border: none;
+  border-radius: 50%;
+  transition: box-shadow 200ms;
+}
+.settings-appearance__color-option--active,
+.settings-appearance__bg-color-option--active,
+.settings-appearance__bg-gradient-option--active,
+.settings-appearance__bg-gradient-angle-option--active,
+.settings-appearance__bg-pattern-option--active,
+.settings-appearance__bg-image-option--active,
+.settings-appearance__font-option--active {
+  box-shadow: 0 0 0 3px $main-color;
+}
+.settings-appearance__bg-gradient-angle-label {
+  padding: 20px 10px 10px;
+}
+.settings-appearance__bg-gradient-angle-option-icon {
+  margin: 3px;
+}
+.settings-appearance__bg-pattern,
+.settings-appearance__bg-image {
+  text-align: center;
+}
+.settings-appearance__bg-pattern-option,
+.settings-appearance__bg-image-option,
+.settings-appearance__font-option {
+  width: 80px;
+  height: 80px;
+  border-radius: 4px;
+  margin: 5px;
+  vertical-align: top;
+}
+.settings-appearance__bg-pattern-option {
+  background-position: center center;
+  background-size: contain;
+  background-repeat: repeat;
+}
+.settings-appearance__bg-image-option {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.settings-appearance__font-option {
+  overflow: hidden;
+  font-size: 4em;
+  line-height: 80px;
+}
+.settings-appearance__font-size-label {
+  padding: 20px 10px 10px;
+}
+input[type='range'] {
+  -webkit-appearance: none;
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  height: 32px;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  height: 2px;
+  background: #c8c8c8;
+  border: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  position: relative;
+  border: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-top: -8px;
+  cursor: pointer;
+  background: $main-color;
+  transition: transform 180ms ease;
+}
+input[type='range']:active {
+  &::-webkit-slider-thumb {
+    transform: scale(1.5);
+  }
+}
+input[type='range']:focus {
+  outline: none;
+}

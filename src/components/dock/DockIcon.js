@@ -1,6 +1,6 @@
-import './dockIcon.styl';
+import './dockIcon.scss';
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import autobind from 'autobindr';
@@ -8,12 +8,12 @@ import autobind from 'autobindr';
 import lang from '../../services/lang';
 
 class DockIcon extends Component {
-  constructor (...args) {
+  constructor(...args) {
     super(...args);
     autobind(this);
   }
 
-  onClick (e) {
+  onClick(e) {
     if (this.props.isSettingsIcon) {
       this.props.toggleSettings();
       return;
@@ -21,24 +21,21 @@ class DockIcon extends Component {
     if (e.metaKey || e.ctrlKey || e.button === 1) {
       chrome.tabs.create({
         url: this.props.url,
-        active: true
+        active: true,
       });
     } else {
       chrome.tabs.update({
-        url: this.props.url
+        url: this.props.url,
       });
     }
   }
 
-  render () {
+  render() {
     const className = classNames('dock-icon', `dock-icon--${this.props.className}`);
 
     return (
-      <li
-        className={className}
-        data-alt={lang.t(this.props.text)}
-        onClick={this.onClick}>
-        <svg className="dock-icon__icon" viewBox="0 0 24 24" width="24" height="24">
+      <li className={className} data-alt={lang.t(this.props.text)} onClick={this.onClick}>
+        <svg className='dock-icon__icon' viewBox='0 0 24 24' width='24' height='24'>
           <use xlinkHref={`#${this.props.icon}`}></use>
         </svg>
       </li>
@@ -52,7 +49,7 @@ DockIcon.propTypes = {
   text: PropTypes.string,
   className: PropTypes.string,
   isSettingsIcon: PropTypes.bool,
-  toggleSettings: PropTypes.func
+  toggleSettings: PropTypes.func,
 };
 
 export default DockIcon;

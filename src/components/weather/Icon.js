@@ -1,6 +1,6 @@
 // @flow
 
-import './icon.styl';
+import './icon.scss';
 
 import * as React from 'react';
 import classNames from 'classnames';
@@ -8,7 +8,7 @@ import classNames from 'classnames';
 type Props = {
   code: string,
   title: string,
-  className?: string
+  className?: string,
 };
 /*
   Weather codes:
@@ -64,12 +64,13 @@ type Props = {
   3200	not available
 */
 
-const Icon = ({code, title, className}: Props) => (
+const Icon = ({ code, title, className }: Props) => (
   <img
     className={classNames('weather-icon', className)}
     src={`/img/weather-icons/weather_${code}.png`}
     alt={title}
-    title={title} />
+    title={title}
+  />
 );
 
 export default Icon;

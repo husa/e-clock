@@ -12,17 +12,17 @@ const stylusLoader = {
   loader: 'stylus-loader',
   options: {
     stylusOptions: {
-      resolveUrl: false
-    }
-  }
-}
+      resolveUrl: false,
+    },
+  },
+};
 
 const cssLoader = {
-  loader: "css-loader",
+  loader: 'css-loader',
   options: {
-    url: false
+    url: false,
   },
-}
+};
 
 module.exports = {
   loaders: {
@@ -31,11 +31,20 @@ module.exports = {
       exclude: /node_modules/,
       use: ['babel-loader'],
     },
-
+    scss: {
+      development: {
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', cssLoader, 'sass-loader'],
+      },
+      production: {
+        test: /\.s[ac]ss$/i,
+        use: [MiniCssExtractPlugin.loader, cssLoader, 'sass-loader'],
+      },
+    },
     stylus: {
       development: {
         test: /\.styl/,
-        use: ['style-loader', cssLoader, stylusLoader]
+        use: ['style-loader', cssLoader, stylusLoader],
       },
       production: {
         test: /\.styl/,

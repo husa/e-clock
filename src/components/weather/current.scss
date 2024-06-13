@@ -1,0 +1,23 @@
+.weather-current {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__city {
+    &:after {
+      content: '\00a0';
+    }
+  }
+
+  &__icon {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  &__temperature {
+    &:before {
+      content: '\00a0';
+    }
+  }
+}

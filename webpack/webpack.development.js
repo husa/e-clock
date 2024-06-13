@@ -4,7 +4,7 @@ const { loaders, plugins } = require('./common');
 module.exports = Object.assign(base, {
   mode: 'development',
   module: {
-    rules: [loaders.babel, loaders.stylus.development],
+    rules: [loaders.babel, loaders.stylus.development, loaders.scss.development],
   },
   plugins: [plugins.html.development, plugins.define.common, plugins.define.development],
   cache: true,

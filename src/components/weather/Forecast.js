@@ -1,6 +1,6 @@
 // @flow
 
-import './forecast.styl';
+import './forecast.scss';
 
 import * as React from 'react';
 
