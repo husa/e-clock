@@ -8,6 +8,22 @@ const YAHOO_APP_ID = process.env.YAHOO_APP_ID;
 const YAHOO_CONSUMER_KEY = process.env.YAHOO_CONSUMER_KEY;
 const YAHOO_CONSUMER_SECRET = process.env.YAHOO_CONSUMER_SECRET;
 
+const stylusLoader = {
+  loader: 'stylus-loader',
+  options: {
+    stylusOptions: {
+      resolveUrl: false
+    }
+  }
+}
+
+const cssLoader = {
+  loader: "css-loader",
+  options: {
+    url: false
+  },
+}
+
 module.exports = {
   loaders: {
     babel: {
@@ -19,11 +35,11 @@ module.exports = {
     stylus: {
       development: {
         test: /\.styl/,
-        use: ['style-loader', 'css-loader', 'stylus-loader'],
+        use: ['style-loader', cssLoader, stylusLoader]
       },
       production: {
         test: /\.styl/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader'],
+        use: [MiniCssExtractPlugin.loader, cssLoader, stylusLoader],
       },
     },
   },

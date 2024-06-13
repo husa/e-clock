@@ -68,7 +68,7 @@ class Clock extends Component {
       </span>
     ));
     if (this.props.animateDigits) {
-      digits = <Slide>{digits}</Slide>;
+      //digits = <Slide>{digits}</Slide>;
     }
     return <span className={`${className}s`}>{digits}</span>;
   }
