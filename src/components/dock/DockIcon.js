@@ -35,7 +35,11 @@ class DockIcon extends Component {
 
     return (
       <li className={className} data-alt={lang.t(this.props.text)} onClick={this.onClick}>
-        <svg className='dock-icon__icon' viewBox='0 0 24 24' width='24' height='24'>
+        <svg
+          className='dock-icon__icon'
+          viewBox={this.props.iconViewbox || '0 0 24 24'}
+          width='24'
+          height='24'>
           <use xlinkHref={`#${this.props.icon}`}></use>
         </svg>
       </li>
@@ -47,6 +51,7 @@ DockIcon.propTypes = {
   url: PropTypes.string,
   icon: PropTypes.string,
   text: PropTypes.string,
+  iconViewbox: PropTypes.string,
   className: PropTypes.string,
   isSettingsIcon: PropTypes.bool,
   toggleSettings: PropTypes.func,
