@@ -1,17 +1,19 @@
 import React from 'react';
-import { TransitionGroup } from 'react-transition-group';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 const TRANSITION_DURATION = 500;
 
+console.log(CSSTransitionGroup);
+
 const Animation = ({ name, timeout, children }) => (
-  <TransitionGroup
+  <CSSTransitionGroup
     transitionName={name}
     transitionAppear={true}
     transitionAppearTimeout={timeout[0] || TRANSITION_DURATION}
     transitionEnterTimeout={timeout[1] || TRANSITION_DURATION}
     transitionLeaveTimeout={timeout[2] || TRANSITION_DURATION}>
     {children}
-  </TransitionGroup>
+  </CSSTransitionGroup>
 );
 
 export default Animation;
