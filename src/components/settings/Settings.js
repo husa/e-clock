@@ -32,7 +32,7 @@ class Settings extends Component {
     document.addEventListener('keydown', this.onDocumentKeyDown);
   }
 
-  componentWillUnmout() {
+  UNSAFE_componentWillUnmout() {
     document.removeEventListener('keydown', this.onDocumentKeyDown);
   }
 

@@ -1,7 +1,7 @@
 import './main.scss';
 
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import { pluckSettings, pluckDock } from './utils';
@@ -36,11 +36,10 @@ Promise.all([
   // setTimeout(() => {
   //   analytics.saveSettings(initialState.settings);
   // }, 100);
-
-  render(
+  const root = createRoot(document.getElementById('root'));
+  root.render(
     <Provider store={store}>
       <App />
     </Provider>,
-    document.getElementById('root'),
   );
 });

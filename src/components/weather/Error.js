@@ -9,16 +9,16 @@ type Props = {
   error: {
     type: string,
     error: {
-      code: number
-    }
-  }
+      code: number,
+    },
+  },
 };
 
-const WeatherError = ({error}: Props) => {
+const WeatherError = ({ error }: Props) => {
   let message = lang.t('WeatherGeneralError');
 
   if (error.type === 'PositionError') {
-    const {code} = error.error;
+    const { code } = error.error;
     switch (code) {
       case 1:
         message = lang.t('WeatherPositionErrorPermissionDenied');
@@ -35,11 +35,7 @@ const WeatherError = ({error}: Props) => {
     }
   }
 
-  return (
-    <ErrorMessage className="weather__error">
-      {message}
-    </ErrorMessage>
-  );
+  return <ErrorMessage className='weather__error'>{message}</ErrorMessage>;
 };
 
 export default WeatherError;

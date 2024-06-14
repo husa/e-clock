@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {format24Hours, prependZero} from '../../utils/time';
+import { format24Hours, prependZero } from '../../utils/time';
 
 const getTime = (use24, showSeconds) => {
   const date = new Date();
@@ -16,20 +16,20 @@ const getTime = (use24, showSeconds) => {
 };
 
 class DocTitleUpdater extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     this.updateTitle();
     this.interval = setInterval(this.updateTitle.bind(this), 1000);
   }
 
-  componentWillUnmount () {
+  UNSAFE_componentWillUnmount() {
     clearInterval(this.interval);
   }
 
-  updateTitle () {
+  updateTitle() {
     document.title = getTime(this.props.use24, this.props.displaySeconds);
   }
 
-  render () {
+  render() {
     return null;
   }
 }
