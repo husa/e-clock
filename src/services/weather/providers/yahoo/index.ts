@@ -1,6 +1,4 @@
-// @flow
-
-import type { WeatherProvider } from '../interface';
+import { WeatherProvider } from '../interface';
 import { getSignedAuthHeader } from './signature';
 
 const BASE_URL = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
@@ -8,14 +6,14 @@ const APP_ID = __YAHOO_APP_ID__;
 const CONSUMER_KEY = __YAHOO_CONSUMER_KEY__;
 const CONSUMER_SECRET = __YAHOO_CONSUMER_SECRET__;
 
-type WeatherQueryLocation = {|
-  location: string,
-|};
+type WeatherQueryLocation = {
+  location: string;
+};
 
-type WeatherQueryPosition = {|
-  lat: string,
-  lon: string,
-|};
+type WeatherQueryPosition = {
+  lat: string;
+  lon: string;
+};
 
 const serializeQuery = query => new URLSearchParams(query).toString();
 
@@ -26,14 +24,14 @@ class Yahoo implements WeatherProvider<WeatherQueryLocation | WeatherQueryPositi
     };
   }
 
-  createUrlFromPosition(position: Position): WeatherQueryPosition {
+  createUrlFromPosition(position: GeolocationPosition): WeatherQueryPosition {
     return {
       lat: `${position.coords.latitude}`,
       lon: `${position.coords.longitude}`,
     };
   }
 
-  fetch(url: WeatherQueryLocation | WeatherQueryPosition): Promise<*> {
+  fetch(url: WeatherQueryLocation | WeatherQueryPosition): Promise<any> {
     const query = {
       ...url,
       format: 'json',

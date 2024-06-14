@@ -1,14 +1,8 @@
+import { selectWeatherData, selectSettings, selectLocationName } from '../../selectors';
 
-import {
-  selectWeatherData,
-  selectSettings,
-  selectLocationName
-} from '../../selectors';
+import { loadWeather } from '../../actions/weather';
 
-import {loadWeather} from '../../actions/weather';
-
-
-const weatherBackgroundService = ({getState, dispatch}) => next => action => {
+const weatherBackgroundService = ({ getState, dispatch }) => next => action => {
   const result = next(action);
   const state = getState();
   // TODO: check for particular action types
@@ -16,10 +10,9 @@ const weatherBackgroundService = ({getState, dispatch}) => next => action => {
   // fetch weather for current location
   const weather = selectWeatherData(state);
 
-  const {displayWeather} = selectSettings(state);
+  const { displayWeather } = selectSettings(state);
   if (!displayWeather) return result;
-  if (weather || weather && weather.loading || weather && weather.error) return result;
-
+  if (weather || (weather && weather.loading) || (weather && weather.error)) return result;
 
   // if (displayWeather && (!weather || !weather.data) && !weather.loading && !weather.error) {
   const locationName = selectLocationName(state);

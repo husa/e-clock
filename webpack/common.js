@@ -27,9 +27,9 @@ const cssLoader = {
 module.exports = {
   loaders: {
     babel: {
-      test: /\.js$/,
+      test: /\.(js|jsx|ts|tsx)$/,
       exclude: /node_modules/,
-      use: ['babel-loader'],
+      use: ['ts-loader'],
     },
     scss: {
       development: {

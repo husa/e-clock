@@ -1,8 +1,10 @@
-// @flow
-
 import CryptoJS from 'crypto-js';
 
-type Config = { BASE_URL: string, CONSUMER_KEY: string, CONSUMER_SECRET: string };
+type Config = {
+  BASE_URL: string;
+  CONSUMER_KEY: string;
+  CONSUMER_SECRET: string;
+};
 
 export const getSignedAuthHeader = <Query>(
   query: Query,
@@ -14,7 +16,7 @@ export const getSignedAuthHeader = <Query>(
       .toString(36)
       .substring(2),
     oauth_signature_method: 'HMAC-SHA1',
-    oauth_timestamp: parseInt(new Date().getTime() / 1000).toString(),
+    oauth_timestamp: (new Date().getTime() / 1000).toString(),
     oauth_version: '1.0',
   };
 

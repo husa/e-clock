@@ -1,15 +1,13 @@
-// @flow
-
 type PositionOptions = {
-  enableHighAccuracy: boolean,
-  timeout: number,
-  maximumAge: number,
+  enableHighAccuracy: boolean;
+  timeout: number;
+  maximumAge: number;
 };
 
 export type PositionErrorObject = {
-  type: 'PositionError',
-  message: string,
-  error: PositionError,
+  type: 'PositionError';
+  message: string;
+  error: GeolocationPositionError;
 };
 
 const positionOptions: PositionOptions = {
@@ -21,7 +19,7 @@ const positionOptions: PositionOptions = {
 const TIMEOUT_INCREASE = 1000;
 
 class Location {
-  getPosition(customOptions?: PositionOptions = positionOptions): Promise<*> {
+  getPosition(customOptions: PositionOptions = positionOptions): Promise<any> {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, { ...customOptions });
     }).then(

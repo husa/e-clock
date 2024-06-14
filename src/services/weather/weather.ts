@@ -1,5 +1,3 @@
-// @flow
-
 import type { WeatherProvider } from './providers/interface';
 import Cache from '../cache/cache';
 import Analytics from '../analytics/analytics';
@@ -12,13 +10,13 @@ const CACHE_TTL = 1 * 60 * 60 * 1000; // 1 hour
 const cacheKey = (name: string): string => `${CACHE_ID}-${CACHE_VERSION}@${name}`;
 
 class Weather {
-  provider: WeatherProvider<*>;
+  provider: WeatherProvider<any>;
   cache: Cache;
   analytics: Analytics;
   location: Location;
 
   constructor(
-    provider: WeatherProvider<*>,
+    provider: WeatherProvider<any>,
     cache: Cache,
     analytics: Analytics,
     location: Location,
@@ -29,16 +27,16 @@ class Weather {
     this.location = location;
   }
 
-  getUrl(locationConfig: string): Promise<*> {
+  getUrl(locationConfig: string): Promise<any> {
     if (locationConfig !== 'auto') {
       return Promise.resolve(this.provider.createUrlFromLocation(locationConfig));
     }
     return this.location
       .getPosition()
-      .then((position: Position) => this.provider.createUrlFromPosition(position));
+      .then((position: GeolocationPosition) => this.provider.createUrlFromPosition(position));
   }
 
-  fetch(locationConfig: string): Promise<*> {
+  fetch(locationConfig: string): Promise<any> {
     return this.cache.getItem(cacheKey(locationConfig)).then(
       cachedWeather => {
         this.analytics.trackEvent('weather', 'gotCache');

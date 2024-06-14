@@ -1,5 +1,3 @@
-// @flow
-
 import './forecast.scss';
 
 import * as React from 'react';

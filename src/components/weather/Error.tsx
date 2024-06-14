@@ -1,5 +1,3 @@
-// @flow
-
 import * as React from 'react';
 
 import lang from '../../services/lang';
@@ -7,11 +5,11 @@ import ErrorMessage from '../error/ErrorMessage';
 
 type Props = {
   error: {
-    type: string,
+    type: string;
     error: {
-      code: number,
-    },
-  },
+      code: number;
+    };
+  };
 };
 
 const WeatherError = ({ error }: Props) => {

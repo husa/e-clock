@@ -9,7 +9,7 @@ const reducers = {
   settings,
   dock,
   view,
-  weather
+  weather,
 };
 
 export default reducers;

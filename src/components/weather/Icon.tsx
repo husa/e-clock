@@ -1,14 +1,12 @@
-// @flow
-
 import './icon.scss';
 
 import * as React from 'react';
 import classNames from 'classnames';
 
 type Props = {
-  code: string,
-  title: string,
-  className?: string,
+  code: string;
+  title: string;
+  className?: string;
 };
 /*
   Weather codes:

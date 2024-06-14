@@ -1,5 +1,3 @@
-// @flow
-
 import Weather from './weather';
 import location from '../location';
 import cache from '../cache';

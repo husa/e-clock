@@ -1,7 +1,5 @@
-// @flow
-
 class Cache {
-  getItem(key: string): Promise<*> {
+  getItem(key: string): Promise<any> {
     return new Promise((resolve, reject) => {
       const cached = localStorage.getItem(key);
       if (!cached) return reject();
@@ -16,7 +14,7 @@ class Cache {
     });
   }
 
-  setItem(key: string, value: {}, { ttl = 0 }: { ttl: number } = {}): Promise<void> {
+  setItem(key: string, value: {}, { ttl }: { ttl: number } = { ttl: 0 }): Promise<void> {
     return new Promise(resolve => {
       localStorage.setItem(
         key,

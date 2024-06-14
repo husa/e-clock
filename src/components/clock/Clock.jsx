@@ -21,9 +21,9 @@ const Digits = ({ digits, className, animateDigits }) => {
       {digit}
     </span>
   ));
-  if (animateDigits) {
-    digits = <Slide>{digits}</Slide>;
-  }
+  //if (animateDigits) {
+  //  digits = <Slide>{digits}</Slide>;
+  //}
   return <span className={`${className}s`}>{digits}</span>;
 };
 

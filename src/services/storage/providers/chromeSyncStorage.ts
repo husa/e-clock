@@ -1,5 +1,6 @@
 class ChromeSyncStorage {
-  constructor(key) {
+  key: string;
+  constructor(key: string) {
     this.key = key;
   }
 

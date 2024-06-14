@@ -1,5 +1,3 @@
-// @flow
-
 import './current.scss';
 
 import * as React from 'react';

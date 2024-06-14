@@ -1,5 +1,5 @@
 class ChromeI18n {
-  t(message) {
+  t(message: string): string {
     return chrome.i18n.getMessage(`i18n${message}`) || message;
   }
 }
