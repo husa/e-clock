@@ -1,9 +1,9 @@
 import './clock.sass';
 
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
-import Slide from '../../common/animations/Slide';
+//import Slide from '../../common/animations/Slide';
 import { prependZero, format24Hours } from '../../utils/time';
 
 const newTime = () => {
@@ -15,7 +15,11 @@ const newTime = () => {
   };
 };
 
-const Digits = ({ digits, className, animateDigits }) => {
+const Digits = ({
+  digits,
+  className,
+  //animateDigits
+}) => {
   digits = digits.split('').map((digit, i) => (
     <span className={`${className} ${className}-${i}`} key={`${i}-${digit}`}>
       {digit}

@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import reducers from '../reducers';
 import middleware from './middleware';
 
-let middlewares = [thunk, ...middleware];
+const middlewares = [thunk, ...middleware];
 
 const logger = createLogger({
   duration: true,

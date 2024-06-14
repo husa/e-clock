@@ -18,7 +18,7 @@ Promise.all([
     document.addEventListener('DOMContentLoaded', resolve);
   }),
 ]).then(([data]) => {
-  let initialState: any = {};
+  const initialState: any = {};
 
   if (!data) {
     initialState.intro = true;

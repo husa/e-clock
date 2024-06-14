@@ -14,7 +14,7 @@ class Cache {
     });
   }
 
-  setItem(key: string, value: {}, { ttl }: { ttl: number } = { ttl: 0 }): Promise<void> {
+  setItem(key: string, value: any, { ttl }: { ttl: number } = { ttl: 0 }): Promise<void> {
     return new Promise(resolve => {
       localStorage.setItem(
         key,
