@@ -1,8 +1,6 @@
-const STORAGE_KEY = 'settings_data';
-
-class Storage {
-  constructor() {
-    this.key = STORAGE_KEY;
+class ChromeSyncStorage {
+  constructor(key) {
+    this.key = key;
   }
 
   load() {
@@ -15,7 +13,10 @@ class Storage {
           resolve(data);
         }
       });
-    }).then(data => data, () => null);
+    }).then(
+      data => data,
+      () => null,
+    );
   }
 
   sync(data) {
@@ -29,6 +30,4 @@ class Storage {
   }
 }
 
-const storage = new Storage();
-
-export default storage;
+export default ChromeSyncStorage;
