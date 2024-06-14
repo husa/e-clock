@@ -10,10 +10,19 @@ html,
   padding: 0;
 }
 
+:root {
+  font-family: 'Inter', sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: 'Inter var', sans-serif;
+  }
+}
+
 body {
   -webkit-user-select: none;
   user-select: none;
-  font-family: 'Roboto Regular', sans-serif;
+  // font-family: 'Roboto Regular', sans-serif;
   font-size: 16px;
   overflow: hidden;
   background-color: $background-color;
