@@ -14,7 +14,7 @@ import DocTitleUpdater from '../../containers/docTitleUpdater/DocTitleUpdater';
 import Settings from '../../containers/settings/Settings';
 import CurrentWeather from '../../containers/weather/Current';
 import WeatherForecast from '../../containers/weather/Forecast';
-import WeatherError from '../../components/weather/Error';
+import WeatherError from '../weather/Error';
 
 class App extends React.Component {
   constructor(...args) {
