@@ -56,10 +56,10 @@ const Delimiter = ({ hidden = false, delimiterBlinking }) => {
   return <span className={className}>:</span>;
 };
 
-const AmPm = ({ use24 }) => {
+const AmPm = ({ use24, hours }) => {
   let ampm = '';
   if (!use24) {
-    ampm = this.state.hours < 12 ? 'am' : 'pm';
+    ampm = hours < 12 ? 'am' : 'pm';
   }
   return <span className='clock__ampm'>{ampm}</span>;
 };
@@ -80,9 +80,13 @@ const Clock = ({ use24, delimiterBlinking, displaySeconds, animateDigits }) => {
         <Hours hours={hours} use24={use24} animateDigits={animateDigits} />
         <Delimiter delimiterBlinking={delimiterBlinking} />
         <Minutes minutes={minutes} animateDigits={animateDigits} />
-        <Delimiter delimiterBlinking={delimiterBlinking} />
-        <Seconds seconds={seconds} hidden={!displaySeconds} animateDigits={animateDigits} />
-        <AmPm use24={use24} />
+        {displaySeconds && (
+          <>
+            <Delimiter delimiterBlinking={delimiterBlinking} />
+            <Seconds seconds={seconds} animateDigits={animateDigits} />
+          </>
+        )}
+        <AmPm use24={use24} hours={hours} />
       </div>
     </div>
   );
