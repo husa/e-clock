@@ -82,13 +82,14 @@ type Props = {
 
 const App = ({ settings }: Props) => {
   const [isSettingsOpen, setSettingsOpen] = useState(false);
-  const className = classNames('app', `app--${settings.backgroundPriority}`);
+  const className = classNames('app', `app--${settings.backgroundPriority}`, {
+    'app--settings-open': isSettingsOpen,
+  });
   return (
     <div id='app' className={className}>
       <DocTitleUpdater />
-
       <div className='app__content' style={getStylesFromSettings(settings)}>
-        <div className='app__' style={getClockStyleFromSettings(settings)}>
+        <div className='app__clock-wrapper' style={getClockStyleFromSettings(settings)}>
           <Clock className='app__clock' />
           <Date className='app__date' />
         </div>

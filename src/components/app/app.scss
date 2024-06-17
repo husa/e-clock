@@ -1,9 +1,17 @@
+@import '../../theme/defaults.scss';
+
 .app {
+  $transition-duration: 300ms;
+  $transition-fn: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
+
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: stretch;
+
+  background: $theme-color-bg;
+  transition: padding $transition-duration $transition-fn;
 
   &__content {
     flex: 0 1 100%;
@@ -13,6 +21,11 @@
     overflow: hidden;
     text-align: center;
     position: relative;
+    transition: border-radius $transition-duration $transition-fn;
+
+    & > * {
+      transition: transform $transition-duration $transition-fn;
+    }
   }
 
   &__clock {
@@ -25,6 +38,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
+    transform-origin: right center;
   }
 
   &--color {
@@ -39,14 +53,26 @@
     background-repeat: repeat;
     background-position: center center;
   }
-  &--image,
-  &--url {
+  &--image &__content,
+  &--url &__content {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
   }
   &__clock {
   }
+
+  &--settings-open {
+    padding: 1.5rem;
+    padding-right: 400px;
+  }
+  &--settings-open &__content {
+    border-radius: 1.5rem;
+  }
+  &--settings-open &__content > * {
+    transform: scale(0.9);
+  }
+
   //
 
   &__current {

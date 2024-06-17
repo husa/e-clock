@@ -1,5 +1,6 @@
 import './Switch.scss';
 
+import React from 'react';
 import classNames from 'classnames';
 
 type Props = {
