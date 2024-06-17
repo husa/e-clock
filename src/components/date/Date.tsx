@@ -13,7 +13,11 @@ const newDate = () => {
   };
 };
 
-const DateView = ({ showDate }) => {
+type Props = {
+  showDate: boolean;
+};
+
+const DateView = ({ showDate }: Props) => {
   const [{ day, month, date }, setDate] = useState(newDate());
   useEffect(() => {
     const interval = setInterval(() => {

@@ -15,12 +15,18 @@ const newTime = () => {
   };
 };
 
+type DigitsProps = {
+  digits: string;
+  className: string;
+  animateDigits?: boolean;
+};
+
 const Digits = ({
   digits,
   className,
   //animateDigits
-}) => {
-  digits = digits.split('').map((digit, i) => (
+}: DigitsProps) => {
+  const digitsNodes = digits.split('').map((digit, i) => (
     <span className={`${className} ${className}-${i}`} key={`${i}-${digit}`}>
       {digit}
     </span>
@@ -28,7 +34,7 @@ const Digits = ({
   //if (animateDigits) {
   //  digits = <Slide>{digits}</Slide>;
   //}
-  return <span className={`${className}s`}>{digits}</span>;
+  return <span className={`${className}s`}>{digitsNodes}</span>;
 };
 
 const Hours = ({ hours, use24, animateDigits }) => {
@@ -42,8 +48,7 @@ const Minutes = ({ minutes, animateDigits }) => {
   return <Digits digits={minutes} className='clock__minute' animateDigits={animateDigits} />;
 };
 
-const Seconds = ({ seconds, hidden, animateDigits }) => {
-  if (hidden) return null;
+const Seconds = ({ seconds, animateDigits }) => {
   seconds = prependZero(seconds);
   return <Digits digits={seconds} className='clock__second' animateDigits={animateDigits} />;
 };
