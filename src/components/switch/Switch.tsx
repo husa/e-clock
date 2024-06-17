@@ -1,22 +1,17 @@
 import './Switch.scss';
 
-import React, { useCallback, useState } from 'react';
 import classNames from 'classnames';
 
 type Props = {
+  selected: boolean;
   onChange: () => void;
 };
 
-const Switch = ({ onChange }: Props) => {
-  const [selected, setSelected] = useState(false);
+const Switch = ({ selected, onChange }: Props) => {
   const className = classNames('switch', {
     'switch--selected': selected,
     'switch--unselected': !selected,
   });
-
-  const handleInputChange = useCallback(() => {
-    setSelected(!selected);
-  }, [selected]);
 
   return (
     <div className={className}>
@@ -25,7 +20,7 @@ const Switch = ({ onChange }: Props) => {
         type='checkbox'
         role='switch'
         checked={selected}
-        onChange={handleInputChange}
+        onChange={onChange}
       />
       <div className='switch__track'>
         <div className='switch__handle-container'>

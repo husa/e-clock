@@ -1,4 +1,4 @@
-import './clock.sass';
+import './clock.scss';
 
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
@@ -24,8 +24,8 @@ type DigitsProps = {
 const Digits = ({
   digits,
   className,
-  //animateDigits
-}: DigitsProps) => {
+}: //animateDigits
+DigitsProps) => {
   const digitsNodes = digits.split('').map((digit, i) => (
     <span className={`${className} ${className}-${i}`} key={`${i}-${digit}`}>
       {digit}
@@ -61,15 +61,12 @@ const Delimiter = ({ hidden = false, delimiterBlinking }) => {
   return <span className={className}>:</span>;
 };
 
-const AmPm = ({ use24, hours }) => {
-  let ampm = '';
-  if (!use24) {
-    ampm = hours < 12 ? 'am' : 'pm';
-  }
+const AmPm = ({ hours }) => {
+  const ampm = hours < 12 ? 'am' : 'pm';
   return <span className='clock__ampm'>{ampm}</span>;
 };
 
-const Clock = ({ use24, delimiterBlinking, displaySeconds, animateDigits }) => {
+const Clock = ({ className, use24, delimiterBlinking, displaySeconds, animateDigits }) => {
   const [{ minutes, hours, seconds }, setTime] = useState(newTime);
 
   useEffect(() => {
@@ -80,7 +77,7 @@ const Clock = ({ use24, delimiterBlinking, displaySeconds, animateDigits }) => {
   });
 
   return (
-    <div className='clock'>
+    <div className={classNames(className, 'clock')}>
       <div className='clock__time'>
         <Hours hours={hours} use24={use24} animateDigits={animateDigits} />
         <Delimiter delimiterBlinking={delimiterBlinking} />
@@ -91,7 +88,7 @@ const Clock = ({ use24, delimiterBlinking, displaySeconds, animateDigits }) => {
             <Seconds seconds={seconds} animateDigits={animateDigits} />
           </>
         )}
-        <AmPm use24={use24} hours={hours} />
+        {!use24 && <AmPm hours={hours} />}
       </div>
     </div>
   );

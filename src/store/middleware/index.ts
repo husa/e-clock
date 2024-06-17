@@ -1,9 +1,9 @@
-import analytics from './analytics';
+// import analytics from './analytics';
 import chromeStorage from './chromeStorage';
 import weather from './weather';
 
 export default [
-  analytics,
+  // analytics,
   chromeStorage,
-  weather
+  weather,
 ];

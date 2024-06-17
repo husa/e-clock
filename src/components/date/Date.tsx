@@ -1,6 +1,7 @@
 import './date.scss';
 
 import React, { useEffect, useState } from 'react';
+import classNames from 'classnames';
 
 import lang from '../../services/lang';
 
@@ -14,10 +15,10 @@ const newDate = () => {
 };
 
 type Props = {
-  showDate: boolean;
+  className?: string;
 };
 
-const DateView = ({ showDate }: Props) => {
+const DateView = ({ className }: Props) => {
   const [{ day, month, date }, setDate] = useState(newDate());
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,9 +27,8 @@ const DateView = ({ showDate }: Props) => {
     return () => clearInterval(interval);
   });
 
-  if (!showDate) return null;
   return (
-    <div className='date'>
+    <div className={classNames(className, 'date')}>
       {lang.t(`Day${day}`)},&nbsp;
       {lang.t(`Month${month}`).slice(0, 3)}&nbsp;
       {date}

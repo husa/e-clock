@@ -8,26 +8,27 @@ import { dock } from '../../config';
 import DockIcon from './DockIcon';
 
 type Props = {
+  className?: string;
   dock: any;
   autoHide: boolean;
-  toggleSettings: () => void;
+  onSettingsClick: () => void;
 };
 
-const Dock = ({ dock: dockSettings, autoHide, toggleSettings }: Props) => {
-  const className = classNames('dock', {
+const Dock = ({ className, dock: dockSettings, autoHide, onSettingsClick }: Props) => {
+  const dockClassName = classNames('dock', className, {
     'dock--autohide': autoHide,
   });
 
   return (
-    <div className={className}>
+    <div className={dockClassName}>
       {dock
-        .filter((d) => dockSettings[d.url] !== false)
-        .map((dockItem) => (
+        .filter(d => dockSettings[d.url] !== false)
+        .map(dockItem => (
           <DockIcon
             key={dockItem.url}
             isSettingsIcon={dockItem.url === 'settings'}
             {...dockItem}
-            toggleSettings={toggleSettings}
+            toggleSettings={onSettingsClick}
           />
         ))}
     </div>

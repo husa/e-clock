@@ -89,6 +89,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.5",
     "autobindr": "^1.0.6",
     "bestzip": "^2.1.4",
     "classnames": "^2.2.6",

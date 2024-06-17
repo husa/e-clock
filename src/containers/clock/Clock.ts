@@ -1,6 +1,6 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {selectSettings} from '../../selectors';
+import { selectSettings } from '../../selectors';
 
 import Clock from '../../components/clock/Clock';
 
@@ -11,12 +11,10 @@ const mapStateToProps = state => {
     use24: settings.use24format,
     delimiterBlinking: settings.delimiterBlinking,
     displaySeconds: settings.displaySeconds,
-    animateDigits: settings.animateDigits
+    animateDigits: settings.animateDigits,
   };
 };
 
-const ClockContainer = connect(
-  mapStateToProps
-)(Clock);
+const ClockContainer = connect(mapStateToProps)(Clock);
 
 export default ClockContainer;

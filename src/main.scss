@@ -1,5 +1,9 @@
 @import './theme/main';
 
+* {
+  box-sizing: border-box;
+}
+
 body,
 html,
 #root {
@@ -28,6 +32,7 @@ body {
   background-color: $background-color;
   color: $font-color;
   fill: $font-color;
+  box-sizing: border-box;
 }
 
 *[data-alt] {
@@ -60,7 +65,7 @@ body {
     height: 2em;
     font-size: 1em;
     line-height: 2em;
-    backgroud: none;
+    background: none;
     border: none;
   }
   &__bar,

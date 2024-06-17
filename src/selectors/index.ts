@@ -3,7 +3,6 @@ import { convertTemperature } from '../utils';
 
 export const selectDock = state => state.dock;
 export const selectSettings = state => state.settings;
-export const selectView = state => state.view;
 export const selectIntro = state => state.intro;
 export const selectWeather = state => state.weather;
 

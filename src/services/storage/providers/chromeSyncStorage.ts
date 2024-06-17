@@ -26,7 +26,7 @@ class ChromeSyncStorage {
     if (!settings && !dock) return;
 
     chrome.storage.sync.set({
-      [this.key]: Object.assign({}, settings, dock),
+      [this.key]: { ...settings, ...dock },
     });
   }
 }

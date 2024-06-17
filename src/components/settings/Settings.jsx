@@ -42,7 +42,7 @@ class Settings extends Component {
   }
 
   onCloseClick() {
-    this.props.closeSettings();
+    this.props.onCloseClick();
   }
 
   onTabClick(activeTab) {
@@ -111,7 +111,7 @@ Settings.propTypes = {
   isOpen: PropTypes.bool,
   settings: PropTypes.object,
   dock: PropTypes.object,
-  closeSettings: PropTypes.func,
+  onCloseClick: PropTypes.func,
   setOptions: PropTypes.func,
   setDockOptions: PropTypes.func,
 };
