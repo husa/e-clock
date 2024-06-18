@@ -11,8 +11,14 @@
     --mio-theme-color-surface-5: #363436;
 
 */
-$theme-color-bg: #141314;
-$theme-color-surface-bg: #1c1b1d;
+$theme-color-primary: #d4bbff;
+$theme-color-on-primary: #40008c;
+$theme-color-background: #141314;
+$theme-color-on-background: #e6e1e3;
+$theme-color-surface-background: #1c1b1d;
+$theme-color-on-surface: #e6e1e3;
+$theme-color-outline: #968da1;
+$theme-color-surface-container: #37333e;
 
 $main-color: #2196f3;
 $main-color-faded: rgba($main-color, 0.5);

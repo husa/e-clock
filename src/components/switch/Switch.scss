@@ -1,19 +1,21 @@
+@import '../../theme/defaults.scss';
+
 .switch {
   $width: 52px;
   $height: 32px;
 
-  $track-color: red;
-  $track-outline: lighten(red, 20%);
+  $track-color: $theme-color-surface-container;
+  $track-outline: $theme-color-outline;
   $track-outline-width: 2px;
-  $track-selected-color: tomato;
-  $track-selected-outline: lighten(tomato, 20%);
+  $track-selected-color: $theme-color-primary;
+  $track-selected-outline: $theme-color-primary;
 
   $handle-height: 16px;
   $handle-width: 16px;
-  $handle-color: blue;
+  $handle-color: $theme-color-outline;
   $handle-selected-height: 24px;
   $handle-selected_widht: 24px;
-  $handle-selected-color: aqua;
+  $handle-selected-color: $theme-color-on-primary;
 
   display: inline-block;
   position: relative;
@@ -99,7 +101,7 @@
     width: $handle-selected_widht;
     height: $handle-selected-height;
     &:before {
-      background: green;
+      background: $handle-selected-color;
     }
   }
 }
