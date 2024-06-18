@@ -1,0 +1,43 @@
+@import '../../theme/defaults.scss';
+
+.settings-group {
+  $width: 128px;
+  $height: 128px;
+  $icon-size: 64px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  overflow: hidden;
+
+  width: $width;
+  height: $height;
+  padding: 1rem;
+  border-radius: 1.5rem;
+
+  color: $theme-color-on-surface;
+  fill: $theme-color-on-surface;
+  box-shadow: $theme-box-shadow;
+  cursor: pointer;
+  background-color: $theme-color-surface-background;
+  transition: background-color 100ms ease;
+
+  &:hover {
+    background-color: $theme-color-surface-variant;
+  }
+
+  &__icon {
+    width: $icon-size;
+    height: $icon-size;
+  }
+  &__title {
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    box-shadow: none;
+    cursor: default;
+    pointer-events: none;
+  }
+}

@@ -19,6 +19,11 @@ $theme-color-surface-background: #1c1b1d;
 $theme-color-on-surface: #e6e1e3;
 $theme-color-outline: #968da1;
 $theme-color-surface-container: #37333e;
+$theme-color-surface-variant: #4a4455;
+$theme-color-shadow: #000000;
+$theme-box-shadow:
+  0 4px 8px 3px rgba(0, 0, 0, 0.15),
+  0 1px 3px rgba(0, 0, 0, 0.3);
 
 $main-color: #2196f3;
 $main-color-faded: rgba($main-color, 0.5);
