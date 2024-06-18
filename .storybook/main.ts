@@ -10,7 +10,28 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-interactions',
     '@storybook/preset-scss',
+    {
+      name: '@storybook/addon-styling-webpack',
+      options: {
+        rules: [
+          {
+            test: /\.s[ac]ss$/i,
+            use: [
+              'style-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  url: false,
+                },
+              },
+              'sass-loader',
+            ],
+          },
+        ],
+      },
+    },
   ],
+  staticDirs: ['../src'],
   framework: {
     name: '@storybook/react-webpack5',
     options: {},
