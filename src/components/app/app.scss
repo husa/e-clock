@@ -3,6 +3,8 @@
 .app {
   $transition-duration: 300ms;
   $transition-fn: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
+  $settings-width: 304px;
+  $settings-transition-duration: calc($transition-duration / 2);
 
   width: 100vw;
   height: 100vh;
@@ -10,7 +12,7 @@
   flex-direction: row;
   justify-content: stretch;
 
-  background: $theme-color-bg;
+  // background: $theme-color-background;
   transition: padding $transition-duration $transition-fn;
 
   &__content {
@@ -62,15 +64,46 @@
   &__clock {
   }
 
+  &__settings-container {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $settings-width;
+    padding-top: 0.5rem;
+  }
+
   &--settings-open {
     padding: 1.5rem;
-    padding-right: 400px;
+    padding-right: $settings-width;
   }
   &--settings-open &__content {
     border-radius: 1.5rem;
   }
   &--settings-open &__content > * {
     transform: scale(0.9);
+  }
+  &--settings-open &__settings-container {
+    display: block;
+  }
+
+  &--settings-transition {
+    &-enter {
+      display: block;
+      opacity: 0;
+      transition: opacity $settings-transition-duration ease-out;
+      transition-delay: $transition-duration - $settings-transition-duration;
+    }
+
+    &-enter-active {
+      opacity: 1;
+    }
+
+    &--exit-active {
+    }
+
+    &--exit {
+    }
   }
 
   //

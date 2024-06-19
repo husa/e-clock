@@ -6,17 +6,18 @@ import classNames from 'classnames';
 type Props = {
   title: string;
   icon: React.ReactElement;
+  className?: string;
   disabled?: boolean;
   onClick?: () => void;
 };
 
-const SettingsGroup = ({ title, icon, disabled, onClick }: Props) => {
-  const className = classNames('settings-group', {
+const SettingsGroup = ({ className, title, icon, disabled, onClick }: Props) => {
+  const containerClassName = classNames(className, 'settings-group', {
     'settings-group--disabled': disabled,
   });
 
   return (
-    <div className={className} onClick={() => onClick()}>
+    <div className={containerClassName} onClick={() => onClick && onClick()}>
       <div className='settings-group__icon'>{icon}</div>
       <div className='settings-group__title'>{title}</div>
     </div>

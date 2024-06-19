@@ -1,8 +1,9 @@
 import './app.scss';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 // import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { CSSTransition } from 'react-transition-group';
 
 // import FadeIn from '../../common/animations/FadeIn';
 
@@ -12,7 +13,9 @@ import Clock from '../../containers/clock/Clock';
 import Date from '../../containers/date/Date';
 import Dock from '../../containers/dock/Dock';
 import DocTitleUpdater from '../../containers/docTitleUpdater/DocTitleUpdater';
-import Settings from '../../containers/settings/Settings';
+// import Settings from '../../containers/settings/Settings';
+import SettingsGroups from '../SettingsGroups/SettingsGroups';
+
 // import CurrentWeather from '../../containers/weather/Current';
 // import WeatherForecast from '../../containers/weather/Forecast';
 // import WeatherError from '../weather/Error';
@@ -49,8 +52,9 @@ const getStylesFromSettings = (settings: ISettings) => {
         const backgroundImage = `url(${image})`;
         return { backgroundImage };
       }
-      default:
+      default: {
         return {};
+      }
     }
   };
   const getFontColor = (settings: ISettings): { color: string; fill: string } => {
@@ -81,6 +85,7 @@ type Props = {
 };
 
 const App = ({ settings }: Props) => {
+  const settingsRef = useRef(null);
   const [isSettingsOpen, setSettingsOpen] = useState(false);
   const className = classNames('app', `app--${settings.backgroundPriority}`, {
     'app--settings-open': isSettingsOpen,
@@ -96,7 +101,17 @@ const App = ({ settings }: Props) => {
 
         <Dock className='app__dock' onSettingsClick={() => setSettingsOpen(!isSettingsOpen)} />
       </div>
-      <Settings isOpen={isSettingsOpen} onCloseClick={() => setSettingsOpen(false)} />
+      {/* <Settings isOpen={isSettingsOpen} onCloseClick={() => setSettingsOpen(false)} /> */}
+      <CSSTransition
+        nodeRef={settingsRef}
+        in={isSettingsOpen}
+        timeout={300}
+        classNames='app--settings-transition'
+      >
+        <div ref={settingsRef} className='app__settings-container'>
+          <SettingsGroups className='app__settings' />
+        </div>
+      </CSSTransition>
     </div>
   );
 };

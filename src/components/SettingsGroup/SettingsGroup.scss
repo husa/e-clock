@@ -9,8 +9,8 @@
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  overflow: hidden;
 
+  position: relative;
   width: $width;
   height: $height;
   padding: 1rem;
@@ -23,6 +23,15 @@
   background-color: $theme-color-surface-background;
   transition: background-color 100ms ease;
 
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    transform: scale(1);
+  }
   &:hover {
     background-color: $theme-color-surface-variant;
   }
@@ -32,6 +41,10 @@
     height: $icon-size;
   }
   &__title {
+    margin-top: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   &--disabled {
