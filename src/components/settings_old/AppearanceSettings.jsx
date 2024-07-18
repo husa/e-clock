@@ -32,7 +32,7 @@ class AppearanceSettings extends Component {
   getTextColorOptions() {
     const active = this.props.settings.color;
 
-    return colors.map(color => {
+    return colors.map((color) => {
       const className = classNames({
         'settings-appearance__color-option': true,
         'settings-appearance__color-option--active': active === color,
@@ -52,7 +52,7 @@ class AppearanceSettings extends Component {
   getBackgroundColorOptions() {
     const active = this.props.settings.backgroundColor;
 
-    return colors.map(color => {
+    return colors.map((color) => {
       const className = classNames({
         'settings-appearance__bg-color-option': true,
         'settings-appearance__bg-color-option--active': active === color,
@@ -75,7 +75,7 @@ class AppearanceSettings extends Component {
   getGradientOptions() {
     const active = this.props.settings.backgroundGradient;
 
-    return gradients.map(gradient => {
+    return gradients.map((gradient) => {
       const className = classNames({
         'settings-appearance__bg-gradient-option': true,
         'settings-appearance__bg-gradient-option--active': active === gradient,
@@ -102,7 +102,7 @@ class AppearanceSettings extends Component {
   getGradientAngleOptions() {
     const active = this.props.settings.backgroundGradientAngle;
 
-    const angles = gradientAngles.map(angle => {
+    const angles = gradientAngles.map((angle) => {
       const className = classNames({
         'settings-appearance__bg-gradient-angle-option': true,
         'settings-appearance__bg-gradient-angle-option--active': active === angle,
@@ -144,7 +144,7 @@ class AppearanceSettings extends Component {
   getPatternOptions() {
     const active = this.props.settings.backgroundPattern;
 
-    return patterns.map(pattern => {
+    return patterns.map((pattern) => {
       const className = classNames({
         'settings-appearance__bg-pattern-option': true,
         'settings-appearance__bg-pattern-option--active': active === pattern,
@@ -167,7 +167,7 @@ class AppearanceSettings extends Component {
   getImageOptions() {
     const active = this.props.settings.backgroundImage;
 
-    return images.map(image => {
+    return images.map((image) => {
       const className = classNames({
         'settings-appearance__bg-image-option': true,
         'settings-appearance__bg-image-option--active': active === image,
@@ -210,7 +210,7 @@ class AppearanceSettings extends Component {
   getFontOptions() {
     const active = this.props.settings.fontFamily;
 
-    return fonts.map(font => {
+    return fonts.map((font) => {
       const className = classNames({
         'settings-appearance__font-option': true,
         'settings-appearance__font-option--active': active === font,
@@ -245,7 +245,7 @@ class AppearanceSettings extends Component {
             max='25'
             defaultValue={active}
             step='.1'
-            onChange={e => {
+            onChange={(e) => {
               const fontSize = e.target.value;
               this.onOptionClick({ fontSize });
             }}

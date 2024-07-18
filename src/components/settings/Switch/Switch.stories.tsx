@@ -15,7 +15,7 @@ export const Primary: Story = {
   // ...
   render: () => {
     const [switched, setSwitched] = useState(false);
-    return <Switch selected={switched} onChange={() => setSwitched(!switched)}></Switch>
-  }
+    return <Switch checked={switched} onChange={() => setSwitched(!switched)}></Switch>;
+  },
 };
 export default meta;

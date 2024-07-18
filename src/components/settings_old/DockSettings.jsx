@@ -22,8 +22,8 @@ class DockSettings extends Component {
     return dock
       .slice(0)
       .reverse()
-      .filter(i => i.url !== 'settings')
-      .map(dockItem => (
+      .filter((i) => i.url !== 'settings')
+      .map((dockItem) => (
         <SettingsItem
           key={dockItem.url}
           className={`settings-dock__${dockItem.className}`}

@@ -1,4 +1,4 @@
-import { dock } from 'src/config';
+import { dock } from '../config';
 
 export interface ISettings {
   autoHideDock: boolean;

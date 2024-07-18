@@ -39,18 +39,18 @@ DigitsProps) => {
 
 const Hours = ({ hours, use24, animateDigits }) => {
   hours = format24Hours(use24, hours);
-  hours = prependZero(hours);
-  return <Digits digits={hours} className='clock__hour' animateDigits={animateDigits} />;
+  hours = use24 ? prependZero(hours) : `${hours}`;
+  return <Digits digits={hours} className="clock__hour" animateDigits={animateDigits} />;
 };
 
 const Minutes = ({ minutes, animateDigits }) => {
   minutes = prependZero(minutes);
-  return <Digits digits={minutes} className='clock__minute' animateDigits={animateDigits} />;
+  return <Digits digits={minutes} className="clock__minute" animateDigits={animateDigits} />;
 };
 
 const Seconds = ({ seconds, animateDigits }) => {
   seconds = prependZero(seconds);
-  return <Digits digits={seconds} className='clock__second' animateDigits={animateDigits} />;
+  return <Digits digits={seconds} className="clock__second" animateDigits={animateDigits} />;
 };
 
 const Delimiter = ({ hidden = false, delimiterBlinking }) => {
@@ -63,7 +63,7 @@ const Delimiter = ({ hidden = false, delimiterBlinking }) => {
 
 const AmPm = ({ hours }) => {
   const ampm = hours < 12 ? 'am' : 'pm';
-  return <span className='clock__ampm'>{ampm}</span>;
+  return <span className="clock__ampm">{ampm}</span>;
 };
 
 const Clock = ({ className, use24, delimiterBlinking, displaySeconds, animateDigits }) => {
@@ -78,7 +78,7 @@ const Clock = ({ className, use24, delimiterBlinking, displaySeconds, animateDig
 
   return (
     <div className={classNames(className, 'clock')}>
-      <div className='clock__time'>
+      <div className="clock__time">
         <Hours hours={hours} use24={use24} animateDigits={animateDigits} />
         <Delimiter delimiterBlinking={delimiterBlinking} />
         <Minutes minutes={minutes} animateDigits={animateDigits} />

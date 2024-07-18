@@ -70,7 +70,7 @@ class Settings extends Component {
   }
 
   getTabs() {
-    return Object.keys(TABS).map(tab => {
+    return Object.keys(TABS).map((tab) => {
       const className = classNames('settings__tab', {
         'settings__tab--active': this.state.activeTab === tab,
       });

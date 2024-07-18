@@ -5,9 +5,9 @@ import { selectSettings, selectDock } from '../../selectors';
 import { setOptions } from '../../actions/settings';
 import { setDockOptions } from '../../actions/dock';
 
-import Settings from '../../components/settings/Settings';
+import Settings from '../../components/settings_old/Settings';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const settings = selectSettings(state);
   const dock = selectDock(state);
 
@@ -17,7 +17,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   setOptions(options) {
     return dispatch(setOptions(options));
   },

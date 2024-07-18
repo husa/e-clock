@@ -1,6 +1,7 @@
 .clock {
   color: inherit;
   text-align: center;
+  white-space: nowrap;
 
   &__time {
     // container for actual clock

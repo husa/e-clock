@@ -1,28 +1,29 @@
-import './app.scss';
+import './App.scss';
 
-import React, { useRef, useState } from 'react';
-// import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group';
+// import { CSSTransition } from 'react-transition-group';
 
 // import FadeIn from '../../common/animations/FadeIn';
 
-import { ISettings } from '../../types';
 // import Intro from '../../containers/intro/Intro';
 import Clock from '../../containers/clock/Clock';
 import Date from '../../containers/date/Date';
-import Dock from '../../containers/dock/Dock';
+import Dock from '../dock/Dock';
 import DocTitleUpdater from '../../containers/docTitleUpdater/DocTitleUpdater';
+import Settings from '../Settings/Settings';
+import { SettingsState, useSettingsSlice } from '../../store/slices/settingsSlice';
 // import Settings from '../../containers/settings/Settings';
-import SettingsGroups from '../SettingsGroups/SettingsGroups';
+// import SettingsGroups from '../SettingsGroups/SettingsGroups';
+// import SettingsTitle from '../Settings/SettingsTitle/SettingsTitle';
 
 // import CurrentWeather from '../../containers/weather/Current';
 // import WeatherForecast from '../../containers/weather/Forecast';
 // import WeatherError from '../weather/Error';
 
-const getStylesFromSettings = (settings: ISettings) => {
+const getStylesFromSettings = (settings: SettingsState) => {
   const getBackground = (
-    settings: ISettings,
+    settings: SettingsState,
   ): { background?: string; backgroundImage?: string } => {
     const priority = settings.backgroundPriority;
 
@@ -57,7 +58,7 @@ const getStylesFromSettings = (settings: ISettings) => {
       }
     }
   };
-  const getFontColor = (settings: ISettings): { color: string; fill: string } => {
+  const getFontColor = (settings: SettingsState): { color: string; fill: string } => {
     return {
       color: settings.color,
       fill: settings.color,
@@ -71,7 +72,7 @@ const getStylesFromSettings = (settings: ISettings) => {
 };
 
 const getClockStyleFromSettings = (
-  settings: ISettings,
+  settings: SettingsState,
 ): { fontFamily: string; fontSize: string } => {
   const { fontSize, fontFamily } = settings;
   return {
@@ -80,38 +81,39 @@ const getClockStyleFromSettings = (
   };
 };
 
-type Props = {
-  settings: ISettings;
-};
-
-const App = ({ settings }: Props) => {
-  const settingsRef = useRef(null);
+const App = () => {
+  const { state: settings } = useSettingsSlice();
   const [isSettingsOpen, setSettingsOpen] = useState(false);
   const className = classNames('app', `app--${settings.backgroundPriority}`, {
     'app--settings-open': isSettingsOpen,
   });
   return (
-    <div id='app' className={className}>
+    <div id="app" className={className}>
       <DocTitleUpdater />
-      <div className='app__content' style={getStylesFromSettings(settings)}>
-        <div className='app__clock-wrapper' style={getClockStyleFromSettings(settings)}>
-          <Clock className='app__clock' />
-          <Date className='app__date' />
+      <div className="app__content" style={getStylesFromSettings(settings)}>
+        <div className="app__clock-wrapper" style={getClockStyleFromSettings(settings)}>
+          <Clock className="app__clock" />
+          <Date className="app__date" />
         </div>
 
-        <Dock className='app__dock' onSettingsClick={() => setSettingsOpen(!isSettingsOpen)} />
+        <Dock className="app__dock" onSettingsClick={() => setSettingsOpen(!isSettingsOpen)} />
       </div>
-      {/* <Settings isOpen={isSettingsOpen} onCloseClick={() => setSettingsOpen(false)} /> */}
-      <CSSTransition
-        nodeRef={settingsRef}
-        in={isSettingsOpen}
-        timeout={300}
-        classNames='app--settings-transition'
-      >
-        <div ref={settingsRef} className='app__settings-container'>
-          <SettingsGroups className='app__settings' />
-        </div>
-      </CSSTransition>
+      <Settings
+        // settings={settings}
+        className="app__settings-container"
+        isOpen={isSettingsOpen}
+        onCloseClick={() => setSettingsOpen(false)}
+      />
+      {/* <CSSTransition */}
+      {/*   nodeRef={settingsRef} */}
+      {/*   in={isSettingsOpen} */}
+      {/*   timeout={300} */}
+      {/*   classNames='app--settings-transition'> */}
+      {/*   <div ref={settingsRef} className='app__settings-container'> */}
+      {/*     <SettingsTitle showBackButton={true}>Settings</SettingsTitle> */}
+      {/*     <SettingsGroups className='app__settings' /> */}
+      {/*   </div> */}
+      {/* </CSSTransition> */}
     </div>
   );
 };

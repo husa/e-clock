@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import lang from '../../services/lang';
+import { useSettingsSlice } from '../../store/slices/settingsSlice';
 
 const newDate = () => {
   const date = new Date();
@@ -19,6 +20,8 @@ type Props = {
 };
 
 const DateView = ({ className }: Props) => {
+  const { state } = useSettingsSlice();
+
   const [{ day, month, date }, setDate] = useState(newDate());
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,6 +29,8 @@ const DateView = ({ className }: Props) => {
     }, 60 * 1000);
     return () => clearInterval(interval);
   });
+
+  if (!state.displayDate) return null;
 
   return (
     <div className={classNames(className, 'date')}>

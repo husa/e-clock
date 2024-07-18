@@ -1,14 +1,14 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import SettingsGroup from './SettingsGroup';
+import SettingsGroupTile from './SettingsGroupTile';
 
-const meta: Meta<typeof SettingsGroup> = {
-  title: 'SettingsGroup',
-  component: SettingsGroup,
+const meta: Meta<typeof SettingsGroupTile> = {
+  title: 'SettingsGroupTile',
+  component: SettingsGroupTile,
   // ...
 };
-type Story = StoryObj<typeof SettingsGroup>;
+type Story = StoryObj<typeof SettingsGroupTile>;
 
 export const Primary: Story = {
   args: {

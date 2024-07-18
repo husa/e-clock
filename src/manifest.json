@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "e-clock",
   "version": "3.6.1",
   "description": "__MSG_i18nShortDescription__",
@@ -11,10 +11,6 @@
     "48": "img/icons/icon48.png",
     "128": "img/icons/icon128.png"
   },
-  "permissions": [
-    "storage",
-    "geolocation"
-  ],
-  "offline_enabled": true,
-  "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'"
+  "permissions": ["storage", "geolocation"],
+  "offline_enabled": true
 }

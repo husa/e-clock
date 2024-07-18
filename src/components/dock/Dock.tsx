@@ -6,15 +6,19 @@ import classNames from 'classnames';
 import { dock } from '../../config';
 
 import DockIcon from './DockIcon';
+import { useDockSettingsSlice } from '../../store/slices/dockSlice';
+import { useSettingsSlice } from '../../store/slices/settingsSlice';
 
 type Props = {
   className?: string;
-  dock: any;
-  autoHide: boolean;
   onSettingsClick: () => void;
 };
 
-const Dock = ({ className, dock: dockSettings, autoHide, onSettingsClick }: Props) => {
+const Dock = ({ className, onSettingsClick }: Props) => {
+  const { state: dockSettings } = useDockSettingsSlice();
+  const { state: settings } = useSettingsSlice();
+  const autoHide = settings.autoHideDock;
+
   const dockClassName = classNames('dock', className, {
     'dock--autohide': autoHide,
   });
@@ -22,8 +26,8 @@ const Dock = ({ className, dock: dockSettings, autoHide, onSettingsClick }: Prop
   return (
     <div className={dockClassName}>
       {dock
-        .filter(d => dockSettings[d.url] !== false)
-        .map(dockItem => (
+        .filter((d) => dockSettings[d.url] !== false)
+        .map((dockItem) => (
           <DockIcon
             key={dockItem.url}
             isSettingsIcon={dockItem.url === 'settings'}

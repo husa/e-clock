@@ -6,26 +6,28 @@ import { Provider } from 'react-redux';
 
 import { pluckSettings, pluckDock } from './utils';
 import storage from './services/storage';
-import { settings } from './config';
-import createStore from './store/createStore';
+import { settings as defaultSettings } from './config';
+import createStore, { AppState } from './store/createStore';
 // import analytics from './common/analytics';
 
-import App from './containers/app/App';
+import App from './components/app/App';
 
 Promise.all([
   storage.load(),
-  new Promise(resolve => {
+  new Promise((resolve) => {
     document.addEventListener('DOMContentLoaded', resolve);
   }),
 ]).then(([data]) => {
-  const initialState: any = {};
+  const initialState: Partial<AppState> = {};
 
   if (!data) {
-    initialState.intro = true;
+    // initialState.intro = true;
   } else {
-    initialState.settings = Object.assign(settings, pluckSettings(data));
+    initialState.settings = Object.assign(defaultSettings, pluckSettings(data));
     initialState.dock = pluckDock(data);
   }
+
+  console.log('initialState', initialState);
 
   const store = createStore(initialState);
 
