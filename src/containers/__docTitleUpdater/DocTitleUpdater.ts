@@ -1,21 +1,18 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {selectSettings} from '../../selectors';
+import { selectSettings } from '../../selectors';
 
-import DocTitleUpdater from '../../components/docTitleUpdater/DocTitleUpdater';
+import { DocTitleUpdater } from '../../components/DocTitleUpdater/DocTitleUpdater';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const settings = selectSettings(state);
 
   return {
     use24: settings.use24format,
-    displaySeconds: settings.displaySeconds
+    displaySeconds: settings.displaySeconds,
   };
 };
 
-const DocTitleUpdaterContainer = connect(
-  mapStateToProps
-)(DocTitleUpdater);
+const DocTitleUpdaterContainer = connect(mapStateToProps)(DocTitleUpdater);
 
 export default DocTitleUpdaterContainer;
-
