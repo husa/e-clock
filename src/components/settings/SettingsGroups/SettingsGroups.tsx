@@ -1,6 +1,5 @@
 import './SettingsGroups.scss';
 
-import React from 'react';
 import classNames from 'classnames';
 
 import SettingsGroupTile from '../SettingsGroupTile/SettingsGroupTile';
@@ -9,7 +8,7 @@ import type { SettingsGroup } from '../settings-groups';
 type Props = {
   className?: string;
   groups: SettingsGroup[];
-  onGroupSelect: (n: number) => void;
+  onGroupSelect?: (n: number) => void;
 };
 
 const SettingsGroups = ({ className, groups, onGroupSelect }: Props) => {

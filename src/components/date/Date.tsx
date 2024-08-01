@@ -1,8 +1,7 @@
-import './date.scss';
+import './Date.scss';
 
-import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-
+import { useEffect, useState } from 'react';
 import lang from '../../services/lang';
 import { useSettingsSlice } from '../../store/slices/settingsSlice';
 

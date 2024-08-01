@@ -1,10 +1,7 @@
-import './dock.scss';
+import './Dock.scss';
 
-import React from 'react';
 import classNames from 'classnames';
-
 import { dock } from '../../config';
-
 import DockIcon from './DockIcon';
 import { useDockSettingsSlice } from '../../store/slices/dockSlice';
 import { useSettingsSlice } from '../../store/slices/settingsSlice';

@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { AppState } from '../createStore';
 import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '../createStore';
 
 export interface SettingsState {
   autoHideDock: boolean;
@@ -9,7 +9,7 @@ export interface SettingsState {
   backgroundGradientAngle: string;
   backgroundImage: string;
   backgroundPattern: string;
-  backgroundPriority: string;
+  backgroundPriority: 'color' | 'gradient' | 'pattern' | 'image' | 'url';
   backgroundImageUrl: string;
   color: string;
   delimiterBlinking: boolean;
@@ -28,13 +28,13 @@ export interface SettingsState {
 export const initialState: SettingsState = {
   autoHideDock: false,
   backgroundColor: '#fefefe',
-  backgroundGradient: '',
+  backgroundGradient: '#606c88,#3f4c6b',
   backgroundGradientAngle: '135deg',
   backgroundImage: '22',
-  backgroundPattern: '',
+  backgroundPattern: '1',
   backgroundPriority: 'image', // [color, gradient, pattern, image, url]
   backgroundImageUrl: '',
-  color: '#fefefe',
+  color: '#3e3e3e',
   delimiterBlinking: true,
   displaySeconds: true,
   animateDigits: true,

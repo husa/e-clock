@@ -6,5 +6,7 @@ export default [
   'Josefin',
   'Bebas',
   'Geosans',
-  'SourceCode'
+  'SourceCode',
+  'Inter',
+  'system-ui',
 ];

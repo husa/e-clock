@@ -6,11 +6,12 @@ import { Provider } from 'react-redux';
 
 import { pluckSettings, pluckDock } from './utils';
 import storage from './services/storage';
-import { settings as defaultSettings } from './config';
+// import { settings as defaultSettings } from './config';
 import createStore, { AppState } from './store/createStore';
+import { initialState as initialSettingsState } from './store/slices/settingsSlice';
 // import analytics from './common/analytics';
 
-import App from './components/app/App';
+import App from './components/App/App';
 
 Promise.all([
   storage.load(),
@@ -23,16 +24,17 @@ Promise.all([
   if (!data) {
     // initialState.intro = true;
   } else {
-    initialState.settings = Object.assign(defaultSettings, pluckSettings(data));
+    initialState.settings = {
+      ...initialSettingsState,
+      ...pluckSettings(data),
+    };
     initialState.dock = pluckDock(data);
   }
-
-  console.log('initialState', initialState);
 
   const store = createStore(initialState);
 
   // kick off background service
-  store.dispatch({ type: 'WEATHER_BG_SERVICE_START' });
+  // store.dispatch({ type: 'WEATHER_BG_SERVICE_START' });
   // save user setting to firebase
   //
   // setTimeout(() => {

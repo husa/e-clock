@@ -4,7 +4,7 @@ import { dock } from '../../../config';
 import { DockURL } from '../../../config/dock';
 import { useDockSettingsSlice } from '../../../store/slices/dockSlice';
 import SwitchOption from '../SwitchOption/SwitchOption';
-import SettingsPanel from '../SettingsPanel/SettingsPanel';
+import { SettingsPanel } from '../SettingsPanel/SettingsPanel';
 
 export const SettingsPanelDock = () => {
   const { state: dockSettings, setDockOptions } = useDockSettingsSlice();

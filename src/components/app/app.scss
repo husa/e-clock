@@ -70,7 +70,9 @@
     right: 0;
     top: 0;
     width: $settings-width;
+    height: 100%;
     padding: 1.5rem 1rem;
+    overflow-y: auto;
   }
 
   &--settings-open {
@@ -84,7 +86,7 @@
     transform: scale(0.9);
   }
   &--settings-open &__settings-container {
-    display: block;
+    display: inherit;
   }
 
   &--settings-transition {

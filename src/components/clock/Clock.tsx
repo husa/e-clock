@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 //import Slide from '../../common/animations/Slide';
 import { prependZero, format24Hours } from '../../utils/time';
+import { useSettingsSlice } from '../../store/slices/settingsSlice';
 
 const newTime = () => {
   const date = new Date();
@@ -61,12 +62,14 @@ const Delimiter = ({ hidden = false, delimiterBlinking }) => {
   return <span className={className}>:</span>;
 };
 
-const AmPm = ({ hours }) => {
+const AmPm = ({ hours }: {hours: number}) => {
   const ampm = hours < 12 ? 'am' : 'pm';
   return <span className="clock__ampm">{ampm}</span>;
 };
 
-const Clock = ({ className, use24, delimiterBlinking, displaySeconds, animateDigits }) => {
+const Clock = ({ className }: {className: string}) => {
+  const { state } = useSettingsSlice();
+  const { use24format: use24, delimiterBlinking, displaySeconds, animateDigits } = state;
   const [{ minutes, hours, seconds }, setTime] = useState(newTime);
 
   useEffect(() => {

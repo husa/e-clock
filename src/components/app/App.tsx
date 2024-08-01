@@ -1,18 +1,18 @@
 import './App.scss';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import classNames from 'classnames';
 // import { CSSTransition } from 'react-transition-group';
 
 // import FadeIn from '../../common/animations/FadeIn';
 
 // import Intro from '../../containers/intro/Intro';
-import Clock from '../../containers/clock/Clock';
-import Date from '../../containers/date/Date';
-import Dock from '../dock/Dock';
-import DocTitleUpdater from '../../containers/docTitleUpdater/DocTitleUpdater';
+import Date from '../Date/Date';
+import Dock from '../Dock/Dock';
 import Settings from '../Settings/Settings';
 import { SettingsState, useSettingsSlice } from '../../store/slices/settingsSlice';
+import Clock from '../Clock/Clock';
+import { DocTitleUpdater } from '../DocTitleUpdater/DocTitleUpdater';
 // import Settings from '../../containers/settings/Settings';
 // import SettingsGroups from '../SettingsGroups/SettingsGroups';
 // import SettingsTitle from '../Settings/SettingsTitle/SettingsTitle';
@@ -99,7 +99,6 @@ const App = () => {
         <Dock className="app__dock" onSettingsClick={() => setSettingsOpen(!isSettingsOpen)} />
       </div>
       <Settings
-        // settings={settings}
         className="app__settings-container"
         isOpen={isSettingsOpen}
         onCloseClick={() => setSettingsOpen(false)}

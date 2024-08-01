@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { format24Hours, prependZero } from '../../utils/time';
+import { useSettingsSlice } from '../../store/slices/settingsSlice';
 
 const getTime = (use24: boolean, showSeconds: boolean): string => {
   const date = new Date();
@@ -15,23 +16,18 @@ const getTime = (use24: boolean, showSeconds: boolean): string => {
   return `${time}pm`;
 };
 
-type Props = {
-  use24: boolean;
-  displaySeconds: boolean;
-};
+export const DocTitleUpdater = () => {
+  const { state: settings } = useSettingsSlice();
+  const use24 = settings.use24format;
+  const displaySeconds = settings.displaySeconds;
 
-const DocTitleUpdater = ({ use24, displaySeconds }: Props) => {
   useEffect(() => {
     const interval = setInterval(() => {
       document.title = getTime(use24, displaySeconds);
     }, 1000);
 
-    return () => {
-      clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, [use24, displaySeconds]);
 
   return null;
 };
-
-export default DocTitleUpdater;

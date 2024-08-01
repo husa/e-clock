@@ -18,5 +18,5 @@ export default {
   displayWeather: true,
   temperatureUnits: 'c',
   useLocation: 'auto', // 'auto' / 'custom'
-  customLocation: ''
+  customLocation: '',
 };

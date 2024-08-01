@@ -1,6 +1,6 @@
-import {SET_DOCK_OPTIONS} from '../actions/dock';
+import { SET_DOCK_OPTIONS } from '../__actions/dock';
 
-function settings (state = {}, action) {
+function settings(state = {}, action) {
   switch (action.type) {
     case SET_DOCK_OPTIONS:
       return Object.assign({}, state, action.options);

@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 
 import { selectSettings, selectDock } from '../../selectors';
 
-import { setOptions } from '../../actions/settings';
-import { setDockOptions } from '../../actions/dock';
+import { setOptions } from '../../__actions/settings';
+import { setDockOptions } from '../../__actions/dock';
 
 import Settings from '../../components/settings_old/Settings';
 

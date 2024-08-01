@@ -1,6 +1,5 @@
 import './SettingsGroupTile.scss';
 
-import React from 'react';
 import classNames from 'classnames';
 
 type Props = {
@@ -17,9 +16,9 @@ const SettingsGroupTile = ({ className, title, icon, disabled, onClick }: Props)
   });
 
   return (
-    <div className={containerClassName} onClick={() => onClick && onClick()}>
-      <div className='settings-group-tile__icon'>{icon}</div>
-      <div className='settings-group-tile__title'>{title}</div>
+    <div className={containerClassName} onClick={() => onClick?.()}>
+      <div className="settings-group-tile__icon">{icon}</div>
+      <div className="settings-group-tile__title">{title}</div>
     </div>
   );
 };

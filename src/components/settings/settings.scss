@@ -1,0 +1,12 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+
+  & > *:first-child {
+    flex: 0 0 auto;
+  }
+
+  & > *:last-child {
+    flex: 1 1 100%;
+  }
+}

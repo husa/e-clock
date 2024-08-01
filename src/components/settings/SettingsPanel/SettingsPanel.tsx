@@ -1,11 +1,12 @@
+import classNames from 'classnames';
 import './SettingsPanel.scss';
 
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
-type Props = {
-  children: React.ReactNode;
-};
+type Props = PropsWithChildren<{
+  className?: string;
+}>;
 
-const SettingsPanel = ({ children }: Props) => <div className='settings-panel'>{children}</div>;
-
-export default SettingsPanel;
+export const SettingsPanel = ({ className, children }: Props) => (
+  <div className={classNames(className, 'settings-panel')}>{children}</div>
+);

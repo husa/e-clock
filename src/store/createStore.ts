@@ -26,6 +26,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import settingsReducer, { SettingsState } from './slices/settingsSlice';
 import dockReducer, { DockState } from './slices/dockSlice';
+import { syncSettingsToChromeStorageMiddleware } from './middleware/chromeStorage';
 
 export type AppState = {
   settings: SettingsState;
@@ -39,6 +40,8 @@ const createAppStore = (initialState: Partial<AppState> = {}) =>
       dock: dockReducer,
     },
     preloadedState: initialState,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().prepend(syncSettingsToChromeStorageMiddleware.middleware),
   });
 
 export default createAppStore;

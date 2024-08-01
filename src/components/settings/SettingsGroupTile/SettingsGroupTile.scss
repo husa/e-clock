@@ -5,14 +5,15 @@
   $height: 128px;
   $icon-size: 64px;
 
+  aspect-ratio: 1;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: center;
 
   position: relative;
-  width: $width;
-  height: $height;
+  // width: $width;
+  // height: $height;
   padding: 1rem;
   border-radius: 1.5rem;
 

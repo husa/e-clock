@@ -1,0 +1,98 @@
+@import '../../../theme/defaults.scss';
+
+.slider {
+  $thumb-height: 2.5rem;
+  $thumb-width: 4px;
+  $thumb-gap: 6px;
+  $track-height: 1rem;
+
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: $thumb-height;
+
+  &__input {
+    width: 100%;
+    appearance: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+    margin-top: calc(($thumb-height - $track-height) / 2);
+    opacity: 0;
+
+    &::-webkit-slider-runnable-track {
+      -webkit-appearance: none;
+      height: $track-height;
+      background: red;
+      border: none;
+    }
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      border: none;
+      height: $thumb-height;
+      width: $thumb-width + $thumb-gap * 2;
+      margin-top: calc(($thumb-height - $track-height) / -2);
+      cursor: pointer;
+      background: tomato;
+    }
+  }
+
+  &__container {
+    position: absolute;
+    top: calc(($thumb-height - $track-height) / 2);
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: stretch;
+    pointer-events: none;
+  }
+
+  &__track-left,
+  &__track-right {
+    position: relative;
+    flex: 1 1 auto;
+    height: $track-height;
+    background: $theme-color-on-primary;
+    border-radius: $track-height;
+    overflow: hidden;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      top: 6px;
+      background-color: $theme-color-primary;
+      border-radius: 4px;
+    }
+  }
+
+  &__track-left {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    &:before {
+      left: 6px;
+    }
+  }
+
+  &__track-right {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    &:before {
+      right: 6px;
+    }
+  }
+
+  &__thumb {
+    flex: 0 0 auto;
+    width: 4px;
+    height: 2.5rem;
+    margin-top: calc(($thumb-height - $track-height) / -2);
+    margin-left: $thumb-gap;
+    margin-right: $thumb-gap;
+    background: $theme-color-primary;
+    border-radius: $thumb-width;
+  }
+}

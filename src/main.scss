@@ -43,16 +43,15 @@ body {
   @include fancy-alt;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-  cursor: pointer;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.4);
-  cursor: pointer;
-}
+//   width: 6px;
+//   cursor: pointer;
+// }
+//
+// ::-webkit-scrollbar-thumb {
+//   border-radius: 6px;
+//   background: rgba(0, 0, 0, 0.4);
+//   cursor: pointer;
+// }
 .text-input {
   margin: 10px 0;
   font-size: 1em;

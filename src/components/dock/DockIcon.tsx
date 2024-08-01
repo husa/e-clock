@@ -1,4 +1,4 @@
-import './dockIcon.scss';
+import './DockIcon.scss';
 
 import React from 'react';
 import classNames from 'classnames';
@@ -44,7 +44,7 @@ const DockIcon = ({
 
   return (
     <li className={dockIconClassName} data-alt={lang.t(text)} onClick={handleClick}>
-      <svg className='dock-icon__icon' viewBox={iconViewbox || '0 0 24 24'} width='24' height='24'>
+      <svg className="dock-icon__icon" viewBox={iconViewbox || '0 0 24 24'} width="24" height="24">
         <use xlinkHref={`#${icon}`}></use>
       </svg>
     </li>

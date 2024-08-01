@@ -8,4 +8,15 @@
   &__title {
     margin-bottom: 0.5rem;
   }
+
+  &__options {
+    display: grid;
+    // flex-direction: row;
+    // flex-wrap: wrap;
+    & > * {
+      aspect-ratio: 1;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+  }
 }

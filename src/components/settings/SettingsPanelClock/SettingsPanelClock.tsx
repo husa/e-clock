@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSettingsSlice } from '../../../store/slices/settingsSlice';
-import SettingsPanel from '../SettingsPanel/SettingsPanel';
+import { SettingsPanel } from '../SettingsPanel/SettingsPanel';
 import SwitchOption from '../SwitchOption/SwitchOption';
 import lang from '../../../services/lang';
 
