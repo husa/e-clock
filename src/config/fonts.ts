@@ -9,4 +9,4 @@ export default [
   'SourceCode',
   'Inter',
   'system-ui',
-];
+] as const;

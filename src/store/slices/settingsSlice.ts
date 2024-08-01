@@ -1,22 +1,23 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../createStore';
+import { colors, fonts, gradientAngles, gradients, images, patterns } from '../../config';
 
 export interface SettingsState {
   autoHideDock: boolean;
-  backgroundColor: string;
-  backgroundGradient: string;
-  backgroundGradientAngle: string;
-  backgroundImage: string;
-  backgroundPattern: string;
+  backgroundColor: (typeof colors)[number] | string;
+  backgroundGradient: (typeof gradients)[number] | string;
+  backgroundGradientAngle: (typeof gradientAngles)[number];
+  backgroundImage: (typeof images)[number];
+  backgroundPattern: (typeof patterns)[number];
   backgroundPriority: 'color' | 'gradient' | 'pattern' | 'image' | 'url';
   backgroundImageUrl: string;
-  color: string;
+  color: (typeof colors)[number] | string;
   delimiterBlinking: boolean;
   displaySeconds: boolean;
   animateDigits: boolean;
   displayDate: boolean;
-  fontFamily: string;
+  fontFamily: (typeof fonts)[number];
   fontSize: string;
   use24format: boolean;
   displayWeather: boolean;

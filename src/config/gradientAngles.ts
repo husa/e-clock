@@ -6,5 +6,5 @@ export default [
   '180deg',
   '225deg',
   '270deg',
-  '315deg'
-];
+  '315deg',
+] as const;

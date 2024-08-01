@@ -20,5 +20,5 @@ export default [
   '#bdc3c7',
   '#7f8c8d',
   '#555555',
-  '#fefefe'
-];
+  '#fefefe',
+] as const;
