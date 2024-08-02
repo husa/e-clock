@@ -36,6 +36,12 @@ module.exports = {
         jest: true,
       },
     },
+    {
+      file: ['scripts/*.js'],
+      env: {
+        node: true,
+      },
+    },
   ],
   rules: {
     '@typescript-eslint/no-explicit-any': 'warn',
