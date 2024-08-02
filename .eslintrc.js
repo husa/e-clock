@@ -37,9 +37,10 @@ module.exports = {
       },
     },
     {
-      file: ['scripts/*.js'],
+      files: ['scripts/*.js', 'webpack.config.js', '*rc.js', 'jest.config.js'],
       env: {
         node: true,
+        commonjs: true,
       },
     },
   ],
