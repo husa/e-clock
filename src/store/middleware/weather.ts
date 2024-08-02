@@ -1,4 +1,4 @@
-import { selectWeatherData, selectSettings, selectLocationName } from '../../selectors';
+import { selectWeatherData, selectSettings, selectLocationName } from '../../__selectors';
 
 import { loadWeather } from '../../__actions/weather';
 
