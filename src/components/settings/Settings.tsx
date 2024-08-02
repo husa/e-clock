@@ -1,6 +1,6 @@
 import './Settings.scss';
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import SettingsGroups from './SettingsGroups/SettingsGroups';

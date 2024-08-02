@@ -1,13 +1,9 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 const TRANSITION_DURATION = 500;
 
-const Animation = ({
-  name,
-  timeout,
-  children,
-}) => {
+const Animation = ({ name, timeout, children }) => {
   const nodeRef = useRef(null);
   return (
     <CSSTransition

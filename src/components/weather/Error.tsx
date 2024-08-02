@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import lang from '../../services/lang';
 import ErrorMessage from '../error/ErrorMessage';
 
@@ -33,7 +31,7 @@ const WeatherError = ({ error }: Props) => {
     }
   }
 
-  return <ErrorMessage className='weather__error'>{message}</ErrorMessage>;
+  return <ErrorMessage className="weather__error">{message}</ErrorMessage>;
 };
 
 export default WeatherError;

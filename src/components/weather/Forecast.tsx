@@ -1,7 +1,5 @@
 import './forecast.scss';
 
-import * as React from 'react';
-
 import type { WeatherResponseForecast } from '../../types';
 import lang from '../../services/lang';
 import Icon from './Icon';
@@ -21,19 +19,19 @@ export const getDay = (date: string) => {
 };
 
 type Props = {
-  data: WeatherResponseForecast,
+  data: WeatherResponseForecast;
 };
 
 const WeatherForecast = (props: Props) => (
-  <div className='weather-forecast'>
-    {props.data.map(day => (
-      <div className='weather-forecast__day' key={day.date}>
-        <div className='weather-forecast__day__name'>{getDay(day.date)}</div>
-        <Icon className='weather-forecast__day__icon' code={day.code} title={day.text} />
-        <div className='weather-forecast__day__temperature'>
-          <span className='weather-forecast__day__temperature--max'>{day.max}&deg;</span>
-          <span className='weather-forecast__day__temperature__separator'>/</span>
-          <span className='weather-forecast__day__temperature--min'>{day.min}&deg;</span>
+  <div className="weather-forecast">
+    {props.data.map((day) => (
+      <div className="weather-forecast__day" key={day.date}>
+        <div className="weather-forecast__day__name">{getDay(day.date)}</div>
+        <Icon className="weather-forecast__day__icon" code={day.code} title={day.text} />
+        <div className="weather-forecast__day__temperature">
+          <span className="weather-forecast__day__temperature--max">{day.max}&deg;</span>
+          <span className="weather-forecast__day__temperature__separator">/</span>
+          <span className="weather-forecast__day__temperature--min">{day.min}&deg;</span>
         </div>
       </div>
     ))}

@@ -1,5 +1,6 @@
-import classNames from 'classnames';
 import './SettingsPanel.scss';
+
+import classNames from 'classnames';
 
 import { PropsWithChildren } from 'react';
 

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import { colors, fonts } from '../../../config';
 import lang from '../../../services/lang';
 import { ColorPicker } from '../../ColorPicker/ColorPicker';

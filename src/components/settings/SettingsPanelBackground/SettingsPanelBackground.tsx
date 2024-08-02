@@ -1,4 +1,3 @@
-import React from 'react';
 import { colors, gradientAngles, gradients, images, patterns } from '../../../config';
 import lang from '../../../services/lang';
 import { ColorPicker } from '../../ColorPicker/ColorPicker';

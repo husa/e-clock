@@ -1,6 +1,6 @@
-import './clock.scss';
+import './Clock.scss';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 //import Slide from '../../common/animations/Slide';
@@ -62,12 +62,12 @@ const Delimiter = ({ hidden = false, delimiterBlinking }) => {
   return <span className={className}>:</span>;
 };
 
-const AmPm = ({ hours }: {hours: number}) => {
+const AmPm = ({ hours }: { hours: number }) => {
   const ampm = hours < 12 ? 'am' : 'pm';
   return <span className="clock__ampm">{ampm}</span>;
 };
 
-const Clock = ({ className }: {className: string}) => {
+const Clock = ({ className }: { className: string }) => {
   const { state } = useSettingsSlice();
   const { use24format: use24, delimiterBlinking, displaySeconds, animateDigits } = state;
   const [{ minutes, hours, seconds }, setTime] = useState(newTime);

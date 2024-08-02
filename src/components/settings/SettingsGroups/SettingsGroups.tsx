@@ -1,7 +1,6 @@
 import './SettingsGroups.scss';
 
 import classNames from 'classnames';
-
 import SettingsGroupTile from '../SettingsGroupTile/SettingsGroupTile';
 import type { SettingsGroup } from '../settings-groups';
 

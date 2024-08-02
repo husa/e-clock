@@ -1,4 +1,3 @@
-import React from 'react';
 import lang from '../../../services/lang';
 import { dock } from '../../../config';
 import { DockURL } from '../../../config/dock';

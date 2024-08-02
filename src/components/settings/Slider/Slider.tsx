@@ -1,6 +1,6 @@
 import './Slider.scss';
 
-import React, { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes } from 'react';
 
 export const Slider = ({ min, max, value, ...rest }: InputHTMLAttributes<HTMLInputElement>) => {
   const zeroBasedValue: number = parseFloat(value as string) - parseFloat(min as string);

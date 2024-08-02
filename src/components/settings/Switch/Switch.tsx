@@ -1,6 +1,6 @@
 import './Switch.scss';
 
-import React, { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 const Switch = ({ className, checked, ...rest }: InputHTMLAttributes<HTMLInputElement>) => {

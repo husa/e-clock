@@ -1,5 +1,6 @@
 import './SettingsSection.scss';
-import React, { PropsWithChildren } from 'react';
+
+import { PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{
   title: string;
