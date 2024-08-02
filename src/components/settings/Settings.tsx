@@ -1,6 +1,6 @@
 import './Settings.scss';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import classNames from 'classnames';
 
 import SettingsGroups from './SettingsGroups/SettingsGroups';
@@ -10,12 +10,10 @@ import lang from '../../services/lang';
 
 type Props = {
   className?: string;
-  isOpen: boolean;
   onCloseClick: () => void;
 };
 
-const Settings = ({ className, isOpen, onCloseClick }: Props) => {
-  if (!isOpen) return null;
+const Settings = ({ className, onCloseClick }: Props) => {
   const [selectedGroup, setSelectedGroup] = useState(null);
 
   const title = selectedGroup === null ? lang.t('Settings') : lang.t(groups[selectedGroup].title);
@@ -35,7 +33,7 @@ const Settings = ({ className, isOpen, onCloseClick }: Props) => {
         onCloseClick={onCloseClick}>
         {title}
       </SettingsTitle>
-      <div className="app__settings">{selectedGroupPanel}</div>
+      <div>{selectedGroupPanel}</div>
     </div>
   );
 };

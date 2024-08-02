@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import './SettingsPanel.scss';
 
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{
   className?: string;

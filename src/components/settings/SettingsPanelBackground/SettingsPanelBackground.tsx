@@ -96,7 +96,7 @@ export const SettingsPanelBackground = () => {
           <div
             key={pattern}
             style={{
-              backgroundImage: `url(img/patterns/${pattern}.png)`,
+              backgroundImage: `url(/assets/img/patterns/${pattern}.png)`,
               backgroundSize: 'cover',
             }}
             onClick={() => setBackgroundPattern(pattern)}
@@ -110,7 +110,7 @@ export const SettingsPanelBackground = () => {
           <div
             key={image}
             style={{
-              backgroundImage: `url(img/backgrounds/${image}.jpg)`,
+              backgroundImage: `url(/assets/img/backgrounds/${image}.jpg)`,
               backgroundSize: 'cover',
             }}
             onClick={() => setBackgroundImage(image)}

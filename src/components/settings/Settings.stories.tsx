@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Settings from './Settings';
@@ -13,7 +12,7 @@ type Story = StoryObj<typeof Settings>;
 export const Primary: Story = {
   render: () => (
     <div style={{ width: 304, height: '100vh', padding: '24px 16px' }}>
-      <Settings isOpen onCloseClick={() => {}} />
+      <Settings onCloseClick={() => {}} />
     </div>
   ),
 };

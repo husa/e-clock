@@ -1,11 +1,14 @@
 .settings {
   display: flex;
   flex-direction: column;
+  width: 100%;
 
+  // title
   & > *:first-child {
     flex: 0 0 auto;
   }
 
+  // contents
   & > *:last-child {
     flex: 1 1 100%;
   }
