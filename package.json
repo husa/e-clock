@@ -20,7 +20,7 @@
     "start:code": "cross-env NODE_ENV=development webpack -w",
     "dev": "npm start",
     "build": "npm-run-all clear build:*",
-    "build:assets": "cp -r ./src/img ./src/fonts ./src/_locales ./src/manifest.json ./src/analytics.js ./build",
+    "build:assets": "cp -r ./src/assets  ./src/_locales ./src/manifest.json  ./build",
     "build:code": "cross-env NODE_ENV=production webpack",
     "zip": "bestzip build.zip ./build",
     "release": "node ./scripts/release.js",

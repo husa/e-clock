@@ -8,9 +8,9 @@
     "newtab": "index.html"
   },
   "icons": {
-    "48": "img/icons/icon48.png",
-    "128": "img/icons/icon128.png"
+    "48": "/assets/img/icons/icon48.png",
+    "128": "/assets/img/icons/icon128.png"
   },
-  "permissions": ["storage", "geolocation"],
+  "permissions": ["storage"],
   "offline_enabled": true
 }
