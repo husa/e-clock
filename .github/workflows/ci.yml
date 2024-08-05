@@ -23,5 +23,8 @@ jobs:
       - run: npm run lint
       # - run: npm test
       - run: npm run build
-      - run: npm run semantic-release
+
+      - run: npm run semantic-release --dry-run
         if: github.ref == 'refs/heads/master' # only on master branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
