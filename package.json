@@ -27,7 +27,8 @@
     "deploy": "node ./scripts/deploy.js",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepare": "husky"
+    "prepare": "husky",
+    "semantic-release": "semantic-release"
   },
   "release": {
     "branches": [
