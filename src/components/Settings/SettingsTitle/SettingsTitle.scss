@@ -1,0 +1,35 @@
+.settings-title {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+
+  &__button {
+    appearance: none;
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+
+    svg {
+      $size: 2rem;
+      display: inline-block;
+      width: $size;
+      height: $size;
+    }
+    &:first-child {
+      margin-right: 0.25rem;
+    }
+    &:last-child {
+      margin-left: auto;
+    }
+  }
+  &__title {
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0 1rem 0 0;
+  }
+}

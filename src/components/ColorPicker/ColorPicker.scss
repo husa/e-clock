@@ -1,0 +1,25 @@
+@import '../../theme/defaults.scss';
+
+.color-picker {
+  // $size: 32px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  // width: $size;
+  // height: $size;
+  overflow: hidden;
+  background: $theme-color-surface-container;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    appearance: none;
+    border: none;
+    background: none;
+  }
+}

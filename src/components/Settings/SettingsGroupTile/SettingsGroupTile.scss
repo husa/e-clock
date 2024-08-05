@@ -1,0 +1,57 @@
+@import '../../../theme/defaults.scss';
+
+.settings-group-tile {
+  $width: 128px;
+  $height: 128px;
+  $icon-size: 64px;
+
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+
+  position: relative;
+  // width: $width;
+  // height: $height;
+  padding: 1rem;
+  border-radius: 1.5rem;
+
+  color: $theme-color-on-surface;
+  fill: $theme-color-on-surface;
+  box-shadow: $theme-box-shadow;
+  cursor: pointer;
+  background-color: $theme-color-surface-background;
+  transition: background-color 100ms ease;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    transform: scale(1);
+  }
+  &:hover {
+    background-color: $theme-color-surface-variant;
+  }
+
+  &__icon {
+    width: $icon-size;
+    height: $icon-size;
+  }
+  &__title {
+    margin-top: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    box-shadow: none;
+    cursor: default;
+    pointer-events: none;
+  }
+}

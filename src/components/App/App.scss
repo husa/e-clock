@@ -1,0 +1,136 @@
+@import '../../theme/defaults.scss';
+
+.app {
+  $transition-duration: 300ms;
+  $transition-fn: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
+  $settings-width: 304px;
+  $settings-transition-duration: calc($transition-duration / 2);
+
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+
+  // background: $theme-color-background;
+  transition: padding $transition-duration $transition-fn;
+
+  &__content {
+    flex: 0 1 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    transition: border-radius $transition-duration $transition-fn;
+
+    & > * {
+      transition: transform $transition-duration $transition-fn;
+    }
+  }
+
+  &__clock {
+  }
+  &__date {
+    font-size: 0.25em;
+  }
+
+  &__dock {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform-origin: right center;
+  }
+
+  &--color {
+  }
+  //
+
+  &--gradient {
+  }
+  //
+
+  &--pattern {
+    background-repeat: repeat;
+    background-position: center center;
+  }
+  &--image &__content,
+  &--url &__content {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  &__clock {
+  }
+
+  &__settings-container {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $settings-width;
+    height: 100%;
+    padding: 1.5rem 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &--settings-open {
+    padding: 1.5rem;
+    padding-right: $settings-width;
+  }
+  &--settings-open &__content {
+    border-radius: 1.5rem;
+  }
+  &--settings-open &__content > * {
+    transform: scale(0.9);
+  }
+  &--settings-open &__settings-container {
+    display: inherit;
+  }
+
+  &--settings-transition {
+    &-enter {
+      display: block;
+      opacity: 0;
+      transition: opacity $settings-transition-duration ease-out;
+      transition-delay: $transition-duration - $settings-transition-duration;
+    }
+
+    &-enter-active {
+      opacity: 1;
+    }
+
+    &--exit-active {
+    }
+
+    &--exit {
+    }
+  }
+
+  //
+
+  &__current {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.25em;
+    text-align: center;
+
+    .separator {
+      &:before &:after {
+        content: '\00a0';
+      }
+    }
+  }
+  &__weather {
+    font-size: 0.25em;
+    margin-top: 20px;
+  }
+  &__weather-error {
+    font-size: 1rem;
+    text-align: center;
+  }
+}

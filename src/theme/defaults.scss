@@ -1,0 +1,37 @@
+/*
+    --mio-theme-color-background: #141314; // global background
+    --mio-theme-color-surface-0: #0f0e0f;
+    --mio-theme-color-surface-variant: #4d4256;
+    --mio-theme-color-inverse-surface: #e6e1e3;
+    --mio-theme-color-inverse-on-surface: #323032;
+    --mio-theme-color-surface-1: #1c1b1d; // "cards"
+    --mio-theme-color-surface-2: #211f21;
+    --mio-theme-color-surface-3: #2b292b;
+    --mio-theme-color-surface-4: #363436;
+    --mio-theme-color-surface-5: #363436;
+
+*/
+$theme-color-primary: #d4bbff;
+$theme-color-on-primary: #40008c;
+$theme-color-background: #141314;
+$theme-color-on-background: #e6e1e3;
+$theme-color-surface-background: #1c1b1d;
+$theme-color-on-surface: #e6e1e3;
+$theme-color-outline: #968da1;
+$theme-color-surface-container: #37333e;
+$theme-color-surface-variant: #4a4455;
+$theme-color-shadow: #000000;
+$theme-box-shadow:
+  0 4px 8px 3px rgba(0, 0, 0, 0.15),
+  0 1px 3px rgba(0, 0, 0, 0.3);
+
+$main-color: #2196f3;
+$main-color-faded: rgba($main-color, 0.5);
+
+$font-color: #555;
+$background-color: #fefefe;
+$clock-font-size: 12em;
+
+$settings-font-color: $font-color;
+// $settings-height : 500px;
+$settings-width: 400px;

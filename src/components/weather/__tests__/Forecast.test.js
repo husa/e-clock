@@ -1,4 +1,3 @@
-import React from 'react';
 import renderer from 'react-test-renderer';
 
 import Forecast, { daysBetween, getDay } from '../Forecast';
@@ -8,7 +7,7 @@ describe('Components > weather > Forecast', () => {
     /* global global */
     const OriginalDate = Date;
     // mock Date
-    global.Date = jest.fn().mockImplementation(a => new OriginalDate(a ? a : today));
+    global.Date = jest.fn().mockImplementation((a) => new OriginalDate(a ? a : today));
     global.Date.now = OriginalDate.now;
     // run function
     fn();

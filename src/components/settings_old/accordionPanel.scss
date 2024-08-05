@@ -1,0 +1,36 @@
+@import '../../theme/defaults';
+
+.accordion-panel {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.12);
+}
+.accordion-panel__header {
+  padding: 20px 15px;
+  cursor: pointer;
+  text-align: left;
+}
+.accordion-panel__header-icon,
+.accordion-panel__header-title {
+  vertical-align: middle;
+}
+.accordion-panel__header-icon {
+  transform: rotate(0deg);
+  transition: transform 180ms ease;
+  will-change: transform;
+}
+.accordion-panel__header-icon--open {
+  transform: rotate(-90deg);
+}
+.accordion-panel__content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 500ms ease, opacity 400ms ease;
+  will-change: max-height, opacity;
+}
+.accordion-panel__content-wrapper {
+  padding: 10px;
+}
+.accordion-panel__content--open {
+  display: block;
+  opacity: 1;
+}

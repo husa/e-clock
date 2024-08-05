@@ -1,0 +1,33 @@
+.settings-panel-about {
+  text-align: center;
+
+  h1 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 4em;
+    margin: 25px 0;
+  }
+
+  h3 {
+    font-family: monospace;
+    font-weight: 400;
+    font-size: 1rem;
+  }
+
+  a {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 25px auto 0;
+    padding: 5px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+
+    span {
+      margin: 0 6px;
+    }
+  }
+}

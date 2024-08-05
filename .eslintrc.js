@@ -1,17 +1,21 @@
 module.exports = {
   root: true,
+  parser: '@typescript-eslint/parser',
   extends: [
     'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
-    'plugin:flowtype/recommended',
-    'plugin:jest/recommended',
-    'plugin:import/errors',
-    'plugin:import/warnings',
+    'plugin:react/jsx-runtime',
+    'plugin:storybook/recommended',
   ],
+  plugins: ['@typescript-eslint'],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
   env: {
     browser: true,
-    es6: true,
-    jest: true,
+    es2021: true,
   },
   globals: {
     chrome: false,
@@ -20,48 +24,28 @@ module.exports = {
     __YAHOO_CONSUMER_KEY__: false,
     __YAHOO_CONSUMER_SECRET__: false,
   },
-  plugins: ['react', 'flowtype', 'jest', 'import'],
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2018,
-    sourceType: 'module',
-  },
   settings: {
     react: {
       version: 'detect',
     },
   },
-  rules: {
-    'arrow-body-style': [1, 'as-needed'],
-    'newline-after-var': 0,
-    curly: [2, 'multi-line', 'consistent'],
-    indent: [2, 2, { SwitchCase: 1 }],
-    'one-var': 0,
-    'no-magic-numbers': 0,
-    'prefer-const': 0,
-    'no-extra-parens': 0,
-    'guard-for-in': 0,
-
-    // react specific
-    'react/prop-types': 0,
-    // jsx
-    'react/jsx-closing-bracket-location': [
-      1,
-      {
-        selfClosing: 'after-props',
-        nonEmpty: 'after-props',
+  overrides: [
+    {
+      files: ['*.test.js'],
+      env: {
+        jest: true,
       },
-    ],
-    'react/jsx-curly-spacing': [2, 'never'],
-    'react/jsx-equals-spacing': [2, 'never'],
-    'react/jsx-first-prop-new-line': [2, 'multiline'],
-    'react/jsx-indent': [2, 2],
-    'react/jsx-indent-props': [2, 2],
-    'react/jsx-key': 2,
-    'react/jsx-no-duplicate-props': 2,
-    'react/jsx-pascal-case': 2,
+    },
+    {
+      files: ['scripts/*.js', 'webpack.config.js', '*rc.js', 'jest.config.js'],
+      env: {
+        node: true,
+        commonjs: true,
+      },
+    },
+  ],
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'warn',
+    'react/prop-types': 'warn',
   },
 };
