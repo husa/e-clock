@@ -4,7 +4,7 @@
   "description": "Chrome extension to replace \"new tab\" with digital clock",
   "repository": {
     "type": "git",
-    "url": "https://github.com/husa/e-clock"
+    "url": "git@github.com:husa/e-clock.git"
   },
   "author": "husa",
   "license": "MIT",
@@ -28,7 +28,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky",
-    "semantic-release": "semantic-release"
+    "semantic-release": "node -r dotenv/config ./node_modules/.bin/semantic-release"
   },
   "release": {
     "branches": [
@@ -37,6 +37,15 @@
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
+      [
+        "semantic-release-chrome",
+        {
+          "extensionId": "ojhhcfhabhligodffabdhcaoicecaboo",
+          "asset": "e-clock_${branch.name}_v${nextRelease.version}.zip",
+          "distFolder": "build",
+          "target": "draft"
+        }
+      ],
       "@semantic-release/github"
     ]
   },
@@ -94,6 +103,7 @@
     "sass": "^1.77.5",
     "sass-loader": "^14.2.1",
     "semantic-release": "^24.0.0",
+    "semantic-release-chrome": "^3.2.0",
     "semver": "^6.3.0",
     "simple-git": "^3.25.0",
     "storybook": "^8.2.2",

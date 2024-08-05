@@ -59,7 +59,7 @@ const plugins = {
   },
 
   css: new MiniCssExtractPlugin({
-    filename: '[name]_[hash].css',
+    filename: '[name]_[chunkhash].css',
   }),
 
   define: {

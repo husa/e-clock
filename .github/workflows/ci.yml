@@ -24,7 +24,10 @@ jobs:
       # - run: npm test
       - run: npm run build
 
-      - run: npm run semantic-release --dry-run
+      - run: npm run semantic-release
         if: github.ref == 'refs/heads/master' # only on master branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
