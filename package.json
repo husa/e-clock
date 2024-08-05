@@ -29,6 +29,16 @@
     "build-storybook": "storybook build",
     "prepare": "husky"
   },
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github"
+    ]
+  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -82,6 +92,7 @@
     "rimraf": "^6.0.1",
     "sass": "^1.77.5",
     "sass-loader": "^14.2.1",
+    "semantic-release": "^24.0.0",
     "semver": "^6.3.0",
     "simple-git": "^3.25.0",
     "storybook": "^8.2.2",
