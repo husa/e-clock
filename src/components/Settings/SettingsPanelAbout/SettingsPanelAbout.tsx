@@ -15,7 +15,7 @@ export const SettingsPanelAbout = () => {
         <svg viewBox="0 0 24 24" width="24" height="24">
           <use xlinkHref="#favorite"></use>
         </svg>
-        <span>{lang.t('Rate')}</span>
+        <span>{lang.t('i18nRate')}</span>
       </a>
     </SettingsPanel>
   );

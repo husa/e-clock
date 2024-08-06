@@ -48,20 +48,23 @@
     "description": "Chrome Web Store dock icon title"
   },
 
-  "i18nAppearance": {
-    "message": "Appearance",
-    "description": "Settings tab label for Appearance"
+  "i18nGroupClock": {
+    "message": "Clock"
   },
-  "i18nDock": {
-    "message": "Dock",
-    "description": "Settings tab label for Dock"
+  "i18nGroupText": {
+    "message": "Text"
   },
-  "i18nWeather": {
+  "i18nGroupBackground": {
+    "message": "Background"
+  },
+  "i18nGroupDock": {
+    "message": "Dock"
+  },
+  "i18nGroupWeather": {
     "message": "Weather"
   },
-  "i18nAbout": {
-    "message": "About",
-    "description": "Settings tab label for About"
+  "i18nGroupAbout": {
+    "message": "About"
   },
 
   "i18n24Format": {

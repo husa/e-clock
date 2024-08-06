@@ -24,7 +24,7 @@ export const SettingsPanelBackground = () => {
   return (
     <SettingsPanel>
       {/* Color */}
-      <SettingsSection title={lang.t('BackgroundColor')}>
+      <SettingsSection title={lang.t('i18nBackgroundColor')}>
         {colors.map((color) => (
           <div
             key={color}
@@ -39,7 +39,7 @@ export const SettingsPanelBackground = () => {
       </SettingsSection>
 
       {/* Gradient */}
-      <SettingsSection title={lang.t('BackgroundGradient')}>
+      <SettingsSection title={lang.t('i18nBackgroundGradient')}>
         {gradients.map((gradient) => {
           const gc = gradient.split(',');
           return (
@@ -67,7 +67,7 @@ export const SettingsPanelBackground = () => {
       </SettingsSection>
 
       {/* Gradient Direction */}
-      <SettingsSection title={lang.t('BackgroundGradientDirection')}>
+      <SettingsSection title={lang.t('i18nBackgroundGradientDirection')}>
         {gradientAngles.map((angle) => (
           <span
             key={angle}
@@ -90,7 +90,7 @@ export const SettingsPanelBackground = () => {
       </SettingsSection>
 
       {/* Pattern */}
-      <SettingsSection title={lang.t('BackgroundPattern')} gridColumns={4}>
+      <SettingsSection title={lang.t('i18nBackgroundPattern')} gridColumns={4}>
         {patterns.map((pattern) => (
           <div
             key={pattern}
@@ -104,7 +104,7 @@ export const SettingsPanelBackground = () => {
       </SettingsSection>
 
       {/* Image */}
-      <SettingsSection title={lang.t('BackgroundPattern')} gridColumns={4}>
+      <SettingsSection title={lang.t('i18nBackgroundPattern')} gridColumns={4}>
         {images.map((image) => (
           <div
             key={image}

@@ -12,7 +12,7 @@ export const SettingsPanelText = () => {
 
   return (
     <SettingsPanel>
-      <SettingsSection title={lang.t('TextColor')}>
+      <SettingsSection title={lang.t('i18nTextColor')}>
         {colors.map((color) => (
           <div
             key={color}
@@ -34,7 +34,7 @@ export const SettingsPanelText = () => {
           }
         />
       </SettingsSection>
-      <SettingsSection title={lang.t('FontFamily')} gridColumns={4}>
+      <SettingsSection title={lang.t('i18nFontFamily')} gridColumns={4}>
         {fonts.map((font) => (
           <div
             key={font}
@@ -48,7 +48,7 @@ export const SettingsPanelText = () => {
           </div>
         ))}
       </SettingsSection>
-      <SettingsSection title={lang.t('FontSize')} gridColumns={1}>
+      <SettingsSection title={lang.t('i18nFontSize')} gridColumns={1}>
         <Slider
           min="4"
           max="25"

@@ -16,7 +16,8 @@ type Props = {
 const Settings = ({ className, onCloseClick }: Props) => {
   const [selectedGroup, setSelectedGroup] = useState(null);
 
-  const title = selectedGroup === null ? lang.t('Settings') : lang.t(groups[selectedGroup].title);
+  const title =
+    selectedGroup === null ? lang.t('i18nSettings') : lang.t(groups[selectedGroup].title);
 
   let selectedGroupPanel: React.ReactElement;
   if (selectedGroup === null) {

@@ -11,23 +11,23 @@ type Props = {
 };
 
 const WeatherError = ({ error }: Props) => {
-  let message = lang.t('WeatherGeneralError');
+  let message = lang.t('i18nWeatherGeneralError');
 
   if (error.type === 'PositionError') {
     const { code } = error.error;
     switch (code) {
       case 1:
-        message = lang.t('WeatherPositionErrorPermissionDenied');
+        message = lang.t('i18nWeatherPositionErrorPermissionDenied');
         break;
       case 2:
-        message = lang.t('WeatherPositionErrorPossitionUnavailable');
+        message = lang.t('i18nWeatherPositionErrorPossitionUnavailable');
         break;
       case 3:
-        message = lang.t('WeatherPositionErrorTimeout');
+        message = lang.t('i18nWeatherPositionErrorTimeout');
         message = 'timeout';
         break;
       default:
-        message = lang.t('WeatherPositionErrorUnknownError');
+        message = lang.t('i18nWeatherPositionErrorUnknownError');
     }
   }
 

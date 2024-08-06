@@ -4,11 +4,12 @@ import React from 'react';
 import classNames from 'classnames';
 
 import lang from '../../services/lang';
+import { I18nMessageKey } from '../../services/lang/providers/interface';
 
 type Props = {
   className: string;
   url: string;
-  text: string;
+  text: I18nMessageKey;
   icon: string;
   iconViewbox?: string;
   isSettingsIcon?: boolean;

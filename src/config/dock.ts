@@ -1,3 +1,5 @@
+import { I18nMessageKey } from '../services/lang/providers/interface';
+
 export type DockURL =
   | 'chrome://flags'
   | 'chrome://inspect'
@@ -12,7 +14,7 @@ export type DockItem = {
   url: DockURL | 'settings';
   icon: string;
   iconViewbox: string;
-  text: string;
+  text: I18nMessageKey;
   className: string;
 };
 
@@ -21,63 +23,63 @@ const dock: DockItem[] = [
     url: 'settings',
     icon: 'settings',
     iconViewbox: '0 -960 960 960',
-    text: 'Settings',
+    text: 'i18nSettings',
     className: 'settings',
   },
   {
     url: 'chrome://flags',
     icon: 'flag',
     iconViewbox: '0 -960 960 960',
-    text: 'Flags',
+    text: 'i18nFlags',
     className: 'chrome-flags',
   },
   {
     url: 'chrome://inspect',
     icon: 'inspect',
     iconViewbox: '0 -960 960 960',
-    text: 'Inspect',
+    text: 'i18nInspect',
     className: 'chrome-inspect',
   },
   {
     url: 'chrome://history',
     icon: 'history',
     iconViewbox: '0 -960 960 960',
-    text: 'History',
+    text: 'i18nHistory',
     className: 'chrome-history',
   },
   {
     url: 'chrome://bookmarks',
     icon: 'bookmark',
     iconViewbox: '0 -960 960 960',
-    text: 'Bookmarks',
+    text: 'i18nBookmarks',
     className: 'chrome-bookmarks',
   },
   {
     url: 'chrome://downloads',
     icon: 'download',
     iconViewbox: '0 -960 960 960',
-    text: 'Downloads',
+    text: 'i18nDownloads',
     className: 'chrome-downloads',
   },
   {
     url: 'chrome://extensions',
     icon: 'extensions',
     iconViewbox: '0 -960 960 960',
-    text: 'Extensions',
+    text: 'i18nExtensions',
     className: 'chrome-extensions',
   },
   {
     url: 'chrome://apps',
     icon: 'apps',
     iconViewbox: '0 -960 960 960',
-    text: 'Applications',
+    text: 'i18nApplications',
     className: 'chrome-apps',
   },
   {
     url: 'https://chrome.google.com/webstore',
     icon: 'store',
     iconViewbox: '0 -960 960 960',
-    text: 'ChromeWebStore',
+    text: 'i18nChromeWebStore',
     className: 'chrome-store',
   },
 ];

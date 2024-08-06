@@ -18,6 +18,8 @@ type Props = {
   className?: string;
 };
 
+const UPDATE_INTERVAL = 60 * 1000;
+
 const DateView = ({ className }: Props) => {
   const { state } = useSettingsSlice();
 
@@ -25,7 +27,7 @@ const DateView = ({ className }: Props) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setDate(newDate());
-    }, 60 * 1000);
+    }, UPDATE_INTERVAL);
     return () => clearInterval(interval);
   });
 
@@ -33,8 +35,8 @@ const DateView = ({ className }: Props) => {
 
   return (
     <div className={classNames(className, 'date')}>
-      {lang.t(`Day${day}`)},&nbsp;
-      {lang.t(`Month${month}`).slice(0, 3)}&nbsp;
+      {lang.t(`i18nDay${day}` as 'i18nDay0')},&nbsp;
+      {lang.t(`i18nMonth${month}` as 'i18nMonth0').slice(0, 3)}&nbsp;
       {date}
     </div>
   );

@@ -13,9 +13,9 @@ export const daysBetween = (day1: string, day2: string) => {
 };
 
 export const getDay = (date: string) => {
-  if (daysBetween(new Date().toDateString(), date) === 0) return lang.t('Today');
-  if (daysBetween(new Date().toDateString(), date) === 1) return lang.t('Tomorrow');
-  return lang.t(`Day${new Date(date).getDay()}`);
+  if (daysBetween(new Date().toDateString(), date) === 0) return lang.t('i18nToday');
+  if (daysBetween(new Date().toDateString(), date) === 1) return lang.t('i18nTomorrow');
+  return lang.t(`i18nDay${new Date(date).getDay()}` as 'i18nDay0');
 };
 
 type Props = {

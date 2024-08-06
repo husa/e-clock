@@ -1,7 +1,7 @@
-import { II18nProvider } from './interface';
+import { I18nMessageKey, II18nProvider } from './interface';
 
 export default class ChromeI18nProvider implements II18nProvider {
-  t(message: string): string {
-    return chrome.i18n.getMessage(`i18n${message}`) || message;
+  t(message: I18nMessageKey): string {
+    return chrome.i18n.getMessage(message) || message;
   }
 }

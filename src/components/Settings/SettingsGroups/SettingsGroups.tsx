@@ -3,6 +3,7 @@ import './SettingsGroups.scss';
 import classNames from 'classnames';
 import SettingsGroupTile from '../SettingsGroupTile/SettingsGroupTile';
 import type { SettingsGroup } from '../settings-groups';
+import lang from '../../../services/lang';
 
 type Props = {
   className?: string;
@@ -18,7 +19,7 @@ const SettingsGroups = ({ className, groups, onGroupSelect }: Props) => {
         <SettingsGroupTile
           key={i}
           className="settings-groups__group"
-          title={group.title}
+          title={lang.t(group.title)}
           icon={group.icon}
           disabled={group.disabled}
           onClick={() => onGroupSelect(i)}
