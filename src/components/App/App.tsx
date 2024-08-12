@@ -65,8 +65,10 @@ const getClockStyleFromSettings = (
   settings: SettingsState,
 ): { fontFamily: string; fontSize: string } => {
   const { fontSize, fontFamily } = settings;
+  const fallbackFont =
+    "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";
   return {
-    fontFamily,
+    fontFamily: `${fontFamily}, ${fallbackFont}`,
     fontSize: `${fontSize}rem`,
   };
 };
@@ -86,7 +88,6 @@ const App = () => {
           <Clock className="app__clock" />
           <Date className="app__date" />
         </div>
-
         <Dock className="app__dock" onSettingsClick={() => setSettingsOpen(!isSettingsOpen)} />
       </div>
       <CSSTransition
