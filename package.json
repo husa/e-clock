@@ -16,6 +16,7 @@
     "lint": "eslint ./src",
     "test": "jest --verbose",
     "dev": "rsbuild build -w --mode=development",
+    "tsc": "tsc --noEmit",
     "build": "rsbuild build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
