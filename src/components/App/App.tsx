@@ -4,22 +4,12 @@ import { useRef, useState } from 'react';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 
-// import FadeIn from '../../common/animations/FadeIn';
-
-// import Intro from '../../containers/intro/Intro';
 import Date from '../Date/Date';
 import Dock from '../Dock/Dock';
 import Settings from '../Settings/Settings';
 import { SettingsState, useSettingsSlice } from '../../store/slices/settingsSlice';
 import Clock from '../Clock/Clock';
 import { DocTitleUpdater } from '../DocTitleUpdater/DocTitleUpdater';
-// import Settings from '../../containers/settings/Settings';
-// import SettingsGroups from '../SettingsGroups/SettingsGroups';
-// import SettingsTitle from '../Settings/SettingsTitle/SettingsTitle';
-
-// import CurrentWeather from '../../containers/weather/Current';
-// import WeatherForecast from '../../containers/weather/Forecast';
-// import WeatherError from '../weather/Error';
 
 const getStylesFromSettings = (settings: SettingsState) => {
   const getBackground = (
@@ -105,10 +95,7 @@ const App = () => {
         timeout={300}
         classNames="app--settings-transition">
         <div ref={settingsRef} className="app__settings-container">
-          <Settings
-            // className="app__settings-container"
-            onCloseClick={() => setSettingsOpen(false)}
-          />
+          <Settings onCloseClick={() => setSettingsOpen(false)} />
         </div>
       </CSSTransition>
     </div>
