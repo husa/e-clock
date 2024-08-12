@@ -1,4 +1,4 @@
-import './main.scss';
+import './index.scss';
 
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';

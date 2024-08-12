@@ -1,5 +1,6 @@
 # Project specifics
 /build
+/dist
 *.zip
 **/.DS_Store
 

@@ -87,7 +87,7 @@ const paths = {
 
 const base = {
   entry: {
-    main: path.join(paths.src, 'main.tsx'),
+    main: path.join(paths.src, 'index.tsx'),
   },
   output: {
     path: paths.build,
