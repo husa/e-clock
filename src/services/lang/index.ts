@@ -4,7 +4,7 @@ import LocalI18nProvider from './providers/local';
 
 let lang: II18nProvider;
 
-if (typeof chrome?.i18n !== 'undefined') {
+if (process.env.NODE_ENV !== 'development') {
   lang = new ChromeI18nProvider();
 } else {
   lang = new LocalI18nProvider();
