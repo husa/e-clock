@@ -111,7 +111,7 @@
     "message": "Image"
   },
   "i18nCustomImage": {
-    "message": "Background Custom Image"
+    "message": "Custom Image URL"
   },
   "i18nFontFamily": {
     "message": "Font"

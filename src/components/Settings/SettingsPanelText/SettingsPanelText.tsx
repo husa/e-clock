@@ -1,11 +1,11 @@
 import { ChangeEvent } from 'react';
 import { colors, fonts } from '../../../config';
 import lang from '../../../services/lang';
-import { ColorPicker } from '../../ColorPicker/ColorPicker';
+import { ColorPicker } from '../../UI/ColorPicker/ColorPicker';
 import { useSettingsSlice } from '../../../store/slices/settingsSlice';
 import { SettingsSection } from '../SettingsSection/SettingsSection';
 import { SettingsPanel } from '../SettingsPanel/SettingsPanel';
-import { Slider } from '../Slider/Slider';
+import { Slider } from '../../UI/Slider/Slider';
 
 export const SettingsPanelText = () => {
   const { state, setSettingsOption } = useSettingsSlice();

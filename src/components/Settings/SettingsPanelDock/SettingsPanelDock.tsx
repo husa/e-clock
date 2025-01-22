@@ -2,7 +2,7 @@ import lang from '../../../services/lang';
 import { dock } from '../../../config';
 import { DockURL } from '../../../config/dock';
 import { useDockSettingsSlice } from '../../../store/slices/dockSlice';
-import SwitchOption from '../SwitchOption/SwitchOption';
+import SwitchOption from '../../UI/SwitchOption/SwitchOption';
 import { SettingsPanel } from '../SettingsPanel/SettingsPanel';
 
 export const SettingsPanelDock = () => {

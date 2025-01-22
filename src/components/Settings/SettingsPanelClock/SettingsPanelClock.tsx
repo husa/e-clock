@@ -1,6 +1,6 @@
 import { useSettingsSlice } from '../../../store/slices/settingsSlice';
 import { SettingsPanel } from '../SettingsPanel/SettingsPanel';
-import SwitchOption from '../SwitchOption/SwitchOption';
+import SwitchOption from '../../UI/SwitchOption/SwitchOption';
 import lang from '../../../services/lang';
 
 export const SettingsPanelClock = () => {

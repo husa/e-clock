@@ -1,9 +1,10 @@
 import { colors, gradientAngles, gradients, images, patterns } from '../../../config';
 import lang from '../../../services/lang';
-import { ColorPicker } from '../../ColorPicker/ColorPicker';
+import { ColorPicker } from '../../UI/ColorPicker/ColorPicker';
 import { SettingsState, useSettingsSlice } from '../../../store/slices/settingsSlice';
 import { SettingsSection } from '../SettingsSection/SettingsSection';
 import { SettingsPanel } from '../SettingsPanel/SettingsPanel';
+import { SettingsBackgroundImageURL } from '../SettingsBackgroundImageURL/SettingsBackgroundImageURL';
 
 export const SettingsPanelBackground = () => {
   const { state, setSettingsOption } = useSettingsSlice();
@@ -15,11 +16,11 @@ export const SettingsPanelBackground = () => {
         backgroundPriority: priority,
         [prop]: value,
       });
-
   const setBackgroundColor = setOptionWithPriority('color', 'backgroundColor');
   const setBackgroundGradient = setOptionWithPriority('gradient', 'backgroundGradient');
   const setBackgroundPattern = setOptionWithPriority('pattern', 'backgroundPattern');
   const setBackgroundImage = setOptionWithPriority('image', 'backgroundImage');
+  const setBackgroundImageUrl = setOptionWithPriority('url', 'backgroundImageUrl');
 
   return (
     <SettingsPanel>
@@ -104,7 +105,7 @@ export const SettingsPanelBackground = () => {
       </SettingsSection>
 
       {/* Image */}
-      <SettingsSection title={lang.t('i18nBackgroundPattern')} gridColumns={4}>
+      <SettingsSection title={lang.t('i18nBackgroundImage')} gridColumns={4}>
         {images.map((image) => (
           <div
             key={image}
@@ -116,6 +117,10 @@ export const SettingsPanelBackground = () => {
           />
         ))}
       </SettingsSection>
+      <SettingsBackgroundImageURL
+        value={state.backgroundImageUrl}
+        onChange={(url) => setBackgroundImageUrl(url)}
+      />
     </SettingsPanel>
   );
 };
