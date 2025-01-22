@@ -15,11 +15,13 @@ export const Primary: Story = {
   render: () => {
     const [val, setVal] = useState(null);
     return (
-      <TextInput
-        value={val}
-        placeholder="Custom Image URL"
-        onChange={(e) => setVal(e.target.value)}
-      />
+      <div style={{ width: 350 }}>
+        <TextInput
+          value={val}
+          placeholder="Custom Image URL"
+          onChange={(e) => setVal(e.target.value)}
+        />
+      </div>
     );
   },
 };

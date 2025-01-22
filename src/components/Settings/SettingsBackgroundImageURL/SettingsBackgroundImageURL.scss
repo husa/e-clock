@@ -1,0 +1,32 @@
+@import '../../../theme/defaults.scss';
+
+.settings-backgroundImageURL {
+  display: flex;
+  flex-direction: row;
+
+  & > *:first-child {
+    flex: 0 1 100%;
+  }
+  button {
+    flex: 0 0 auto;
+    appearance: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    margin: 0;
+    margin-left: 0.5rem;
+    padding: 0 1rem;
+    border-radius: 4px;
+    transition: all 200ms;
+
+    &:hover {
+      fill: $theme-color-primary;
+      background: $theme-color-surface-container;
+    }
+
+    &:active {
+      fill: $theme-color-on-primary;
+      background: $theme-color-primary;
+    }
+  }
+}

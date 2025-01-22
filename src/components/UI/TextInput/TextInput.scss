@@ -1,5 +1,5 @@
 @use 'sass:color';
-@import '../../theme/defaults.scss';
+@import '../../../theme/defaults.scss';
 
 .text-input {
   position: relative;
@@ -8,12 +8,13 @@
   &__label {
     position: absolute;
     top: 0;
-    left: 1rem;
+    left: 0.5rem;
     padding: 0 0.5rem;
     transform-origin: top left;
     transition: all 200ms;
     transform: scale(0.75) translateY(-8px);
     background: $theme-color-background;
+    pointer-events: none;
   }
   &__input[value=''] + &__label {
     transform: translateY(1rem) scale(1);
