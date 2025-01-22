@@ -1,0 +1,46 @@
+@use 'sass:color';
+@import '../../theme/defaults.scss';
+
+.text-input {
+  position: relative;
+  display: block;
+
+  &__label {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    padding: 0 0.5rem;
+    transform-origin: top left;
+    transition: all 200ms;
+    transform: scale(0.75) translateY(-8px);
+    background: $theme-color-background;
+  }
+  &__input[value=''] + &__label {
+    transform: translateY(1rem) scale(1);
+  }
+  &__input:focus + &__label {
+    transform: scale(0.75) translateY(-8px);
+    color: $theme-color-primary;
+  }
+  &__input {
+    appearance: none;
+    border: none;
+    background: none;
+
+    width: 100%;
+    color: $theme-color-on-background;
+    font-size: 1rem;
+    border: solid 1px color.adjust($theme-color-on-background, $alpha: -0.7);
+    border-radius: 4px;
+    padding: 1rem;
+    transition: border-color 200ms;
+
+    &:hover {
+      border-color: $theme-color-on-background;
+    }
+    &:focus {
+      outline: none;
+      border-color: $theme-color-primary;
+    }
+  }
+}
