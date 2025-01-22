@@ -35,7 +35,7 @@ export const initialState: SettingsState = {
   backgroundPattern: '1',
   backgroundPriority: 'image', // [color, gradient, pattern, image, url]
   backgroundImageUrl: '',
-  color: '#3e3e3e',
+  color: '#ecf0f1',
   delimiterBlinking: true,
   displaySeconds: true,
   animateDigits: true,
