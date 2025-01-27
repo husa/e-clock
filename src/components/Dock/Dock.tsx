@@ -23,6 +23,7 @@ const Dock = ({ className, onSettingsClick }: Props) => {
   return (
     <div className={dockClassName}>
       {dock
+        .filter((d) => d.enabled === true)
         .filter((d) => dockSettings[d.url] !== false)
         .map((dockItem) => (
           <DockIcon

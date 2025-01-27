@@ -11,6 +11,5 @@
     "48": "/assets/img/icons/icon48.png",
     "128": "/assets/img/icons/icon128.png"
   },
-  "permissions": ["storage"],
-  "offline_enabled": true
+  "permissions": ["storage"]
 }
