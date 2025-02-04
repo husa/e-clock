@@ -33,6 +33,7 @@
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
+      "semantic-release-web-ext",
       [
         "semantic-release-chrome",
         {
@@ -41,7 +42,6 @@
           "target": "draft"
         }
       ],
-      "semantic-release-web-ext",
       [
         "@semantic-release/github",
         {
