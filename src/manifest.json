@@ -11,5 +11,10 @@
     "48": "/assets/img/icons/icon48.png",
     "128": "/assets/img/icons/icon128.png"
   },
-  "permissions": ["storage"]
+  "permissions": ["storage"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{1029db62-dbe3-49f5-b4ef-28b10866d58a}"
+    }
+  }
 }
