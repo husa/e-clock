@@ -8,30 +8,30 @@ class ChromeSyncStorage {
     this.key = key;
   }
 
-  load(): Promise<(SettingsState & DockState) | null> {
-    return new Promise((resolve, reject) => {
-      chrome.storage.sync.get(this.key, (data) => {
-        if (!data || !Object.keys(data).length || !data[this.key]) {
-          reject();
-        } else {
-          data = data[this.key];
-          resolve(data);
-        }
-      });
-    }).then(
-      (data) => data,
-      () => null,
-    );
+  async load() {
+    let data: unknown;
+    try {
+      data = await chrome.storage.sync.get(this.key);
+    } catch (e) {
+      return null;
+    }
+    if (!data || !Object.keys(data).length || !data[this.key]) {
+      return null;
+    }
+    return data[this.key] as SettingsState & DockState;
   }
 
-  sync(data: AppState) {
+  async sync(data: AppState) {
     if (!data) return;
     const { settings, dock } = data;
     if (!settings && !dock) return;
-
-    return chrome.storage.sync.set({
-      [this.key]: { ...settings, ...dock },
-    });
+    try {
+      await chrome.storage.sync.set({
+        [this.key]: { ...settings, ...dock },
+      });
+    } catch (e) {
+      return Promise.resolve();
+    }
   }
 }
 

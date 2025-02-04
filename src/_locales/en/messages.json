@@ -47,6 +47,10 @@
     "message": "Chrome Web Store",
     "description": "Chrome Web Store dock icon title"
   },
+  "i18nMozillaAddons": {
+    "message": "Mozilla Addons",
+    "description": "Mozilla Addons dock icon title"
+  },
 
   "i18nGroupClock": {
     "message": "Clock"

@@ -15,7 +15,7 @@
   "scripts": {
     "lint": "eslint ./src",
     "test": "jest --verbose",
-    "dev": "rsbuild build -w --mode=development",
+    "dev": "rsbuild build -w",
     "tsc": "tsc --noEmit",
     "build": "rsbuild build",
     "storybook": "storybook dev -p 6006",
@@ -41,6 +41,7 @@
           "target": "draft"
         }
       ],
+      "semantic-release-web-ext",
       [
         "@semantic-release/github",
         {
@@ -78,6 +79,7 @@
     "@storybook/react": "^8.5.0",
     "@storybook/test": "^8.5.0",
     "@types/chrome": "^0.0.299",
+    "@types/firefox-webext-browser": "^120.0.4",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "@types/react-transition-group": "^4.4.12",
@@ -96,6 +98,7 @@
     "react-test-renderer": "^19.0.0",
     "semantic-release": "^24.2.1",
     "semantic-release-chrome": "^3.2.0",
+    "semantic-release-web-ext": "^1.0.0",
     "semver": "^7.6.3",
     "simple-git": "^3.27.0",
     "storybook": "^8.5.0",

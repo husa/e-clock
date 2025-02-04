@@ -12,5 +12,9 @@
     "128": "/assets/img/icons/icon128.png"
   },
   "permissions": ["storage"],
-  "offline_enabled": true
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{1029db62-dbe3-49f5-b4ef-28b10866d58a}"
+    }
+  }
 }
