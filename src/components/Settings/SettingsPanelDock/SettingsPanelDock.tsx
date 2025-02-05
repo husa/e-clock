@@ -28,6 +28,7 @@ export const SettingsPanelDock = () => {
       {dock
         .slice(0)
         .reverse()
+        .filter((i) => i.enabled)
         .filter((i) => i.url !== 'settings')
         .map((dockItem) => (
           <SwitchOption
