@@ -5,11 +5,11 @@ import { currentRuntime } from '../../../utils/currentRuntime';
 
 export const SettingsPanelAbout = () => {
   const manifest = chrome.runtime.getManifest();
-  const extentionId = chrome.runtime.id;
+  const extensionId = chrome.runtime.id;
   const storeUrl =
     currentRuntime === 'chrome'
-      ? `https://chrome.google.com/webstore/detail/${extentionId}`
-      : `https://addons.mozilla.org/firefox/addon/${extentionId}`;
+      ? `https://chrome.google.com/webstore/detail/${extensionId}`
+      : `https://addons.mozilla.org/firefox/addon/${extensionId}`;
 
   return (
     <SettingsPanel className="settings-panel-about">
