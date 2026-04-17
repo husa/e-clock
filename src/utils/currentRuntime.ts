@@ -1,7 +1,9 @@
 export const getCurrentRuntime = (): 'chrome' | 'firefox' => {
-  // probably there's a better way to detect the runtime
-  if (typeof browser !== 'undefined' && browser?.storage?.sync?.get) return 'firefox';
-  return 'chrome';
+  // it's best to check using browser.runtime.getBrowserInfo(), smth like:
+  // await browser.runtime.getBrowserInfo().then(info => info.name.toLowerCase() === 'firefox')
+  // but, it's async
+  // no time to update everything to async, yet
+  return navigator.userAgent.toLowerCase().includes('firefox') ? 'firefox' : 'chrome';
 };
 
 export const currentRuntime = getCurrentRuntime();
