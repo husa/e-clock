@@ -24,7 +24,6 @@ const WeatherError = ({ error }: Props) => {
         break;
       case 3:
         message = lang.t('i18nWeatherPositionErrorTimeout');
-        message = 'timeout';
         break;
       default:
         message = lang.t('i18nWeatherPositionErrorUnknownError');
