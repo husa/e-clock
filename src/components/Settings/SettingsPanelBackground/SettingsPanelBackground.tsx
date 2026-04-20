@@ -2,7 +2,7 @@ import { colors, gradientAngles, gradients, images, patterns } from '../../../co
 import lang from '../../../services/lang';
 import { ColorPicker } from '../../UI/ColorPicker/ColorPicker';
 import { SettingsState, useSettingsSlice } from '../../../store/slices/settingsSlice';
-import { SettingsSection } from '../SettingsSection/SettingsSection';
+import { SettingsSection, SettingsSectionGrid } from '../SettingsSection/SettingsSection';
 import { SettingsPanel } from '../SettingsPanel/SettingsPanel';
 import { SettingsBackgroundImageURL } from '../SettingsBackgroundImageURL/SettingsBackgroundImageURL';
 
@@ -25,7 +25,7 @@ export const SettingsPanelBackground = () => {
   return (
     <SettingsPanel>
       {/* Color */}
-      <SettingsSection title={lang.t('i18nBackgroundColor')}>
+      <SettingsSectionGrid title={lang.t('i18nBackgroundColor')}>
         {colors.map((color) => (
           <div
             key={color}
@@ -37,10 +37,10 @@ export const SettingsPanelBackground = () => {
           value={state.backgroundColor || '#3e3e3e'}
           onChange={(color) => setBackgroundColor(color)}
         />
-      </SettingsSection>
+      </SettingsSectionGrid>
 
       {/* Gradient */}
-      <SettingsSection title={lang.t('i18nBackgroundGradient')}>
+      <SettingsSectionGrid title={lang.t('i18nBackgroundGradient')}>
         {gradients.map((gradient) => {
           const gc = gradient.split(',');
           return (
@@ -65,10 +65,10 @@ export const SettingsPanelBackground = () => {
             setBackgroundGradient(`${state.backgroundGradient.split(',')[0]},${color}`)
           }
         />
-      </SettingsSection>
+      </SettingsSectionGrid>
 
       {/* Gradient Direction */}
-      <SettingsSection title={lang.t('i18nBackgroundGradientDirection')}>
+      <SettingsSectionGrid title={lang.t('i18nBackgroundGradientDirection')}>
         {gradientAngles.map((angle) => (
           <span
             key={angle}
@@ -88,10 +88,10 @@ export const SettingsPanelBackground = () => {
             </svg>
           </span>
         ))}
-      </SettingsSection>
+      </SettingsSectionGrid>
 
       {/* Pattern */}
-      <SettingsSection title={lang.t('i18nBackgroundPattern')} gridColumns={4}>
+      <SettingsSectionGrid title={lang.t('i18nBackgroundPattern')} gridColumns={4}>
         {patterns.map((pattern) => (
           <div
             key={pattern}
@@ -102,10 +102,10 @@ export const SettingsPanelBackground = () => {
             onClick={() => setBackgroundPattern(pattern)}
           />
         ))}
-      </SettingsSection>
+      </SettingsSectionGrid>
 
       {/* Image */}
-      <SettingsSection title={lang.t('i18nBackgroundImage')} gridColumns={4}>
+      <SettingsSectionGrid title={lang.t('i18nBackgroundImage')} gridColumns={4}>
         {images.map((image) => (
           <div
             key={image}
@@ -116,11 +116,14 @@ export const SettingsPanelBackground = () => {
             onClick={() => setBackgroundImage(image)}
           />
         ))}
+      </SettingsSectionGrid>
+
+      <SettingsSection title={lang.t('i18nCustomImage')}>
+        <SettingsBackgroundImageURL
+          value={state.backgroundImageUrl}
+          onChange={(url) => setBackgroundImageUrl(url)}
+        />
       </SettingsSection>
-      <SettingsBackgroundImageURL
-        value={state.backgroundImageUrl}
-        onChange={(url) => setBackgroundImageUrl(url)}
-      />
     </SettingsPanel>
   );
 };

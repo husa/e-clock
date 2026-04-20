@@ -4,14 +4,30 @@ import { PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{
   title: string;
-  gridColumns?: number;
-  gridGap?: number;
 }>;
 
-export const SettingsSection = ({ title, gridColumns = 8, gridGap = 4, children }: Props) => {
+type GridProps = Props & {
+  gridColumns?: number;
+  gridGap?: number;
+};
+
+export const SettingsSection = ({ title, children }: Props) => {
   return (
     <div className="settings-section">
       <div className="settings-section__title">{title}</div>
+      {children}
+    </div>
+  );
+};
+
+export const SettingsSectionGrid = ({
+  title,
+  gridColumns = 8,
+  gridGap = 4,
+  children,
+}: GridProps) => {
+  return (
+    <SettingsSection title={title}>
       <div
         className="settings-section__options"
         style={{
@@ -20,6 +36,6 @@ export const SettingsSection = ({ title, gridColumns = 8, gridGap = 4, children 
         }}>
         {children}
       </div>
-    </div>
+    </SettingsSection>
   );
 };

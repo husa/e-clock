@@ -115,7 +115,10 @@
     "message": "Image"
   },
   "i18nCustomImage": {
-    "message": "Custom Image URL"
+    "message": "Custom Image"
+  },
+  "i18nCustomImageUrl": {
+    "message": "Image URL"
   },
   "i18nFontFamily": {
     "message": "Font"

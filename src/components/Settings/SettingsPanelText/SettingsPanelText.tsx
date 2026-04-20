@@ -3,7 +3,7 @@ import { colors, fonts } from '../../../config';
 import lang from '../../../services/lang';
 import { ColorPicker } from '../../UI/ColorPicker/ColorPicker';
 import { useSettingsSlice } from '../../../store/slices/settingsSlice';
-import { SettingsSection } from '../SettingsSection/SettingsSection';
+import { SettingsSectionGrid } from '../SettingsSection/SettingsSection';
 import { SettingsPanel } from '../SettingsPanel/SettingsPanel';
 import { Slider } from '../../UI/Slider/Slider';
 
@@ -12,7 +12,7 @@ export const SettingsPanelText = () => {
 
   return (
     <SettingsPanel>
-      <SettingsSection title={lang.t('i18nTextColor')}>
+      <SettingsSectionGrid title={lang.t('i18nTextColor')}>
         {colors.map((color) => (
           <div
             key={color}
@@ -33,8 +33,8 @@ export const SettingsPanelText = () => {
             })
           }
         />
-      </SettingsSection>
-      <SettingsSection title={lang.t('i18nFontFamily')} gridColumns={4}>
+      </SettingsSectionGrid>
+      <SettingsSectionGrid title={lang.t('i18nFontFamily')} gridColumns={4}>
         {fonts.map((font) => (
           <div
             key={font}
@@ -47,8 +47,8 @@ export const SettingsPanelText = () => {
             12345
           </div>
         ))}
-      </SettingsSection>
-      <SettingsSection title={lang.t('i18nFontSize')} gridColumns={1}>
+      </SettingsSectionGrid>
+      <SettingsSectionGrid title={lang.t('i18nFontSize')} gridColumns={1}>
         <Slider
           min="4"
           max="25"
@@ -61,7 +61,7 @@ export const SettingsPanelText = () => {
             });
           }}
         />
-      </SettingsSection>
+      </SettingsSectionGrid>
     </SettingsPanel>
   );
 };
