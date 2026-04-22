@@ -61,7 +61,7 @@ const URLS: { [key in URLCategory]: { chrome: ChromeURL; firefox?: FirefoxURL } 
   },
 };
 
-const getURL = (category: URLCategory): DockURL => {
+const getURL = (category: URLCategory): DockURL | undefined => {
   return URLS[category][currentRuntime];
 };
 

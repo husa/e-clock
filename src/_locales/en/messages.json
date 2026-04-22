@@ -48,8 +48,8 @@
     "description": "Chrome Web Store dock icon title"
   },
   "i18nMozillaAddons": {
-    "message": "Mozilla Addons",
-    "description": "Mozilla Addons dock icon title"
+    "message": "Firefox Addons",
+    "description": "Firefox Addons dock icon title"
   },
 
   "i18nGroupClock": {
@@ -149,7 +149,7 @@
     "message": "Custom Location"
   },
   "i18nWeatherYourCity": {
-    "message": "Your city (eg. London)"
+    "message": "Your city (e.g. London)"
   },
 
   "i18nRate": {

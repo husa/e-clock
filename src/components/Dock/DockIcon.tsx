@@ -44,11 +44,11 @@ const DockIcon = ({
   const dockIconClassName = classNames('dock-icon', `dock-icon--${className}`);
 
   return (
-    <li className={dockIconClassName} data-alt={lang.t(text)} onClick={handleClick}>
+    <span className={dockIconClassName} data-alt={lang.t(text)} onClick={handleClick}>
       <svg className="dock-icon__icon" viewBox={iconViewbox || '0 0 24 24'} width="24" height="24">
-        <use xlinkHref={`#${icon}`}></use>
+        <use href={`#${icon}`}></use>
       </svg>
-    </li>
+    </span>
   );
 };
 

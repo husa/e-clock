@@ -25,6 +25,7 @@ export const DocTitleUpdater = () => {
     const interval = setInterval(() => {
       document.title = getTime(use24, displaySeconds);
     }, 1000);
+    document.title = getTime(use24, displaySeconds);
 
     return () => clearInterval(interval);
   }, [use24, displaySeconds]);

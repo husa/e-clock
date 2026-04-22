@@ -14,7 +14,7 @@
   $handle-width: 16px;
   $handle-color: $theme-color-outline;
   $handle-selected-height: 24px;
-  $handle-selected_widht: 24px;
+  $handle-selected_width: 24px;
   $handle-selected-color: $theme-color-on-primary;
 
   display: inline-block;
@@ -98,7 +98,7 @@
   }
 
   &--selected &__handle {
-    width: $handle-selected_widht;
+    width: $handle-selected_width;
     height: $handle-selected-height;
     &:before {
       background: $handle-selected-color;

@@ -38,23 +38,37 @@ DigitsProps) => {
   return <span className={`${className}s`}>{digitsNodes}</span>;
 };
 
-const Hours = ({ hours, use24, animateDigits }) => {
+const Hours = ({
+  hours,
+  use24,
+  animateDigits,
+}: {
+  hours: number;
+  use24: boolean;
+  animateDigits: boolean;
+}) => {
   hours = format24Hours(use24, hours);
-  hours = use24 ? prependZero(hours) : `${hours}`;
-  return <Digits digits={hours} className="clock__hour" animateDigits={animateDigits} />;
+  const hoursStr = use24 ? prependZero(hours) : `${hours}`;
+  return <Digits digits={hoursStr} className="clock__hour" animateDigits={animateDigits} />;
 };
 
-const Minutes = ({ minutes, animateDigits }) => {
-  minutes = prependZero(minutes);
-  return <Digits digits={minutes} className="clock__minute" animateDigits={animateDigits} />;
+const Minutes = ({ minutes, animateDigits }: { minutes: number; animateDigits: boolean }) => {
+  const minutesStr = prependZero(minutes);
+  return <Digits digits={minutesStr} className="clock__minute" animateDigits={animateDigits} />;
 };
 
-const Seconds = ({ seconds, animateDigits }) => {
-  seconds = prependZero(seconds);
-  return <Digits digits={seconds} className="clock__second" animateDigits={animateDigits} />;
+const Seconds = ({ seconds, animateDigits }: { seconds: number; animateDigits: boolean }) => {
+  const secondsStr = prependZero(seconds);
+  return <Digits digits={secondsStr} className="clock__second" animateDigits={animateDigits} />;
 };
 
-const Delimiter = ({ hidden = false, delimiterBlinking }) => {
+const Delimiter = ({
+  hidden = false,
+  delimiterBlinking,
+}: {
+  hidden?: boolean;
+  delimiterBlinking: boolean;
+}) => {
   if (hidden) return null;
   const className = classNames('clock__delimiter', {
     'clock__delimiter--blinking': delimiterBlinking,

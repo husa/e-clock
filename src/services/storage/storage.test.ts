@@ -77,7 +77,7 @@ describe('Storage', () => {
 
     it('should return if data does not contain settings and dock', () => {
       storage.sync({ some: 'data' } as unknown as AppState);
-      expect(chrome.storage.sync.set).not.toHaveBeenCalledWith();
+      expect(chrome.storage.sync.set).not.toHaveBeenCalled();
     });
   });
 });

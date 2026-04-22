@@ -109,8 +109,6 @@
     }
   }
 
-  //
-
   &__current {
     display: flex;
     flex-direction: row;
@@ -120,7 +118,8 @@
     text-align: center;
 
     .separator {
-      &:before &:after {
+      &:before,
+      &:after {
         content: '\00a0';
       }
     }

@@ -1,6 +1,7 @@
 {
   "name": "e-clock",
   "version": "0.0.0",
+  "private": true,
   "description": "Chrome extension to replace \"new tab\" with digital clock",
   "repository": {
     "type": "git",

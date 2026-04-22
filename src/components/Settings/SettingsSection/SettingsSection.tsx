@@ -31,7 +31,7 @@ export const SettingsSectionGrid = ({
       <div
         className="settings-section__options"
         style={{
-          gridGap: gridGap || 2,
+          gridGap: gridGap ?? 2,
           gridTemplateColumns: `repeat(${gridColumns}, 1fr)`,
         }}>
         {children}
