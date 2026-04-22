@@ -1,4 +1,5 @@
-import storage from '../storage';
+import { AppState } from '../../store/createStore';
+import storage from '.';
 
 describe('Storage', () => {
   describe('load', () => {
@@ -9,40 +10,39 @@ describe('Storage', () => {
     });
 
     it('should return resolved promise with data from chrome.storage', () => {
-      chrome.storage.sync.get = jest.fn().mockImplementation((key, callback) => {
-        setTimeout(callback, 10, {[key]: {
-          some: 'data'
-        }});
-      });
+      chrome.storage.sync.get = jest.fn().mockImplementation((key) =>
+        Promise.resolve({
+          [key]: {
+            some: 'data',
+          },
+        }),
+      );
 
       const resolveSpy = jest.fn();
       const rejectSpy = jest.fn();
-      return storage.load().then(
-        resolveSpy,
-        rejectSpy
-      ).then(() => {
-        expect(resolveSpy).toHaveBeenCalled();
-        expect(rejectSpy).not.toHaveBeenCalled();
-        expect(resolveSpy).toHaveBeenCalledWith({
-          some: 'data'
+
+      return storage
+        .load()
+        .then(resolveSpy, rejectSpy)
+        .then(() => {
+          expect(rejectSpy).not.toHaveBeenCalled();
+          expect(resolveSpy).toHaveBeenCalledWith({
+            some: 'data',
+          });
         });
-      });
     });
 
     it('should return resolved promise with null if chrome.storage does not have data', () => {
-      chrome.storage.sync.get = jest.fn().mockImplementation((key, callback) => {
-        setTimeout(callback, 10, null);
-      });
+      chrome.storage.sync.get = jest.fn().mockImplementation(() => Promise.resolve(null));
       const resolveSpy = jest.fn();
       const rejectSpy = jest.fn();
-      return storage.load().then(
-        resolveSpy,
-        rejectSpy
-      ).then(() => {
-        expect(resolveSpy).toHaveBeenCalled();
-        expect(rejectSpy).not.toHaveBeenCalled();
-        expect(resolveSpy).toHaveBeenCalledWith(null);
-      });
+      return storage
+        .load()
+        .then(resolveSpy, rejectSpy)
+        .then(() => {
+          expect(rejectSpy).not.toHaveBeenCalled();
+          expect(resolveSpy).toHaveBeenCalledWith(null);
+        });
     });
   });
 
@@ -59,14 +59,14 @@ describe('Storage', () => {
 
     it('should pluck "settings" and "dock" from passed object, merge them, and set them to chrome.storage', () => {
       storage.sync({
-        settings: {some: 'data'},
-        dock: {another: 'info'}
-      });
+        settings: { some: 'data' },
+        dock: { another: 'info' },
+      } as unknown as AppState);
       expect(chrome.storage.sync.set).toHaveBeenCalledWith({
         [storage.key]: {
           some: 'data',
-          another: 'info'
-        }
+          another: 'info',
+        },
       });
     });
 
@@ -76,7 +76,7 @@ describe('Storage', () => {
     });
 
     it('should return if data does not contain settings and dock', () => {
-      storage.sync({some: 'data'});
+      storage.sync({ some: 'data' } as unknown as AppState);
       expect(chrome.storage.sync.set).not.toHaveBeenCalledWith();
     });
   });

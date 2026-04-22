@@ -21,7 +21,7 @@ class ChromeSyncStorage {
     return data[this.key] as SettingsState & DockState;
   }
 
-  async sync(data: AppState) {
+  async sync(data?: AppState) {
     if (!data) return;
     const { settings, dock } = data;
     if (!settings && !dock) return;

@@ -29,10 +29,18 @@ export default defineConfig([
     },
   },
   {
-    files: ['**/*.test.js'],
+    files: ['**/*.test.{ts,js}'],
     languageOptions: {
       globals: {
         ...globals.jest,
+      },
+    },
+  },
+  {
+    files: ['jest.config.js'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
       },
     },
   },

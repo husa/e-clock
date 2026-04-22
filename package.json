@@ -68,12 +68,13 @@
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.5.0",
-    "@eslint/js": "^10.0.1",
+    "@eslint/js": "^9.39.4",
     "@rsbuild/core": "^1.7.5",
     "@rsbuild/plugin-react": "^1.4.6",
     "@rsbuild/plugin-sass": "^1.5.1",
     "@types/chrome": "^0.1.40",
     "@types/firefox-webext-browser": "^143.0.0",
+    "@types/jest": "^30.0.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/react-transition-group": "^4.4.12",
@@ -99,6 +100,7 @@
     "simple-git": "^3.36.0",
     "storybook": "10.3.5",
     "storybook-react-rsbuild": "^3.3.3",
+    "ts-jest": "^29.4.9",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.58.2"
   },
