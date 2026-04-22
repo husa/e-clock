@@ -29,7 +29,7 @@ const DateView = ({ className }: Props) => {
       setDate(newDate());
     }, UPDATE_INTERVAL);
     return () => clearInterval(interval);
-  });
+  }, []);
 
   if (!state.displayDate) return null;
 

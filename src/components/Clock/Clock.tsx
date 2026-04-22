@@ -77,7 +77,7 @@ const Clock = ({ className }: { className: string }) => {
       setTime(newTime);
     }, 1000);
     return () => clearInterval(interval);
-  });
+  }, []);
 
   return (
     <div className={classNames(className, 'clock')}>
